@@ -1,3 +1,4 @@
+import { StatusBadge } from '@/components/StatusBadge';
 import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
 import { supabase } from '@/utils/supabase';
@@ -35,7 +36,7 @@ function RouteComponent() {
 interface EquipmentProps {
   id: string;
   name: string;
-  status: string;
+  status: "working" | "maintenance" | "broken"
 }
 
 function EquipmentCard({ props }: { props: EquipmentProps }) { // dodać typy
@@ -43,7 +44,7 @@ function EquipmentCard({ props }: { props: EquipmentProps }) { // dodać typy
     <Link to="/dashboard/equipment/$id" params={{ id: props.id }} className="border rounded-md p-2">
       <Skeleton className="size-40 w-full" />
       <h2 className="font-medium mt-2">{props.name}</h2>
-      <p className="text-sm text-muted-foreground">Status: {props.status}</p>
+      <StatusBadge status={props.status} className='mt-1' />
     </Link>
   )
 }

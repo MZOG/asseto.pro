@@ -1,4 +1,5 @@
 // app/routes/dashboard.issues.tsx
+import { StatusBadge } from '@/components/StatusBadge'
 import { Button } from '@/components/ui/button'
 import { cn, formatDate } from '@/lib/utils'
 import { supabase } from '@/utils/supabase'
@@ -21,6 +22,8 @@ export const Route = createFileRoute('/dashboard/issues/')({
 function IssuesComponent() {
   const { issues } = Route.useLoaderData()
 
+  console.log(issues)
+
   return (
     <div>
       <h1 className="font-medium text-sm">Aktywne Awarie</h1>
@@ -34,9 +37,9 @@ function IssuesComponent() {
               params={{ id: issue.id }}
               className={cn(
                 'block p-3 rounded-md',
-                issue.status === 'open'
+                issue.status === 'broken'
                   ? 'bg-red-50/70 border border-red-100 hover:bg-red-100/50 space-y-1'
-                  : issue.status === 'in_progress'
+                  : issue.status === 'maintenance'
                     ? 'bg-amber-50 border border-amber-200 hover:bg-amber-100/50'
                     : 'bg-green-50/70 border border-green-100 hover:bg-green-100/50',
               )}
@@ -46,7 +49,7 @@ function IssuesComponent() {
                   <TriangleAlert
                     size={15}
                     className={cn(
-                      issue.status === 'open'
+                      issue.status === 'broken'
                         ? 'text-red-400'
                         : 'text-amber-400',
                     )}
@@ -57,7 +60,7 @@ function IssuesComponent() {
               </div>
 
               <div className="grid grid-cols-5 mt-3">
-                <p className="text-sm col-span-1">Status: {issue.status}</p>
+                <StatusBadge status={issue.status} className='mt-1 self-start' />
 
                 <div className="text-sm col-span-4">
                   <p className="font-medium">Opis:</p>

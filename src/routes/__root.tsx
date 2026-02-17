@@ -8,10 +8,6 @@ import { TanStackDevtools } from '@tanstack/react-devtools'
 import { ClerkProvider } from '@clerk/tanstack-react-start'
 import { plPL } from '@clerk/localizations'
 
-import Header from '../components/Header'
-
-import ConvexProvider from '../integrations/convex/provider'
-
 import TanStackQueryDevtools from '../integrations/tanstack-query/devtools'
 
 import appCss from '../styles.css?url'
@@ -53,9 +49,8 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       <head>
         <HeadContent />
       </head>
-      <body className="bg-gray-50 mt-28">
+      <body className="bg-gray-50">
         <ClerkProvider localization={plPL}>
-          <Header />
           {children}
           <TanStackDevtools
             config={{

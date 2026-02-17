@@ -1,3 +1,5 @@
+import { StatusBadge } from '@/components/StatusBadge'
+import { Skeleton } from '@/components/ui/skeleton'
 import { supabase } from '@/utils/supabase'
 import { createFileRoute } from '@tanstack/react-router'
 
@@ -11,5 +13,11 @@ export const Route = createFileRoute('/dashboard/equipment/$id')({
 
 function RouteComponent() {
   const { equipment } = Route.useLoaderData()
-  return <div>{equipment.name}</div>
+  return <div>
+    <Skeleton className="size-50" />
+    <h1 className="font-medium mt-4 flex gap-2 items-center">{equipment.name} <StatusBadge status={equipment.status} /></h1>
+    <p className="text-sm ">Ostatni serwis: DATA</p>
+    <p className="text-sm ">Następny serwis: DATA</p>
+
+  </div>
 }

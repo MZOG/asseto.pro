@@ -1,14 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 
-export const Route = createFileRoute('/')({ component: App })
-
-import {
-  SignedIn,
-  UserButton,
-  SignedOut,
-  SignInButton,
-  SignUpButton,
-} from '@clerk/tanstack-react-start'
+export const Route = createFileRoute('/(public)/')({ component: App })
 
 // components
 import Hero from '@/components/Hero'
@@ -19,13 +11,6 @@ import Pricing from '@/components/Pricing'
 function App() {
   return (
     <>
-      {/* <SignedOut>
-        <SignInButton />
-        <SignUpButton />
-      </SignedOut>
-      <SignedIn>
-        <UserButton />
-      </SignedIn> */}
       <Hero />
       <HowItWorks />
       <Features />

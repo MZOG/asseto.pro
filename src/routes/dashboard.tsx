@@ -8,16 +8,21 @@ export const Route = createFileRoute('/dashboard')({
       .from('issues')
       .select('*', { count: 'exact', head: true })
       .order('created_at', { ascending: false })
-    return { issuesCount: count }
+    // count equipment
+    const { count: equipmentCount } = await supabase
+      .from('assets')
+      .select('*', { count: 'exact', head: true })
+    return { issuesCount: count, equipmentCount }
   },
   component: DashboardLayout,
 })
 
 import { Cog, TriangleAlert, BookOpen, Factory } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
+import DashboardHeader from '@/components/dashboard/DashboardHeader'
 
 function DashboardLayout() {
-  const { issuesCount } = Route.useLoaderData()
+  const { issuesCount, equipmentCount } = Route.useLoaderData()
 
   const dashboardLinks = [
     { to: '/dashboard', label: 'Przegląd', icon: BookOpen },
@@ -27,27 +32,13 @@ function DashboardLayout() {
       icon: TriangleAlert,
       count: issuesCount,
     },
-    { to: '/dashboard/equipment', label: 'Maszyny', icon: Factory, count: 31 },
+    { to: '/dashboard/equipment', label: 'Maszyny', icon: Factory, count: equipmentCount },
   ]
 
   return (
+    <>
+    <DashboardHeader />
     <section className="px-5 mx-auto max-w-6xl mt-5">
-      <div className="bg-white border border-dashed rounded-xl p-4 mb-5 text-xs max-w-4xl">
-        <p>
-          Aplikacja jest w fazie testów, więc jeśli natrafisz na jakiś błąd,
-          prosimy o wyrozumiałość i zgłoszenie go do działu IT.
-          <span className="block">
-            Twoje sugestie są dla nas kluczowe w procesie ulepszania narzędzia.
-            Dziękujemy, że jesteś z nami!{' '}
-            <Link
-              to="/dashboard/feedback"
-              className="font-medium text-blue-600 cursor-pointer hover:underline underline-offset-2 bg-blue-50"
-            >
-              Zgłoś błąd / sugestię
-            </Link>
-          </span>
-        </p>
-      </div>
       <div className=" flex gap-5  h-full">
         {/* SIDEBAR */}
         <aside className="bg-white w-64 rounded-xl flex flex-col  h-100 p-5  border border-gray-100">
@@ -61,7 +52,8 @@ function DashboardLayout() {
                 >
                   <link.icon size={16} />
                   <span className="hover:underline">{link.label}</span>
-                  {link.count && <Badge variant="outline">{link.count}</Badge>}
+                  {link.count && <p className='text-xs ml-auto'><Badge variant='outline' className='text-[10px]'>{link.count}</Badge></p>}
+
                 </Link>
               )
             })}
@@ -81,5 +73,6 @@ function DashboardLayout() {
         </main>
       </div>
     </section>
+    </>
   )
 }

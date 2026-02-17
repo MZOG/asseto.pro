@@ -157,7 +157,7 @@ export default function Header() {
               <NavigationMenuItem>
                 <NavigationMenuLink asChild>
                   <Link
-                    to="/auth/login"
+                    to="/login"
                     className="inline-flex h-9 items-center justify-center rounded-md px-3 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
                   >
                     Zaloguj się
@@ -215,7 +215,7 @@ export default function Header() {
 
               <div className="px-2 pt-1">
                 <Link
-                  to="/auth/signup"
+                  to="/signup"
                   onClick={() => setSheetOpen(false)}
                   className="flex items-center justify-center bg-blue-600 text-white px-4 py-2.5 rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors w-full"
                 >

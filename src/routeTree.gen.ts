@@ -9,54 +9,39 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as KontaktRouteImport } from './routes/kontakt'
 import { Route as DashboardRouteImport } from './routes/dashboard'
-import { Route as CennikRouteImport } from './routes/cennik'
-import { Route as IndexRouteImport } from './routes/index'
-import { Route as MozliwosciIndexRouteImport } from './routes/mozliwosci/index'
+import { Route as publicRouteRouteImport } from './routes/(public)/route'
 import { Route as DashboardIndexRouteImport } from './routes/dashboard/index'
-import { Route as BranzeIndexRouteImport } from './routes/branze/index'
-import { Route as MozliwosciPowiadomieniaRouteImport } from './routes/mozliwosci/powiadomienia'
-import { Route as MozliwosciHistoriaNaprawRouteImport } from './routes/mozliwosci/historia-napraw'
-import { Route as MozliwosciGeneratorKodowQrRouteImport } from './routes/mozliwosci/generator-kodow-qr'
-import { Route as MozliwosciFormularzZgloszeniowyRouteImport } from './routes/mozliwosci/formularz-zgloszeniowy'
+import { Route as publicIndexRouteImport } from './routes/(public)/index'
 import { Route as DashboardSettingsRouteImport } from './routes/dashboard/settings'
 import { Route as DashboardFeedbackRouteImport } from './routes/dashboard/feedback'
-import { Route as BranzeSilownieRouteImport } from './routes/branze/silownie'
-import { Route as AuthSignupRouteImport } from './routes/auth/signup'
-import { Route as AuthResetPasswordRouteImport } from './routes/auth/reset-password'
-import { Route as AuthLoginRouteImport } from './routes/auth/login'
-import { Route as AuthForgotPasswordRouteImport } from './routes/auth/forgot-password'
+import { Route as publicSignupRouteImport } from './routes/(public)/signup'
+import { Route as publicResetPasswordRouteImport } from './routes/(public)/reset-password'
+import { Route as publicLoginRouteImport } from './routes/(public)/login'
+import { Route as publicKontaktRouteImport } from './routes/(public)/kontakt'
+import { Route as publicForgotPasswordRouteImport } from './routes/(public)/forgot-password'
+import { Route as publicCennikRouteImport } from './routes/(public)/cennik'
 import { Route as DashboardIssuesIndexRouteImport } from './routes/dashboard/issues.index'
 import { Route as DashboardEquipmentIndexRouteImport } from './routes/dashboard/equipment.index'
+import { Route as publicMozliwosciIndexRouteImport } from './routes/(public)/mozliwosci/index'
+import { Route as publicBranzeIndexRouteImport } from './routes/(public)/branze/index'
 import { Route as DashboardIssuesArchiveRouteImport } from './routes/dashboard/issues.archive'
 import { Route as DashboardIssuesIdRouteImport } from './routes/dashboard/issues.$id'
 import { Route as DashboardEquipmentAddRouteImport } from './routes/dashboard/equipment.add'
 import { Route as DashboardEquipmentIdRouteImport } from './routes/dashboard/equipment.$id'
+import { Route as publicMozliwosciPowiadomieniaRouteImport } from './routes/(public)/mozliwosci/powiadomienia'
+import { Route as publicMozliwosciHistoriaNaprawRouteImport } from './routes/(public)/mozliwosci/historia-napraw'
+import { Route as publicMozliwosciGeneratorKodowQrRouteImport } from './routes/(public)/mozliwosci/generator-kodow-qr'
+import { Route as publicMozliwosciFormularzZgloszeniowyRouteImport } from './routes/(public)/mozliwosci/formularz-zgloszeniowy'
+import { Route as publicBranzeSilownieRouteImport } from './routes/(public)/branze/silownie'
 
-const KontaktRoute = KontaktRouteImport.update({
-  id: '/kontakt',
-  path: '/kontakt',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const DashboardRoute = DashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
   getParentRoute: () => rootRouteImport,
 } as any)
-const CennikRoute = CennikRouteImport.update({
-  id: '/cennik',
-  path: '/cennik',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const MozliwosciIndexRoute = MozliwosciIndexRouteImport.update({
-  id: '/mozliwosci/',
-  path: '/mozliwosci/',
+const publicRouteRoute = publicRouteRouteImport.update({
+  id: '/(public)',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DashboardIndexRoute = DashboardIndexRouteImport.update({
@@ -64,34 +49,11 @@ const DashboardIndexRoute = DashboardIndexRouteImport.update({
   path: '/',
   getParentRoute: () => DashboardRoute,
 } as any)
-const BranzeIndexRoute = BranzeIndexRouteImport.update({
-  id: '/branze/',
-  path: '/branze/',
-  getParentRoute: () => rootRouteImport,
+const publicIndexRoute = publicIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => publicRouteRoute,
 } as any)
-const MozliwosciPowiadomieniaRoute = MozliwosciPowiadomieniaRouteImport.update({
-  id: '/mozliwosci/powiadomienia',
-  path: '/mozliwosci/powiadomienia',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const MozliwosciHistoriaNaprawRoute =
-  MozliwosciHistoriaNaprawRouteImport.update({
-    id: '/mozliwosci/historia-napraw',
-    path: '/mozliwosci/historia-napraw',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const MozliwosciGeneratorKodowQrRoute =
-  MozliwosciGeneratorKodowQrRouteImport.update({
-    id: '/mozliwosci/generator-kodow-qr',
-    path: '/mozliwosci/generator-kodow-qr',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const MozliwosciFormularzZgloszeniowyRoute =
-  MozliwosciFormularzZgloszeniowyRouteImport.update({
-    id: '/mozliwosci/formularz-zgloszeniowy',
-    path: '/mozliwosci/formularz-zgloszeniowy',
-    getParentRoute: () => rootRouteImport,
-  } as any)
 const DashboardSettingsRoute = DashboardSettingsRouteImport.update({
   id: '/settings',
   path: '/settings',
@@ -102,30 +64,35 @@ const DashboardFeedbackRoute = DashboardFeedbackRouteImport.update({
   path: '/feedback',
   getParentRoute: () => DashboardRoute,
 } as any)
-const BranzeSilownieRoute = BranzeSilownieRouteImport.update({
-  id: '/branze/silownie',
-  path: '/branze/silownie',
-  getParentRoute: () => rootRouteImport,
+const publicSignupRoute = publicSignupRouteImport.update({
+  id: '/signup',
+  path: '/signup',
+  getParentRoute: () => publicRouteRoute,
 } as any)
-const AuthSignupRoute = AuthSignupRouteImport.update({
-  id: '/auth/signup',
-  path: '/auth/signup',
-  getParentRoute: () => rootRouteImport,
+const publicResetPasswordRoute = publicResetPasswordRouteImport.update({
+  id: '/reset-password',
+  path: '/reset-password',
+  getParentRoute: () => publicRouteRoute,
 } as any)
-const AuthResetPasswordRoute = AuthResetPasswordRouteImport.update({
-  id: '/auth/reset-password',
-  path: '/auth/reset-password',
-  getParentRoute: () => rootRouteImport,
+const publicLoginRoute = publicLoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => publicRouteRoute,
 } as any)
-const AuthLoginRoute = AuthLoginRouteImport.update({
-  id: '/auth/login',
-  path: '/auth/login',
-  getParentRoute: () => rootRouteImport,
+const publicKontaktRoute = publicKontaktRouteImport.update({
+  id: '/kontakt',
+  path: '/kontakt',
+  getParentRoute: () => publicRouteRoute,
 } as any)
-const AuthForgotPasswordRoute = AuthForgotPasswordRouteImport.update({
-  id: '/auth/forgot-password',
-  path: '/auth/forgot-password',
-  getParentRoute: () => rootRouteImport,
+const publicForgotPasswordRoute = publicForgotPasswordRouteImport.update({
+  id: '/forgot-password',
+  path: '/forgot-password',
+  getParentRoute: () => publicRouteRoute,
+} as any)
+const publicCennikRoute = publicCennikRouteImport.update({
+  id: '/cennik',
+  path: '/cennik',
+  getParentRoute: () => publicRouteRoute,
 } as any)
 const DashboardIssuesIndexRoute = DashboardIssuesIndexRouteImport.update({
   id: '/issues/',
@@ -136,6 +103,16 @@ const DashboardEquipmentIndexRoute = DashboardEquipmentIndexRouteImport.update({
   id: '/equipment/',
   path: '/equipment/',
   getParentRoute: () => DashboardRoute,
+} as any)
+const publicMozliwosciIndexRoute = publicMozliwosciIndexRouteImport.update({
+  id: '/mozliwosci/',
+  path: '/mozliwosci/',
+  getParentRoute: () => publicRouteRoute,
+} as any)
+const publicBranzeIndexRoute = publicBranzeIndexRouteImport.update({
+  id: '/branze/',
+  path: '/branze/',
+  getParentRoute: () => publicRouteRoute,
 } as any)
 const DashboardIssuesArchiveRoute = DashboardIssuesArchiveRouteImport.update({
   id: '/issues/archive',
@@ -157,192 +134,203 @@ const DashboardEquipmentIdRoute = DashboardEquipmentIdRouteImport.update({
   path: '/equipment/$id',
   getParentRoute: () => DashboardRoute,
 } as any)
+const publicMozliwosciPowiadomieniaRoute =
+  publicMozliwosciPowiadomieniaRouteImport.update({
+    id: '/mozliwosci/powiadomienia',
+    path: '/mozliwosci/powiadomienia',
+    getParentRoute: () => publicRouteRoute,
+  } as any)
+const publicMozliwosciHistoriaNaprawRoute =
+  publicMozliwosciHistoriaNaprawRouteImport.update({
+    id: '/mozliwosci/historia-napraw',
+    path: '/mozliwosci/historia-napraw',
+    getParentRoute: () => publicRouteRoute,
+  } as any)
+const publicMozliwosciGeneratorKodowQrRoute =
+  publicMozliwosciGeneratorKodowQrRouteImport.update({
+    id: '/mozliwosci/generator-kodow-qr',
+    path: '/mozliwosci/generator-kodow-qr',
+    getParentRoute: () => publicRouteRoute,
+  } as any)
+const publicMozliwosciFormularzZgloszeniowyRoute =
+  publicMozliwosciFormularzZgloszeniowyRouteImport.update({
+    id: '/mozliwosci/formularz-zgloszeniowy',
+    path: '/mozliwosci/formularz-zgloszeniowy',
+    getParentRoute: () => publicRouteRoute,
+  } as any)
+const publicBranzeSilownieRoute = publicBranzeSilownieRouteImport.update({
+  id: '/branze/silownie',
+  path: '/branze/silownie',
+  getParentRoute: () => publicRouteRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
-  '/cennik': typeof CennikRoute
   '/dashboard': typeof DashboardRouteWithChildren
-  '/kontakt': typeof KontaktRoute
-  '/auth/forgot-password': typeof AuthForgotPasswordRoute
-  '/auth/login': typeof AuthLoginRoute
-  '/auth/reset-password': typeof AuthResetPasswordRoute
-  '/auth/signup': typeof AuthSignupRoute
-  '/branze/silownie': typeof BranzeSilownieRoute
+  '/cennik': typeof publicCennikRoute
+  '/forgot-password': typeof publicForgotPasswordRoute
+  '/kontakt': typeof publicKontaktRoute
+  '/login': typeof publicLoginRoute
+  '/reset-password': typeof publicResetPasswordRoute
+  '/signup': typeof publicSignupRoute
   '/dashboard/feedback': typeof DashboardFeedbackRoute
   '/dashboard/settings': typeof DashboardSettingsRoute
-  '/mozliwosci/formularz-zgloszeniowy': typeof MozliwosciFormularzZgloszeniowyRoute
-  '/mozliwosci/generator-kodow-qr': typeof MozliwosciGeneratorKodowQrRoute
-  '/mozliwosci/historia-napraw': typeof MozliwosciHistoriaNaprawRoute
-  '/mozliwosci/powiadomienia': typeof MozliwosciPowiadomieniaRoute
-  '/branze/': typeof BranzeIndexRoute
+  '/': typeof publicIndexRoute
   '/dashboard/': typeof DashboardIndexRoute
-  '/mozliwosci/': typeof MozliwosciIndexRoute
+  '/branze/silownie': typeof publicBranzeSilownieRoute
+  '/mozliwosci/formularz-zgloszeniowy': typeof publicMozliwosciFormularzZgloszeniowyRoute
+  '/mozliwosci/generator-kodow-qr': typeof publicMozliwosciGeneratorKodowQrRoute
+  '/mozliwosci/historia-napraw': typeof publicMozliwosciHistoriaNaprawRoute
+  '/mozliwosci/powiadomienia': typeof publicMozliwosciPowiadomieniaRoute
   '/dashboard/equipment/$id': typeof DashboardEquipmentIdRoute
   '/dashboard/equipment/add': typeof DashboardEquipmentAddRoute
   '/dashboard/issues/$id': typeof DashboardIssuesIdRoute
   '/dashboard/issues/archive': typeof DashboardIssuesArchiveRoute
+  '/branze/': typeof publicBranzeIndexRoute
+  '/mozliwosci/': typeof publicMozliwosciIndexRoute
   '/dashboard/equipment/': typeof DashboardEquipmentIndexRoute
   '/dashboard/issues/': typeof DashboardIssuesIndexRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
-  '/cennik': typeof CennikRoute
-  '/kontakt': typeof KontaktRoute
-  '/auth/forgot-password': typeof AuthForgotPasswordRoute
-  '/auth/login': typeof AuthLoginRoute
-  '/auth/reset-password': typeof AuthResetPasswordRoute
-  '/auth/signup': typeof AuthSignupRoute
-  '/branze/silownie': typeof BranzeSilownieRoute
+  '/cennik': typeof publicCennikRoute
+  '/forgot-password': typeof publicForgotPasswordRoute
+  '/kontakt': typeof publicKontaktRoute
+  '/login': typeof publicLoginRoute
+  '/reset-password': typeof publicResetPasswordRoute
+  '/signup': typeof publicSignupRoute
   '/dashboard/feedback': typeof DashboardFeedbackRoute
   '/dashboard/settings': typeof DashboardSettingsRoute
-  '/mozliwosci/formularz-zgloszeniowy': typeof MozliwosciFormularzZgloszeniowyRoute
-  '/mozliwosci/generator-kodow-qr': typeof MozliwosciGeneratorKodowQrRoute
-  '/mozliwosci/historia-napraw': typeof MozliwosciHistoriaNaprawRoute
-  '/mozliwosci/powiadomienia': typeof MozliwosciPowiadomieniaRoute
-  '/branze': typeof BranzeIndexRoute
+  '/': typeof publicIndexRoute
   '/dashboard': typeof DashboardIndexRoute
-  '/mozliwosci': typeof MozliwosciIndexRoute
+  '/branze/silownie': typeof publicBranzeSilownieRoute
+  '/mozliwosci/formularz-zgloszeniowy': typeof publicMozliwosciFormularzZgloszeniowyRoute
+  '/mozliwosci/generator-kodow-qr': typeof publicMozliwosciGeneratorKodowQrRoute
+  '/mozliwosci/historia-napraw': typeof publicMozliwosciHistoriaNaprawRoute
+  '/mozliwosci/powiadomienia': typeof publicMozliwosciPowiadomieniaRoute
   '/dashboard/equipment/$id': typeof DashboardEquipmentIdRoute
   '/dashboard/equipment/add': typeof DashboardEquipmentAddRoute
   '/dashboard/issues/$id': typeof DashboardIssuesIdRoute
   '/dashboard/issues/archive': typeof DashboardIssuesArchiveRoute
+  '/branze': typeof publicBranzeIndexRoute
+  '/mozliwosci': typeof publicMozliwosciIndexRoute
   '/dashboard/equipment': typeof DashboardEquipmentIndexRoute
   '/dashboard/issues': typeof DashboardIssuesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
-  '/cennik': typeof CennikRoute
+  '/(public)': typeof publicRouteRouteWithChildren
   '/dashboard': typeof DashboardRouteWithChildren
-  '/kontakt': typeof KontaktRoute
-  '/auth/forgot-password': typeof AuthForgotPasswordRoute
-  '/auth/login': typeof AuthLoginRoute
-  '/auth/reset-password': typeof AuthResetPasswordRoute
-  '/auth/signup': typeof AuthSignupRoute
-  '/branze/silownie': typeof BranzeSilownieRoute
+  '/(public)/cennik': typeof publicCennikRoute
+  '/(public)/forgot-password': typeof publicForgotPasswordRoute
+  '/(public)/kontakt': typeof publicKontaktRoute
+  '/(public)/login': typeof publicLoginRoute
+  '/(public)/reset-password': typeof publicResetPasswordRoute
+  '/(public)/signup': typeof publicSignupRoute
   '/dashboard/feedback': typeof DashboardFeedbackRoute
   '/dashboard/settings': typeof DashboardSettingsRoute
-  '/mozliwosci/formularz-zgloszeniowy': typeof MozliwosciFormularzZgloszeniowyRoute
-  '/mozliwosci/generator-kodow-qr': typeof MozliwosciGeneratorKodowQrRoute
-  '/mozliwosci/historia-napraw': typeof MozliwosciHistoriaNaprawRoute
-  '/mozliwosci/powiadomienia': typeof MozliwosciPowiadomieniaRoute
-  '/branze/': typeof BranzeIndexRoute
+  '/(public)/': typeof publicIndexRoute
   '/dashboard/': typeof DashboardIndexRoute
-  '/mozliwosci/': typeof MozliwosciIndexRoute
+  '/(public)/branze/silownie': typeof publicBranzeSilownieRoute
+  '/(public)/mozliwosci/formularz-zgloszeniowy': typeof publicMozliwosciFormularzZgloszeniowyRoute
+  '/(public)/mozliwosci/generator-kodow-qr': typeof publicMozliwosciGeneratorKodowQrRoute
+  '/(public)/mozliwosci/historia-napraw': typeof publicMozliwosciHistoriaNaprawRoute
+  '/(public)/mozliwosci/powiadomienia': typeof publicMozliwosciPowiadomieniaRoute
   '/dashboard/equipment/$id': typeof DashboardEquipmentIdRoute
   '/dashboard/equipment/add': typeof DashboardEquipmentAddRoute
   '/dashboard/issues/$id': typeof DashboardIssuesIdRoute
   '/dashboard/issues/archive': typeof DashboardIssuesArchiveRoute
+  '/(public)/branze/': typeof publicBranzeIndexRoute
+  '/(public)/mozliwosci/': typeof publicMozliwosciIndexRoute
   '/dashboard/equipment/': typeof DashboardEquipmentIndexRoute
   '/dashboard/issues/': typeof DashboardIssuesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    | '/'
-    | '/cennik'
     | '/dashboard'
+    | '/cennik'
+    | '/forgot-password'
     | '/kontakt'
-    | '/auth/forgot-password'
-    | '/auth/login'
-    | '/auth/reset-password'
-    | '/auth/signup'
-    | '/branze/silownie'
+    | '/login'
+    | '/reset-password'
+    | '/signup'
     | '/dashboard/feedback'
     | '/dashboard/settings'
+    | '/'
+    | '/dashboard/'
+    | '/branze/silownie'
     | '/mozliwosci/formularz-zgloszeniowy'
     | '/mozliwosci/generator-kodow-qr'
     | '/mozliwosci/historia-napraw'
     | '/mozliwosci/powiadomienia'
-    | '/branze/'
-    | '/dashboard/'
-    | '/mozliwosci/'
     | '/dashboard/equipment/$id'
     | '/dashboard/equipment/add'
     | '/dashboard/issues/$id'
     | '/dashboard/issues/archive'
+    | '/branze/'
+    | '/mozliwosci/'
     | '/dashboard/equipment/'
     | '/dashboard/issues/'
   fileRoutesByTo: FileRoutesByTo
   to:
-    | '/'
     | '/cennik'
+    | '/forgot-password'
     | '/kontakt'
-    | '/auth/forgot-password'
-    | '/auth/login'
-    | '/auth/reset-password'
-    | '/auth/signup'
-    | '/branze/silownie'
+    | '/login'
+    | '/reset-password'
+    | '/signup'
     | '/dashboard/feedback'
     | '/dashboard/settings'
+    | '/'
+    | '/dashboard'
+    | '/branze/silownie'
     | '/mozliwosci/formularz-zgloszeniowy'
     | '/mozliwosci/generator-kodow-qr'
     | '/mozliwosci/historia-napraw'
     | '/mozliwosci/powiadomienia'
-    | '/branze'
-    | '/dashboard'
-    | '/mozliwosci'
     | '/dashboard/equipment/$id'
     | '/dashboard/equipment/add'
     | '/dashboard/issues/$id'
     | '/dashboard/issues/archive'
+    | '/branze'
+    | '/mozliwosci'
     | '/dashboard/equipment'
     | '/dashboard/issues'
   id:
     | '__root__'
-    | '/'
-    | '/cennik'
+    | '/(public)'
     | '/dashboard'
-    | '/kontakt'
-    | '/auth/forgot-password'
-    | '/auth/login'
-    | '/auth/reset-password'
-    | '/auth/signup'
-    | '/branze/silownie'
+    | '/(public)/cennik'
+    | '/(public)/forgot-password'
+    | '/(public)/kontakt'
+    | '/(public)/login'
+    | '/(public)/reset-password'
+    | '/(public)/signup'
     | '/dashboard/feedback'
     | '/dashboard/settings'
-    | '/mozliwosci/formularz-zgloszeniowy'
-    | '/mozliwosci/generator-kodow-qr'
-    | '/mozliwosci/historia-napraw'
-    | '/mozliwosci/powiadomienia'
-    | '/branze/'
+    | '/(public)/'
     | '/dashboard/'
-    | '/mozliwosci/'
+    | '/(public)/branze/silownie'
+    | '/(public)/mozliwosci/formularz-zgloszeniowy'
+    | '/(public)/mozliwosci/generator-kodow-qr'
+    | '/(public)/mozliwosci/historia-napraw'
+    | '/(public)/mozliwosci/powiadomienia'
     | '/dashboard/equipment/$id'
     | '/dashboard/equipment/add'
     | '/dashboard/issues/$id'
     | '/dashboard/issues/archive'
+    | '/(public)/branze/'
+    | '/(public)/mozliwosci/'
     | '/dashboard/equipment/'
     | '/dashboard/issues/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
-  CennikRoute: typeof CennikRoute
+  publicRouteRoute: typeof publicRouteRouteWithChildren
   DashboardRoute: typeof DashboardRouteWithChildren
-  KontaktRoute: typeof KontaktRoute
-  AuthForgotPasswordRoute: typeof AuthForgotPasswordRoute
-  AuthLoginRoute: typeof AuthLoginRoute
-  AuthResetPasswordRoute: typeof AuthResetPasswordRoute
-  AuthSignupRoute: typeof AuthSignupRoute
-  BranzeSilownieRoute: typeof BranzeSilownieRoute
-  MozliwosciFormularzZgloszeniowyRoute: typeof MozliwosciFormularzZgloszeniowyRoute
-  MozliwosciGeneratorKodowQrRoute: typeof MozliwosciGeneratorKodowQrRoute
-  MozliwosciHistoriaNaprawRoute: typeof MozliwosciHistoriaNaprawRoute
-  MozliwosciPowiadomieniaRoute: typeof MozliwosciPowiadomieniaRoute
-  BranzeIndexRoute: typeof BranzeIndexRoute
-  MozliwosciIndexRoute: typeof MozliwosciIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/kontakt': {
-      id: '/kontakt'
-      path: '/kontakt'
-      fullPath: '/kontakt'
-      preLoaderRoute: typeof KontaktRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/dashboard': {
       id: '/dashboard'
       path: '/dashboard'
@@ -350,25 +338,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/cennik': {
-      id: '/cennik'
-      path: '/cennik'
-      fullPath: '/cennik'
-      preLoaderRoute: typeof CennikRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/mozliwosci/': {
-      id: '/mozliwosci/'
-      path: '/mozliwosci'
-      fullPath: '/mozliwosci/'
-      preLoaderRoute: typeof MozliwosciIndexRouteImport
+    '/(public)': {
+      id: '/(public)'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof publicRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/dashboard/': {
@@ -378,40 +352,12 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardIndexRouteImport
       parentRoute: typeof DashboardRoute
     }
-    '/branze/': {
-      id: '/branze/'
-      path: '/branze'
-      fullPath: '/branze/'
-      preLoaderRoute: typeof BranzeIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/mozliwosci/powiadomienia': {
-      id: '/mozliwosci/powiadomienia'
-      path: '/mozliwosci/powiadomienia'
-      fullPath: '/mozliwosci/powiadomienia'
-      preLoaderRoute: typeof MozliwosciPowiadomieniaRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/mozliwosci/historia-napraw': {
-      id: '/mozliwosci/historia-napraw'
-      path: '/mozliwosci/historia-napraw'
-      fullPath: '/mozliwosci/historia-napraw'
-      preLoaderRoute: typeof MozliwosciHistoriaNaprawRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/mozliwosci/generator-kodow-qr': {
-      id: '/mozliwosci/generator-kodow-qr'
-      path: '/mozliwosci/generator-kodow-qr'
-      fullPath: '/mozliwosci/generator-kodow-qr'
-      preLoaderRoute: typeof MozliwosciGeneratorKodowQrRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/mozliwosci/formularz-zgloszeniowy': {
-      id: '/mozliwosci/formularz-zgloszeniowy'
-      path: '/mozliwosci/formularz-zgloszeniowy'
-      fullPath: '/mozliwosci/formularz-zgloszeniowy'
-      preLoaderRoute: typeof MozliwosciFormularzZgloszeniowyRouteImport
-      parentRoute: typeof rootRouteImport
+    '/(public)/': {
+      id: '/(public)/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof publicIndexRouteImport
+      parentRoute: typeof publicRouteRoute
     }
     '/dashboard/settings': {
       id: '/dashboard/settings'
@@ -427,40 +373,47 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardFeedbackRouteImport
       parentRoute: typeof DashboardRoute
     }
-    '/branze/silownie': {
-      id: '/branze/silownie'
-      path: '/branze/silownie'
-      fullPath: '/branze/silownie'
-      preLoaderRoute: typeof BranzeSilownieRouteImport
-      parentRoute: typeof rootRouteImport
+    '/(public)/signup': {
+      id: '/(public)/signup'
+      path: '/signup'
+      fullPath: '/signup'
+      preLoaderRoute: typeof publicSignupRouteImport
+      parentRoute: typeof publicRouteRoute
     }
-    '/auth/signup': {
-      id: '/auth/signup'
-      path: '/auth/signup'
-      fullPath: '/auth/signup'
-      preLoaderRoute: typeof AuthSignupRouteImport
-      parentRoute: typeof rootRouteImport
+    '/(public)/reset-password': {
+      id: '/(public)/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof publicResetPasswordRouteImport
+      parentRoute: typeof publicRouteRoute
     }
-    '/auth/reset-password': {
-      id: '/auth/reset-password'
-      path: '/auth/reset-password'
-      fullPath: '/auth/reset-password'
-      preLoaderRoute: typeof AuthResetPasswordRouteImport
-      parentRoute: typeof rootRouteImport
+    '/(public)/login': {
+      id: '/(public)/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof publicLoginRouteImport
+      parentRoute: typeof publicRouteRoute
     }
-    '/auth/login': {
-      id: '/auth/login'
-      path: '/auth/login'
-      fullPath: '/auth/login'
-      preLoaderRoute: typeof AuthLoginRouteImport
-      parentRoute: typeof rootRouteImport
+    '/(public)/kontakt': {
+      id: '/(public)/kontakt'
+      path: '/kontakt'
+      fullPath: '/kontakt'
+      preLoaderRoute: typeof publicKontaktRouteImport
+      parentRoute: typeof publicRouteRoute
     }
-    '/auth/forgot-password': {
-      id: '/auth/forgot-password'
-      path: '/auth/forgot-password'
-      fullPath: '/auth/forgot-password'
-      preLoaderRoute: typeof AuthForgotPasswordRouteImport
-      parentRoute: typeof rootRouteImport
+    '/(public)/forgot-password': {
+      id: '/(public)/forgot-password'
+      path: '/forgot-password'
+      fullPath: '/forgot-password'
+      preLoaderRoute: typeof publicForgotPasswordRouteImport
+      parentRoute: typeof publicRouteRoute
+    }
+    '/(public)/cennik': {
+      id: '/(public)/cennik'
+      path: '/cennik'
+      fullPath: '/cennik'
+      preLoaderRoute: typeof publicCennikRouteImport
+      parentRoute: typeof publicRouteRoute
     }
     '/dashboard/issues/': {
       id: '/dashboard/issues/'
@@ -475,6 +428,20 @@ declare module '@tanstack/react-router' {
       fullPath: '/dashboard/equipment/'
       preLoaderRoute: typeof DashboardEquipmentIndexRouteImport
       parentRoute: typeof DashboardRoute
+    }
+    '/(public)/mozliwosci/': {
+      id: '/(public)/mozliwosci/'
+      path: '/mozliwosci'
+      fullPath: '/mozliwosci/'
+      preLoaderRoute: typeof publicMozliwosciIndexRouteImport
+      parentRoute: typeof publicRouteRoute
+    }
+    '/(public)/branze/': {
+      id: '/(public)/branze/'
+      path: '/branze'
+      fullPath: '/branze/'
+      preLoaderRoute: typeof publicBranzeIndexRouteImport
+      parentRoute: typeof publicRouteRoute
     }
     '/dashboard/issues/archive': {
       id: '/dashboard/issues/archive'
@@ -504,8 +471,82 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardEquipmentIdRouteImport
       parentRoute: typeof DashboardRoute
     }
+    '/(public)/mozliwosci/powiadomienia': {
+      id: '/(public)/mozliwosci/powiadomienia'
+      path: '/mozliwosci/powiadomienia'
+      fullPath: '/mozliwosci/powiadomienia'
+      preLoaderRoute: typeof publicMozliwosciPowiadomieniaRouteImport
+      parentRoute: typeof publicRouteRoute
+    }
+    '/(public)/mozliwosci/historia-napraw': {
+      id: '/(public)/mozliwosci/historia-napraw'
+      path: '/mozliwosci/historia-napraw'
+      fullPath: '/mozliwosci/historia-napraw'
+      preLoaderRoute: typeof publicMozliwosciHistoriaNaprawRouteImport
+      parentRoute: typeof publicRouteRoute
+    }
+    '/(public)/mozliwosci/generator-kodow-qr': {
+      id: '/(public)/mozliwosci/generator-kodow-qr'
+      path: '/mozliwosci/generator-kodow-qr'
+      fullPath: '/mozliwosci/generator-kodow-qr'
+      preLoaderRoute: typeof publicMozliwosciGeneratorKodowQrRouteImport
+      parentRoute: typeof publicRouteRoute
+    }
+    '/(public)/mozliwosci/formularz-zgloszeniowy': {
+      id: '/(public)/mozliwosci/formularz-zgloszeniowy'
+      path: '/mozliwosci/formularz-zgloszeniowy'
+      fullPath: '/mozliwosci/formularz-zgloszeniowy'
+      preLoaderRoute: typeof publicMozliwosciFormularzZgloszeniowyRouteImport
+      parentRoute: typeof publicRouteRoute
+    }
+    '/(public)/branze/silownie': {
+      id: '/(public)/branze/silownie'
+      path: '/branze/silownie'
+      fullPath: '/branze/silownie'
+      preLoaderRoute: typeof publicBranzeSilownieRouteImport
+      parentRoute: typeof publicRouteRoute
+    }
   }
 }
+
+interface publicRouteRouteChildren {
+  publicCennikRoute: typeof publicCennikRoute
+  publicForgotPasswordRoute: typeof publicForgotPasswordRoute
+  publicKontaktRoute: typeof publicKontaktRoute
+  publicLoginRoute: typeof publicLoginRoute
+  publicResetPasswordRoute: typeof publicResetPasswordRoute
+  publicSignupRoute: typeof publicSignupRoute
+  publicIndexRoute: typeof publicIndexRoute
+  publicBranzeSilownieRoute: typeof publicBranzeSilownieRoute
+  publicMozliwosciFormularzZgloszeniowyRoute: typeof publicMozliwosciFormularzZgloszeniowyRoute
+  publicMozliwosciGeneratorKodowQrRoute: typeof publicMozliwosciGeneratorKodowQrRoute
+  publicMozliwosciHistoriaNaprawRoute: typeof publicMozliwosciHistoriaNaprawRoute
+  publicMozliwosciPowiadomieniaRoute: typeof publicMozliwosciPowiadomieniaRoute
+  publicBranzeIndexRoute: typeof publicBranzeIndexRoute
+  publicMozliwosciIndexRoute: typeof publicMozliwosciIndexRoute
+}
+
+const publicRouteRouteChildren: publicRouteRouteChildren = {
+  publicCennikRoute: publicCennikRoute,
+  publicForgotPasswordRoute: publicForgotPasswordRoute,
+  publicKontaktRoute: publicKontaktRoute,
+  publicLoginRoute: publicLoginRoute,
+  publicResetPasswordRoute: publicResetPasswordRoute,
+  publicSignupRoute: publicSignupRoute,
+  publicIndexRoute: publicIndexRoute,
+  publicBranzeSilownieRoute: publicBranzeSilownieRoute,
+  publicMozliwosciFormularzZgloszeniowyRoute:
+    publicMozliwosciFormularzZgloszeniowyRoute,
+  publicMozliwosciGeneratorKodowQrRoute: publicMozliwosciGeneratorKodowQrRoute,
+  publicMozliwosciHistoriaNaprawRoute: publicMozliwosciHistoriaNaprawRoute,
+  publicMozliwosciPowiadomieniaRoute: publicMozliwosciPowiadomieniaRoute,
+  publicBranzeIndexRoute: publicBranzeIndexRoute,
+  publicMozliwosciIndexRoute: publicMozliwosciIndexRoute,
+}
+
+const publicRouteRouteWithChildren = publicRouteRoute._addFileChildren(
+  publicRouteRouteChildren,
+)
 
 interface DashboardRouteChildren {
   DashboardFeedbackRoute: typeof DashboardFeedbackRoute
@@ -536,21 +577,8 @@ const DashboardRouteWithChildren = DashboardRoute._addFileChildren(
 )
 
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
-  CennikRoute: CennikRoute,
+  publicRouteRoute: publicRouteRouteWithChildren,
   DashboardRoute: DashboardRouteWithChildren,
-  KontaktRoute: KontaktRoute,
-  AuthForgotPasswordRoute: AuthForgotPasswordRoute,
-  AuthLoginRoute: AuthLoginRoute,
-  AuthResetPasswordRoute: AuthResetPasswordRoute,
-  AuthSignupRoute: AuthSignupRoute,
-  BranzeSilownieRoute: BranzeSilownieRoute,
-  MozliwosciFormularzZgloszeniowyRoute: MozliwosciFormularzZgloszeniowyRoute,
-  MozliwosciGeneratorKodowQrRoute: MozliwosciGeneratorKodowQrRoute,
-  MozliwosciHistoriaNaprawRoute: MozliwosciHistoriaNaprawRoute,
-  MozliwosciPowiadomieniaRoute: MozliwosciPowiadomieniaRoute,
-  BranzeIndexRoute: BranzeIndexRoute,
-  MozliwosciIndexRoute: MozliwosciIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
