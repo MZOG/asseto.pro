@@ -38,7 +38,7 @@ const features = [
 
 const Features = () => {
   return (
-    <section className="max-w-6xl mx-auto px-5 mt-40">
+    <section className="max-w-5xl mx-auto px-5 mt-40">
       <h2 className="font-display font-bold text-4xl text-center mb-10">
         Dlaczego warto wybrać Machino?
       </h2>

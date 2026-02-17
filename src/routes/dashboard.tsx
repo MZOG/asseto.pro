@@ -1,31 +1,50 @@
 import { createFileRoute, Link, Outlet } from '@tanstack/react-router'
+import { supabase } from '@/utils/supabase'
 
 export const Route = createFileRoute('/dashboard')({
+  loader: async () => {
+    // count issues
+    const { count } = await supabase
+      .from('issues')
+      .select('*', { count: 'exact', head: true })
+      .order('created_at', { ascending: false })
+    return { issuesCount: count }
+  },
   component: DashboardLayout,
 })
 
 import { Cog, TriangleAlert, BookOpen, Factory } from 'lucide-react'
-
-const dashboardLinks = [
-  { to: '/dashboard', label: 'Przegląd', icon: BookOpen },
-  { to: '/dashboard/issues', label: 'Awarie', icon: TriangleAlert, count: 5 },
-  { to: '/dashboard/equipment', label: 'Maszyny', icon: Factory, count: 31 },
-]
+import { Badge } from '@/components/ui/badge'
 
 function DashboardLayout() {
+  const { issuesCount } = Route.useLoaderData()
+
+  const dashboardLinks = [
+    { to: '/dashboard', label: 'Przegląd', icon: BookOpen },
+    {
+      to: '/dashboard/issues',
+      label: 'Awarie',
+      icon: TriangleAlert,
+      count: issuesCount,
+    },
+    { to: '/dashboard/equipment', label: 'Maszyny', icon: Factory, count: 31 },
+  ]
+
   return (
-    <section className="px-5 mx-auto max-w-5xl mt-5">
+    <section className="px-5 mx-auto max-w-6xl mt-5">
       <div className="bg-white border border-dashed rounded-xl p-4 mb-5 text-xs max-w-4xl">
         <p>
-          <span className="font-medium">Wspólnie tworzymy Machino!</span>{' '}
           Aplikacja jest w fazie testów, więc jeśli natrafisz na jakiś błąd,
           prosimy o wyrozumiałość i zgłoszenie go do działu IT.
           <span className="block">
             Twoje sugestie są dla nas kluczowe w procesie ulepszania narzędzia.
             Dziękujemy, że jesteś z nami!{' '}
-            <span className="font-medium text-blue-600 cursor-pointer hover:underline underline-offset-2 bg-blue-50">
+            <Link
+              to="/dashboard/feedback"
+              className="font-medium text-blue-600 cursor-pointer hover:underline underline-offset-2 bg-blue-50"
+            >
               Zgłoś błąd / sugestię
-            </span>
+            </Link>
           </span>
         </p>
       </div>
@@ -42,7 +61,7 @@ function DashboardLayout() {
                 >
                   <link.icon size={16} />
                   <span className="hover:underline">{link.label}</span>
-                  {link.count && <span className="text-xs">{link.count}</span>}
+                  {link.count && <Badge variant="outline">{link.count}</Badge>}
                 </Link>
               )
             })}

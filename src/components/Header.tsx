@@ -33,24 +33,37 @@ const branzeLinks = [
   { href: '/branze/przemysl', label: 'Przemysł', soon: true },
 ]
 
-// const navLinks = [
-//   { href: '/faq', label: 'Jak to dziala?' },
-//   { href: '/cennik', label: 'Cennik' },
-//   { href: '/kontakt', label: 'Kontakt' },
-// ]
+const mozliwosciLinks = [
+  {
+    href: '/mozliwosci/generator-kodow-qr',
+    label: 'Generator kodów QR',
+    soon: false,
+  },
+  {
+    href: '/mozliwosci/formularz-zgloszeniowy',
+    label: 'Formularz zgłoszeniowy',
+    soon: false,
+  },
+  { href: '/mozliwosci/powiadomienia', label: 'Powiadomienia', soon: false },
+  {
+    href: '/mozliwosci/historia-napraw',
+    label: 'Historia napraw (logbook)',
+    soon: false,
+  },
+]
 
 export default function Header() {
   const [sheetOpen, setSheetOpen] = useState(false)
 
   return (
-    <header>
-      <div className="max-w-5xl mx-auto flex items-center justify-between px-5 py-4">
+    <header className="bg-white fixed top-0 w-full z-30">
+      <div className="max-w-6xl mx-auto flex items-center justify-between px-5 py-4">
         {/* Logo */}
         <Link
           to="/"
-          className="font-semibold flex items-center gap-1.5 text-foreground font-display text-[19px] leading-none"
+          className="font-semibold flex items-center gap-1.5 text-foreground leading-none"
         >
-          <QrCode className="h-5 w-5" />
+          {/* <QrCode className="h-5 w-5" /> */}
           asseto
         </Link>
 
@@ -64,21 +77,38 @@ export default function Header() {
                   Branze
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <ul className="grid w-70 gap-1 p-2">
-                    <li>
-                      <NavigationMenuLink asChild>
-                        <Link
-                          to="/branze"
-                          className="block select-none rounded-md px-3 py-2 text-sm font-medium text-foreground leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground"
-                        >
-                          Wszystkie branze
-                        </Link>
-                      </NavigationMenuLink>
-                    </li>
-                    <li>
-                      <div className="mx-3 my-1 h-px bg-border" />
-                    </li>
+                  <ul className="grid gap-1 p-2 shadow-none">
                     {branzeLinks.map((link) => (
+                      <li key={link.href}>
+                        <NavigationMenuLink asChild>
+                          <Link
+                            to={link.soon ? '#' : link.href}
+                            className={cn(
+                              'flex flex-row items-center select-none rounded-md px-3 py-2 text-sm leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground',
+                              link.soon && 'cursor-not-allowed opacity-50',
+                            )}
+                          >
+                            {link.label}{' '}
+                            {link.soon && (
+                              <span className="text-xs text-muted-foreground">
+                                (wkrótce)
+                              </span>
+                            )}
+                          </Link>
+                        </NavigationMenuLink>
+                      </li>
+                    ))}
+                  </ul>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+
+              <NavigationMenuItem>
+                <NavigationMenuTrigger className="h-9 px-3 text-sm font-medium text-foreground bg-transparent hover:bg-accent">
+                  Możliwości
+                </NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <ul className="grid w-70 gap-1 p-2">
+                    {mozliwosciLinks.map((link) => (
                       <li key={link.href}>
                         <NavigationMenuLink asChild>
                           <Link
@@ -105,17 +135,6 @@ export default function Header() {
               <NavigationMenuItem>
                 <NavigationMenuLink asChild>
                   <Link
-                    to="/faq"
-                    className="inline-flex h-9 items-center justify-center rounded-md px-3 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
-                  >
-                    Jak to dziala?
-                  </Link>
-                </NavigationMenuLink>
-              </NavigationMenuItem>
-
-              <NavigationMenuItem>
-                <NavigationMenuLink asChild>
-                  <Link
                     to="/cennik"
                     className="inline-flex h-9 items-center justify-center rounded-md px-3 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
                   >
@@ -134,23 +153,19 @@ export default function Header() {
                   </Link>
                 </NavigationMenuLink>
               </NavigationMenuItem>
+
+              <NavigationMenuItem>
+                <NavigationMenuLink asChild>
+                  <Link
+                    to="/auth/login"
+                    className="inline-flex h-9 items-center justify-center rounded-md px-3 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
+                  >
+                    Zaloguj się
+                  </Link>
+                </NavigationMenuLink>
+              </NavigationMenuItem>
             </NavigationMenuList>
           </NavigationMenu>
-
-          <div className="flex items-center gap-2 ml-4">
-            <Link
-              to="/auth/login"
-              className="text-sm font-medium text-foreground hover:text-foreground/80 transition-colors px-3 py-2"
-            >
-              Zaloguj sie
-            </Link>
-            {/* <Link
-              to="/auth/signup"
-              className="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors"
-            >
-              Zacznij za darmo
-            </Link> */}
-          </div>
         </div>
 
         {/* Mobile hamburger */}

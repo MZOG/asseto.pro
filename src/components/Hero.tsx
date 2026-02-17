@@ -1,10 +1,12 @@
 import { SignUpButton } from '@clerk/tanstack-react-start'
+import { Button } from './ui/button'
+import { Link } from '@tanstack/react-router'
 
 const Hero = () => {
   return (
     <section
       id="hero"
-      className="mx-auto px-5 mt-10 flex justify-center items-center gap-10 relative"
+      className="mx-auto px-5 max-w-5xl mt-10 flex justify-between items-center gap-10 relative"
     >
       <div className="flex flex-col">
         <p className="self-start border border-dashed border-blue-300 text-blue-500 leading-none px-2 py-1 rounded-full text-xs font-medium">
@@ -24,11 +26,19 @@ const Hero = () => {
             Jak to działa?
           </button>
         </SignUpButton>
+        <Button
+          asChild
+          className="self-start mt-3 rounded-full"
+          variant="outline"
+          size="sm"
+        >
+          <Link to="/dashboard">demo</Link>
+        </Button>
       </div>
 
       {/* obrazek */}
       <div className="py-8 px-3 perspective-[1000px] rotate-x-[4deg] rotate-y-[-16deg] rotate-z-[4deg] rounded-2xl shadow-[24px_16px_64px_0_rgba(0,0,0,0.20)]">
-        <p className="text-center font-display font-black text-3xl">
+        <p className="text-center font-black text-3xl">
           ZGŁOŚ <span className="block">USTERKĘ</span>
         </p>
         <img

@@ -26,15 +26,15 @@ const items = [
 
 const HowItWorks = () => {
   return (
-    <section className="max-w-6xl mx-auto px-5 mt-30">
+    <section className="max-w-5xl mx-auto px-5 mt-30">
       <div className="flex gap-5">
         {items.map((item) => (
-          <div key={item.id} className="flex-1 p-7 rounded-xl bg-gray-50">
+          <div key={item.id} className="flex-1 p-7 rounded-xl bg-white">
             <h3 className="font-display font-bold text-xl mb-2 flex items-center gap-3">
               <item.icon strokeWidth={2} size={21} />
               {item.title}
             </h3>
-            <p className=" text-gray-600 font-display">{item.description}</p>
+            <p className="font-display">{item.description}</p>
           </div>
         ))}
       </div>

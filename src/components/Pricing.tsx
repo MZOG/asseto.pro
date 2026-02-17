@@ -1,5 +1,5 @@
 import { Check } from 'lucide-react'
-
+import { PricingCard } from './PricingCard'
 const packages = [
   {
     name: 'Starter',
@@ -35,15 +35,63 @@ const packages = [
   },
 ]
 
+const plans = [
+  {
+    name: 'Start',
+    price: '59',
+    period: 'zł / miesięcznie',
+    description: 'For individuals getting started with the essentials.',
+    features: ['Do 15 maszyn', 'Pomoc w konfiguracji', 'Podstawowe raporty'],
+    cta: 'Wybierz',
+  },
+  {
+    name: 'Pro',
+    price: '199',
+    period: 'zł / miesięcznie',
+    description: 'For professionals who need more power and flexibility.',
+    features: [
+      'Do 50 maszyn',
+      'Pomoc w konfiguracji',
+      'Rozszerzone raporty',
+      'Konfigurator kodów QR',
+      'Telegram / WhatsApp BOT',
+      'Priorytetowe wsparcie',
+    ],
+    highlighted: true,
+    cta: 'Wybierz',
+  },
+  {
+    name: 'Business',
+    price: '399',
+    period: 'zł / miesięcznie',
+    description: 'For growing teams that need collaboration tools.',
+    features: [
+      'Do 200 maszyn',
+      'Pomoc w konfiguracji',
+      'Rozszerzone raporty',
+      'Konfigurator kodów QR',
+      'Telegram / WhatsApp BOT',
+      'Priorytetowe wsparcie',
+    ],
+    cta: 'Wybierz',
+  },
+]
+
 const Pricing = () => {
   return (
-    <section className="max-w-6xl mx-auto px-5 mt-40 mb-20">
+    <section className="max-w-5xl mx-auto px-5 mt-40 mb-20">
       <h2 className="font-display font-bold text-4xl text-center mb-10">
         Cennik
       </h2>
 
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {plans.map((plan) => (
+          <PricingCard key={plan.name} {...plan} />
+        ))}
+      </div>
+
       {/* Desktop Table */}
-      <div className="hidden md:block overflow-hidden rounded-xl border border-border font-display">
+      {/* <div className="hidden md:block overflow-hidden rounded-xl border border-border font-display">
         <table className="w-full">
           <thead>
             <tr className="bg-muted/50">
@@ -106,10 +154,10 @@ const Pricing = () => {
             ))}
           </tbody>
         </table>
-      </div>
+      </div> */}
 
       {/* Mobile Cards */}
-      <div className="md:hidden space-y-4">
+      {/* <div className="md:hidden space-y-4">
         {packages.map((pkg) => (
           <div
             key={pkg.name}
@@ -150,7 +198,7 @@ const Pricing = () => {
             </div>
           </div>
         ))}
-      </div>
+      </div> */}
     </section>
   )
 }

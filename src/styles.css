@@ -4,11 +4,13 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap');
+
 body {
-  @apply m-0;
-  font-family:
+  /* font-family:
     -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
-    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif; */
+    font-family: "Instrument Sans", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -20,10 +22,10 @@ code {
 
 @font-face {
   font-family: "soehne";
-  src: url("../public/soehne/buch.woff2") format("woff2"),
-       url("../public/soehne/buch.woff") format("woff"),
-       url("../public/soehne/dreiviertelfett.woff2") format("woff2"),
-       url("../public/soehne/dreiviertelfett.woff") format("woff"),
+  src: url("../soehne/buch.woff2") format("woff2"),
+       url("../soehne/buch.woff") format("woff"),
+       url("../soehne/dreiviertelfett.woff2") format("woff2"),
+       url("../soehne/dreiviertelfett.woff") format("woff"),
 }
 
 :root {

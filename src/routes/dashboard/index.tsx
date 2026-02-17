@@ -1,13 +1,13 @@
 import { createFileRoute } from '@tanstack/react-router'
 
-export const Route = createFileRoute('/dashboard/settings/')({
+export const Route = createFileRoute('/dashboard/')({
   component: RouteComponent,
 })
 
 function RouteComponent() {
   return (
     <div>
-      <h1 className="text-3xl font-bold font-display">ASSETO.PRO</h1>
+      <h1 className="font-medium text-sm">Przegląd</h1>
     </div>
   )
 }
