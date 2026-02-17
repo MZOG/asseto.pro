@@ -31,6 +31,7 @@ import { Route as DashboardIssuesIndexRouteImport } from './routes/dashboard/iss
 import { Route as DashboardEquipmentIndexRouteImport } from './routes/dashboard/equipment.index'
 import { Route as DashboardIssuesArchiveRouteImport } from './routes/dashboard/issues.archive'
 import { Route as DashboardIssuesIdRouteImport } from './routes/dashboard/issues.$id'
+import { Route as DashboardEquipmentAddRouteImport } from './routes/dashboard/equipment.add'
 import { Route as DashboardEquipmentIdRouteImport } from './routes/dashboard/equipment.$id'
 
 const KontaktRoute = KontaktRouteImport.update({
@@ -146,6 +147,11 @@ const DashboardIssuesIdRoute = DashboardIssuesIdRouteImport.update({
   path: '/issues/$id',
   getParentRoute: () => DashboardRoute,
 } as any)
+const DashboardEquipmentAddRoute = DashboardEquipmentAddRouteImport.update({
+  id: '/equipment/add',
+  path: '/equipment/add',
+  getParentRoute: () => DashboardRoute,
+} as any)
 const DashboardEquipmentIdRoute = DashboardEquipmentIdRouteImport.update({
   id: '/equipment/$id',
   path: '/equipment/$id',
@@ -172,6 +178,7 @@ export interface FileRoutesByFullPath {
   '/dashboard/': typeof DashboardIndexRoute
   '/mozliwosci/': typeof MozliwosciIndexRoute
   '/dashboard/equipment/$id': typeof DashboardEquipmentIdRoute
+  '/dashboard/equipment/add': typeof DashboardEquipmentAddRoute
   '/dashboard/issues/$id': typeof DashboardIssuesIdRoute
   '/dashboard/issues/archive': typeof DashboardIssuesArchiveRoute
   '/dashboard/equipment/': typeof DashboardEquipmentIndexRoute
@@ -196,6 +203,7 @@ export interface FileRoutesByTo {
   '/dashboard': typeof DashboardIndexRoute
   '/mozliwosci': typeof MozliwosciIndexRoute
   '/dashboard/equipment/$id': typeof DashboardEquipmentIdRoute
+  '/dashboard/equipment/add': typeof DashboardEquipmentAddRoute
   '/dashboard/issues/$id': typeof DashboardIssuesIdRoute
   '/dashboard/issues/archive': typeof DashboardIssuesArchiveRoute
   '/dashboard/equipment': typeof DashboardEquipmentIndexRoute
@@ -222,6 +230,7 @@ export interface FileRoutesById {
   '/dashboard/': typeof DashboardIndexRoute
   '/mozliwosci/': typeof MozliwosciIndexRoute
   '/dashboard/equipment/$id': typeof DashboardEquipmentIdRoute
+  '/dashboard/equipment/add': typeof DashboardEquipmentAddRoute
   '/dashboard/issues/$id': typeof DashboardIssuesIdRoute
   '/dashboard/issues/archive': typeof DashboardIssuesArchiveRoute
   '/dashboard/equipment/': typeof DashboardEquipmentIndexRoute
@@ -249,6 +258,7 @@ export interface FileRouteTypes {
     | '/dashboard/'
     | '/mozliwosci/'
     | '/dashboard/equipment/$id'
+    | '/dashboard/equipment/add'
     | '/dashboard/issues/$id'
     | '/dashboard/issues/archive'
     | '/dashboard/equipment/'
@@ -273,6 +283,7 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/mozliwosci'
     | '/dashboard/equipment/$id'
+    | '/dashboard/equipment/add'
     | '/dashboard/issues/$id'
     | '/dashboard/issues/archive'
     | '/dashboard/equipment'
@@ -298,6 +309,7 @@ export interface FileRouteTypes {
     | '/dashboard/'
     | '/mozliwosci/'
     | '/dashboard/equipment/$id'
+    | '/dashboard/equipment/add'
     | '/dashboard/issues/$id'
     | '/dashboard/issues/archive'
     | '/dashboard/equipment/'
@@ -478,6 +490,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardIssuesIdRouteImport
       parentRoute: typeof DashboardRoute
     }
+    '/dashboard/equipment/add': {
+      id: '/dashboard/equipment/add'
+      path: '/equipment/add'
+      fullPath: '/dashboard/equipment/add'
+      preLoaderRoute: typeof DashboardEquipmentAddRouteImport
+      parentRoute: typeof DashboardRoute
+    }
     '/dashboard/equipment/$id': {
       id: '/dashboard/equipment/$id'
       path: '/equipment/$id'
@@ -493,6 +512,7 @@ interface DashboardRouteChildren {
   DashboardSettingsRoute: typeof DashboardSettingsRoute
   DashboardIndexRoute: typeof DashboardIndexRoute
   DashboardEquipmentIdRoute: typeof DashboardEquipmentIdRoute
+  DashboardEquipmentAddRoute: typeof DashboardEquipmentAddRoute
   DashboardIssuesIdRoute: typeof DashboardIssuesIdRoute
   DashboardIssuesArchiveRoute: typeof DashboardIssuesArchiveRoute
   DashboardEquipmentIndexRoute: typeof DashboardEquipmentIndexRoute
@@ -504,6 +524,7 @@ const DashboardRouteChildren: DashboardRouteChildren = {
   DashboardSettingsRoute: DashboardSettingsRoute,
   DashboardIndexRoute: DashboardIndexRoute,
   DashboardEquipmentIdRoute: DashboardEquipmentIdRoute,
+  DashboardEquipmentAddRoute: DashboardEquipmentAddRoute,
   DashboardIssuesIdRoute: DashboardIssuesIdRoute,
   DashboardIssuesArchiveRoute: DashboardIssuesArchiveRoute,
   DashboardEquipmentIndexRoute: DashboardEquipmentIndexRoute,

@@ -23,21 +23,15 @@ function IssuesComponent() {
 
   return (
     <div>
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="font-medium text-sm">Aktywne Awarie</h1>
-        <Button size="sm">
-          <Link to="/dashboard/issues/archive" className="text-sm">
-            Zobacz archiwum
-          </Link>
-        </Button>
-      </div>
-      {/* Lista awarii z bazy Convex */}
-      <div className="space-y-2">
+      <h1 className="font-medium text-sm">Aktywne Awarie</h1>
+
+      <div className="space-y-2 mt-5">
         {issues?.map((issue) => {
           return (
             <Link
               key={issue.id}
-              to={`/dashboard/issues/${issue.id}`}
+              to={`/dashboard/issues/$id`}
+              params={{ id: issue.id }}
               className={cn(
                 'block p-3 rounded-md',
                 issue.status === 'open'
@@ -74,6 +68,12 @@ function IssuesComponent() {
           )
         })}
       </div>
+
+      <Button size="sm" className='mt-5'>
+        <Link to="/dashboard/issues/archive" className="text-sm">
+          Zobacz archiwum
+        </Link>
+      </Button>
     </div>
   )
 }
