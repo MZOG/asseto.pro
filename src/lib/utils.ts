@@ -5,11 +5,11 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-export function formatDate(dateString: string) {
+export function formatDate(dateString: string, showDay?: boolean) {
   const date = new Date(dateString)
 
   const formatted = new Intl.DateTimeFormat('pl-PL', {
-    weekday: 'long',
+    weekday: showDay ? 'long' : undefined,
     day: 'numeric',
     month: 'long',
     year: 'numeric',

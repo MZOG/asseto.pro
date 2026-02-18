@@ -1,3 +1,4 @@
+import { Button } from '@/components/ui/button'
 import { useParams } from '@tanstack/react-router'
 
 import { createFileRoute } from '@tanstack/react-router'
@@ -11,7 +12,7 @@ function RouteComponent() {
 
   return (
     <div>
-      <p>hej, to jest awaria, ID: {id}</p>
+      <Button variant="success">Oznacz jako sprawna</Button>
     </div>
   )
 }

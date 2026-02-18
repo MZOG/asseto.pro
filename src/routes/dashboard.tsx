@@ -7,6 +7,7 @@ export const Route = createFileRoute('/dashboard')({
     const { count } = await supabase
       .from('issues')
       .select('*', { count: 'exact', head: true })
+      .neq('status', 'closed')
       .order('created_at', { ascending: false })
     // count equipment
     const { count: equipmentCount } = await supabase
@@ -17,9 +18,10 @@ export const Route = createFileRoute('/dashboard')({
   component: DashboardLayout,
 })
 
-import { Cog, TriangleAlert, BookOpen, Factory } from 'lucide-react'
+import { Cog, TriangleAlert, BookOpen, Factory, FileText, MessageSquare } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import DashboardHeader from '@/components/dashboard/DashboardHeader'
+import { cn } from '@/lib/utils'
 
 function DashboardLayout() {
   const { issuesCount, equipmentCount } = Route.useLoaderData()
@@ -33,6 +35,8 @@ function DashboardLayout() {
       count: issuesCount,
     },
     { to: '/dashboard/equipment', label: 'Maszyny', icon: Factory, count: equipmentCount },
+    { to: '/dashboard/questionnaire', label: 'Ankiety', icon: FileText, disabled: true, separator: true },
+    { to: '/dashboard/feedback', label: 'Opinie', icon: MessageSquare, disabled: true }
   ]
 
   return (
@@ -45,16 +49,21 @@ function DashboardLayout() {
           <nav className="space-y-2">
             {dashboardLinks.map((link) => {
               return (
-                <Link
-                  key={link.label}
-                  to={link.to}
-                  className="text-sm py-1 rounded flex items-center gap-2"
-                >
-                  <link.icon size={16} />
-                  <span className="hover:underline">{link.label}</span>
-                  {link.count && <p className='text-xs ml-auto'><Badge variant='outline' className='text-[10px]'>{link.count}</Badge></p>}
+                <>
+                  {link.separator && <div className='border-t border-gray-100 my-3' />}
 
-                </Link>
+                  <Link
+                    key={link.label}
+                    to={link.to}
+                    disabled={link.disabled}
+                    className={cn('text-sm py-1 rounded flex items-center gap-2', link.disabled && 'opacity-50 cursor-not-allowed')}
+                  >
+                    <link.icon size={16} />
+                    <span className="hover:underline">{link.label}</span>
+                    {link.disabled && <span className='text-xs ml-auto'>(wkrótce)</span>}
+                    {link.count && <p className='text-xs ml-auto'><Badge variant='outline' className='text-[10px]'>{link.count}</Badge></p>}
+                  </Link>
+                </>
               )
             })}
           </nav>
