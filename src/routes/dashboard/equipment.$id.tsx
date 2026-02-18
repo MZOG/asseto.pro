@@ -14,12 +14,12 @@ export const Route = createFileRoute('/dashboard/equipment/$id')({
 
 function RouteComponent() {
   const { equipment } = Route.useLoaderData()
-  return <div>
+  return <div className='relative'>
+    <StatusBadge status={equipment.status} className='absolute right-0' />
     <Skeleton className="size-50" />
-    <h1 className="font-medium mt-4 flex gap-2 items-center">{equipment.name} <StatusBadge status={equipment.status} /></h1>
-    <p className="text-sm ">Ostatni serwis: DATA</p>
-    <p className="text-sm ">Następny serwis: DATA</p>
+    <h1 className="font-medium mt-4 flex gap-2 items-center">{equipment.name} </h1>
+    <p className="text-sm">Ostatni serwis: DATA</p>
+    <p className="text-sm">Następny serwis: DATA</p>
     <DeleteAssetButton id={equipment.id} />
-
   </div>
 }
