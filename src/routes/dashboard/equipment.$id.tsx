@@ -1,3 +1,4 @@
+import { DeleteAssetButton } from '@/components/dashboard/DeleteAssetButton'
 import { StatusBadge } from '@/components/StatusBadge'
 import { Skeleton } from '@/components/ui/skeleton'
 import { supabase } from '@/utils/supabase'
@@ -18,6 +19,7 @@ function RouteComponent() {
     <h1 className="font-medium mt-4 flex gap-2 items-center">{equipment.name} <StatusBadge status={equipment.status} /></h1>
     <p className="text-sm ">Ostatni serwis: DATA</p>
     <p className="text-sm ">Następny serwis: DATA</p>
+    <DeleteAssetButton id={equipment.id} />
 
   </div>
 }

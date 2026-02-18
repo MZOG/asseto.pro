@@ -1,11 +1,8 @@
 // app/routes/dashboard.issues.tsx
 import IssueCard from '@/components/dashboard/IssueCard'
-import { StatusBadge } from '@/components/StatusBadge'
 import { Button } from '@/components/ui/button'
-import { cn, formatDate } from '@/lib/utils'
 import { supabase } from '@/utils/supabase'
 import { createFileRoute, Link } from '@tanstack/react-router'
-import { TriangleAlert } from 'lucide-react'
 
 export const Route = createFileRoute('/dashboard/issues/')({
   loader: async () => {

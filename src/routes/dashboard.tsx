@@ -1,5 +1,10 @@
 import { createFileRoute, Link, Outlet } from '@tanstack/react-router'
 import { supabase } from '@/utils/supabase'
+import { Cog, TriangleAlert, BookOpen, Factory, FileText, MessageSquare } from 'lucide-react'
+import { Badge } from '@/components/ui/badge'
+import DashboardHeader from '@/components/dashboard/DashboardHeader'
+import { cn } from '@/lib/utils'
+import React from 'react'
 
 export const Route = createFileRoute('/dashboard')({
   loader: async () => {
@@ -18,10 +23,7 @@ export const Route = createFileRoute('/dashboard')({
   component: DashboardLayout,
 })
 
-import { Cog, TriangleAlert, BookOpen, Factory, FileText, MessageSquare } from 'lucide-react'
-import { Badge } from '@/components/ui/badge'
-import DashboardHeader from '@/components/dashboard/DashboardHeader'
-import { cn } from '@/lib/utils'
+
 
 function DashboardLayout() {
   const { issuesCount, equipmentCount } = Route.useLoaderData()
@@ -49,11 +51,10 @@ function DashboardLayout() {
           <nav className="space-y-2">
             {dashboardLinks.map((link) => {
               return (
-                <>
+                <React.Fragment key={link.label}>
                   {link.separator && <div className='border-t border-gray-100 my-3' />}
 
                   <Link
-                    key={link.label}
                     to={link.to}
                     disabled={link.disabled}
                     className={cn('text-sm py-1 rounded flex items-center gap-2', link.disabled && 'opacity-50 cursor-not-allowed')}
@@ -63,7 +64,7 @@ function DashboardLayout() {
                     {link.disabled && <span className='text-xs ml-auto'>(wkrótce)</span>}
                     {link.count && <p className='text-xs ml-auto'><Badge variant='outline' className='text-[10px]'>{link.count}</Badge></p>}
                   </Link>
-                </>
+                </React.Fragment>
               )
             })}
           </nav>
