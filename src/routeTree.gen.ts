@@ -15,25 +15,20 @@ import { Route as DashboardIndexRouteImport } from './routes/dashboard/index'
 import { Route as publicIndexRouteImport } from './routes/(public)/index'
 import { Route as DashboardSettingsRouteImport } from './routes/dashboard/settings'
 import { Route as DashboardFeedbackRouteImport } from './routes/dashboard/feedback'
-import { Route as publicSignupRouteImport } from './routes/(public)/signup'
 import { Route as publicResetPasswordRouteImport } from './routes/(public)/reset-password'
-import { Route as publicLoginRouteImport } from './routes/(public)/login'
+import { Route as publicRejestracjaRouteImport } from './routes/(public)/rejestracja'
+import { Route as publicRegulaminRouteImport } from './routes/(public)/regulamin'
+import { Route as publicLogowanieRouteImport } from './routes/(public)/logowanie'
 import { Route as publicKontaktRouteImport } from './routes/(public)/kontakt'
+import { Route as publicFunkcjeRouteImport } from './routes/(public)/funkcje'
 import { Route as publicForgotPasswordRouteImport } from './routes/(public)/forgot-password'
 import { Route as publicCennikRouteImport } from './routes/(public)/cennik'
 import { Route as DashboardIssuesIndexRouteImport } from './routes/dashboard/issues.index'
 import { Route as DashboardEquipmentIndexRouteImport } from './routes/dashboard/equipment.index'
-import { Route as publicMozliwosciIndexRouteImport } from './routes/(public)/mozliwosci/index'
-import { Route as publicBranzeIndexRouteImport } from './routes/(public)/branze/index'
 import { Route as DashboardIssuesArchiveRouteImport } from './routes/dashboard/issues.archive'
 import { Route as DashboardIssuesIdRouteImport } from './routes/dashboard/issues.$id'
 import { Route as DashboardEquipmentAddRouteImport } from './routes/dashboard/equipment.add'
 import { Route as DashboardEquipmentIdRouteImport } from './routes/dashboard/equipment.$id'
-import { Route as publicMozliwosciPowiadomieniaRouteImport } from './routes/(public)/mozliwosci/powiadomienia'
-import { Route as publicMozliwosciHistoriaNaprawRouteImport } from './routes/(public)/mozliwosci/historia-napraw'
-import { Route as publicMozliwosciGeneratorKodowQrRouteImport } from './routes/(public)/mozliwosci/generator-kodow-qr'
-import { Route as publicMozliwosciFormularzZgloszeniowyRouteImport } from './routes/(public)/mozliwosci/formularz-zgloszeniowy'
-import { Route as publicBranzeSilownieRouteImport } from './routes/(public)/branze/silownie'
 
 const DashboardRoute = DashboardRouteImport.update({
   id: '/dashboard',
@@ -64,24 +59,34 @@ const DashboardFeedbackRoute = DashboardFeedbackRouteImport.update({
   path: '/feedback',
   getParentRoute: () => DashboardRoute,
 } as any)
-const publicSignupRoute = publicSignupRouteImport.update({
-  id: '/signup',
-  path: '/signup',
-  getParentRoute: () => publicRouteRoute,
-} as any)
 const publicResetPasswordRoute = publicResetPasswordRouteImport.update({
   id: '/reset-password',
   path: '/reset-password',
   getParentRoute: () => publicRouteRoute,
 } as any)
-const publicLoginRoute = publicLoginRouteImport.update({
-  id: '/login',
-  path: '/login',
+const publicRejestracjaRoute = publicRejestracjaRouteImport.update({
+  id: '/rejestracja',
+  path: '/rejestracja',
+  getParentRoute: () => publicRouteRoute,
+} as any)
+const publicRegulaminRoute = publicRegulaminRouteImport.update({
+  id: '/regulamin',
+  path: '/regulamin',
+  getParentRoute: () => publicRouteRoute,
+} as any)
+const publicLogowanieRoute = publicLogowanieRouteImport.update({
+  id: '/logowanie',
+  path: '/logowanie',
   getParentRoute: () => publicRouteRoute,
 } as any)
 const publicKontaktRoute = publicKontaktRouteImport.update({
   id: '/kontakt',
   path: '/kontakt',
+  getParentRoute: () => publicRouteRoute,
+} as any)
+const publicFunkcjeRoute = publicFunkcjeRouteImport.update({
+  id: '/funkcje',
+  path: '/funkcje',
   getParentRoute: () => publicRouteRoute,
 } as any)
 const publicForgotPasswordRoute = publicForgotPasswordRouteImport.update({
@@ -104,16 +109,6 @@ const DashboardEquipmentIndexRoute = DashboardEquipmentIndexRouteImport.update({
   path: '/equipment/',
   getParentRoute: () => DashboardRoute,
 } as any)
-const publicMozliwosciIndexRoute = publicMozliwosciIndexRouteImport.update({
-  id: '/mozliwosci/',
-  path: '/mozliwosci/',
-  getParentRoute: () => publicRouteRoute,
-} as any)
-const publicBranzeIndexRoute = publicBranzeIndexRouteImport.update({
-  id: '/branze/',
-  path: '/branze/',
-  getParentRoute: () => publicRouteRoute,
-} as any)
 const DashboardIssuesArchiveRoute = DashboardIssuesArchiveRouteImport.update({
   id: '/issues/archive',
   path: '/issues/archive',
@@ -134,84 +129,45 @@ const DashboardEquipmentIdRoute = DashboardEquipmentIdRouteImport.update({
   path: '/equipment/$id',
   getParentRoute: () => DashboardRoute,
 } as any)
-const publicMozliwosciPowiadomieniaRoute =
-  publicMozliwosciPowiadomieniaRouteImport.update({
-    id: '/mozliwosci/powiadomienia',
-    path: '/mozliwosci/powiadomienia',
-    getParentRoute: () => publicRouteRoute,
-  } as any)
-const publicMozliwosciHistoriaNaprawRoute =
-  publicMozliwosciHistoriaNaprawRouteImport.update({
-    id: '/mozliwosci/historia-napraw',
-    path: '/mozliwosci/historia-napraw',
-    getParentRoute: () => publicRouteRoute,
-  } as any)
-const publicMozliwosciGeneratorKodowQrRoute =
-  publicMozliwosciGeneratorKodowQrRouteImport.update({
-    id: '/mozliwosci/generator-kodow-qr',
-    path: '/mozliwosci/generator-kodow-qr',
-    getParentRoute: () => publicRouteRoute,
-  } as any)
-const publicMozliwosciFormularzZgloszeniowyRoute =
-  publicMozliwosciFormularzZgloszeniowyRouteImport.update({
-    id: '/mozliwosci/formularz-zgloszeniowy',
-    path: '/mozliwosci/formularz-zgloszeniowy',
-    getParentRoute: () => publicRouteRoute,
-  } as any)
-const publicBranzeSilownieRoute = publicBranzeSilownieRouteImport.update({
-  id: '/branze/silownie',
-  path: '/branze/silownie',
-  getParentRoute: () => publicRouteRoute,
-} as any)
 
 export interface FileRoutesByFullPath {
   '/dashboard': typeof DashboardRouteWithChildren
   '/cennik': typeof publicCennikRoute
   '/forgot-password': typeof publicForgotPasswordRoute
+  '/funkcje': typeof publicFunkcjeRoute
   '/kontakt': typeof publicKontaktRoute
-  '/login': typeof publicLoginRoute
+  '/logowanie': typeof publicLogowanieRoute
+  '/regulamin': typeof publicRegulaminRoute
+  '/rejestracja': typeof publicRejestracjaRoute
   '/reset-password': typeof publicResetPasswordRoute
-  '/signup': typeof publicSignupRoute
   '/dashboard/feedback': typeof DashboardFeedbackRoute
   '/dashboard/settings': typeof DashboardSettingsRoute
   '/': typeof publicIndexRoute
   '/dashboard/': typeof DashboardIndexRoute
-  '/branze/silownie': typeof publicBranzeSilownieRoute
-  '/mozliwosci/formularz-zgloszeniowy': typeof publicMozliwosciFormularzZgloszeniowyRoute
-  '/mozliwosci/generator-kodow-qr': typeof publicMozliwosciGeneratorKodowQrRoute
-  '/mozliwosci/historia-napraw': typeof publicMozliwosciHistoriaNaprawRoute
-  '/mozliwosci/powiadomienia': typeof publicMozliwosciPowiadomieniaRoute
   '/dashboard/equipment/$id': typeof DashboardEquipmentIdRoute
   '/dashboard/equipment/add': typeof DashboardEquipmentAddRoute
   '/dashboard/issues/$id': typeof DashboardIssuesIdRoute
   '/dashboard/issues/archive': typeof DashboardIssuesArchiveRoute
-  '/branze/': typeof publicBranzeIndexRoute
-  '/mozliwosci/': typeof publicMozliwosciIndexRoute
   '/dashboard/equipment/': typeof DashboardEquipmentIndexRoute
   '/dashboard/issues/': typeof DashboardIssuesIndexRoute
 }
 export interface FileRoutesByTo {
   '/cennik': typeof publicCennikRoute
   '/forgot-password': typeof publicForgotPasswordRoute
+  '/funkcje': typeof publicFunkcjeRoute
   '/kontakt': typeof publicKontaktRoute
-  '/login': typeof publicLoginRoute
+  '/logowanie': typeof publicLogowanieRoute
+  '/regulamin': typeof publicRegulaminRoute
+  '/rejestracja': typeof publicRejestracjaRoute
   '/reset-password': typeof publicResetPasswordRoute
-  '/signup': typeof publicSignupRoute
   '/dashboard/feedback': typeof DashboardFeedbackRoute
   '/dashboard/settings': typeof DashboardSettingsRoute
   '/': typeof publicIndexRoute
   '/dashboard': typeof DashboardIndexRoute
-  '/branze/silownie': typeof publicBranzeSilownieRoute
-  '/mozliwosci/formularz-zgloszeniowy': typeof publicMozliwosciFormularzZgloszeniowyRoute
-  '/mozliwosci/generator-kodow-qr': typeof publicMozliwosciGeneratorKodowQrRoute
-  '/mozliwosci/historia-napraw': typeof publicMozliwosciHistoriaNaprawRoute
-  '/mozliwosci/powiadomienia': typeof publicMozliwosciPowiadomieniaRoute
   '/dashboard/equipment/$id': typeof DashboardEquipmentIdRoute
   '/dashboard/equipment/add': typeof DashboardEquipmentAddRoute
   '/dashboard/issues/$id': typeof DashboardIssuesIdRoute
   '/dashboard/issues/archive': typeof DashboardIssuesArchiveRoute
-  '/branze': typeof publicBranzeIndexRoute
-  '/mozliwosci': typeof publicMozliwosciIndexRoute
   '/dashboard/equipment': typeof DashboardEquipmentIndexRoute
   '/dashboard/issues': typeof DashboardIssuesIndexRoute
 }
@@ -221,25 +177,20 @@ export interface FileRoutesById {
   '/dashboard': typeof DashboardRouteWithChildren
   '/(public)/cennik': typeof publicCennikRoute
   '/(public)/forgot-password': typeof publicForgotPasswordRoute
+  '/(public)/funkcje': typeof publicFunkcjeRoute
   '/(public)/kontakt': typeof publicKontaktRoute
-  '/(public)/login': typeof publicLoginRoute
+  '/(public)/logowanie': typeof publicLogowanieRoute
+  '/(public)/regulamin': typeof publicRegulaminRoute
+  '/(public)/rejestracja': typeof publicRejestracjaRoute
   '/(public)/reset-password': typeof publicResetPasswordRoute
-  '/(public)/signup': typeof publicSignupRoute
   '/dashboard/feedback': typeof DashboardFeedbackRoute
   '/dashboard/settings': typeof DashboardSettingsRoute
   '/(public)/': typeof publicIndexRoute
   '/dashboard/': typeof DashboardIndexRoute
-  '/(public)/branze/silownie': typeof publicBranzeSilownieRoute
-  '/(public)/mozliwosci/formularz-zgloszeniowy': typeof publicMozliwosciFormularzZgloszeniowyRoute
-  '/(public)/mozliwosci/generator-kodow-qr': typeof publicMozliwosciGeneratorKodowQrRoute
-  '/(public)/mozliwosci/historia-napraw': typeof publicMozliwosciHistoriaNaprawRoute
-  '/(public)/mozliwosci/powiadomienia': typeof publicMozliwosciPowiadomieniaRoute
   '/dashboard/equipment/$id': typeof DashboardEquipmentIdRoute
   '/dashboard/equipment/add': typeof DashboardEquipmentAddRoute
   '/dashboard/issues/$id': typeof DashboardIssuesIdRoute
   '/dashboard/issues/archive': typeof DashboardIssuesArchiveRoute
-  '/(public)/branze/': typeof publicBranzeIndexRoute
-  '/(public)/mozliwosci/': typeof publicMozliwosciIndexRoute
   '/dashboard/equipment/': typeof DashboardEquipmentIndexRoute
   '/dashboard/issues/': typeof DashboardIssuesIndexRoute
 }
@@ -249,50 +200,40 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/cennik'
     | '/forgot-password'
+    | '/funkcje'
     | '/kontakt'
-    | '/login'
+    | '/logowanie'
+    | '/regulamin'
+    | '/rejestracja'
     | '/reset-password'
-    | '/signup'
     | '/dashboard/feedback'
     | '/dashboard/settings'
     | '/'
     | '/dashboard/'
-    | '/branze/silownie'
-    | '/mozliwosci/formularz-zgloszeniowy'
-    | '/mozliwosci/generator-kodow-qr'
-    | '/mozliwosci/historia-napraw'
-    | '/mozliwosci/powiadomienia'
     | '/dashboard/equipment/$id'
     | '/dashboard/equipment/add'
     | '/dashboard/issues/$id'
     | '/dashboard/issues/archive'
-    | '/branze/'
-    | '/mozliwosci/'
     | '/dashboard/equipment/'
     | '/dashboard/issues/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/cennik'
     | '/forgot-password'
+    | '/funkcje'
     | '/kontakt'
-    | '/login'
+    | '/logowanie'
+    | '/regulamin'
+    | '/rejestracja'
     | '/reset-password'
-    | '/signup'
     | '/dashboard/feedback'
     | '/dashboard/settings'
     | '/'
     | '/dashboard'
-    | '/branze/silownie'
-    | '/mozliwosci/formularz-zgloszeniowy'
-    | '/mozliwosci/generator-kodow-qr'
-    | '/mozliwosci/historia-napraw'
-    | '/mozliwosci/powiadomienia'
     | '/dashboard/equipment/$id'
     | '/dashboard/equipment/add'
     | '/dashboard/issues/$id'
     | '/dashboard/issues/archive'
-    | '/branze'
-    | '/mozliwosci'
     | '/dashboard/equipment'
     | '/dashboard/issues'
   id:
@@ -301,25 +242,20 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/(public)/cennik'
     | '/(public)/forgot-password'
+    | '/(public)/funkcje'
     | '/(public)/kontakt'
-    | '/(public)/login'
+    | '/(public)/logowanie'
+    | '/(public)/regulamin'
+    | '/(public)/rejestracja'
     | '/(public)/reset-password'
-    | '/(public)/signup'
     | '/dashboard/feedback'
     | '/dashboard/settings'
     | '/(public)/'
     | '/dashboard/'
-    | '/(public)/branze/silownie'
-    | '/(public)/mozliwosci/formularz-zgloszeniowy'
-    | '/(public)/mozliwosci/generator-kodow-qr'
-    | '/(public)/mozliwosci/historia-napraw'
-    | '/(public)/mozliwosci/powiadomienia'
     | '/dashboard/equipment/$id'
     | '/dashboard/equipment/add'
     | '/dashboard/issues/$id'
     | '/dashboard/issues/archive'
-    | '/(public)/branze/'
-    | '/(public)/mozliwosci/'
     | '/dashboard/equipment/'
     | '/dashboard/issues/'
   fileRoutesById: FileRoutesById
@@ -373,13 +309,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardFeedbackRouteImport
       parentRoute: typeof DashboardRoute
     }
-    '/(public)/signup': {
-      id: '/(public)/signup'
-      path: '/signup'
-      fullPath: '/signup'
-      preLoaderRoute: typeof publicSignupRouteImport
-      parentRoute: typeof publicRouteRoute
-    }
     '/(public)/reset-password': {
       id: '/(public)/reset-password'
       path: '/reset-password'
@@ -387,11 +316,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof publicResetPasswordRouteImport
       parentRoute: typeof publicRouteRoute
     }
-    '/(public)/login': {
-      id: '/(public)/login'
-      path: '/login'
-      fullPath: '/login'
-      preLoaderRoute: typeof publicLoginRouteImport
+    '/(public)/rejestracja': {
+      id: '/(public)/rejestracja'
+      path: '/rejestracja'
+      fullPath: '/rejestracja'
+      preLoaderRoute: typeof publicRejestracjaRouteImport
+      parentRoute: typeof publicRouteRoute
+    }
+    '/(public)/regulamin': {
+      id: '/(public)/regulamin'
+      path: '/regulamin'
+      fullPath: '/regulamin'
+      preLoaderRoute: typeof publicRegulaminRouteImport
+      parentRoute: typeof publicRouteRoute
+    }
+    '/(public)/logowanie': {
+      id: '/(public)/logowanie'
+      path: '/logowanie'
+      fullPath: '/logowanie'
+      preLoaderRoute: typeof publicLogowanieRouteImport
       parentRoute: typeof publicRouteRoute
     }
     '/(public)/kontakt': {
@@ -399,6 +342,13 @@ declare module '@tanstack/react-router' {
       path: '/kontakt'
       fullPath: '/kontakt'
       preLoaderRoute: typeof publicKontaktRouteImport
+      parentRoute: typeof publicRouteRoute
+    }
+    '/(public)/funkcje': {
+      id: '/(public)/funkcje'
+      path: '/funkcje'
+      fullPath: '/funkcje'
+      preLoaderRoute: typeof publicFunkcjeRouteImport
       parentRoute: typeof publicRouteRoute
     }
     '/(public)/forgot-password': {
@@ -429,20 +379,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardEquipmentIndexRouteImport
       parentRoute: typeof DashboardRoute
     }
-    '/(public)/mozliwosci/': {
-      id: '/(public)/mozliwosci/'
-      path: '/mozliwosci'
-      fullPath: '/mozliwosci/'
-      preLoaderRoute: typeof publicMozliwosciIndexRouteImport
-      parentRoute: typeof publicRouteRoute
-    }
-    '/(public)/branze/': {
-      id: '/(public)/branze/'
-      path: '/branze'
-      fullPath: '/branze/'
-      preLoaderRoute: typeof publicBranzeIndexRouteImport
-      parentRoute: typeof publicRouteRoute
-    }
     '/dashboard/issues/archive': {
       id: '/dashboard/issues/archive'
       path: '/issues/archive'
@@ -471,77 +407,31 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardEquipmentIdRouteImport
       parentRoute: typeof DashboardRoute
     }
-    '/(public)/mozliwosci/powiadomienia': {
-      id: '/(public)/mozliwosci/powiadomienia'
-      path: '/mozliwosci/powiadomienia'
-      fullPath: '/mozliwosci/powiadomienia'
-      preLoaderRoute: typeof publicMozliwosciPowiadomieniaRouteImport
-      parentRoute: typeof publicRouteRoute
-    }
-    '/(public)/mozliwosci/historia-napraw': {
-      id: '/(public)/mozliwosci/historia-napraw'
-      path: '/mozliwosci/historia-napraw'
-      fullPath: '/mozliwosci/historia-napraw'
-      preLoaderRoute: typeof publicMozliwosciHistoriaNaprawRouteImport
-      parentRoute: typeof publicRouteRoute
-    }
-    '/(public)/mozliwosci/generator-kodow-qr': {
-      id: '/(public)/mozliwosci/generator-kodow-qr'
-      path: '/mozliwosci/generator-kodow-qr'
-      fullPath: '/mozliwosci/generator-kodow-qr'
-      preLoaderRoute: typeof publicMozliwosciGeneratorKodowQrRouteImport
-      parentRoute: typeof publicRouteRoute
-    }
-    '/(public)/mozliwosci/formularz-zgloszeniowy': {
-      id: '/(public)/mozliwosci/formularz-zgloszeniowy'
-      path: '/mozliwosci/formularz-zgloszeniowy'
-      fullPath: '/mozliwosci/formularz-zgloszeniowy'
-      preLoaderRoute: typeof publicMozliwosciFormularzZgloszeniowyRouteImport
-      parentRoute: typeof publicRouteRoute
-    }
-    '/(public)/branze/silownie': {
-      id: '/(public)/branze/silownie'
-      path: '/branze/silownie'
-      fullPath: '/branze/silownie'
-      preLoaderRoute: typeof publicBranzeSilownieRouteImport
-      parentRoute: typeof publicRouteRoute
-    }
   }
 }
 
 interface publicRouteRouteChildren {
   publicCennikRoute: typeof publicCennikRoute
   publicForgotPasswordRoute: typeof publicForgotPasswordRoute
+  publicFunkcjeRoute: typeof publicFunkcjeRoute
   publicKontaktRoute: typeof publicKontaktRoute
-  publicLoginRoute: typeof publicLoginRoute
+  publicLogowanieRoute: typeof publicLogowanieRoute
+  publicRegulaminRoute: typeof publicRegulaminRoute
+  publicRejestracjaRoute: typeof publicRejestracjaRoute
   publicResetPasswordRoute: typeof publicResetPasswordRoute
-  publicSignupRoute: typeof publicSignupRoute
   publicIndexRoute: typeof publicIndexRoute
-  publicBranzeSilownieRoute: typeof publicBranzeSilownieRoute
-  publicMozliwosciFormularzZgloszeniowyRoute: typeof publicMozliwosciFormularzZgloszeniowyRoute
-  publicMozliwosciGeneratorKodowQrRoute: typeof publicMozliwosciGeneratorKodowQrRoute
-  publicMozliwosciHistoriaNaprawRoute: typeof publicMozliwosciHistoriaNaprawRoute
-  publicMozliwosciPowiadomieniaRoute: typeof publicMozliwosciPowiadomieniaRoute
-  publicBranzeIndexRoute: typeof publicBranzeIndexRoute
-  publicMozliwosciIndexRoute: typeof publicMozliwosciIndexRoute
 }
 
 const publicRouteRouteChildren: publicRouteRouteChildren = {
   publicCennikRoute: publicCennikRoute,
   publicForgotPasswordRoute: publicForgotPasswordRoute,
+  publicFunkcjeRoute: publicFunkcjeRoute,
   publicKontaktRoute: publicKontaktRoute,
-  publicLoginRoute: publicLoginRoute,
+  publicLogowanieRoute: publicLogowanieRoute,
+  publicRegulaminRoute: publicRegulaminRoute,
+  publicRejestracjaRoute: publicRejestracjaRoute,
   publicResetPasswordRoute: publicResetPasswordRoute,
-  publicSignupRoute: publicSignupRoute,
   publicIndexRoute: publicIndexRoute,
-  publicBranzeSilownieRoute: publicBranzeSilownieRoute,
-  publicMozliwosciFormularzZgloszeniowyRoute:
-    publicMozliwosciFormularzZgloszeniowyRoute,
-  publicMozliwosciGeneratorKodowQrRoute: publicMozliwosciGeneratorKodowQrRoute,
-  publicMozliwosciHistoriaNaprawRoute: publicMozliwosciHistoriaNaprawRoute,
-  publicMozliwosciPowiadomieniaRoute: publicMozliwosciPowiadomieniaRoute,
-  publicBranzeIndexRoute: publicBranzeIndexRoute,
-  publicMozliwosciIndexRoute: publicMozliwosciIndexRoute,
 }
 
 const publicRouteRouteWithChildren = publicRouteRoute._addFileChildren(

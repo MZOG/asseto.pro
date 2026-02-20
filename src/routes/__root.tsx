@@ -49,7 +49,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       <head>
         <HeadContent />
       </head>
-      <body className="bg-gray-50">
+      <body className="bg-gray-50/95">
         <ClerkProvider localization={plPL}>
           {children}
           <TanStackDevtools

@@ -1,56 +1,27 @@
-import { Check } from 'lucide-react'
 import { PricingCard } from './PricingCard'
-const packages = [
-  {
-    name: 'Starter',
-    machines: 'do 15 maszyn',
-    price: '49 PLN',
-    period: ' / mies.',
-    target: 'Małe studia treningowe, Crossfit.',
-    highlighted: false,
-  },
-  {
-    name: 'Pro',
-    machines: 'do 50 maszyn',
-    price: '149 PLN',
-    period: ' / mies.',
-    target: 'Standardowe siłownie, hotele.',
-    highlighted: true,
-  },
-  {
-    name: 'Business',
-    machines: 'do 200 maszyn',
-    price: '399 PLN',
-    period: ' / mies.',
-    target: 'Duże kluby, małe zakłady produkcyjne.',
-    highlighted: false,
-  },
-  {
-    name: 'Enterprise',
-    machines: 'nielimitowane',
-    price: 'Indywidualnie',
-    period: '',
-    target: 'Fabryki, sieci siłowni.',
-    highlighted: false,
-  },
-]
 
 const plans = [
   {
-    name: 'Start',
-    price: '59',
+    name: 'Darmowe',
+    price: '0',
     period: 'zł / miesięcznie',
     description: 'For individuals getting started with the essentials.',
-    features: ['Do 15 maszyn', 'Pomoc w konfiguracji', 'Podstawowe raporty'],
+    features: [
+      'Do 15 maszyn',
+      'Powiadomienia Web',
+      'Brak raportów',
+      'Brak eksportów',
+    ],
     cta: 'Wybierz',
+    disabled: false,
   },
   {
     name: 'Pro',
-    price: '199',
+    price: '149',
     period: 'zł / miesięcznie',
     description: 'For professionals who need more power and flexibility.',
     features: [
-      'Do 50 maszyn',
+      'Nielimitowane maszyny',
       'Pomoc w konfiguracji',
       'Rozszerzone raporty',
       'Konfigurator kodów QR',
@@ -59,28 +30,31 @@ const plans = [
     ],
     highlighted: true,
     cta: 'Wybierz',
+    disabled: false,
   },
   {
     name: 'Business',
-    price: '399',
+    price: 'Zadzwoń',
     period: 'zł / miesięcznie',
     description: 'For growing teams that need collaboration tools.',
     features: [
-      'Do 200 maszyn',
+      'Multi lokalizacje',
       'Pomoc w konfiguracji',
       'Rozszerzone raporty',
       'Konfigurator kodów QR',
       'Telegram / WhatsApp BOT',
       'Priorytetowe wsparcie',
+      'Integracja z innymi systemami',
     ],
     cta: 'Wybierz',
+    disabled: true,
   },
 ]
 
 const Pricing = () => {
   return (
     <section className="max-w-5xl mx-auto px-5 mt-40 mb-20">
-      <h2 className="font-display font-bold text-4xl text-center mb-10">
+      <h2 className="font-display font-bold text-4xl text-center mb-10  bg-linear-to-br from-slate-900 to-slate-500 bg-clip-text text-transparent">
         Cennik
       </h2>
 
