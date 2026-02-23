@@ -20,7 +20,7 @@ function RouteComponent() {
 
   return (
     <div>
-      <h1 className="text-sm font-medium">Maszyny ({count}/15)</h1>
+      <h1 className="text-sm font-medium">Maszyny ({count}/10)</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mt-5">
         {equipment?.map((eq) => (
           <EquipmentCard key={eq.id} props={eq} />

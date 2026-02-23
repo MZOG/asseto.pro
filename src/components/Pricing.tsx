@@ -7,7 +7,7 @@ const plans = [
     period: 'zł / miesięcznie',
     description: 'For individuals getting started with the essentials.',
     features: [
-      'Do 15 maszyn',
+      'Do 10 maszyn',
       'Powiadomienia Web',
       'Brak raportów',
       'Brak eksportów',
@@ -53,8 +53,8 @@ const plans = [
 
 const Pricing = () => {
   return (
-    <section className="max-w-5xl mx-auto px-5 mt-40 mb-20">
-      <h2 className="font-display font-bold text-4xl text-center mb-10  bg-linear-to-br from-slate-900 to-slate-500 bg-clip-text text-transparent">
+    <section className="max-w-5xl mx-auto px-5 mt-20 md:mt-40 mb-20">
+      <h2 className="font-display font-bold text-4xl text-center mb-10 bg-linear-to-br from-slate-900 to-slate-500 bg-clip-text text-transparent">
         Cennik
       </h2>
 

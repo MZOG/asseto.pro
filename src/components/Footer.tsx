@@ -4,7 +4,7 @@ export default function Footer() {
   return (
     <footer className="border-t mt-20">
       <div className="max-w-6xl mx-auto px-5 py-10 ">
-        <div className="grid grid-cols-4 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
           <div>
             <p className="font-semibold">Asseto</p>
             <p className="text-sm text-muted-foreground mt-4">

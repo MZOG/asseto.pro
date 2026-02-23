@@ -3,7 +3,7 @@
 import React from 'react'
 import { Link } from '@tanstack/react-router'
 import { useState } from 'react'
-import { QrCode, Menu, ChevronDown } from 'lucide-react'
+import { Menu } from 'lucide-react'
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -17,18 +17,12 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '@/components/ui/sheet'
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from '@/components/ui/collapsible'
-import { cn } from '@/lib/utils'
 
 export default function Header() {
   const [sheetOpen, setSheetOpen] = useState(false)
 
   return (
-    <header className="border-b fixed top-0 w-full z-30 bg-gray-50/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="border-b fixed top-0 w-full z-30 bg-gray-50/95 backdrop-blur supports-backdrop-filter:bg-background/60">
       <div className="max-w-6xl mx-auto flex items-center justify-between px-5 py-3">
         {/* Logo */}
         <Link
@@ -79,7 +73,7 @@ export default function Header() {
               <NavigationMenuItem>
                 <NavigationMenuLink asChild>
                   <Link
-                    to="/login"
+                    to="/logowanie"
                     className="inline-flex h-9 items-center justify-center rounded-md px-3 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
                   >
                     Zaloguj się
@@ -169,4 +163,3 @@ function MobileLink({
     </Link>
   )
 }
-

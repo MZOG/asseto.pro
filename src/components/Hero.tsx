@@ -4,13 +4,13 @@ import { Link } from '@tanstack/react-router'
 
 const Hero = () => {
   return (
-    <section id="hero" className="mx-auto px-5 max-w-5xl pt-5">
-      <div className="max-w-3xl flex flex-col items-center mx-auto">
-        <p className="flex items-center gap-2 border border-blue-300 bg-blue-50 text-blue-500 leading-none px-3 py-1.5 rounded-full text-sm font-semibold">
+    <section id="hero" className="mx-auto px-5 max-w-5xl md:pt-5">
+      <div className="max-w-3xl flex flex-col md:items-center mx-auto">
+        <p className="flex self-start md:self-center items-center gap-2 border border-blue-300 bg-blue-50 text-blue-500 leading-none px-3 py-1.5 rounded-full text-sm font-semibold">
           <div className="animate-pulse size-2 rounded-full bg-blue-500"></div>
           Wypróbuj za darmo
         </p>
-        <h1 className="font-black text-5xl font-display mt-10 text-center ">
+        <h1 className="font-black text-5xl font-display mt-5 md:mt-10 md:text-center ">
           Zarządzanie{' '}
           <span className="relative">
             <div className="absolute top-0 left-0 w-full h-full bg-blue-200 -z-3 -skew-3 blur" />
@@ -18,7 +18,7 @@ const Hero = () => {
           </span>{' '}
           bez chaosu.
         </h1>
-        <p className="text-lg mt-5 max-w-3xl text-center">
+        <p className="text-lg mt-5 max-w-3xl md:text-center text-balance">
           System do zarządzania usterkami oparty o{' '}
           <span className="relative">
             <div className="absolute top-0 left-0 w-full h-full bg-blue-200 -z-3 -skew-7 blur" />
@@ -26,16 +26,20 @@ const Hero = () => {
           </span>
           .
         </p>
-        <p className="mt-5 max-w-xl text-center text-muted-foreground">
+        <p className="mt-5 max-w-xl md:text-center text-muted-foreground">
           Koniec z karteczkami, zagubionymi mailami i pytaniami "dlaczego nie
           działa?". Asseto porządkuje usterki i awarie w Twojej firmie od
           pierwszego dnia.
         </p>
-        <div className="flex gap-4 mt-5">
-          <Button className="rounded-full bg-blue-600">
+        <div className="flex flex-col md:flex-row gap-4 mt-5">
+          <Button className="rounded-full bg-blue-600 py-6 text-lg font-normal md:text-[15px] md:font-medium md:px-6">
             Załóż konto za darmo
           </Button>
-          <Button asChild variant="outline" className="rounded-full">
+          <Button
+            asChild
+            variant="outline"
+            className="rounded-full py-6 text-lg font-normal md:text-[15px] md:font-medium md:px-6"
+          >
             <Link to="/funkcje">Zobacz możliwości</Link>
           </Button>
         </div>

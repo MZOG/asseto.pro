@@ -41,14 +41,14 @@ const features = [
 
 const Features = () => {
   return (
-    <section className="max-w-5xl mx-auto px-5 mt-40">
-      <h2 className="font-display font-bold text-4xl text-center mb-5  bg-linear-to-br from-slate-900 to-slate-500 bg-clip-text text-transparent">
+    <section className="max-w-5xl mx-auto px-5 mt-20 md:mt-30">
+      <h2 className="font-display font-bold leading-12 text-4xl text-center mb-10 bg-linear-to-br from-slate-900 to-slate-500 bg-clip-text text-transparent">
         Dlaczego Asseto?
       </h2>
       <p className="text-center mb-8">
         Prosty system stworzony z myślą o codziennych potrzebach firm.
       </p>
-      <div className="grid grid-cols-3 gap-5">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
         {features.map((feature) => (
           <ItemCard key={feature.id} item={feature} />
         ))}

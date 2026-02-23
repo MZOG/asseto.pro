@@ -24,13 +24,13 @@ export default function ItemCard({ item }: ItemCardProps) {
   return (
     <div key={item.id} className="bg-white border p-7 rounded-xl">
       <div className="space-y-3">
-        <div className="bg-blue-50 border border-blue-100 inline-flex p-3 rounded-lg">
-          <item.icon className="size-6 text-blue-500" />
+        <div className="bg-blue-50 border border-blue-100 inline-flex p-2 md:p-3 rounded-lg">
+          <item.icon className="size-5 md:size-6 text-blue-500" />
         </div>
         <h3 className="text-xl font-bold text-gray-900 font-display">
           {item.title}
         </h3>
-        <p className="text-gray-600 font-display max-w-sm text-balance">
+        <p className="text-gray-600  font-display md:max-w-sm md:text-balance">
           {item.description}
         </p>
 
