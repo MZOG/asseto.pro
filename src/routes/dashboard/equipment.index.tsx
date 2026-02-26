@@ -1,4 +1,3 @@
-import { StatusBadge } from '@/components/StatusBadge'
 import { Button } from '@/components/ui/button'
 import { Skeleton } from '@/components/ui/skeleton'
 import { formatDate } from '@/lib/utils'
@@ -21,6 +20,14 @@ function RouteComponent() {
   return (
     <div>
       <h1 className="text-sm font-medium">Maszyny ({count}/10)</h1>
+
+      <div className="bg-blue-50 border border-blue-200 p-2 rounded-lg text-sm mt-5">
+        <p>
+          <span className="font-medium">Brak maszyn.</span> Kliknij + Dodaj
+          maszynę, aby dodać.
+        </p>
+      </div>
+
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mt-5">
         {equipment?.map((eq) => (
           <EquipmentCard key={eq.id} props={eq} />

@@ -2,6 +2,7 @@ import { Button } from '@/components/ui/button'
 import { Field, FieldLabel } from '@/components/ui/field'
 import { Input } from '@/components/ui/input'
 import { Separator } from '@/components/ui/separator'
+import { SignIn } from '@clerk/tanstack-react-start'
 import { createFileRoute } from '@tanstack/react-router'
 import { Link } from '@tanstack/react-router'
 
@@ -21,7 +22,9 @@ function RouteComponent() {
         </p>
       </div>
 
-      <div className="bg-white rounded-xl border max-w-sm p-5 mx-auto mt-8">
+      <SignIn />
+
+      {/* <div className="bg-white rounded-xl border max-w-sm p-5 mx-auto mt-8">
         <Button variant="outline" className="w-full">
           Zaloguj się przez Google
         </Button>
@@ -65,7 +68,7 @@ function RouteComponent() {
             </p>
           </div>
         </form>
-      </div>
+      </div> */}
     </section>
   )
 }

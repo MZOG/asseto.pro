@@ -3,6 +3,7 @@ import { Checkbox } from '@/components/ui/checkbox'
 import { Field, FieldGroup, FieldLabel } from '@/components/ui/field'
 import { Input } from '@/components/ui/input'
 import { Separator } from '@/components/ui/separator'
+import { GoogleOneTap, SignIn, SignUp } from '@clerk/tanstack-react-start'
 import { createFileRoute, Link } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/(public)/rejestracja')({
@@ -21,84 +22,8 @@ function RouteComponent() {
         </p>
       </div>
 
-      <div className="bg-white rounded-xl border max-w-sm p-5 mx-auto mt-8">
-        <Button variant="outline" className="w-full">
-          Zarejestruj się przez Google
-        </Button>
-        <Separator className="my-5" />
-
-        <form className="space-y-4">
-          <Field className="gap-2">
-            <FieldLabel htmlFor="company_name">Nazwa firmy</FieldLabel>
-            <Input
-              className="bg-white h-10"
-              id="company_name"
-              type="text"
-              placeholder="Firma Sp. z o.o."
-            />
-          </Field>
-
-          <Field className="gap-2">
-            <FieldLabel htmlFor="full_name">Imię i nazwisko</FieldLabel>
-            <Input
-              className="bg-white h-10"
-              id="full_name"
-              type="text"
-              placeholder="Jan Kowalski"
-            />
-          </Field>
-
-          <Field className="gap-2">
-            <FieldLabel htmlFor="email">E-mail</FieldLabel>
-            <Input
-              className="bg-white h-10"
-              id="email"
-              type="email"
-              placeholder="jan@firma.pl"
-            />
-          </Field>
-
-          <Field className="gap-2">
-            <FieldLabel htmlFor="password">Hasło</FieldLabel>
-            <Input
-              className="bg-white h-10"
-              id="password"
-              type="password"
-              placeholder="••••••••"
-            />
-          </Field>
-
-          <FieldGroup>
-            <Field orientation="horizontal">
-              <Checkbox id="terms-checkbox-basic" name="terms-checkbox-basic" />
-              <FieldLabel
-                htmlFor="terms-checkbox-basic"
-                className="font-normal text-xs text-left"
-              >
-                <Link
-                  to="/regulamin"
-                  className="text-muted-foreground hover:underline inline"
-                >
-                  Akceptuję{' '}
-                  <span className="text-primary">
-                    regulamin serwisu i politykę prywatności
-                  </span>
-                </Link>
-              </FieldLabel>
-            </Field>
-          </FieldGroup>
-
-          <Button className="w-full">Załóż konto</Button>
-
-          <div className="flex justify-center text-sm text-muted-foreground">
-            <p>
-              Masz już konto?{' '}
-              <Link to="/logowanie" className="text-primary hover:underline">
-                Zaloguj się
-              </Link>
-            </p>
-          </div>
-        </form>
+      <div className="flex justify-center mt-8">
+        <SignUp />
       </div>
     </section>
   )

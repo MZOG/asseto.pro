@@ -17,9 +17,11 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '@/components/ui/sheet'
+import { useUser } from '@clerk/tanstack-react-start'
 
 export default function Header() {
   const [sheetOpen, setSheetOpen] = useState(false)
+  const user = useUser()
 
   return (
     <header className="border-b fixed top-0 w-full z-30 bg-gray-50/95 backdrop-blur supports-backdrop-filter:bg-background/60">
@@ -71,14 +73,27 @@ export default function Header() {
               </NavigationMenuItem>
 
               <NavigationMenuItem>
-                <NavigationMenuLink asChild>
-                  <Link
-                    to="/logowanie"
-                    className="inline-flex h-9 items-center justify-center rounded-md px-3 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
-                  >
-                    Zaloguj się
-                  </Link>
-                </NavigationMenuLink>
+                {user?.isSignedIn ? (
+                  <NavigationMenuLink asChild>
+                    <Link
+                      to="/dashboard"
+                      className="inline-flex h-9 items-center justify-center rounded-md px-3 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
+                    >
+                      Panel
+                    </Link>
+                  </NavigationMenuLink>
+                ) : (
+                  <>
+                    <NavigationMenuLink asChild>
+                      <Link
+                        to="/logowanie"
+                        className="inline-flex h-9 items-center justify-center rounded-md px-3 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
+                      >
+                        Zaloguj się
+                      </Link>
+                    </NavigationMenuLink>
+                  </>
+                )}
               </NavigationMenuItem>
             </NavigationMenuList>
           </NavigationMenu>
@@ -129,7 +144,7 @@ export default function Header() {
 
               <div className="px-2 pt-1">
                 <Link
-                  to="/signup"
+                  to="/rejestracja"
                   onClick={() => setSheetOpen(false)}
                   className="flex items-center justify-center bg-blue-600 text-white px-4 py-2.5 rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors w-full"
                 >
