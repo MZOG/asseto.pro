@@ -13,16 +13,18 @@ export const Route = createFileRoute('/(public)/logowanie')({
 function RouteComponent() {
   return (
     <section className="px-5 mx-auto max-w-5xl">
-      <div className="flex flex-col items-center justify-center max-w-md mx-auto">
+      {/* <div className="flex flex-col items-center justify-center max-w-md mx-auto">
         <h1 className="font-display leading-12 font-bold text-4xl text-center mb-5  bg-linear-to-br from-slate-900 to-slate-500 bg-clip-text text-transparent">
           Zaloguj się
         </h1>
         <p className="text-center text-muted-foreground">
           Zaloguj się, aby zarządzać maszynami i awariami.
         </p>
-      </div>
+      </div> */}
 
-      <SignIn />
+      <div className="flex justify-center mt-5">
+        <SignIn signUpUrl="/rejestracja" fallbackRedirectUrl={'/dashboard'} />
+      </div>
 
       {/* <div className="bg-white rounded-xl border max-w-sm p-5 mx-auto mt-8">
         <Button variant="outline" className="w-full">

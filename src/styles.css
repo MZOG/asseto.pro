@@ -3,7 +3,7 @@
 @import 'tw-animate-css';
 
 @custom-variant dark (&:is(.dark *));
-
+@import '@clerk/themes/shadcn.css';
 /* @import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap'); */
 
 body {

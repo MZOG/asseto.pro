@@ -14,6 +14,7 @@ import { Route as publicRouteRouteImport } from './routes/(public)/route'
 import { Route as DashboardIndexRouteImport } from './routes/dashboard/index'
 import { Route as publicIndexRouteImport } from './routes/(public)/index'
 import { Route as DashboardSettingsRouteImport } from './routes/dashboard/settings'
+import { Route as DashboardProfileRouteImport } from './routes/dashboard/profile'
 import { Route as DashboardFeedbackRouteImport } from './routes/dashboard/feedback'
 import { Route as publicResetPasswordRouteImport } from './routes/(public)/reset-password'
 import { Route as publicRejestracjaRouteImport } from './routes/(public)/rejestracja'
@@ -52,6 +53,11 @@ const publicIndexRoute = publicIndexRouteImport.update({
 const DashboardSettingsRoute = DashboardSettingsRouteImport.update({
   id: '/settings',
   path: '/settings',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardProfileRoute = DashboardProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
   getParentRoute: () => DashboardRoute,
 } as any)
 const DashboardFeedbackRoute = DashboardFeedbackRouteImport.update({
@@ -141,6 +147,7 @@ export interface FileRoutesByFullPath {
   '/rejestracja': typeof publicRejestracjaRoute
   '/reset-password': typeof publicResetPasswordRoute
   '/dashboard/feedback': typeof DashboardFeedbackRoute
+  '/dashboard/profile': typeof DashboardProfileRoute
   '/dashboard/settings': typeof DashboardSettingsRoute
   '/': typeof publicIndexRoute
   '/dashboard/': typeof DashboardIndexRoute
@@ -161,6 +168,7 @@ export interface FileRoutesByTo {
   '/rejestracja': typeof publicRejestracjaRoute
   '/reset-password': typeof publicResetPasswordRoute
   '/dashboard/feedback': typeof DashboardFeedbackRoute
+  '/dashboard/profile': typeof DashboardProfileRoute
   '/dashboard/settings': typeof DashboardSettingsRoute
   '/': typeof publicIndexRoute
   '/dashboard': typeof DashboardIndexRoute
@@ -184,6 +192,7 @@ export interface FileRoutesById {
   '/(public)/rejestracja': typeof publicRejestracjaRoute
   '/(public)/reset-password': typeof publicResetPasswordRoute
   '/dashboard/feedback': typeof DashboardFeedbackRoute
+  '/dashboard/profile': typeof DashboardProfileRoute
   '/dashboard/settings': typeof DashboardSettingsRoute
   '/(public)/': typeof publicIndexRoute
   '/dashboard/': typeof DashboardIndexRoute
@@ -207,6 +216,7 @@ export interface FileRouteTypes {
     | '/rejestracja'
     | '/reset-password'
     | '/dashboard/feedback'
+    | '/dashboard/profile'
     | '/dashboard/settings'
     | '/'
     | '/dashboard/'
@@ -227,6 +237,7 @@ export interface FileRouteTypes {
     | '/rejestracja'
     | '/reset-password'
     | '/dashboard/feedback'
+    | '/dashboard/profile'
     | '/dashboard/settings'
     | '/'
     | '/dashboard'
@@ -249,6 +260,7 @@ export interface FileRouteTypes {
     | '/(public)/rejestracja'
     | '/(public)/reset-password'
     | '/dashboard/feedback'
+    | '/dashboard/profile'
     | '/dashboard/settings'
     | '/(public)/'
     | '/dashboard/'
@@ -300,6 +312,13 @@ declare module '@tanstack/react-router' {
       path: '/settings'
       fullPath: '/dashboard/settings'
       preLoaderRoute: typeof DashboardSettingsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/profile': {
+      id: '/dashboard/profile'
+      path: '/profile'
+      fullPath: '/dashboard/profile'
+      preLoaderRoute: typeof DashboardProfileRouteImport
       parentRoute: typeof DashboardRoute
     }
     '/dashboard/feedback': {
@@ -440,6 +459,7 @@ const publicRouteRouteWithChildren = publicRouteRoute._addFileChildren(
 
 interface DashboardRouteChildren {
   DashboardFeedbackRoute: typeof DashboardFeedbackRoute
+  DashboardProfileRoute: typeof DashboardProfileRoute
   DashboardSettingsRoute: typeof DashboardSettingsRoute
   DashboardIndexRoute: typeof DashboardIndexRoute
   DashboardEquipmentIdRoute: typeof DashboardEquipmentIdRoute
@@ -452,6 +472,7 @@ interface DashboardRouteChildren {
 
 const DashboardRouteChildren: DashboardRouteChildren = {
   DashboardFeedbackRoute: DashboardFeedbackRoute,
+  DashboardProfileRoute: DashboardProfileRoute,
   DashboardSettingsRoute: DashboardSettingsRoute,
   DashboardIndexRoute: DashboardIndexRoute,
   DashboardEquipmentIdRoute: DashboardEquipmentIdRoute,

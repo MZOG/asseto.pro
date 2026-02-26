@@ -6,6 +6,7 @@ import {
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 import { TanStackDevtools } from '@tanstack/react-devtools'
 import { ClerkProvider } from '@clerk/tanstack-react-start'
+import { shadcn } from '@clerk/themes'
 import { plPL } from '@clerk/localizations'
 
 import TanStackQueryDevtools from '../integrations/tanstack-query/devtools'
@@ -50,7 +51,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <HeadContent />
       </head>
       <body className="bg-gray-50/95">
-        <ClerkProvider localization={plPL}>
+        <ClerkProvider localization={plPL} appearance={{ theme: shadcn }}>
           {children}
           <TanStackDevtools
             config={{
