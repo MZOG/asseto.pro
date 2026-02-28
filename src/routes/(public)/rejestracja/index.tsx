@@ -1,7 +1,7 @@
 import { SignUp } from '@clerk/tanstack-react-start'
 import { createFileRoute } from '@tanstack/react-router'
 
-export const Route = createFileRoute('/(public)/rejestracja')({
+export const Route = createFileRoute('/(public)/rejestracja/')({
   component: RouteComponent,
 })
 
@@ -18,7 +18,7 @@ function RouteComponent() {
       </div> */}
 
       <div className="flex justify-center mt-5">
-        <SignUp signInUrl="/logowanie" />
+        <SignUp signInUrl="/logowanie" fallbackRedirectUrl="/dashboard" />
       </div>
     </section>
   )

@@ -17,7 +17,6 @@ import { Route as DashboardSettingsRouteImport } from './routes/dashboard/settin
 import { Route as DashboardProfileRouteImport } from './routes/dashboard/profile'
 import { Route as DashboardFeedbackRouteImport } from './routes/dashboard/feedback'
 import { Route as publicResetPasswordRouteImport } from './routes/(public)/reset-password'
-import { Route as publicRejestracjaRouteImport } from './routes/(public)/rejestracja'
 import { Route as publicRegulaminRouteImport } from './routes/(public)/regulamin'
 import { Route as publicLogowanieRouteImport } from './routes/(public)/logowanie'
 import { Route as publicKontaktRouteImport } from './routes/(public)/kontakt'
@@ -26,10 +25,12 @@ import { Route as publicForgotPasswordRouteImport } from './routes/(public)/forg
 import { Route as publicCennikRouteImport } from './routes/(public)/cennik'
 import { Route as DashboardIssuesIndexRouteImport } from './routes/dashboard/issues.index'
 import { Route as DashboardEquipmentIndexRouteImport } from './routes/dashboard/equipment.index'
+import { Route as publicRejestracjaIndexRouteImport } from './routes/(public)/rejestracja/index'
 import { Route as DashboardIssuesArchiveRouteImport } from './routes/dashboard/issues.archive'
 import { Route as DashboardIssuesIdRouteImport } from './routes/dashboard/issues.$id'
 import { Route as DashboardEquipmentAddRouteImport } from './routes/dashboard/equipment.add'
 import { Route as DashboardEquipmentIdRouteImport } from './routes/dashboard/equipment.$id'
+import { Route as publicRejestracjaVerifyEmailAddressRouteImport } from './routes/(public)/rejestracja/verify-email-address'
 
 const DashboardRoute = DashboardRouteImport.update({
   id: '/dashboard',
@@ -68,11 +69,6 @@ const DashboardFeedbackRoute = DashboardFeedbackRouteImport.update({
 const publicResetPasswordRoute = publicResetPasswordRouteImport.update({
   id: '/reset-password',
   path: '/reset-password',
-  getParentRoute: () => publicRouteRoute,
-} as any)
-const publicRejestracjaRoute = publicRejestracjaRouteImport.update({
-  id: '/rejestracja',
-  path: '/rejestracja',
   getParentRoute: () => publicRouteRoute,
 } as any)
 const publicRegulaminRoute = publicRegulaminRouteImport.update({
@@ -115,6 +111,11 @@ const DashboardEquipmentIndexRoute = DashboardEquipmentIndexRouteImport.update({
   path: '/equipment/',
   getParentRoute: () => DashboardRoute,
 } as any)
+const publicRejestracjaIndexRoute = publicRejestracjaIndexRouteImport.update({
+  id: '/rejestracja/',
+  path: '/rejestracja/',
+  getParentRoute: () => publicRouteRoute,
+} as any)
 const DashboardIssuesArchiveRoute = DashboardIssuesArchiveRouteImport.update({
   id: '/issues/archive',
   path: '/issues/archive',
@@ -135,6 +136,12 @@ const DashboardEquipmentIdRoute = DashboardEquipmentIdRouteImport.update({
   path: '/equipment/$id',
   getParentRoute: () => DashboardRoute,
 } as any)
+const publicRejestracjaVerifyEmailAddressRoute =
+  publicRejestracjaVerifyEmailAddressRouteImport.update({
+    id: '/rejestracja/verify-email-address',
+    path: '/rejestracja/verify-email-address',
+    getParentRoute: () => publicRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/dashboard': typeof DashboardRouteWithChildren
@@ -144,17 +151,18 @@ export interface FileRoutesByFullPath {
   '/kontakt': typeof publicKontaktRoute
   '/logowanie': typeof publicLogowanieRoute
   '/regulamin': typeof publicRegulaminRoute
-  '/rejestracja': typeof publicRejestracjaRoute
   '/reset-password': typeof publicResetPasswordRoute
   '/dashboard/feedback': typeof DashboardFeedbackRoute
   '/dashboard/profile': typeof DashboardProfileRoute
   '/dashboard/settings': typeof DashboardSettingsRoute
   '/': typeof publicIndexRoute
   '/dashboard/': typeof DashboardIndexRoute
+  '/rejestracja/verify-email-address': typeof publicRejestracjaVerifyEmailAddressRoute
   '/dashboard/equipment/$id': typeof DashboardEquipmentIdRoute
   '/dashboard/equipment/add': typeof DashboardEquipmentAddRoute
   '/dashboard/issues/$id': typeof DashboardIssuesIdRoute
   '/dashboard/issues/archive': typeof DashboardIssuesArchiveRoute
+  '/rejestracja/': typeof publicRejestracjaIndexRoute
   '/dashboard/equipment/': typeof DashboardEquipmentIndexRoute
   '/dashboard/issues/': typeof DashboardIssuesIndexRoute
 }
@@ -165,17 +173,18 @@ export interface FileRoutesByTo {
   '/kontakt': typeof publicKontaktRoute
   '/logowanie': typeof publicLogowanieRoute
   '/regulamin': typeof publicRegulaminRoute
-  '/rejestracja': typeof publicRejestracjaRoute
   '/reset-password': typeof publicResetPasswordRoute
   '/dashboard/feedback': typeof DashboardFeedbackRoute
   '/dashboard/profile': typeof DashboardProfileRoute
   '/dashboard/settings': typeof DashboardSettingsRoute
   '/': typeof publicIndexRoute
   '/dashboard': typeof DashboardIndexRoute
+  '/rejestracja/verify-email-address': typeof publicRejestracjaVerifyEmailAddressRoute
   '/dashboard/equipment/$id': typeof DashboardEquipmentIdRoute
   '/dashboard/equipment/add': typeof DashboardEquipmentAddRoute
   '/dashboard/issues/$id': typeof DashboardIssuesIdRoute
   '/dashboard/issues/archive': typeof DashboardIssuesArchiveRoute
+  '/rejestracja': typeof publicRejestracjaIndexRoute
   '/dashboard/equipment': typeof DashboardEquipmentIndexRoute
   '/dashboard/issues': typeof DashboardIssuesIndexRoute
 }
@@ -189,17 +198,18 @@ export interface FileRoutesById {
   '/(public)/kontakt': typeof publicKontaktRoute
   '/(public)/logowanie': typeof publicLogowanieRoute
   '/(public)/regulamin': typeof publicRegulaminRoute
-  '/(public)/rejestracja': typeof publicRejestracjaRoute
   '/(public)/reset-password': typeof publicResetPasswordRoute
   '/dashboard/feedback': typeof DashboardFeedbackRoute
   '/dashboard/profile': typeof DashboardProfileRoute
   '/dashboard/settings': typeof DashboardSettingsRoute
   '/(public)/': typeof publicIndexRoute
   '/dashboard/': typeof DashboardIndexRoute
+  '/(public)/rejestracja/verify-email-address': typeof publicRejestracjaVerifyEmailAddressRoute
   '/dashboard/equipment/$id': typeof DashboardEquipmentIdRoute
   '/dashboard/equipment/add': typeof DashboardEquipmentAddRoute
   '/dashboard/issues/$id': typeof DashboardIssuesIdRoute
   '/dashboard/issues/archive': typeof DashboardIssuesArchiveRoute
+  '/(public)/rejestracja/': typeof publicRejestracjaIndexRoute
   '/dashboard/equipment/': typeof DashboardEquipmentIndexRoute
   '/dashboard/issues/': typeof DashboardIssuesIndexRoute
 }
@@ -213,17 +223,18 @@ export interface FileRouteTypes {
     | '/kontakt'
     | '/logowanie'
     | '/regulamin'
-    | '/rejestracja'
     | '/reset-password'
     | '/dashboard/feedback'
     | '/dashboard/profile'
     | '/dashboard/settings'
     | '/'
     | '/dashboard/'
+    | '/rejestracja/verify-email-address'
     | '/dashboard/equipment/$id'
     | '/dashboard/equipment/add'
     | '/dashboard/issues/$id'
     | '/dashboard/issues/archive'
+    | '/rejestracja/'
     | '/dashboard/equipment/'
     | '/dashboard/issues/'
   fileRoutesByTo: FileRoutesByTo
@@ -234,17 +245,18 @@ export interface FileRouteTypes {
     | '/kontakt'
     | '/logowanie'
     | '/regulamin'
-    | '/rejestracja'
     | '/reset-password'
     | '/dashboard/feedback'
     | '/dashboard/profile'
     | '/dashboard/settings'
     | '/'
     | '/dashboard'
+    | '/rejestracja/verify-email-address'
     | '/dashboard/equipment/$id'
     | '/dashboard/equipment/add'
     | '/dashboard/issues/$id'
     | '/dashboard/issues/archive'
+    | '/rejestracja'
     | '/dashboard/equipment'
     | '/dashboard/issues'
   id:
@@ -257,17 +269,18 @@ export interface FileRouteTypes {
     | '/(public)/kontakt'
     | '/(public)/logowanie'
     | '/(public)/regulamin'
-    | '/(public)/rejestracja'
     | '/(public)/reset-password'
     | '/dashboard/feedback'
     | '/dashboard/profile'
     | '/dashboard/settings'
     | '/(public)/'
     | '/dashboard/'
+    | '/(public)/rejestracja/verify-email-address'
     | '/dashboard/equipment/$id'
     | '/dashboard/equipment/add'
     | '/dashboard/issues/$id'
     | '/dashboard/issues/archive'
+    | '/(public)/rejestracja/'
     | '/dashboard/equipment/'
     | '/dashboard/issues/'
   fileRoutesById: FileRoutesById
@@ -335,13 +348,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof publicResetPasswordRouteImport
       parentRoute: typeof publicRouteRoute
     }
-    '/(public)/rejestracja': {
-      id: '/(public)/rejestracja'
-      path: '/rejestracja'
-      fullPath: '/rejestracja'
-      preLoaderRoute: typeof publicRejestracjaRouteImport
-      parentRoute: typeof publicRouteRoute
-    }
     '/(public)/regulamin': {
       id: '/(public)/regulamin'
       path: '/regulamin'
@@ -398,6 +404,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardEquipmentIndexRouteImport
       parentRoute: typeof DashboardRoute
     }
+    '/(public)/rejestracja/': {
+      id: '/(public)/rejestracja/'
+      path: '/rejestracja'
+      fullPath: '/rejestracja/'
+      preLoaderRoute: typeof publicRejestracjaIndexRouteImport
+      parentRoute: typeof publicRouteRoute
+    }
     '/dashboard/issues/archive': {
       id: '/dashboard/issues/archive'
       path: '/issues/archive'
@@ -426,6 +439,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardEquipmentIdRouteImport
       parentRoute: typeof DashboardRoute
     }
+    '/(public)/rejestracja/verify-email-address': {
+      id: '/(public)/rejestracja/verify-email-address'
+      path: '/rejestracja/verify-email-address'
+      fullPath: '/rejestracja/verify-email-address'
+      preLoaderRoute: typeof publicRejestracjaVerifyEmailAddressRouteImport
+      parentRoute: typeof publicRouteRoute
+    }
   }
 }
 
@@ -436,9 +456,10 @@ interface publicRouteRouteChildren {
   publicKontaktRoute: typeof publicKontaktRoute
   publicLogowanieRoute: typeof publicLogowanieRoute
   publicRegulaminRoute: typeof publicRegulaminRoute
-  publicRejestracjaRoute: typeof publicRejestracjaRoute
   publicResetPasswordRoute: typeof publicResetPasswordRoute
   publicIndexRoute: typeof publicIndexRoute
+  publicRejestracjaVerifyEmailAddressRoute: typeof publicRejestracjaVerifyEmailAddressRoute
+  publicRejestracjaIndexRoute: typeof publicRejestracjaIndexRoute
 }
 
 const publicRouteRouteChildren: publicRouteRouteChildren = {
@@ -448,9 +469,11 @@ const publicRouteRouteChildren: publicRouteRouteChildren = {
   publicKontaktRoute: publicKontaktRoute,
   publicLogowanieRoute: publicLogowanieRoute,
   publicRegulaminRoute: publicRegulaminRoute,
-  publicRejestracjaRoute: publicRejestracjaRoute,
   publicResetPasswordRoute: publicResetPasswordRoute,
   publicIndexRoute: publicIndexRoute,
+  publicRejestracjaVerifyEmailAddressRoute:
+    publicRejestracjaVerifyEmailAddressRoute,
+  publicRejestracjaIndexRoute: publicRejestracjaIndexRoute,
 }
 
 const publicRouteRouteWithChildren = publicRouteRoute._addFileChildren(
