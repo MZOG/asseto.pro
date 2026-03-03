@@ -14,6 +14,7 @@ import { Route as publicRouteRouteImport } from './routes/(public)/route'
 import { Route as DashboardIndexRouteImport } from './routes/dashboard/index'
 import { Route as publicIndexRouteImport } from './routes/(public)/index'
 import { Route as DashboardSettingsRouteImport } from './routes/dashboard/settings'
+import { Route as DashboardServicesRouteImport } from './routes/dashboard/services'
 import { Route as DashboardProfileRouteImport } from './routes/dashboard/profile'
 import { Route as DashboardFeedbackRouteImport } from './routes/dashboard/feedback'
 import { Route as publicResetPasswordRouteImport } from './routes/(public)/reset-password'
@@ -54,6 +55,11 @@ const publicIndexRoute = publicIndexRouteImport.update({
 const DashboardSettingsRoute = DashboardSettingsRouteImport.update({
   id: '/settings',
   path: '/settings',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardServicesRoute = DashboardServicesRouteImport.update({
+  id: '/services',
+  path: '/services',
   getParentRoute: () => DashboardRoute,
 } as any)
 const DashboardProfileRoute = DashboardProfileRouteImport.update({
@@ -154,6 +160,7 @@ export interface FileRoutesByFullPath {
   '/reset-password': typeof publicResetPasswordRoute
   '/dashboard/feedback': typeof DashboardFeedbackRoute
   '/dashboard/profile': typeof DashboardProfileRoute
+  '/dashboard/services': typeof DashboardServicesRoute
   '/dashboard/settings': typeof DashboardSettingsRoute
   '/': typeof publicIndexRoute
   '/dashboard/': typeof DashboardIndexRoute
@@ -176,6 +183,7 @@ export interface FileRoutesByTo {
   '/reset-password': typeof publicResetPasswordRoute
   '/dashboard/feedback': typeof DashboardFeedbackRoute
   '/dashboard/profile': typeof DashboardProfileRoute
+  '/dashboard/services': typeof DashboardServicesRoute
   '/dashboard/settings': typeof DashboardSettingsRoute
   '/': typeof publicIndexRoute
   '/dashboard': typeof DashboardIndexRoute
@@ -201,6 +209,7 @@ export interface FileRoutesById {
   '/(public)/reset-password': typeof publicResetPasswordRoute
   '/dashboard/feedback': typeof DashboardFeedbackRoute
   '/dashboard/profile': typeof DashboardProfileRoute
+  '/dashboard/services': typeof DashboardServicesRoute
   '/dashboard/settings': typeof DashboardSettingsRoute
   '/(public)/': typeof publicIndexRoute
   '/dashboard/': typeof DashboardIndexRoute
@@ -226,6 +235,7 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/dashboard/feedback'
     | '/dashboard/profile'
+    | '/dashboard/services'
     | '/dashboard/settings'
     | '/'
     | '/dashboard/'
@@ -248,6 +258,7 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/dashboard/feedback'
     | '/dashboard/profile'
+    | '/dashboard/services'
     | '/dashboard/settings'
     | '/'
     | '/dashboard'
@@ -272,6 +283,7 @@ export interface FileRouteTypes {
     | '/(public)/reset-password'
     | '/dashboard/feedback'
     | '/dashboard/profile'
+    | '/dashboard/services'
     | '/dashboard/settings'
     | '/(public)/'
     | '/dashboard/'
@@ -325,6 +337,13 @@ declare module '@tanstack/react-router' {
       path: '/settings'
       fullPath: '/dashboard/settings'
       preLoaderRoute: typeof DashboardSettingsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/services': {
+      id: '/dashboard/services'
+      path: '/services'
+      fullPath: '/dashboard/services'
+      preLoaderRoute: typeof DashboardServicesRouteImport
       parentRoute: typeof DashboardRoute
     }
     '/dashboard/profile': {
@@ -483,6 +502,7 @@ const publicRouteRouteWithChildren = publicRouteRoute._addFileChildren(
 interface DashboardRouteChildren {
   DashboardFeedbackRoute: typeof DashboardFeedbackRoute
   DashboardProfileRoute: typeof DashboardProfileRoute
+  DashboardServicesRoute: typeof DashboardServicesRoute
   DashboardSettingsRoute: typeof DashboardSettingsRoute
   DashboardIndexRoute: typeof DashboardIndexRoute
   DashboardEquipmentIdRoute: typeof DashboardEquipmentIdRoute
@@ -496,6 +516,7 @@ interface DashboardRouteChildren {
 const DashboardRouteChildren: DashboardRouteChildren = {
   DashboardFeedbackRoute: DashboardFeedbackRoute,
   DashboardProfileRoute: DashboardProfileRoute,
+  DashboardServicesRoute: DashboardServicesRoute,
   DashboardSettingsRoute: DashboardSettingsRoute,
   DashboardIndexRoute: DashboardIndexRoute,
   DashboardEquipmentIdRoute: DashboardEquipmentIdRoute,

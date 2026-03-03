@@ -8,11 +8,11 @@ export const Route = createFileRoute('/dashboard/')({
 
 const monthlyData = [
   { month: 'Sty', value: 0 },
-  { month: 'Lut', value: 2 },
-  { month: 'Mar', value: 10 },
+  { month: 'Lut', value: 0 },
+  { month: 'Mar', value: 0 },
   { month: 'Kwi', value: 0 },
   { month: 'Maj', value: 0 },
-  { month: 'Cze', value: 23 },
+  { month: 'Cze', value: 0 },
   { month: 'Lip', value: 0 },
   { month: 'Sie', value: 0 },
   { month: 'Wrz', value: 0 },

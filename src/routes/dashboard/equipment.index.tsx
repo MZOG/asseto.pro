@@ -1,32 +1,42 @@
 import { Button } from '@/components/ui/button'
 import { Skeleton } from '@/components/ui/skeleton'
 import { formatDate } from '@/lib/utils'
-import { supabase } from '@/utils/supabase'
+import { getSupabaseClient, supabase } from '@/utils/supabase'
 import { createFileRoute, Link } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/dashboard/equipment/')({
   loader: async () => {
+    const { data: authData } = await supabase.auth.getSession()
+    const userId = authData.session?.user.id
+
+    if (!userId) {
+      return { equipment: [], count: 0 }
+    }
+
     const { data: equipment, count } = await supabase
       .from('assets')
       .select(`*`, { count: 'exact' })
-    return { equipment, count }
+      .eq('owner_id', userId)
+
+    return { equipment, count, authData }
   },
   component: RouteComponent,
 })
 
 function RouteComponent() {
-  const { equipment, count } = Route.useLoaderData()
+  const { equipment, count, authData } = Route.useLoaderData()
+  console.log(authData)
 
   return (
     <div>
       <h1 className="text-sm font-medium">Maszyny ({count}/10)</h1>
 
-      <div className="bg-blue-50 border border-blue-200 p-2 rounded-lg text-sm mt-5">
+      {/* <div className="bg-blue-50 border border-blue-200 p-2 rounded-lg text-sm mt-5">
         <p>
           <span className="font-medium">Brak maszyn.</span> Kliknij + Dodaj
           maszynę, aby dodać.
         </p>
-      </div>
+      </div> */}
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mt-5">
         {equipment?.map((eq) => (

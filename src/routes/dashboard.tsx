@@ -1,22 +1,27 @@
-import { createFileRoute, Link, Outlet } from '@tanstack/react-router'
-import { supabase } from '@/utils/supabase'
 import {
-  Cog,
-  TriangleAlert,
+  Link,
+  Outlet,
+  createFileRoute,
+  redirect,
+  useNavigate,
+  useRouter,
+} from '@tanstack/react-router'
+import {
   BookOpen,
+  Cog,
   Factory,
   FileText,
-  MessageSquare,
-  User,
+  Hammer,
   LogOut,
+  MessageSquare,
+  TriangleAlert,
+  User,
 } from 'lucide-react'
+import React, { useEffect, useState } from 'react'
+import { toast } from 'sonner'
 import { Badge } from '@/components/ui/badge'
 import DashboardHeader from '@/components/dashboard/DashboardHeader'
-import { cn } from '@/lib/utils'
-import React, { useState } from 'react'
-import { Toaster } from '@/components/ui/sonner'
-import { SignOutButton } from 'node_modules/@clerk/tanstack-react-start/dist/client/ClerkProvider'
-
+import { Field, FieldGroup } from '@/components/ui/field'
 import { Button } from '@/components/ui/button'
 import {
   Dialog,
@@ -28,36 +33,98 @@ import {
 } from '@/components/ui/dialog'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { Field, FieldGroup } from '@/components/ui/field'
-import { toast } from 'sonner'
-import { useRouter } from '@tanstack/react-router'
+import { Toaster } from '@/components/ui/sonner'
+import { cn } from '@/lib/utils'
+import { getSupabaseClient, supabase } from '@/utils/supabase'
 
 export const Route = createFileRoute('/dashboard')({
+  beforeLoad: async () => {
+    if (typeof window === 'undefined') {
+      return
+    }
+
+    const client = getSupabaseClient()
+    const { data } = await client.auth.getSession()
+
+    if (!data.session) {
+      throw redirect({ to: '/logowanie' })
+    }
+  },
   loader: async () => {
+    const client = getSupabaseClient()
+    const { data: authData } = await client.auth.getSession()
+    const userId = authData.session?.user.id ?? null
+
     // count issues
-    const { count } = await supabase
+    const { count } = await client
       .from('issues')
       .select('*', { count: 'exact', head: true })
       .neq('status', 'closed')
       .order('created_at', { ascending: false })
     // count equipment
-    const { count: equipmentCount } = await supabase
+    const { count: equipmentCount } = await client
       .from('assets')
       .select('*', { count: 'exact', head: true })
+      .eq('owner_id', userId)
 
     // get company name
-    const { data: company } = await supabase
-      .from('profiles')
-      .select('company_name')
-      .eq('id', 1)
-      .single()
-    return { issuesCount: count, equipmentCount, company }
+    let company: { company_name: string | null } | null = null
+    if (userId) {
+      const { data } = await client
+        .from('profiles')
+        .select('company_name')
+        .eq('id', userId)
+        .maybeSingle()
+      company = data
+    }
+
+    return { issuesCount: count, equipmentCount, company, userId }
   },
   component: DashboardLayout,
 })
 
 function DashboardLayout() {
-  const { issuesCount, equipmentCount, company } = Route.useLoaderData()
+  const { issuesCount, equipmentCount, company, userId } = Route.useLoaderData()
+  const navigate = useNavigate()
+  // const [isSessionChecked, setIsSessionChecked] = useState(false)
+  const [isSigningOut, setIsSigningOut] = useState(false)
+
+  // useEffect(() => {
+  //   let active = true
+
+  //   const checkSession = async () => {
+  //     const { data } = await supabase.auth.getSession()
+
+  //     if (!data.session) {
+  //       navigate({ to: '/logowanie' })
+  //       return
+  //     }
+
+  //     if (active) {
+  //       setIsSessionChecked(true)
+  //     }
+  //   }
+
+  //   void checkSession()
+
+  //   return () => {
+  //     active = false
+  //   }
+  // }, [navigate])
+
+  const handleSignOut = async () => {
+    setIsSigningOut(true)
+
+    const { error } = await supabase.auth.signOut()
+    setIsSigningOut(false)
+
+    if (error) {
+      toast.error('Nie udało się wylogować.')
+      return
+    }
+
+    navigate({ to: '/logowanie' })
+  }
 
   const dashboardLinks = [
     { to: '/dashboard', label: 'Przegląd', icon: BookOpen },
@@ -74,6 +141,11 @@ function DashboardLayout() {
       count: equipmentCount,
     },
     {
+      to: '/dashboard/services',
+      label: 'Serwisy',
+      icon: Hammer,
+    },
+    {
       to: '/dashboard/questionnaire',
       label: 'Ankiety',
       icon: FileText,
@@ -88,16 +160,20 @@ function DashboardLayout() {
     },
   ]
 
+  // if (!isSessionChecked) {
+  //   return null
+  // }
+
   return (
     <>
-      <DashboardHeader />
+      {/* <DashboardHeader /> */}
 
-      {company?.company_name === null && <DialogDemo />}
+      {company?.company_name === null && <DialogDemo userId={userId} />}
 
       <section className="px-5 mx-auto max-w-7xl mt-5">
-        <div className=" flex gap-5  h-full">
+        <div className=" flex gap-5 h-full">
           {/* SIDEBAR */}
-          <aside className="bg-white w-64 rounded-xl flex flex-col  h-100 p-5  border border-gray-100">
+          <aside className="bg-white w-64 rounded-xl self-start flex flex-col h-100 p-5 border border-gray-100">
             <nav className="space-y-2">
               {dashboardLinks.map((link) => {
                 return (
@@ -132,7 +208,7 @@ function DashboardLayout() {
               })}
             </nav>
 
-            <div className="mt-auto">
+            <div className="mt-auto space-y-2">
               <Link
                 to="/dashboard/settings"
                 className="text-sm py-1 hover:underline rounded flex items-center gap-1"
@@ -147,17 +223,19 @@ function DashboardLayout() {
                 <User size={16} />
                 Mój profil
               </Link>
-              <SignOutButton>
-                <span className="text-sm py-1 hover:underline rounded flex items-center gap-1 cursor-pointer">
-                  <LogOut size={16} />
-                  Wyloguj się
-                </span>
-              </SignOutButton>
+              <button
+                type="button"
+                onClick={handleSignOut}
+                className="text-sm py-1 hover:underline rounded flex items-center gap-1 cursor-pointer"
+              >
+                <LogOut size={16} />
+                {isSigningOut ? 'Wylogowywanie...' : 'Wyloguj się'}
+              </button>
             </div>
           </aside>
 
-          <main className="bg-white w-full rounded-xl p-5 border border-gray-100">
-            <Outlet /> {/* TUTAJ RENDERUJĄ SIĘ PODSTRONY */}
+          <main className="bg-white w-full rounded-xl p-5 border border-gray-100 self-start">
+            <Outlet />
           </main>
         </div>
       </section>
@@ -166,19 +244,23 @@ function DashboardLayout() {
   )
 }
 
-export function DialogDemo() {
+export function DialogDemo({ userId }: { userId: string | null }) {
   const router = useRouter()
   const [companyName, setCompanyName] = useState('')
   const [isOpen, setIsOpen] = useState(true)
 
   const handleSave = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
+    if (!userId) return toast.error('Brak użytkownika w sesji.')
     if (!companyName.trim()) return toast.error('Wpisz nazwę firmy')
 
-    const { error } = await supabase
-      .from('profiles')
-      .update({ company_name: companyName })
-      .eq('id', 1)
+    const { error } = await supabase.from('profiles').upsert(
+      {
+        id: userId,
+        company_name: companyName,
+      },
+      { onConflict: 'id' },
+    )
 
     if (error) {
       toast.error('Coś poszło nie tak. Spróbuj ponownie.')

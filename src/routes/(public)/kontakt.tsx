@@ -12,7 +12,7 @@ function RouteComponent() {
   return (
     <section className="px-5 mx-auto max-w-3xl">
       <div className="flex flex-col items-center justify-center max-w-lg mx-auto">
-        <h1 className="font-display font-bold text-4xl text-center mb-5 bg-linear-to-br from-slate-900 to-slate-500 bg-clip-text text-transparent">
+        <h1 className="font-display font-bold text-4xl text-center mb-5">
           Kontakt
         </h1>
         <p className="text-center text-muted-foreground">

@@ -1,16 +1,28 @@
+import { createFileRoute } from '@tanstack/react-router'
+import { useState } from 'react'
+import { toast } from 'sonner'
+import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Separator } from '@/components/ui/separator'
-import { createFileRoute } from '@tanstack/react-router'
-import { useState } from 'react'
 import { supabase } from '@/utils/supabase'
-import { Button } from '@/components/ui/button'
-import { toast } from 'sonner'
 
 export const Route = createFileRoute('/dashboard/settings')({
   loader: async () => {
-    const { data } = await supabase.from('profiles').select('*').single()
-    return { data }
+    const { data: authData } = await supabase.auth.getSession()
+    const userId = authData.session?.user.id ?? null
+    const userEmail = authData.session?.user.email ?? null
+
+    if (!userId) {
+      return { data: null, userId: null, userEmail }
+    }
+
+    const { data } = await supabase
+      .from('profiles')
+      .select('*')
+      .eq('id', userId)
+      .maybeSingle()
+    return { data, userId, userEmail }
   },
   component: RouteComponent,
 })
@@ -21,7 +33,7 @@ interface FormDataProps {
 }
 
 function RouteComponent() {
-  const { data } = Route.useLoaderData()
+  const { data, userId, userEmail } = Route.useLoaderData()
   const [isSaving, setIsSaving] = useState(false)
   const [formData, setFormData] = useState<FormDataProps>(
     data || {
@@ -46,13 +58,24 @@ function RouteComponent() {
   }
 
   const handleSave = async () => {
+    if (!userId) {
+      toast.error('Brak użytkownika w sesji.')
+      return
+    }
+
     setIsSaving(true)
 
     try {
       const { error } = await supabase
         .from('profiles')
-        .update(formData)
-        .eq('id', 1)
+        .upsert(
+          {
+            id: userId,
+            email: userEmail,
+            ...formData,
+          },
+          { onConflict: 'id' },
+        )
 
       if (error) throw error
 

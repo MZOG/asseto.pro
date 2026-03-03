@@ -1,25 +1,48 @@
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { supabase } from '@/utils/supabase';
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import { getSupabaseClient, supabase } from '@/utils/supabase'
 import { createFileRoute, useNavigate } from '@tanstack/react-router'
-import { useState } from 'react';
+import { useState } from 'react'
 
 export const Route = createFileRoute('/dashboard/equipment/add')({
+  beforeLoad: async () => {
+    if (typeof window === 'undefined') {
+      return
+    }
+
+    const client = getSupabaseClient()
+    const { data } = await client.auth.getSession()
+
+    if (!data.session) {
+      console.log(`brak użytkownika`)
+    }
+  },
+  loader: async () => {
+    const client = getSupabaseClient()
+    const { data: authData } = await client.auth.getSession()
+    const userId = authData.session?.user.id ?? null
+
+    return { userId }
+  },
   component: RouteComponent,
 })
 
 function RouteComponent() {
-  const navigate = useNavigate();
-  const [loading, setLoading] = useState(false);
+  const { userId } = Route.useLoaderData()
+  console.log(userId)
+
+  const navigate = useNavigate()
+  const [loading, setLoading] = useState(false)
   const [form, setForm] = useState({
+    owner_id: userId,
     name: '',
     serial_number: '',
     status: 'working',
   })
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
+    const { name, value } = e.target
     setForm((prev) => ({
       ...prev,
       [name]: value,
@@ -27,26 +50,23 @@ function RouteComponent() {
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
+    e.preventDefault()
+    setLoading(true)
 
-    const { error } = await supabase.from('assets').insert(form);
-    setLoading(false);
+    const { error } = await supabase.from('assets').insert(form)
+    setLoading(false)
 
     if (error) {
-      console.error(error);
-      return;
+      console.error(error)
+      return
     }
 
-    navigate({ to: '/dashboard/equipment' });
+    navigate({ to: '/dashboard/equipment' })
   }
-
 
   return (
     <div>
-      <h1 className="text-xl font-semibold mb-6">
-        Dodaj nowy sprzęt
-      </h1>
+      <h1 className="text-xl font-semibold mb-6">Dodaj nowy sprzęt</h1>
 
       <form onSubmit={handleSubmit} className="space-y-5">
         <div className="space-y-2">
@@ -62,9 +82,7 @@ function RouteComponent() {
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="serial_number">
-            Numer seryjny
-          </Label>
+          <Label htmlFor="serial_number">Numer seryjny</Label>
           <Input
             id="serial_number"
             name="serial_number"
@@ -82,9 +100,7 @@ function RouteComponent() {
           <Button
             type="button"
             variant="outline"
-            onClick={() =>
-              navigate({ to: '/dashboard/equipment' })
-            }
+            onClick={() => navigate({ to: '/dashboard/equipment' })}
           >
             Anuluj
           </Button>

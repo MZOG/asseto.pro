@@ -1,8 +1,7 @@
 'use client'
 
-import React from 'react'
 import { Link } from '@tanstack/react-router'
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { Menu } from 'lucide-react'
 import {
   NavigationMenu,
@@ -17,11 +16,14 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '@/components/ui/sheet'
-import { useUser } from '@clerk/tanstack-react-start'
+
+import { useQuery } from '@tanstack/react-query'
+import { getUser } from '@/queries/getUser'
 
 export default function Header() {
+  // get user
+  const { data: user } = useQuery(getUser)
   const [sheetOpen, setSheetOpen] = useState(false)
-  const user = useUser()
 
   return (
     <header className="border-b fixed top-0 w-full z-30 bg-gray-50/95 backdrop-blur supports-backdrop-filter:bg-background/60">
@@ -73,7 +75,7 @@ export default function Header() {
               </NavigationMenuItem>
 
               <NavigationMenuItem>
-                {user?.isSignedIn ? (
+                {user ? (
                   <NavigationMenuLink asChild>
                     <Link
                       to="/dashboard"
@@ -138,7 +140,7 @@ export default function Header() {
 
               <div className="mx-2 my-3 h-px bg-border" />
 
-              <MobileLink href="/login" onClick={() => setSheetOpen(false)}>
+              <MobileLink href="/logowanie" onClick={() => setSheetOpen(false)}>
                 Zaloguj sie
               </MobileLink>
 

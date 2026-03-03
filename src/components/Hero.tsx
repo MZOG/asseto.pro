@@ -1,6 +1,5 @@
-import { SignUpButton } from '@clerk/tanstack-react-start'
-import { Button } from './ui/button'
 import { Link } from '@tanstack/react-router'
+import { Button } from './ui/button'
 
 const Hero = () => {
   return (
@@ -11,20 +10,11 @@ const Hero = () => {
           Wypróbuj za darmo
         </p>
         <h1 className="font-black text-5xl font-display mt-5 md:mt-10 md:text-center ">
-          Zarządzanie{' '}
-          <span className="relative">
-            <div className="absolute top-0 left-0 w-full h-full bg-blue-200 -z-3 -skew-3 blur" />
-            awariami
-          </span>{' '}
-          bez chaosu.
+          Zarządzanie awariami bez chaosu.
         </h1>
         <p className="text-lg mt-5 max-w-3xl md:text-center text-balance">
           System do zarządzania usterkami oparty o{' '}
-          <span className="relative">
-            <div className="absolute top-0 left-0 w-full h-full bg-blue-200 -z-3 -skew-7 blur" />
-            kody QR
-          </span>
-          .
+          <span className="font-semibold">kody QR</span>.
         </p>
         <p className="mt-5 max-w-xl md:text-center text-muted-foreground">
           Koniec z karteczkami, zagubionymi mailami i pytaniami "dlaczego nie
@@ -32,8 +22,11 @@ const Hero = () => {
           pierwszego dnia.
         </p>
         <div className="flex flex-col md:flex-row gap-4 mt-5">
-          <Button className="rounded-full bg-blue-600 py-6 text-lg font-normal md:text-[15px] md:font-medium md:px-6">
-            Załóż konto za darmo
+          <Button
+            asChild
+            className="rounded-full bg-blue-600 py-6 text-lg font-normal md:text-[15px] md:font-medium md:px-6"
+          >
+            <Link to="/rejestracja">Załóż konto za darmo</Link>
           </Button>
           <Button
             asChild
