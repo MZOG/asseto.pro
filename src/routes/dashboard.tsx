@@ -35,23 +35,19 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Toaster } from '@/components/ui/sonner'
 import { cn } from '@/lib/utils'
-import { getSupabaseClient, supabase } from '@/utils/supabase'
+import {
+  getBrowserClient,
+  getSupabaseServerClient,
+  supabase,
+} from '@/utils/supabase'
 
 export const Route = createFileRoute('/dashboard')({
-  beforeLoad: async () => {
-    if (typeof window === 'undefined') {
-      return
-    }
-
-    const client = getSupabaseClient()
-    const { data } = await client.auth.getSession()
-
-    if (!data.session) {
-      throw redirect({ to: '/logowanie' })
-    }
-  },
   loader: async () => {
-    const client = getSupabaseClient()
+    const client =
+      typeof window === 'undefined'
+        ? await getSupabaseServerClient()
+        : getBrowserClient()
+
     const { data: authData } = await client.auth.getSession()
     const userId = authData.session?.user.id ?? null
 

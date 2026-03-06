@@ -4,21 +4,32 @@ import {
   createRootRouteWithContext,
   Outlet,
 } from '@tanstack/react-router'
-// import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
-// import { TanStackDevtools } from '@tanstack/react-devtools'
-// import TanStackQueryDevtools from '../integrations/tanstack-query/devtools'
-import appCss from '../styles.css?url'
-
 import type { QueryClient } from '@tanstack/react-query'
-import type { SupabaseClient, Session } from '@supabase/supabase-js'
+import type { User, SupabaseClient } from '@supabase/supabase-js'
+import appCss from '../styles.css?url'
+import { getBrowserClient, getSupabaseServerClient } from '@/utils/supabase'
 
 interface MyRouterContext {
   queryClient: QueryClient
-  supabase: SupabaseClient
-  session: Session | null
+  supabase: any
+  user: User | null
 }
 
 export const Route = createRootRouteWithContext<MyRouterContext>()({
+  beforeLoad: async () => {
+    const client =
+      typeof window === 'undefined'
+        ? await getSupabaseServerClient()
+        : getBrowserClient()
+
+    const { data } = await client.auth.getSession()
+    console.log(data)
+
+    return {
+      user: data.session?.user ?? null,
+    }
+  },
+
   head: () => ({
     meta: [
       { charSet: 'utf-8' },
@@ -27,7 +38,8 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
     ],
     links: [{ rel: 'stylesheet', href: appCss }],
   }),
-  component: RootDocument, // Zmieniono z shellComponent na component dla lepszej kontroli renderowania
+
+  component: RootDocument,
 })
 
 function RootDocument() {
@@ -38,17 +50,6 @@ function RootDocument() {
       </head>
       <body className="bg-gray-50/95">
         <Outlet />
-
-        {/* <TanStackDevtools
-          config={{ position: 'bottom-right' }}
-          plugins={[
-            {
-              name: 'Tanstack Router',
-              render: <TanStackRouterDevtoolsPanel />,
-            },
-            TanStackQueryDevtools,
-          ]}
-        /> */}
         <Scripts />
       </body>
     </html>

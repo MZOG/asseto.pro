@@ -5,28 +5,30 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Separator } from '@/components/ui/separator'
-import { supabase } from '@/utils/supabase'
-import { CheckCircle2, ExternalLink, MessageSquarePlus } from 'lucide-react'
+import { getSupabaseServerClient, supabase } from '@/utils/supabase'
+import { CheckCircle2, ExternalLink } from 'lucide-react'
 import { sendTelegramNotification } from '@/utils/telegram'
-// generate telegram token
-const generateToken = () =>
-  Math.random().toString(36).substring(2, 10).toUpperCase()
 
 export const Route = createFileRoute('/dashboard/settings')({
-  loader: async () => {
-    const { data: authData } = await supabase.auth.getSession()
-    const userId = authData.session?.user.id ?? null
-    const userEmail = authData.session?.user.email ?? null
+  loader: async ({ context }) => {
+    const userId = context.user?.id ?? null
+    const userEmail = context.user?.email ?? null
 
     if (!userId) {
       return { data: null, userId: null, userEmail }
     }
 
-    const { data } = await supabase
+    console.log(userId)
+
+    const client =
+      typeof window === 'undefined' ? await getSupabaseServerClient() : supabase
+
+    const { data } = await client
       .from('profiles')
       .select('*')
       .eq('id', userId)
       .maybeSingle()
+
     return { data, userId, userEmail }
   },
   component: RouteComponent,
@@ -39,27 +41,15 @@ interface FormDataProps {
 
 function RouteComponent() {
   const { data, userId, userEmail } = Route.useLoaderData()
+
   const [isSaving, setIsSaving] = useState(false)
   const [formData, setFormData] = useState<FormDataProps>(
-    data || {
-      phone: '',
-      company_name: '',
-    },
+    data || { phone: '', company_name: '' },
   )
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }))
-  }
-
-  const handleSwitchChange = (name: string, checked: boolean) => {
-    setFormData((prev) => ({
-      ...prev,
-      [name]: checked,
-    }))
+    setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
   const handleSave = async () => {
@@ -71,14 +61,12 @@ function RouteComponent() {
     setIsSaving(true)
 
     try {
-      const { error } = await supabase.from('profiles').upsert(
-        {
-          id: userId,
-          email: userEmail,
-          ...formData,
-        },
-        { onConflict: 'id' },
-      )
+      const { error } = await supabase
+        .from('profiles')
+        .upsert(
+          { id: userId, email: userEmail, ...formData },
+          { onConflict: 'id' },
+        )
 
       if (error) throw error
 
@@ -91,42 +79,41 @@ function RouteComponent() {
     }
   }
 
-  // telegram connect
   const handleConnectTelegram = async () => {
     if (!userId) return
 
-    const paringToken = generateToken()
+    // ✅ crypto.randomUUID() zamiast Math.random() — kryptograficznie bezpieczny
+    const pairingToken = crypto.randomUUID()
     const botUsername = 'asseto_notification_bot'
 
     try {
       const { error } = await supabase
         .from('profiles')
-        .update({ telegram_link_token: paringToken })
+        .update({ telegram_link_token: pairingToken })
         .eq('id', userId)
+
       if (error) throw error
 
-      window.open(`https://t.me/${botUsername}?start=${paringToken}`, '_blank')
-
+      window.open(`https://t.me/${botUsername}?start=${pairingToken}`, '_blank')
       toast.info('Otwarto Telegrama. Kliknij START w aplikacji.')
-    } catch (error) {
+    } catch {
       toast.error('Nie udało się wygenerować linku.')
     }
   }
 
-  // testowe wysłanie powiadomienia
-
+  // ✅ Widoczny tylko w trybie dev
   const testSend = async () => {
-    const { data } = await supabase
+    const { data: profile } = await supabase
       .from('profiles')
       .select('telegram_chat_id')
       .eq('id', userId)
       .single()
 
-    if (data?.telegram_chat_id) {
+    if (profile?.telegram_chat_id) {
       try {
         await sendTelegramNotification({
           data: {
-            chatId: data.telegram_chat_id,
+            chatId: profile.telegram_chat_id,
             message: `🚨 <b>Nowe zgłoszenie usterki!</b>\n\nMaszyna: <b>Leg Press</b>\nStatus: <b>Uszkodzona</b>\n\nOpis: Ej`,
           },
         })
@@ -140,18 +127,18 @@ function RouteComponent() {
     <div>
       <p className="text-sm font-medium">Ustawienia</p>
 
-      <div className="my-5">
-        <Button onClick={testSend} size="sm">
-          Testowe powiadomienie
-        </Button>
-      </div>
+      {/* ✅ Tylko w dev */}
+      {import.meta.env.DEV && (
+        <div className="my-5">
+          <Button onClick={testSend} size="sm">
+            Testowe powiadomienie
+          </Button>
+        </div>
+      )}
 
-      <div className=" mb-6">
+      <div className="mb-6">
         <div className="flex items-center justify-between mb-2">
-          <div className="flex items-center gap-2">
-            {/* <MessageSquarePlus className="w-5 h-5 text-blue-500" /> */}
-            <Label>Powiadomienia Telegram</Label>
-          </div>
+          <Label>Powiadomienia Telegram</Label>
           {data?.telegram_chat_id ? (
             <div className="flex items-center gap-1 text-green-600 text-xs font-medium">
               <CheckCircle2 className="w-4 h-4" /> Połączono
@@ -160,10 +147,6 @@ function RouteComponent() {
             <span className="text-xs text-muted-foreground">Nieaktywne</span>
           )}
         </div>
-
-        {/* <p className="text-xs text-muted-foreground mt-2 mb-4">
-          Otrzymuj natychmiastowe info o awariach maszyn prosto na swój telefon.
-        </p> */}
 
         {data?.telegram_chat_id ? (
           <p className="text-xs text-slate-500">

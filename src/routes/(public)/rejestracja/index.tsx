@@ -7,7 +7,11 @@ import {
 import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { getSupabaseClient, supabase } from '@/utils/supabase'
+import {
+  getBrowserClient,
+  getClient,
+  getSupabaseServerClient,
+} from '@/utils/supabase'
 
 export const Route = createFileRoute('/(public)/rejestracja/')({
   beforeLoad: async () => {
@@ -15,7 +19,10 @@ export const Route = createFileRoute('/(public)/rejestracja/')({
       return
     }
 
-    const client = getSupabaseClient()
+    const client =
+      typeof window === 'undefined'
+        ? await getSupabaseServerClient()
+        : getBrowserClient()
     const { data } = await client.auth.getSession()
 
     if (data.session) {
@@ -33,6 +40,7 @@ function RouteComponent() {
   const [confirmPassword, setConfirmPassword] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const client = getClient()
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -57,7 +65,7 @@ function RouteComponent() {
         ? undefined
         : `${window.location.origin}/logowanie`
 
-    const { data, error: signUpError } = await supabase.auth.signUp({
+    const { data, error: signUpError } = await client.auth.signUp({
       email: normalizedEmail,
       password,
       options: {
@@ -73,19 +81,20 @@ function RouteComponent() {
     }
 
     if (data.user?.id) {
-      const { error: profileError } = await supabase
-        .from('profiles')
-        .upsert(
-          {
-            id: data.user.id,
-            email: normalizedEmail,
-            company_name: companyName.trim(),
-          },
-          { onConflict: 'id' },
-        )
+      const { error: profileError } = await client.from('profiles').upsert(
+        {
+          id: data.user.id,
+          email: normalizedEmail,
+          company_name: companyName.trim(),
+        },
+        { onConflict: 'id' },
+      )
 
       if (profileError) {
-        console.error('Nie udało się utworzyć profilu po rejestracji:', profileError)
+        console.error(
+          'Nie udało się utworzyć profilu po rejestracji:',
+          profileError,
+        )
       }
     }
 

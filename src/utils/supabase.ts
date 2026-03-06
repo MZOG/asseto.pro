@@ -1,24 +1,57 @@
-import { createClient } from '@supabase/supabase-js'
-import type { SupabaseClient } from '@supabase/supabase-js'
+import {
+  createBrowserClient,
+  createServerClient,
+  parseCookieHeader,
+} from '@supabase/ssr'
+import { AuthChangeEvent, Session } from '@supabase/supabase-js'
 
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_KEY
-
-if (!supabaseUrl || !supabaseAnonKey) {
-  throw new Error(
-    'Brak konfiguracji Supabase. Ustaw VITE_SUPABASE_URL i VITE_SUPABASE_KEY w .env.local',
+export function getBrowserClient() {
+  return createBrowserClient(
+    import.meta.env.VITE_SUPABASE_URL!,
+    import.meta.env.VITE_SUPABASE_KEY!,
   )
 }
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
+export async function getSupabaseServerClient() {
+  const { getRequest } = await import('@tanstack/react-start/server')
+  const request = getRequest()
+
+  return createServerClient(
+    process.env.VITE_SUPABASE_URL!,
+    process.env.VITE_SUPABASE_KEY!,
+    {
+      cookies: {
+        getAll() {
+          if (!request) return []
+          return parseCookieHeader(request.headers.get('Cookie') ?? '').filter(
+            (c): c is { name: string; value: string } => c.value !== undefined,
+          )
+        },
+        setAll() {},
+      },
+    },
+  )
+}
+
+// Używaj tego wszędzie w komponentach/handlerach (po stronie klienta)
+export const supabase = {
   auth: {
-    persistSession: true,
-    autoRefreshToken: true,
-    detectSessionInUrl: true,
+    getSession: () => getBrowserClient().auth.getSession(),
+    signOut: () => getBrowserClient().auth.signOut(),
+    signInWithPassword: (credentials: { email: string; password: string }) =>
+      getBrowserClient().auth.signInWithPassword(credentials),
+    onAuthStateChange: (
+      callback: (event: AuthChangeEvent, session: Session | null) => void,
+    ) => getBrowserClient().auth.onAuthStateChange(callback),
   },
-})
+  from: (relation: string) => getBrowserClient().from(relation),
+}
 
-export const createClientBrowser = () =>
-  createClient(supabaseUrl, supabaseAnonKey)
+export const getSupabaseClient = () => {
+  if (typeof window === 'undefined') {
+    return getSupabaseServerClient()
+  }
+  return getBrowserClient()
+}
 
-export const getSupabaseClient = (): SupabaseClient => supabase
+export const getClient = () => getBrowserClient()

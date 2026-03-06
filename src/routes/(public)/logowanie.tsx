@@ -7,7 +7,11 @@ import {
 import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { getSupabaseClient, supabase } from '@/utils/supabase'
+import {
+  getBrowserClient,
+  getSupabaseServerClient,
+  supabase,
+} from '@/utils/supabase'
 
 export const Route = createFileRoute('/(public)/logowanie')({
   beforeLoad: async () => {
@@ -15,7 +19,10 @@ export const Route = createFileRoute('/(public)/logowanie')({
       return
     }
 
-    const client = getSupabaseClient()
+    const client =
+      typeof window === 'undefined'
+        ? await getSupabaseServerClient()
+        : getBrowserClient()
     const { data } = await client.auth.getSession()
 
     if (data.session) {
