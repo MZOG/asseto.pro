@@ -140,26 +140,30 @@ function RouteComponent() {
     <div>
       <p className="text-sm font-medium">Ustawienia</p>
 
-      <Button onClick={testSend}>Testowe powiadomienie</Button>
+      <div className="my-5">
+        <Button onClick={testSend} size="sm">
+          Testowe powiadomienie
+        </Button>
+      </div>
 
-      <div className="bg-slate-50 p-4 rounded-lg border border-slate-200 mb-6">
-        <div className="flex items-center justify-between">
+      <div className=" mb-6">
+        <div className="flex items-center justify-between mb-2">
           <div className="flex items-center gap-2">
-            <MessageSquarePlus className="w-5 h-5 text-blue-500" />
-            <Label className="font-semibold">Powiadomienia Telegram</Label>
+            {/* <MessageSquarePlus className="w-5 h-5 text-blue-500" /> */}
+            <Label>Powiadomienia Telegram</Label>
           </div>
           {data?.telegram_chat_id ? (
-            <div className="flex items-center gap-1 text-green-600 text-xs font-bold">
-              <CheckCircle2 className="w-4 h-4" /> POŁĄCZONO
+            <div className="flex items-center gap-1 text-green-600 text-xs font-medium">
+              <CheckCircle2 className="w-4 h-4" /> Połączono
             </div>
           ) : (
             <span className="text-xs text-muted-foreground">Nieaktywne</span>
           )}
         </div>
 
-        <p className="text-xs text-muted-foreground mt-2 mb-4">
+        {/* <p className="text-xs text-muted-foreground mt-2 mb-4">
           Otrzymuj natychmiastowe info o awariach maszyn prosto na swój telefon.
-        </p>
+        </p> */}
 
         {data?.telegram_chat_id ? (
           <p className="text-xs text-slate-500">
@@ -179,36 +183,8 @@ function RouteComponent() {
         )}
       </div>
 
-      {/* <div className="flex items-center space-x-2 mt-5">
-        <Switch
-          id="notification_whatsapp"
-          checked={isWhatsAppEnabled}
-          onCheckedChange={setIsWhatsAppEnabled}
-          disabled
-        />
-        <Label htmlFor="notification_whatsapp">
-          Powiadomienia WhatsApp (dostępne wkrótce)
-        </Label>
-      </div> */}
-
-      {/* <div className="flex items-center space-x-2 mt-5 group">
-        <Switch
-          id="notification_telegram"
-          checked={isTelegramEnabled}
-          onCheckedChange={setIsTelegramEnabled}
-        />
-        <Label
-          htmlFor="notification_telegram"
-          className={cn(isTelegramEnabled && 'text-blue-600')}
-        >
-          Powiadomienia Telegram
-        </Label>
-      </div> */}
-
       <div className="space-y-2 mt-5">
-        <Label htmlFor="phone" className="font-normal">
-          Numer telefonu
-        </Label>
+        <Label htmlFor="phone">Numer telefonu</Label>
         <p className="text-xs text-muted-foreground">
           Dla powiadomień SMS / WhatsApp
         </p>
@@ -225,9 +201,7 @@ function RouteComponent() {
       <Separator className="mt-5" />
 
       <div className="space-y-2 mt-5">
-        <Label htmlFor="company_name" className="font-normal">
-          Nazwa firmy
-        </Label>
+        <Label htmlFor="company_name">Nazwa firmy</Label>
         <Input
           id="company_name"
           name="company_name"
