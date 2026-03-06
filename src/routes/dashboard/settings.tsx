@@ -6,6 +6,11 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Separator } from '@/components/ui/separator'
 import { supabase } from '@/utils/supabase'
+import { CheckCircle2, ExternalLink, MessageSquarePlus } from 'lucide-react'
+import { sendTelegramNotification } from '@/utils/telegram'
+// generate telegram token
+const generateToken = () =>
+  Math.random().toString(36).substring(2, 10).toUpperCase()
 
 export const Route = createFileRoute('/dashboard/settings')({
   loader: async () => {
@@ -66,16 +71,14 @@ function RouteComponent() {
     setIsSaving(true)
 
     try {
-      const { error } = await supabase
-        .from('profiles')
-        .upsert(
-          {
-            id: userId,
-            email: userEmail,
-            ...formData,
-          },
-          { onConflict: 'id' },
-        )
+      const { error } = await supabase.from('profiles').upsert(
+        {
+          id: userId,
+          email: userEmail,
+          ...formData,
+        },
+        { onConflict: 'id' },
+      )
 
       if (error) throw error
 
@@ -88,9 +91,93 @@ function RouteComponent() {
     }
   }
 
+  // telegram connect
+  const handleConnectTelegram = async () => {
+    if (!userId) return
+
+    const paringToken = generateToken()
+    const botUsername = 'asseto_notification_bot'
+
+    try {
+      const { error } = await supabase
+        .from('profiles')
+        .update({ telegram_link_token: paringToken })
+        .eq('id', userId)
+      if (error) throw error
+
+      window.open(`https://t.me/${botUsername}?start=${paringToken}`, '_blank')
+
+      toast.info('Otwarto Telegrama. Kliknij START w aplikacji.')
+    } catch (error) {
+      toast.error('Nie udało się wygenerować linku.')
+    }
+  }
+
+  // testowe wysłanie powiadomienia
+
+  const testSend = async () => {
+    const { data } = await supabase
+      .from('profiles')
+      .select('telegram_chat_id')
+      .eq('id', userId)
+      .single()
+
+    if (data?.telegram_chat_id) {
+      try {
+        await sendTelegramNotification({
+          data: {
+            chatId: data.telegram_chat_id,
+            message: `🚨 <b>Nowe zgłoszenie usterki!</b>\n\nMaszyna: <b>Leg Press</b>\nStatus: <b>Uszkodzona</b>\n\nOpis: Ej`,
+          },
+        })
+      } catch (err) {
+        console.error('Błąd serwera:', err)
+      }
+    }
+  }
+
   return (
     <div>
       <p className="text-sm font-medium">Ustawienia</p>
+
+      <Button onClick={testSend}>Testowe powiadomienie</Button>
+
+      <div className="bg-slate-50 p-4 rounded-lg border border-slate-200 mb-6">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <MessageSquarePlus className="w-5 h-5 text-blue-500" />
+            <Label className="font-semibold">Powiadomienia Telegram</Label>
+          </div>
+          {data?.telegram_chat_id ? (
+            <div className="flex items-center gap-1 text-green-600 text-xs font-bold">
+              <CheckCircle2 className="w-4 h-4" /> POŁĄCZONO
+            </div>
+          ) : (
+            <span className="text-xs text-muted-foreground">Nieaktywne</span>
+          )}
+        </div>
+
+        <p className="text-xs text-muted-foreground mt-2 mb-4">
+          Otrzymuj natychmiastowe info o awariach maszyn prosto na swój telefon.
+        </p>
+
+        {data?.telegram_chat_id ? (
+          <p className="text-xs text-slate-500">
+            Twój profil jest sparowany. Powiadomienia będą wysyłane
+            automatycznie.
+          </p>
+        ) : (
+          <Button
+            variant="outline"
+            size="sm"
+            className="w-full bg-white hover:bg-blue-50 border-blue-200 text-blue-700"
+            onClick={handleConnectTelegram}
+          >
+            <ExternalLink className="w-4 h-4 mr-2" />
+            Połącz z Botem
+          </Button>
+        )}
+      </div>
 
       {/* <div className="flex items-center space-x-2 mt-5">
         <Switch

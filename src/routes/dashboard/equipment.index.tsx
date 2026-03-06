@@ -15,21 +15,20 @@ export const Route = createFileRoute('/dashboard/equipment/')({
 
     const { data: equipment, count } = await supabase
       .from('assets')
-      .select(`*`, { count: 'exact' })
+      .select(`*`)
       .eq('owner_id', userId)
 
-    return { equipment, count, authData }
+    return { equipment }
   },
   component: RouteComponent,
 })
 
 function RouteComponent() {
-  const { equipment, count, authData } = Route.useLoaderData()
-  console.log(authData)
+  const { equipment } = Route.useLoaderData()
 
   return (
     <div>
-      <h1 className="text-sm font-medium">Maszyny ({count}/10)</h1>
+      <h1 className="text-sm font-medium">Maszyny </h1>
 
       {/* <div className="bg-blue-50 border border-blue-200 p-2 rounded-lg text-sm mt-5">
         <p>

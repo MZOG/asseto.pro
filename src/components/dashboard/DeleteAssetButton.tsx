@@ -15,6 +15,7 @@ import {
 } from '@/components/ui/alert-dialog'
 
 import { Button } from '@/components/ui/button'
+import { Trash2 } from 'lucide-react'
 
 export function DeleteAssetButton({ id }: { id: string }) {
   const navigate = useNavigate()
@@ -23,10 +24,7 @@ export function DeleteAssetButton({ id }: { id: string }) {
   const handleDelete = async () => {
     setLoading(true)
 
-    const { error } = await supabase
-      .from('assets')
-      .delete()
-      .eq('id', id)
+    const { error } = await supabase.from('assets').delete().eq('id', id)
 
     setLoading(false)
 
@@ -40,32 +38,26 @@ export function DeleteAssetButton({ id }: { id: string }) {
 
   return (
     <AlertDialog>
-      <AlertDialogTrigger asChild>
-        <Button variant="destructive">
+      <AlertDialogTrigger asChild className="mt-5">
+        <Button variant="destructive" size="sm">
+          <Trash2 />
           Usuń maszynę
         </Button>
       </AlertDialogTrigger>
 
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>
-            Usunąć maszynę?
-          </AlertDialogTitle>
+          <AlertDialogTitle>Usunąć maszynę?</AlertDialogTitle>
           <AlertDialogDescription>
-            Ta operacja jest nieodwracalna. Maszyna zostanie
-            trwale usunięta z systemu.
+            Ta operacja jest nieodwracalna. Maszyna zostanie trwale usunięta z
+            systemu.
           </AlertDialogDescription>
         </AlertDialogHeader>
 
         <AlertDialogFooter>
-          <AlertDialogCancel>
-            Anuluj
-          </AlertDialogCancel>
+          <AlertDialogCancel>Anuluj</AlertDialogCancel>
 
-          <AlertDialogAction
-            onClick={handleDelete}
-            disabled={loading}
-          >
+          <AlertDialogAction onClick={handleDelete} disabled={loading}>
             {loading ? 'Usuwanie...' : 'Usuń'}
           </AlertDialogAction>
         </AlertDialogFooter>

@@ -17,6 +17,7 @@ import { Route as DashboardSettingsRouteImport } from './routes/dashboard/settin
 import { Route as DashboardServicesRouteImport } from './routes/dashboard/services'
 import { Route as DashboardProfileRouteImport } from './routes/dashboard/profile'
 import { Route as DashboardFeedbackRouteImport } from './routes/dashboard/feedback'
+import { Route as ApiTelegramWebhookRouteImport } from './routes/api/telegram-webhook'
 import { Route as publicResetPasswordRouteImport } from './routes/(public)/reset-password'
 import { Route as publicRegulaminRouteImport } from './routes/(public)/regulamin'
 import { Route as publicLogowanieRouteImport } from './routes/(public)/logowanie'
@@ -71,6 +72,11 @@ const DashboardFeedbackRoute = DashboardFeedbackRouteImport.update({
   id: '/feedback',
   path: '/feedback',
   getParentRoute: () => DashboardRoute,
+} as any)
+const ApiTelegramWebhookRoute = ApiTelegramWebhookRouteImport.update({
+  id: '/api/telegram-webhook',
+  path: '/api/telegram-webhook',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const publicResetPasswordRoute = publicResetPasswordRouteImport.update({
   id: '/reset-password',
@@ -158,6 +164,7 @@ export interface FileRoutesByFullPath {
   '/logowanie': typeof publicLogowanieRoute
   '/regulamin': typeof publicRegulaminRoute
   '/reset-password': typeof publicResetPasswordRoute
+  '/api/telegram-webhook': typeof ApiTelegramWebhookRoute
   '/dashboard/feedback': typeof DashboardFeedbackRoute
   '/dashboard/profile': typeof DashboardProfileRoute
   '/dashboard/services': typeof DashboardServicesRoute
@@ -181,6 +188,7 @@ export interface FileRoutesByTo {
   '/logowanie': typeof publicLogowanieRoute
   '/regulamin': typeof publicRegulaminRoute
   '/reset-password': typeof publicResetPasswordRoute
+  '/api/telegram-webhook': typeof ApiTelegramWebhookRoute
   '/dashboard/feedback': typeof DashboardFeedbackRoute
   '/dashboard/profile': typeof DashboardProfileRoute
   '/dashboard/services': typeof DashboardServicesRoute
@@ -207,6 +215,7 @@ export interface FileRoutesById {
   '/(public)/logowanie': typeof publicLogowanieRoute
   '/(public)/regulamin': typeof publicRegulaminRoute
   '/(public)/reset-password': typeof publicResetPasswordRoute
+  '/api/telegram-webhook': typeof ApiTelegramWebhookRoute
   '/dashboard/feedback': typeof DashboardFeedbackRoute
   '/dashboard/profile': typeof DashboardProfileRoute
   '/dashboard/services': typeof DashboardServicesRoute
@@ -233,6 +242,7 @@ export interface FileRouteTypes {
     | '/logowanie'
     | '/regulamin'
     | '/reset-password'
+    | '/api/telegram-webhook'
     | '/dashboard/feedback'
     | '/dashboard/profile'
     | '/dashboard/services'
@@ -256,6 +266,7 @@ export interface FileRouteTypes {
     | '/logowanie'
     | '/regulamin'
     | '/reset-password'
+    | '/api/telegram-webhook'
     | '/dashboard/feedback'
     | '/dashboard/profile'
     | '/dashboard/services'
@@ -281,6 +292,7 @@ export interface FileRouteTypes {
     | '/(public)/logowanie'
     | '/(public)/regulamin'
     | '/(public)/reset-password'
+    | '/api/telegram-webhook'
     | '/dashboard/feedback'
     | '/dashboard/profile'
     | '/dashboard/services'
@@ -300,6 +312,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   publicRouteRoute: typeof publicRouteRouteWithChildren
   DashboardRoute: typeof DashboardRouteWithChildren
+  ApiTelegramWebhookRoute: typeof ApiTelegramWebhookRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -359,6 +372,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/dashboard/feedback'
       preLoaderRoute: typeof DashboardFeedbackRouteImport
       parentRoute: typeof DashboardRoute
+    }
+    '/api/telegram-webhook': {
+      id: '/api/telegram-webhook'
+      path: '/api/telegram-webhook'
+      fullPath: '/api/telegram-webhook'
+      preLoaderRoute: typeof ApiTelegramWebhookRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/(public)/reset-password': {
       id: '/(public)/reset-password'
@@ -534,6 +554,7 @@ const DashboardRouteWithChildren = DashboardRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   publicRouteRoute: publicRouteRouteWithChildren,
   DashboardRoute: DashboardRouteWithChildren,
+  ApiTelegramWebhookRoute: ApiTelegramWebhookRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

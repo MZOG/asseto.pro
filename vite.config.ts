@@ -12,6 +12,10 @@ const config = defineConfig({
   server: {
     host: true,
     port: 3000,
+    allowedHosts: [
+      'c751-2a02-a314-84bf-9080-5cd7-100c-e0f-5a71.ngrok-free.app/',
+      '.ngrok-free.app',
+    ],
   },
   resolve: {
     alias: {

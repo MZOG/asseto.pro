@@ -61,11 +61,6 @@ export const Route = createFileRoute('/dashboard')({
       .select('*', { count: 'exact', head: true })
       .neq('status', 'closed')
       .order('created_at', { ascending: false })
-    // count equipment
-    const { count: equipmentCount } = await client
-      .from('assets')
-      .select('*', { count: 'exact', head: true })
-      .eq('owner_id', userId)
 
     // get company name
     let company: { company_name: string | null } | null = null
@@ -78,13 +73,13 @@ export const Route = createFileRoute('/dashboard')({
       company = data
     }
 
-    return { issuesCount: count, equipmentCount, company, userId }
+    return { issuesCount: count, company, userId }
   },
   component: DashboardLayout,
 })
 
 function DashboardLayout() {
-  const { issuesCount, equipmentCount, company, userId } = Route.useLoaderData()
+  const { issuesCount, company, userId } = Route.useLoaderData()
   const navigate = useNavigate()
   // const [isSessionChecked, setIsSessionChecked] = useState(false)
   const [isSigningOut, setIsSigningOut] = useState(false)
@@ -138,7 +133,6 @@ function DashboardLayout() {
       to: '/dashboard/equipment',
       label: 'Maszyny',
       icon: Factory,
-      count: equipmentCount,
     },
     {
       to: '/dashboard/services',
