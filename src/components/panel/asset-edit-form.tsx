@@ -285,8 +285,6 @@ export default function AssetEditForm({
         </div>
       </div>
 
-      <Separator />
-
       {/* Podstawowe informacje */}
       <div>
         <h2 className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-3">
@@ -345,8 +343,6 @@ export default function AssetEditForm({
         </div>
       </div>
 
-      <Separator />
-
       {/* Serwisant */}
       <div>
         <h2 className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-3">
@@ -377,8 +373,6 @@ export default function AssetEditForm({
         </div>
       </div>
 
-      <Separator />
-
       {/* Notatki */}
       <div>
         <h2 className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-3">
@@ -394,8 +388,6 @@ export default function AssetEditForm({
           className="resize-none"
         />
       </div>
-
-      <Separator />
 
       {/* <div className="space-y-1.5">
         <Label>Status</Label>
@@ -466,7 +458,7 @@ export default function AssetEditForm({
               placeholder="Nazwa"
               value={field.label}
               onChange={(e) => updateNewField(i, "label", e.target.value)}
-              className="max-w-[140px]"
+              className="max-w-35"
             />
             <Input
               placeholder="Wartość"
@@ -485,18 +477,11 @@ export default function AssetEditForm({
           </div>
         ))}
 
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={addNewField}
-          className="mt-1"
-        >
-          <Plus size={14} className="mr-1.5" />
+        <Button variant="outline" onClick={addNewField}>
+          <Plus size={14} />
           Dodaj pole
         </Button>
       </div>
-
-      <Separator />
 
       <Button
         onClick={handleSave}

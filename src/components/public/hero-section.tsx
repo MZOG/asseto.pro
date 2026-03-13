@@ -78,7 +78,7 @@ export default function Hero() {
               </div>
               <div className="flex-1 mx-4">
                 <div className="bg-white border border-gray-200 rounded-md px-3 py-1 text-xs text-gray-400 max-w-xs mx-auto text-center">
-                  app.asseto.pl/panel
+                  asseto.pl/panel
                 </div>
               </div>
             </div>

@@ -99,7 +99,6 @@ export default function Header() {
             {isLoggedIn ? (
               <Button
                 asChild
-                size="sm"
                 className="bg-blue-600 hover:bg-blue-700 text-white w-full"
               >
                 <Link href="/panel" onClick={() => setMenuOpen(false)}>
@@ -108,14 +107,13 @@ export default function Header() {
               </Button>
             ) : (
               <>
-                <Button asChild variant="outline" size="sm" className="w-full">
+                <Button asChild variant="outline" className="w-full">
                   <Link href="/logowanie" onClick={() => setMenuOpen(false)}>
                     Zaloguj się
                   </Link>
                 </Button>
                 <Button
                   asChild
-                  size="sm"
                   className="bg-blue-600 hover:bg-blue-700 text-white w-full"
                 >
                   <Link href="/rejestracja" onClick={() => setMenuOpen(false)}>

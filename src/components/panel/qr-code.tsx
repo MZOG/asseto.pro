@@ -114,11 +114,11 @@ export function QrCode({
 
       {/* Akcje */}
       <div className="flex gap-2">
-        <Button variant="outline" size="sm" onClick={() => handlePrint()}>
+        <Button variant="outline" onClick={() => handlePrint()}>
           <Download size={14} className="mr-1.5" />
           Pobierz PDF
         </Button>
-        <Button variant="ghost" size="sm" onClick={generate}>
+        <Button variant="ghost" onClick={generate}>
           <RefreshCw size={14} className="mr-1.5" />
           Generuj nowy
         </Button>

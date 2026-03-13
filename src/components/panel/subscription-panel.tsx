@@ -128,7 +128,6 @@ export default function SubscriptionSection({
             <Button
               onClick={handleUpgrade}
               disabled={loading}
-              size="sm"
               className="bg-blue-600 hover:bg-blue-700 text-white"
             >
               {loading ? (
@@ -147,12 +146,7 @@ export default function SubscriptionSection({
             </Button>
           </div>
         ) : (
-          <Button
-            onClick={handlePortal}
-            disabled={loading}
-            variant="outline"
-            size="sm"
-          >
+          <Button onClick={handlePortal} disabled={loading} variant="outline">
             {loading ? (
               <>
                 <Loader2 size={14} className="animate-spin mr-1.5" />
