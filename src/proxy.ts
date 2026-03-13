@@ -4,7 +4,9 @@ import { createServerClient } from "@supabase/ssr";
 export async function proxy(request: NextRequest) {
   const hostname = request.headers.get("host") ?? "";
   const isAppSubdomain = hostname.startsWith("app.");
+  const rootDomain = process.env.NEXT_PUBLIC_APP_URL!;
 
+  // app.asseto.pl/* → rewrite do /panel/*
   if (isAppSubdomain && !request.nextUrl.pathname.startsWith("/panel")) {
     const url = request.nextUrl.clone();
     url.pathname = "/panel" + request.nextUrl.pathname;
@@ -38,16 +40,22 @@ export async function proxy(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser();
 
+  // Niezalogowany próbuje wejść na /panel → logowanie na głównej domenie
   if (!user && request.nextUrl.pathname.startsWith("/panel")) {
-    return NextResponse.redirect(new URL("/logowanie", request.url));
+    return NextResponse.redirect(
+      new URL("/logowanie", `https://${rootDomain}`),
+    );
   }
 
+  // Zalogowany na stronie logowania/rejestracji → panel na subdomenie
   if (
     user &&
     (request.nextUrl.pathname.startsWith("/logowanie") ||
       request.nextUrl.pathname.startsWith("/rejestracja"))
   ) {
-    return NextResponse.redirect(new URL("/panel", request.url));
+    return NextResponse.redirect(
+      new URL("/panel", `https://app.${rootDomain}`),
+    );
   }
 
   if (user) {
