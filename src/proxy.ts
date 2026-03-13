@@ -4,9 +4,9 @@ import { createServerClient } from "@supabase/ssr";
 export async function proxy(request: NextRequest) {
   const hostname = request.headers.get("host") ?? "";
   const isAppSubdomain = hostname.startsWith("app.");
-  const rootDomain = process.env.NEXT_PUBLIC_APP_URL!;
+  const rootDomain = new URL(process.env.NEXT_PUBLIC_APP_URL!).hostname;
 
-  // app.asseto.pl/* → rewrite do /panel/*
+  // app.asseto.pro/* → rewrite do /panel/*
   if (isAppSubdomain && !request.nextUrl.pathname.startsWith("/panel")) {
     const url = request.nextUrl.clone();
     url.pathname = "/panel" + request.nextUrl.pathname;
