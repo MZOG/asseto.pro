@@ -17,7 +17,7 @@ export default async function CheckEmailPage({
             <ScanLine size={18} className="text-white" />
           </div>
           <span className="text-gray-900 font-semibold text-lg tracking-tight">
-            asseto
+            Asseto
           </span>
         </div>
 

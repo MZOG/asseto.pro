@@ -16,7 +16,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { Loader2, ScanLine, AlertCircle } from "lucide-react";
+import { Loader2, ScanLine, AlertCircle, ArrowLeft } from "lucide-react";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -55,7 +55,7 @@ export default function LoginPage() {
             <ScanLine size={18} className="text-white" />
           </div>
           <span className="text-gray-900 font-semibold text-lg tracking-tight">
-            asseto
+            Asseto
           </span>
         </div>
 
@@ -153,6 +153,15 @@ export default function LoginPage() {
             </CardFooter>
           </form>
         </Card>
+
+        <div className="mt-5 flex justify-center">
+          <Button asChild variant="ghost">
+            <Link href="/">
+              <ArrowLeft />
+              Wróć do strony głównej
+            </Link>
+          </Button>
+        </div>
 
         <p className="text-center text-gray-400 text-xs mt-6">
           © {new Date().getFullYear()} Asseto. Wszelkie prawa zastrzeżone.

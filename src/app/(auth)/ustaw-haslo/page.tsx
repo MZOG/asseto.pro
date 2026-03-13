@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -10,37 +9,47 @@ import { Label } from "@/components/ui/label";
 import {
   Card,
   CardContent,
-  CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
+  CardDescription,
 } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { Loader2, ScanLine, AlertCircle } from "lucide-react";
+import { ScanLine, Loader2, AlertCircle } from "lucide-react";
+import { toast } from "sonner";
 
-export default function ResetHaslaPage() {
+export default function UstawHasloPage() {
   const router = useRouter();
-  const [email, setEmail] = useState("");
-  const [error, setError] = useState<string | null>(null);
+  const [password, setPassword] = useState("");
+  const [confirm, setConfirm] = useState("");
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleReset = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
     setError(null);
 
+    if (password.length < 8) {
+      setError("Hasło musi mieć co najmniej 8 znaków.");
+      return;
+    }
+
+    if (password !== confirm) {
+      setError("Hasła nie są identyczne.");
+      return;
+    }
+
+    setLoading(true);
     const supabase = createClient();
-    const { error } = await supabase.auth.resetPasswordForEmail(email, {
-      redirectTo: `${window.location.origin}/auth/callback?next=/ustaw-haslo`,
-    });
+    const { error } = await supabase.auth.updateUser({ password });
 
     if (error) {
-      setError("Coś poszło nie tak. Spróbuj ponownie.");
+      setError("Nie udało się zmienić hasła. Spróbuj ponownie.");
       setLoading(false);
       return;
     }
 
-    router.push(`/email?email=${encodeURIComponent(email)}`);
+    toast.success("Hasło zostało zmienione.");
+    router.push("/panel");
   };
 
   return (
@@ -56,16 +65,15 @@ export default function ResetHaslaPage() {
         </div>
 
         <Card className="bg-white border-gray-200 shadow-sm">
-          <CardHeader className="space-y-1 pb-4">
+          <CardHeader className="pb-4">
             <CardTitle className="text-gray-900 text-xl font-semibold text-center">
-              Reset hasła
+              Nowe hasło
             </CardTitle>
             <CardDescription className="text-gray-500 text-sm text-center">
-              Wyślemy Ci link do ustawienia nowego hasła
+              Ustaw nowe hasło do swojego konta
             </CardDescription>
           </CardHeader>
-
-          <form onSubmit={handleReset}>
+          <form onSubmit={handleSubmit}>
             <CardContent className="space-y-4">
               {error && (
                 <Alert className="bg-red-50 border-red-200 py-2.5">
@@ -75,58 +83,57 @@ export default function ResetHaslaPage() {
                   </AlertDescription>
                 </Alert>
               )}
-
               <div className="space-y-1.5">
                 <Label
-                  htmlFor="email"
+                  htmlFor="password"
                   className="text-gray-700 text-sm font-medium"
                 >
-                  Email
+                  Nowe hasło
                 </Label>
                 <Input
-                  id="email"
-                  type="email"
-                  placeholder="jan@firma.pl"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  id="password"
+                  type="password"
+                  placeholder="min. 8 znaków"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   required
-                  className="bg-white border-gray-300 text-gray-900 placeholder:text-gray-400 focus-visible:ring-blue-500 focus-visible:border-blue-500 h-10"
+                  className="h-10"
                 />
               </div>
-            </CardContent>
-
-            <CardFooter className="flex flex-col gap-3 pt-5 mt-5">
+              <div className="space-y-1.5">
+                <Label
+                  htmlFor="confirm"
+                  className="text-gray-700 text-sm font-medium"
+                >
+                  Potwierdź hasło
+                </Label>
+                <Input
+                  id="confirm"
+                  type="password"
+                  placeholder="Powtórz nowe hasło"
+                  value={confirm}
+                  onChange={(e) => setConfirm(e.target.value)}
+                  required
+                  className="h-10"
+                />
+              </div>
               <Button
                 type="submit"
                 disabled={loading}
-                className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium h-10 transition-colors"
+                className="w-full bg-blue-600 hover:bg-blue-700 text-white h-10 mt-2"
               >
                 {loading ? (
                   <>
                     <Loader2 size={15} className="animate-spin mr-2" />
-                    Wysyłanie...
+                    Zapisywanie...
                   </>
                 ) : (
-                  "Resetuj hasło"
+                  "Ustaw nowe hasło"
                 )}
               </Button>
-
-              <p className="text-xs text-gray-500 text-center">
-                Pamiętasz hasło?{" "}
-                <Link
-                  href="/logowanie"
-                  className="text-blue-600 hover:text-blue-700 font-medium transition-colors"
-                >
-                  Zaloguj się
-                </Link>
-              </p>
-            </CardFooter>
+            </CardContent>
           </form>
         </Card>
-
-        <p className="text-center text-gray-400 text-xs mt-6">
-          © {new Date().getFullYear()} Asseto. Wszelkie prawa zastrzeżone.
-        </p>
       </div>
     </div>
   );

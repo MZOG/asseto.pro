@@ -15,7 +15,13 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { Loader2, ScanLine, AlertCircle, CheckCircle2 } from "lucide-react";
+import {
+  Loader2,
+  ScanLine,
+  AlertCircle,
+  CheckCircle2,
+  ArrowLeft,
+} from "lucide-react";
 
 export default function RegisterPage() {
   const [email, setEmail] = useState("");
@@ -23,6 +29,7 @@ export default function RegisterPage() {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -31,6 +38,12 @@ export default function RegisterPage() {
 
     if (password.length < 8) {
       setError("Hasło musi mieć co najmniej 8 znaków.");
+      setLoading(false);
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      setError("Hasła nie są identyczne.");
       setLoading(false);
       return;
     }
@@ -57,7 +70,7 @@ export default function RegisterPage() {
             <ScanLine size={18} className="text-white" />
           </div>
           <span className="text-gray-900 font-semibold text-lg tracking-tight">
-            asseto
+            Asseto
           </span>
         </div>
 
@@ -141,6 +154,24 @@ export default function RegisterPage() {
                     className="bg-white border-gray-300 text-gray-900 placeholder:text-gray-400 focus-visible:ring-blue-500 focus-visible:border-blue-500 h-10"
                   />
                 </div>
+
+                <div className="space-y-1.5">
+                  <Label
+                    htmlFor="confirmPassword"
+                    className="text-gray-700 text-sm font-medium"
+                  >
+                    Potwierdź hasło
+                  </Label>
+                  <Input
+                    id="confirmPassword"
+                    type="password"
+                    placeholder="Powtórz hasło"
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    required
+                    className="bg-white border-gray-300 text-gray-900 placeholder:text-gray-400 focus-visible:ring-blue-500 focus-visible:border-blue-500 h-10"
+                  />
+                </div>
               </CardContent>
 
               <CardFooter className="flex flex-col gap-3 mt-5 pt-5">
@@ -172,6 +203,15 @@ export default function RegisterPage() {
             </form>
           )}
         </Card>
+
+        <div className="mt-5 flex justify-center">
+          <Button asChild variant="ghost">
+            <Link href="/">
+              <ArrowLeft />
+              Wróć do strony głównej
+            </Link>
+          </Button>
+        </div>
 
         <p className="text-center text-gray-400 text-xs mt-6">
           © {new Date().getFullYear()} Asseto. Wszelkie prawa zastrzeżone.
