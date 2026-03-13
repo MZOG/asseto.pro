@@ -27,16 +27,12 @@ import {
   Wrench,
   CheckCheck,
   HelpCircle,
+  UserCircle,
 } from "lucide-react";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
 import { useRouter, usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@/components/ui/collapsible";
 
 const topLinks = [
   { href: "/panel", label: "Przegląd", icon: BookOpen },
@@ -58,13 +54,17 @@ export function AppSidebar() {
 
   useEffect(() => {
     const supabase = createClient();
-    supabase
-      .from("profiles")
-      .select("plan")
-      .single()
-      .then(({ data }) => {
-        if (data?.plan === "pro") setPlan("pro");
-      });
+    supabase.auth.getUser().then(({ data: { user } }) => {
+      if (!user) return;
+      supabase
+        .from("profiles")
+        .select("plan")
+        .eq("id", user.id)
+        .single()
+        .then(({ data }) => {
+          if (data?.plan === "pro") setPlan("pro");
+        });
+    });
   }, []);
 
   const handleSignOut = async () => {
@@ -196,6 +196,13 @@ export function AppSidebar() {
 
       <SidebarFooter>
         <SidebarMenu>
+          <SidebarMenuItem>
+            <SidebarMenuButton asChild>
+              <Link href="/panel/profil">
+                <UserCircle size={16} /> Mój profil
+              </Link>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
           <SidebarMenuItem>
             <SidebarMenuButton asChild>
               <Link href="/panel/ustawienia">

@@ -2,6 +2,18 @@ import { type NextRequest, NextResponse } from "next/server";
 import { createServerClient } from "@supabase/ssr";
 
 export async function proxy(request: NextRequest) {
+  if (request.nextUrl.searchParams.has("code")) {
+    const code = request.nextUrl.searchParams.get("code")!;
+    const redirectTo =
+      request.nextUrl.searchParams.get("next") ?? "/panel/profil";
+
+    const url = request.nextUrl.clone();
+    url.pathname = "/auth/callback";
+    url.searchParams.set("code", code);
+    url.searchParams.set("next", redirectTo);
+    return NextResponse.redirect(url);
+  }
+
   let supabaseResponse = NextResponse.next({ request });
 
   const supabase = createServerClient(

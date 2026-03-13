@@ -24,8 +24,6 @@ export default async function SettingsPage() {
   return (
     <section>
       <PageHeader title="Ustawienia" />
-      <Link href={setPasswordUrl}>Ustaw nowe hasło</Link>
-      <Separator className="my-5" />
       <QrSettings
         userId={userId}
         defaultLabelTop={qr_label_top}
