@@ -15,7 +15,7 @@ export default function ResetPasswordButton({ email }: { email: string }) {
     const supabase = createClient();
 
     const { error } = await supabase.auth.resetPasswordForEmail(email, {
-      redirectTo: `${window.location.origin}/panel/profil/nowe-haslo`,
+      redirectTo: `${window.location.origin}/auth/callback?next=/panel/profil/nowe-haslo`,
     });
 
     if (error) {
