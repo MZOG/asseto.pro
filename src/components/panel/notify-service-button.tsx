@@ -91,7 +91,7 @@ export default function NotifyServiceButton({
           href="/cennik"
           className="text-xs text-blue-600 font-medium hover:text-blue-700 shrink-0"
         >
-          Upgrade →
+          Przejdź na Pro →
         </Link>
       </div>
     );

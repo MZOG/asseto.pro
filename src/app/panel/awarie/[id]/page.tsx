@@ -35,7 +35,7 @@ export default async function IssuePage({
         id, name, serial_number, reference_number,
         location, image_url, service_phone, service_email,
         owner_id,
-        profiles!inner(company_name)
+        profiles!inner(company_name, plan)
       )
     `,
     )
@@ -201,6 +201,7 @@ export default async function IssuePage({
             createdAt={issue.created_at}
             companyName={profile?.company_name} // pobierz z profiles
             serviceEmail={asset.service_email}
+            isPro={profile?.plan === "pro"}
           />
         </div>
       </div>
