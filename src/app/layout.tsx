@@ -23,12 +23,13 @@ export default function RootLayout({
     <html lang="pl">
       <body className={`${geistSans.className} antialiased bg-zinc-50`}>
         {children}
+
+        <Script
+          defer
+          src="https://cloud.umami.is/script.js"
+          data-website-id="c7f2ec7f-015b-439a-b613-2d22e4e96b6f"
+        ></Script>
       </body>
-      <Script
-        defer
-        src="https://cloud.umami.is/script.js"
-        data-website-id="c7f2ec7f-015b-439a-b613-2d22e4e96b6f"
-      ></Script>
     </html>
   );
 }
