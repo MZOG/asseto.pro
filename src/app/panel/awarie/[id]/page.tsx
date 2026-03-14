@@ -3,7 +3,6 @@ import { headers } from "next/headers";
 import { createClient } from "@/lib/supabase/server";
 import { notFound } from "next/navigation";
 import PageHeader from "@/components/panel/page-header";
-import StatusBadge from "@/components/panel/status-badge";
 import { formatDate } from "@/lib/utils";
 import {
   Calendar,
@@ -16,6 +15,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import IssueStatusSelect from "@/components/panel/issue-status-select";
+import NotifyServiceButton from "@/components/panel/notify-service-button";
 
 export default async function IssuePage({
   params,
@@ -34,7 +34,8 @@ export default async function IssuePage({
       assets!inner(
         id, name, serial_number, reference_number,
         location, image_url, service_phone, service_email,
-        owner_id
+        owner_id,
+        profiles!inner(company_name)
       )
     `,
     )
@@ -45,6 +46,7 @@ export default async function IssuePage({
   if (!issue) notFound();
 
   const asset = issue.assets;
+  const profile = asset.profiles;
 
   return (
     <section className="max-w-2xl">
@@ -191,6 +193,15 @@ export default async function IssuePage({
               )}
             </div>
           )}
+
+          <NotifyServiceButton
+            issueId={issue.id}
+            assetName={asset.name}
+            description={issue.description}
+            createdAt={issue.created_at}
+            companyName={profile?.company_name} // pobierz z profiles
+            serviceEmail={asset.service_email}
+          />
         </div>
       </div>
     </section>

@@ -57,8 +57,15 @@ export default function RegisterPage() {
       return;
     }
 
-    setSuccess(true);
-    setLoading(false);
+    if (!error) {
+      await fetch("/api/auth/notify-signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+      setSuccess(true);
+      setLoading(false);
+    }
   };
 
   return (

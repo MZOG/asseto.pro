@@ -1,4 +1,3 @@
-// src/app/report/[id]/report-form.tsx
 "use client";
 
 import { useState } from "react";
@@ -26,17 +25,27 @@ export default function ReportForm({ assetId }: { assetId: number }) {
     setError(null);
 
     const supabase = createClient();
-    const { error } = await supabase.from("issues").insert({
-      asset_id: assetId,
-      description: description.trim(),
-      status: "broken",
-    });
+    const { data: newIssue, error } = await supabase
+      .from("issues")
+      .insert({
+        asset_id: assetId,
+        description: description.trim(),
+        status: "broken",
+      })
+      .select("id")
+      .single();
 
-    if (error) {
+    if (error || !newIssue) {
       setError("Coś poszło nie tak. Spróbuj ponownie.");
       setLoading(false);
       return;
     }
+
+    await fetch("/api/issues/notify", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ issueId: newIssue.id }),
+    });
 
     setSuccess(true);
     setLoading(false);
