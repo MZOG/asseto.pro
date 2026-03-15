@@ -71,13 +71,13 @@ const sections = [
 
 export default function PomocAwariaPage() {
   return (
-    <section className="max-w-2xl">
+    <section>
       <PageHeader title="Pomoc — Awarie" />
       <p className="text-gray-500 text-sm mt-1 mb-8">
         Wszystko co musisz wiedzieć o zgłaszaniu i zarządzaniu awariami.
       </p>
 
-      <div className="space-y-3">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         {sections.map((s) => (
           <div
             key={s.question}

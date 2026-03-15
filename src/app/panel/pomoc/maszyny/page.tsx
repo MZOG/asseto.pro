@@ -63,13 +63,13 @@ const sections = [
 
 export default function PomocMaszynyPage() {
   return (
-    <section className="max-w-2xl">
+    <section>
       <PageHeader title="Pomoc — Maszyny" />
       <p className="text-gray-500 text-sm mt-1 mb-8">
         Jak zarządzać maszynami, kodami QR i danymi technicznymi.
       </p>
 
-      <div className="space-y-3">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         {sections.map((s) => (
           <div
             key={s.question}
