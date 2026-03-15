@@ -15,12 +15,15 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../ui/select";
+import { Loader2, Lock } from "lucide-react";
+import Link from "next/link";
 
 interface QrSettingsProps {
   userId: string | null;
   defaultLabelTop?: string | null;
   defaultLabelBottom?: string | null;
   defaultPrintSize?: string | null;
+  isPro: boolean;
 }
 
 export function QrSettings({
@@ -28,6 +31,7 @@ export function QrSettings({
   defaultLabelTop,
   defaultLabelBottom,
   defaultPrintSize,
+  isPro,
 }: QrSettingsProps) {
   const [labelTop, setLabelTop] = useState(defaultLabelTop ?? "Zgłoś usterkę");
   const [labelBottom, setLabelBottom] = useState(
@@ -39,25 +43,47 @@ export function QrSettings({
   const handleSave = async () => {
     setSaving(true);
     const supabase = createClient();
+
+    const updates: Record<string, unknown> = {
+      qr_print_size: printSize,
+    };
+
+    // Etykiety tylko dla Pro
+    if (isPro) {
+      updates.qr_label_top = labelTop || null;
+      updates.qr_label_bottom = labelBottom || null;
+    }
+
     const { error } = await supabase
       .from("profiles")
-      .update({
-        qr_label_top: labelTop,
-        qr_label_bottom: labelBottom,
-        qr_print_size: printSize,
-      })
+      .update(updates)
       .eq("id", userId);
 
     if (error) {
       toast.error("Nie udało się zapisać.");
     } else {
-      toast.success("Ustawienia QR zapisane!");
+      toast.success("Zapisano.");
     }
+
     setSaving(false);
   };
 
   return (
     <div className="space-y-4">
+      {!isPro && (
+        <div className="flex items-center gap-2 bg-gray-50 border border-gray-200 rounded-lg px-3 py-2.5">
+          <Lock size={13} className="text-gray-400 shrink-0" />
+          <p className="text-xs text-gray-500 flex-1">
+            Edycja etykiet dostępna w planie Pro.
+          </p>
+          <Link
+            href="/cennik"
+            className="text-xs text-blue-600 font-medium hover:text-blue-700 shrink-0"
+          >
+            Przejdź na Pro →
+          </Link>
+        </div>
+      )}
       <div className="space-y-1.5">
         <Label htmlFor="qr_top">Tekst nad kodem QR</Label>
         <Input
@@ -66,6 +92,7 @@ export function QrSettings({
           value={labelTop}
           onChange={(e) => setLabelTop(e.target.value)}
           className="max-w-xs"
+          disabled={!isPro}
         />
       </div>
       <div className="space-y-1.5">
@@ -76,6 +103,7 @@ export function QrSettings({
           value={labelBottom}
           onChange={(e) => setLabelBottom(e.target.value)}
           className="max-w-xs"
+          disabled={!isPro}
         />
       </div>
       <div className="space-y-1.5">
@@ -96,8 +124,23 @@ export function QrSettings({
           </SelectContent>
         </Select>
       </div>
-      <Button onClick={handleSave} disabled={saving}>
+      {/* <Button onClick={handleSave} disabled={saving}>
         {saving ? "Zapisywanie..." : "Zapisz"}
+      </Button> */}
+
+      <Button
+        onClick={handleSave}
+        disabled={saving}
+        className="bg-blue-600 hover:bg-blue-700 text-white"
+      >
+        {saving ? (
+          <>
+            <Loader2 size={14} className="animate-spin mr-1.5" />
+            Zapisywanie...
+          </>
+        ) : (
+          "Zapisz"
+        )}
       </Button>
     </div>
   );

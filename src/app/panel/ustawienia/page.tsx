@@ -1,7 +1,6 @@
 import { headers } from "next/headers";
 import PageHeader from "@/components/panel/page-header";
 import { QrSettings } from "@/components/panel/settings-qr-section";
-import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { Separator } from "@/components/ui/separator";
 import SubscriptionSection from "@/components/panel/subscription-panel";
@@ -10,8 +9,6 @@ import { ServiceSettings } from "@/components/panel/settings-service-section";
 export default async function SettingsPage() {
   const userId = (await headers()).get("x-user-id");
 
-  const setPasswordUrl = `/panel/ustawienia/nowe-haslo`;
-
   const supabase = await createClient();
   const { data } = await supabase
     .from("profiles")
@@ -19,7 +16,7 @@ export default async function SettingsPage() {
     .eq("id", userId)
     .single();
 
-  const { qr_label_top, qr_label_bottom } = data;
+  const { qr_label_top, qr_label_bottom, plan } = data;
 
   return (
     <section>
@@ -29,6 +26,7 @@ export default async function SettingsPage() {
         defaultLabelTop={qr_label_top}
         defaultLabelBottom={qr_label_bottom}
         defaultPrintSize={data?.qr_print_size}
+        isPro={plan === "pro"}
       />
       <Separator className="my-5" />
 
