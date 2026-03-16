@@ -202,11 +202,6 @@ export default function IssuesList({ status, isPro, userId }: Props) {
               key={r.value}
               variant={range === r.value ? "default" : "outline"}
               onClick={() => setRange(r.value)}
-              // className={`px-3 py-1.5 rounded-lg font-medium transition-colors ${
-              //   range === r.value
-              //     ? "bg-blue-600 text-white"
-              //     : "bg-white border border-gray-200 text-gray-600 hover:border-blue-300 hover:text-blue-600"
-              // }`}
             >
               {r.label}
             </Button>

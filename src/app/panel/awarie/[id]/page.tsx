@@ -35,7 +35,7 @@ export default async function IssuePage({
         id, name, serial_number, reference_number,
         location, image_url, service_phone, service_email,
         owner_id,
-        profiles!inner(company_name, plan)
+        profiles!inner(company_name, plan, default_service_email)
       )
     `,
     )
@@ -47,6 +47,8 @@ export default async function IssuePage({
 
   const asset = issue.assets;
   const profile = asset.profiles;
+
+  console.log(asset);
 
   return (
     <section className="max-w-2xl">
@@ -199,8 +201,8 @@ export default async function IssuePage({
             assetName={asset.name}
             description={issue.description}
             createdAt={issue.created_at}
-            companyName={profile?.company_name} // pobierz z profiles
-            serviceEmail={asset.service_email}
+            companyName={profile?.company_name}
+            serviceEmail={asset.service_email ?? profile?.default_service_email}
             isPro={profile?.plan === "pro"}
           />
         </div>
