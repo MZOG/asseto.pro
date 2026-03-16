@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -17,6 +16,7 @@ import {
 } from "../ui/select";
 import { Loader2, Lock } from "lucide-react";
 import Link from "next/link";
+import { useUpgrade } from "@/hooks/use-upgrade";
 
 interface QrSettingsProps {
   userId: string | null;
@@ -39,6 +39,7 @@ export function QrSettings({
   );
   const [printSize, setPrintSize] = useState(defaultPrintSize ?? "A6");
   const [saving, setSaving] = useState(false);
+  const { upgrade, loading } = useUpgrade();
 
   const handleSave = async () => {
     setSaving(true);
@@ -76,12 +77,14 @@ export function QrSettings({
           <p className="text-xs text-gray-500 flex-1">
             Edycja etykiet dostępna w planie Pro.
           </p>
-          <Link
-            href="/cennik"
-            className="text-xs text-blue-600 font-medium hover:text-blue-700 shrink-0"
-          >
-            Przejdź na Pro →
-          </Link>
+
+          <Button onClick={upgrade} disabled={loading}>
+            {loading ? (
+              <Loader2 size={11} className="animate-spin inline" />
+            ) : (
+              "Przejdź na Pro →"
+            )}
+          </Button>
         </div>
       )}
       <div className="space-y-1.5">

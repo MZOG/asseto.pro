@@ -21,6 +21,13 @@ export default async function SettingsPage() {
   return (
     <section>
       <PageHeader title="Ustawienia" />
+      <SubscriptionSection
+        plan={data?.plan ?? "free"}
+        subscriptionStatus={data?.subscription_status}
+        subscriptionEndsAt={data?.subscription_ends_at}
+      />
+      <Separator className="my-5" />
+
       <QrSettings
         userId={userId}
         defaultLabelTop={qr_label_top}
@@ -34,12 +41,6 @@ export default async function SettingsPage() {
         userId={userId}
         defaultServicePhone={data?.default_service_phone}
         defaultServiceEmail={data?.default_service_email}
-      />
-      <Separator className="my-5" />
-      <SubscriptionSection
-        plan={data?.plan ?? "free"}
-        subscriptionStatus={data?.subscription_status}
-        subscriptionEndsAt={data?.subscription_ends_at}
       />
     </section>
   );

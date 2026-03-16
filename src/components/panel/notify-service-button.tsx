@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 import { Mail, Loader2, ChevronDown, ChevronUp } from "lucide-react";
-import Link from "next/link";
+import { useUpgrade } from "@/hooks/use-upgrade";
 
 interface Props {
   issueId: string;
@@ -28,6 +28,7 @@ export default function NotifyServiceButton({
 }: Props) {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
+  const { upgrade, loading: upgradeLoading } = useUpgrade();
 
   const reportedAt = new Date(createdAt).toLocaleString("pl-PL", {
     day: "numeric",
@@ -87,12 +88,13 @@ export default function NotifyServiceButton({
         <p className="text-xs text-gray-500 flex-1">
           Powiadomienia e-mail do serwisanta dostępne w planie Pro.
         </p>
-        <Link
-          href="/cennik"
-          className="text-xs text-blue-600 font-medium hover:text-blue-700 shrink-0"
-        >
-          Przejdź na Pro →
-        </Link>
+        <Button onClick={upgrade} disabled={upgradeLoading}>
+          {loading ? (
+            <Loader2 size={11} className="animate-spin inline" />
+          ) : (
+            "Przejdź na Pro →"
+          )}
+        </Button>
       </div>
     );
   }
