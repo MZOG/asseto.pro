@@ -3,7 +3,15 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
-import { Zap, Loader2, ExternalLink, AlertTriangle } from "lucide-react";
+import {
+  Zap,
+  Loader2,
+  ExternalLink,
+  AlertTriangle,
+  Link,
+  Upload,
+} from "lucide-react";
+import { ProFeaturesModal } from "./pro-features-modal";
 
 interface Props {
   plan: string;
@@ -108,21 +116,12 @@ export default function SubscriptionSection({
         {!isPro || isCanceled ? (
           <div className="space-y-3">
             {!isPro && (
-              <div className="text-xs text-gray-500 space-y-1">
-                <p>Plan Pro zawiera:</p>
-                <ul className="space-y-0.5 text-gray-400">
-                  {[
-                    "Nielimitowane maszyny",
-                    "Powiadomienia Telegram",
-                    "Raporty i eksport danych",
-                    "Zarządzanie serwisami",
-                  ].map((f) => (
-                    <li key={f} className="flex items-center gap-1.5">
-                      <Zap size={10} className="text-blue-500" />
-                      {f}
-                    </li>
-                  ))}
-                </ul>
+              <div>
+                <ProFeaturesModal>
+                  <p className="text-primary text-sm font-medium flex items-center gap-2 cursor-pointer hover:underline underline-offset-2">
+                    Co zawiera plan Pro? <Upload size={13} />
+                  </p>
+                </ProFeaturesModal>
               </div>
             )}
             <Button
