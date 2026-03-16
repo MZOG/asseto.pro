@@ -48,8 +48,6 @@ export default async function IssuePage({
   const asset = issue.assets;
   const profile = asset.profiles;
 
-  console.log(asset);
-
   return (
     <section className="max-w-2xl">
       <div className="flex items-center justify-between mb-6">

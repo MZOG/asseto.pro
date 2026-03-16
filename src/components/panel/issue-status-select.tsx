@@ -47,8 +47,6 @@ export default function IssueStatusSelect({
       .update(updates)
       .eq("id", issueId);
 
-    console.log("error:", error, "data:", data);
-
     if (error) {
       toast.error("Nie udało się zmienić statusu.");
       setLoading(false);

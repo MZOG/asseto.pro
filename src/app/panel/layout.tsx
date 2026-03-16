@@ -3,6 +3,7 @@ import { AppSidebar } from "@/components/panel/app-sidebar";
 import { redirect } from "next/navigation";
 import { headers } from "next/headers";
 import { Toaster } from "@/components/ui/sonner";
+import FeedbackButton from "@/components/panel/feedback-button";
 
 export default async function PanelLayout({
   children,
@@ -21,6 +22,7 @@ export default async function PanelLayout({
         </div>
         <div className="p-5">{children}</div>
         <Toaster />
+        <FeedbackButton />
       </main>
     </SidebarProvider>
   );
