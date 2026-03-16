@@ -20,8 +20,8 @@ export default async function IssuesZamknietePage() {
         {issues && issues?.length > 0 ? (
           issues?.map((issue) => <IssueCard key={issue.id} issue={issue} />)
         ) : (
-          <div className="p-5 border max-w-xs rounded-md">
-            <p>Brak maszyn.</p>
+          <div className="">
+            <p>Nic tutaj nie ma 😎</p>
           </div>
         )}
       </div>

@@ -186,9 +186,9 @@ export function AppSidebar() {
       </SidebarContent>
 
       <div className="px-3 pb-3">
-        <div className="bg-white border border-gray-200 rounded-lg p-3">
-          <p className="text-sm text-gray-500 leading-relaxed">
-            👋 Jesteśmy w fazie testów. Mogą pojawić się błędy, dziękujemy za
+        <div className="bg-primary rounded-lg p-3">
+          <p className="text-sm text-white">
+            Jesteśmy w fazie testów. Mogą pojawić się błędy, dziękujemy za
             cierpliwość!
           </p>
         </div>

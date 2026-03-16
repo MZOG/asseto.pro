@@ -20,7 +20,7 @@ export default async function IssuesSerwisPage() {
         {issues && issues?.length > 0 ? (
           issues?.map((issue) => <IssueCard key={issue.id} issue={issue} />)
         ) : (
-          <p>Brak maszyn w serwisie!</p>
+          <p>Nic tutaj nie ma 😎</p>
         )}
       </div>
     </section>

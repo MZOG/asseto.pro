@@ -25,6 +25,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../ui/select";
+import Link from "next/link";
 
 interface AssetField {
   id: number;
@@ -348,6 +349,16 @@ export default function AssetEditForm({
         <h2 className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-3">
           Serwisant
         </h2>
+        <p className="text-xs text-gray-400 mb-4">
+          Ustaw domyślny numer telefonu oraz e-mail w{" "}
+          <Link
+            href="/panel/ustawienia"
+            className="underline underline-offset-2 text-primary cursor-pointer"
+          >
+            Ustawieniach
+          </Link>
+          , lub zmień dane dla tej konkretnej maszyny
+        </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="space-y-1.5">
             <Label htmlFor="service_phone">Telefon</Label>
