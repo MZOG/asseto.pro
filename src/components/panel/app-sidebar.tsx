@@ -49,7 +49,7 @@ export function AppSidebar() {
   const router = useRouter();
   const pathname = usePathname();
   const [plan, setPlan] = useState<"free" | "pro">("free");
-
+  const [companyName, setCompanyName] = useState();
   const awarieOpen = pathname.startsWith("/panel/awarie");
 
   useEffect(() => {
@@ -58,11 +58,14 @@ export function AppSidebar() {
       if (!user) return;
       supabase
         .from("profiles")
-        .select("plan")
+        .select("plan, company_name")
         .eq("id", user.id)
         .single()
         .then(({ data }) => {
-          if (data?.plan === "pro") setPlan("pro");
+          if (data?.plan === "pro") {
+            setPlan("pro");
+            setCompanyName(data?.company_name || "Asseto");
+          }
         });
     });
   }, []);
@@ -82,7 +85,9 @@ export function AppSidebar() {
             <div className="w-5 h-5 bg-blue-600 rounded-sm flex items-center justify-center">
               <ScanLine size={12} className="text-white" />
             </div>
-            <span className="font-medium">Asseto</span>
+            <span className="font-medium text-sm">
+              {companyName ?? "Asseto"}
+            </span>
           </div>
           {plan === "pro" ? (
             <span className="inline-flex items-center gap-1 bg-blue-100 text-blue-700 text-xs font-semibold px-1.5 py-0.5 rounded-sm">
