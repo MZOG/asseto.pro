@@ -6,13 +6,11 @@ import Link from "next/link";
 
 interface IssueProps {
   issue: {
-    id: number;
-    status: string;
-    description: string;
+    id: string;
+    status: string | null;
+    description: string | null;
     created_at: string;
-    assets: {
-      name: string;
-    };
+    assets: { name: string } | null;
   };
 }
 
@@ -21,7 +19,7 @@ export default function IssueCard({ issue }: IssueProps) {
     <Card key={issue.id} className="">
       <CardHeader>
         <StatusBadge status={issue.status} />
-        <p className="text-sm font-medium mt-1">{issue.assets.name}</p>
+        <p className="text-sm font-medium mt-1">{issue.assets?.name ?? "—"}</p>
       </CardHeader>
       <CardContent>
         {issue.description && (

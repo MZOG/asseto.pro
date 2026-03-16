@@ -1,33 +1,26 @@
-import PageHeader from "@/components/panel/page-header";
 import { headers } from "next/headers";
 import { createClient } from "@/lib/supabase/server";
-import IssueCard from "@/components/panel/issue-card";
+import PageHeader from "@/components/panel/page-header";
+import IssuesList from "@/components/panel/issues-list";
 
 export default async function IssuesPage() {
   const userId = (await headers()).get("x-user-id");
   const supabase = await createClient();
-  const { data: issues, count } = await supabase
-    .from("issues")
-    .select(
-      `
-      *,
-      assets!inner(name, owner_id)
-    `,
-      { count: "exact" },
-    )
-    .eq("status", "broken")
-    .eq("assets.owner_id", userId)
-    .order("created_at", { ascending: false });
+  const { data: profile } = await supabase
+    .from("profiles")
+    .select("plan")
+    .eq("id", userId)
+    .single();
 
   return (
     <section>
       <PageHeader title="Awarie" />
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mt-3">
-        {issues && issues?.length > 0 ? (
-          issues?.map((issue) => <IssueCard key={issue.id} issue={issue} />)
-        ) : (
-          <p>Brak aktywnych awarii!</p>
-        )}
+      <div className="mt-4">
+        <IssuesList
+          status="broken"
+          isPro={profile?.plan === "pro"}
+          userId={userId ?? ""}
+        />
       </div>
     </section>
   );
