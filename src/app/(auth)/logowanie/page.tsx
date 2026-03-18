@@ -108,7 +108,7 @@ export default function LoginPage() {
                   </Label>
                   <Link
                     href="/reset-hasla"
-                    className="text-xs text-blue-600 hover:text-blue-700 transition-colors"
+                    className="text-sm text-blue-600 hover:text-blue-700 hover:underline underline-offset-2 transition-colors"
                   >
                     Zapomniałeś?
                   </Link>
@@ -141,7 +141,7 @@ export default function LoginPage() {
                 )}
               </Button>
 
-              <p className="text-xs text-gray-500 text-center">
+              <p className=" text-gray-500 text-center">
                 Nie masz konta?{" "}
                 <Link
                   href="/rejestracja"

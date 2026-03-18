@@ -111,7 +111,7 @@ export default function ResetHaslaPage() {
                 )}
               </Button>
 
-              <p className="text-xs text-gray-500 text-center">
+              <p className="text-gray-500 text-center">
                 Pamiętasz hasło?{" "}
                 <Link
                   href="/logowanie"

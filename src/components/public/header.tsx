@@ -1,10 +1,19 @@
 "use client";
 
-import { ScanLine, Menu, X } from "lucide-react";
+import { useState } from "react";
+import { ScanLine, Menu, Zap, LogIn } from "lucide-react";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { createClient } from "@/lib/supabase/client";
+import {
+  Drawer,
+  DrawerContent,
+  DrawerTrigger,
+  DrawerClose,
+  DrawerTitle,
+} from "@/components/ui/drawer";
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 
 const links = [
   { href: "/cennik", label: "Cennik" },
@@ -13,8 +22,8 @@ const links = [
 ];
 
 export default function Header() {
-  const [menuOpen, setMenuOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     const supabase = createClient();
@@ -24,7 +33,7 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="bg-white/10 backdrop-blur-md fixed top-0 w-full z-30">
+    <header className="bg-white/80 backdrop-blur-md fixed top-0 w-full z-30 border-b border-gray-100">
       <div className="max-w-6xl px-5 mx-auto py-3.5">
         <div className="flex items-center justify-between">
           {/* Logo */}
@@ -43,7 +52,7 @@ export default function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-sm  hover:text-gray-900 transition-colors"
+                className="text-sm text-gray-500 hover:text-gray-900 transition-colors"
               >
                 {link.label}
               </Link>
@@ -53,78 +62,84 @@ export default function Header() {
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center gap-2">
             {isLoggedIn ? (
-              <Link
-                href="/panel"
-                className="text-sm  hover:text-gray-900 transition-colors"
-              >
-                Panel
-              </Link>
-            ) : (
-              <div className="flex items-center gap-5">
-                <Link
-                  href="/logowanie"
-                  className="text-sm  hover:text-gray-900 transition-colors"
-                >
-                  Zaloguj się
-                </Link>
-              </div>
-            )}
-          </div>
-
-          {/* Mobile hamburger */}
-          <button
-            type="button"
-            className="md:hidden text-gray-600 hover:text-gray-900"
-            onClick={() => setMenuOpen((prev) => !prev)}
-          >
-            {menuOpen ? <X size={22} /> : <Menu size={22} />}
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile menu */}
-      {menuOpen && (
-        <div className="md:hidden bg-white border-t border-gray-100 px-5 py-4 space-y-1">
-          {links.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              onClick={() => setMenuOpen(false)}
-              className="block text-sm text-gray-600 hover:text-gray-900 py-2 transition-colors"
-            >
-              {link.label}
-            </Link>
-          ))}
-          <div className="pt-3 flex flex-col gap-2 border-t border-gray-100 mt-2">
-            {isLoggedIn ? (
-              <Button
-                asChild
-                className="bg-blue-600 hover:bg-blue-700 text-white w-full"
-              >
-                <Link href="/panel" onClick={() => setMenuOpen(false)}>
-                  Panel
-                </Link>
+              <Button asChild variant="ghost">
+                <Link href="/panel">Panel</Link>
               </Button>
             ) : (
               <>
-                <Button asChild variant="outline" className="w-full">
-                  <Link href="/logowanie" onClick={() => setMenuOpen(false)}>
-                    Zaloguj się
-                  </Link>
-                </Button>
-                <Button
-                  asChild
-                  className="bg-blue-600 hover:bg-blue-700 text-white w-full"
-                >
-                  <Link href="/rejestracja" onClick={() => setMenuOpen(false)}>
-                    Wypróbuj za darmo
-                  </Link>
+                <Button asChild variant="ghost">
+                  <Link href="/logowanie">Zaloguj się</Link>
                 </Button>
               </>
             )}
           </div>
+
+          {/* Mobile — Drawer */}
+          <div className="md:hidden">
+            <Drawer open={open} onOpenChange={setOpen}>
+              <DrawerTrigger asChild>
+                <button className="text-gray-600 hover:text-gray-900 p-1">
+                  <Menu size={22} />
+                </button>
+              </DrawerTrigger>
+              <DrawerContent>
+                <VisuallyHidden>
+                  <DrawerTitle>Menu nawigacji</DrawerTitle>
+                </VisuallyHidden>
+                <div className="px-6 py-6 space-y-1">
+                  {/* Linki */}
+                  {links.map((link) => (
+                    <DrawerClose asChild key={link.href}>
+                      <Link
+                        href={link.href}
+                        className="flex items-center text-base text-gray-700 hover:text-gray-900 py-3 border-b border-gray-100 last:border-0 transition-colors"
+                      >
+                        {link.label}
+                      </Link>
+                    </DrawerClose>
+                  ))}
+
+                  {/* CTA */}
+                  <div className="pt-4 flex flex-col gap-2">
+                    {isLoggedIn ? (
+                      <DrawerClose asChild>
+                        <Button
+                          asChild
+                          className="w-full bg-blue-600 hover:bg-blue-700 text-white"
+                        >
+                          <Link href="/panel">Panel</Link>
+                        </Button>
+                      </DrawerClose>
+                    ) : (
+                      <>
+                        <DrawerClose asChild>
+                          <Button asChild variant="outline" className="w-full">
+                            <Link href="/logowanie">
+                              <LogIn size={15} className="mr-1.5" />
+                              Zaloguj się
+                            </Link>
+                          </Button>
+                        </DrawerClose>
+                        <DrawerClose asChild>
+                          <Button
+                            asChild
+                            className="w-full bg-blue-600 hover:bg-blue-700 text-white"
+                          >
+                            <Link href="/rejestracja">
+                              <Zap size={15} className="mr-1.5" />
+                              Wypróbuj za darmo
+                            </Link>
+                          </Button>
+                        </DrawerClose>
+                      </>
+                    )}
+                  </div>
+                </div>
+              </DrawerContent>
+            </Drawer>
+          </div>
         </div>
-      )}
+      </div>
     </header>
   );
 }

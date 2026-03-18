@@ -50,7 +50,6 @@ export function AppSidebar() {
   const pathname = usePathname();
   const [plan, setPlan] = useState<"free" | "pro">("free");
   const [companyName, setCompanyName] = useState();
-  const awarieOpen = pathname.startsWith("/panel/awarie");
 
   useEffect(() => {
     const supabase = createClient();
@@ -62,9 +61,9 @@ export function AppSidebar() {
         .eq("id", user.id)
         .single()
         .then(({ data }) => {
+          setCompanyName(data?.company_name || "Asseto");
           if (data?.plan === "pro") {
             setPlan("pro");
-            setCompanyName(data?.company_name || "Asseto");
           }
         });
     });

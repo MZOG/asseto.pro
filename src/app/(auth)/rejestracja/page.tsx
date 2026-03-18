@@ -197,7 +197,7 @@ export default function RegisterPage() {
                   )}
                 </Button>
 
-                <p className="text-xs text-gray-500 text-center">
+                <p className="text-gray-500 text-center">
                   Masz już konto?{" "}
                   <Link
                     href="/logowanie"
