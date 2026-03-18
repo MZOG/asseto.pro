@@ -13,12 +13,11 @@ export async function POST(request: NextRequest) {
 
   const supabase = await createClient();
 
-  // Pobierz issue z danymi maszyny i właściciela
   const { data: issue } = await supabase
     .from("issues")
     .select(
       `
-      id, description, created_at,
+      id, description, created_at, reporter_phone, image_url,
       assets!inner(
         name, serial_number, location,
         owner_id,
@@ -75,9 +74,29 @@ export async function POST(request: NextRequest) {
         </div>
 
         ${
+          issue.image_url
+            ? `
+        <div style="margin-bottom: 24px;">
+          <p style="font-size: 12px; color: #9ca3af; margin: 0 0 8px; text-transform: uppercase; letter-spacing: 0.05em;">Zdjęcie</p>
+          <img src="${issue.image_url}" alt="Zdjęcie usterki" style="width: 100%; border-radius: 8px; border: 1px solid #e5e7eb;" />
+        </div>`
+            : ""
+        }
+
+        ${
+          issue.reporter_phone
+            ? `
+        <p style="font-size: 14px; color: #6b7280; margin: 0 0 8px;">
+          📞 <strong>Telefon zgłaszającego:</strong>
+          <a href="tel:${issue.reporter_phone}" style="color: #2563eb;">${issue.reporter_phone}</a>
+        </p>`
+            : ""
+        }
+
+        ${
           asset.location
             ? `
-        <p style="font-size: 14px; color: #6b7280; margin: 0 0 6px;">
+        <p style="font-size: 14px; color: #6b7280; margin: 0 0 8px;">
           📍 <strong>Lokalizacja:</strong> ${asset.location}
         </p>`
             : ""

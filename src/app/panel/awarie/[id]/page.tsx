@@ -16,6 +16,7 @@ import {
 import Link from "next/link";
 import IssueStatusSelect from "@/components/panel/issue-status-select";
 import NotifyServiceButton from "@/components/panel/notify-service-button";
+import { Separator } from "@/components/ui/separator";
 
 export default async function IssuePage({
   params,
@@ -68,6 +69,17 @@ export default async function IssuePage({
           </p>
         </div>
 
+        {/* Zdjęcie */}
+        {issue.image_url && (
+          <div className="mt-4">
+            <img
+              src={issue.image_url}
+              alt="Zdjęcie usterki"
+              className="w-full max-h-72 object-cover rounded-lg border border-gray-200"
+            />
+          </div>
+        )}
+
         {/* Daty */}
         <div className="bg-white border border-gray-200 rounded-xl p-5">
           <h2 className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-3">
@@ -81,6 +93,7 @@ export default async function IssuePage({
                 {formatDate(issue.created_at)}
               </span>
             </div>
+
             {issue.updated_at && (
               <div className="flex items-center gap-2.5 text-sm">
                 <Clock size={14} className="text-gray-400 shrink-0" />
@@ -97,6 +110,21 @@ export default async function IssuePage({
                 <span className="text-gray-700 font-medium">
                   {formatDate(issue.closed_at)}
                 </span>
+              </div>
+            )}
+
+            <Separator />
+
+            {issue.reporter_phone && (
+              <div className="flex items-center gap-2.5 text-sm">
+                <Phone size={14} className="text-gray-400 shrink-0" />
+                <span className="text-gray-500">Telefon zgłaszającego:</span>
+                <a
+                  href={`tel:${issue.reporter_phone}`}
+                  className="text-gray-700 font-medium hover:underline underline-offset-2"
+                >
+                  {issue.reporter_phone}
+                </a>
               </div>
             )}
           </div>
