@@ -1,8 +1,23 @@
-// src/app/(public)/cennik/page.tsx
 import Link from "next/link";
 import { Check, Minus, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Cennik",
+  description:
+    "Zacznij za darmo i przejdź na plan Pro gdy Twój biznes rośnie. Prosty, przejrzysty cennik bez ukrytych opłat.",
+  openGraph: {
+    title: "Cennik - Asseto",
+    description:
+      "Plan darmowy do 10 urządzeń. Plan Pro z nielimitowanymi urządzeniami od 149 zł miesięcznie.",
+    url: "https://asseto.pro/cennik",
+    siteName: "Asseto",
+    locale: "pl_PL",
+    type: "website",
+  },
+};
 
 const plans = [
   {

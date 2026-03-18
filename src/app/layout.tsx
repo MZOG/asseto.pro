@@ -9,9 +9,17 @@ const geistSans = Geist({
 });
 
 export const metadata: Metadata = {
-  title: "Zarządzaj awariami szybko i wygodnie",
+  metadataBase: new URL("https://asseto.pro"),
+  title: {
+    default: "Asseto - Zarządzaj usterkami przez kod QR",
+    template: "%s - Asseto",
+  },
   description:
-    "Szybkie zgłaszanie awarii przez kod QR, łatwe zarządzanie awariami, serwisami.",
+    "Prosty system do zgłaszania i zarządzania usterkami oparty o kody QR.",
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({

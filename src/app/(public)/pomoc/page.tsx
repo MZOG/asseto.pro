@@ -4,6 +4,21 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Pomoc i FAQ",
+  description:
+    "Odpowiedzi na najczęściej zadawane pytania dotyczące Asseto — jak działa system, kody QR, zgłoszenia, subskrypcja i bezpieczeństwo danych.",
+  openGraph: {
+    title: "Pomoc i FAQ — Asseto",
+    description: "Znajdź odpowiedź na swoje pytanie lub skontaktuj się z nami.",
+    url: "https://asseto.pro/pomoc",
+    siteName: "Asseto",
+    locale: "pl_PL",
+    type: "website",
+  },
+};
 
 const faqs = [
   {
