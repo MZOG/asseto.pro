@@ -7,6 +7,7 @@ import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import { ProFeaturesModal } from "@/components/panel/pro-features-modal";
 import { Lock } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 interface Props {
   userId: string | null;
@@ -62,9 +63,7 @@ export function ReportsSettings({
             Raporty tygodniowe dostępne w planie Pro.
           </p>
           <ProFeaturesModal>
-            <button className="text-xs text-blue-600 font-medium hover:text-blue-700 shrink-0">
-              Upgrade →
-            </button>
+            <Button>Przejdź na Pro →</Button>
           </ProFeaturesModal>
         </div>
       ) : (
