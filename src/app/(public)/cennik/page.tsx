@@ -54,33 +54,37 @@ const plans = [
       { label: "Zgłoszenia przez QR", included: true },
       { label: "Panel zarządzania", included: true },
       { label: "Powiadomienia Telegram", included: true },
+      { label: "Zarządzanie serwisami i przeglądami", included: true },
+      {
+        label: "Przypomnienia e-mail o zbliżających się serwisach",
+        included: true,
+      },
       { label: "Raporty", included: true },
       { label: "Eksport danych", included: true },
-      { label: "Zarządzanie serwisami", included: true },
       { label: "Priorytetowe wsparcie", included: true },
     ],
   },
-  {
-    name: "Business",
-    price: "Wycena",
-    period: "indywidualna",
-    description: "Dla dużych organizacji.",
-    cta: "Skontaktuj się",
-    ctaHref: "/kontakt",
-    ctaVariant: "outline" as const,
-    recommended: false,
-    disabled: true,
-    features: [
-      { label: "Wszystko z planu Pro", included: true },
-      { label: "Wiele lokalizacji", included: true },
-      { label: "Dedykowany opiekun", included: true },
-      { label: "Integracje na zamówienie", included: true },
-      { label: "SLA", included: true },
-      { label: "Szkolenie zespołu", included: true },
-      { label: "Migracja danych", included: true },
-      { label: "Faktura VAT", included: true },
-    ],
-  },
+  // {
+  //   name: "Business",
+  //   price: "Wycena",
+  //   period: "indywidualna",
+  //   description: "Dla dużych organizacji.",
+  //   cta: "Skontaktuj się",
+  //   ctaHref: "/kontakt",
+  //   ctaVariant: "outline" as const,
+  //   recommended: false,
+  //   disabled: true,
+  //   features: [
+  //     { label: "Wszystko z planu Pro", included: true },
+  //     { label: "Wiele lokalizacji", included: true },
+  //     { label: "Dedykowany opiekun", included: true },
+  //     { label: "Integracje na zamówienie", included: true },
+  //     { label: "SLA", included: true },
+  //     { label: "Szkolenie zespołu", included: true },
+  //     { label: "Migracja danych", included: true },
+  //     { label: "Faktura VAT", included: true },
+  //   ],
+  // },
 ];
 
 export default function CennikPage() {
@@ -102,7 +106,7 @@ export default function CennikPage() {
         </div>
 
         {/* Plans */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 items-start">
           {plans.map((plan) => (
             <div
               key={plan.name}
@@ -111,7 +115,7 @@ export default function CennikPage() {
                 plan.recommended
                   ? "border-blue-500  ring-1 ring-blue-500"
                   : "border-gray-200",
-                plan.disabled && "opacity-50 pointer-events-none",
+                // plan.disabled && "opacity-50 pointer-events-none",
               )}
             >
               {/* Recommended badge */}

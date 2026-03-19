@@ -18,8 +18,9 @@ const features = [
   "Powiadomienia Telegram",
   "Edycja etykiet kodu QR",
   "Powiadomienia e-mail do serwisanta",
+  "Zarządzanie serwisami i przeglądami",
+  "Przypomnienia e-mail o zbliżającym się serwisie",
   "Raporty i eksport danych",
-  "Zarządzanie serwisami",
   "Priorytetowe wsparcie",
 ];
 
