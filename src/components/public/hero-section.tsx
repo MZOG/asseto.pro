@@ -51,11 +51,7 @@ export default function Hero() {
             </Link>
           </Button>
           <Button asChild variant="ghost" size="lg" className="rounded-lg">
-            <Link
-              href="/logowanie"
-              data-umami-event="Hero Login"
-              data-umami-event-page="Hero Login Click"
-            >
+            <Link href="/logowanie" data-umami-event="Hero login click">
               <LogIn size={16} className="mr-1.5" />
               Zaloguj się
             </Link>

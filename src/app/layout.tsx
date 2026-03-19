@@ -33,10 +33,10 @@ export default function RootLayout({
         {children}
 
         <Script
-          defer
+          strategy="afterInteractive"
           src="https://cloud.umami.is/script.js"
           data-website-id="c7f2ec7f-015b-439a-b613-2d22e4e96b6f"
-        ></Script>
+        />
       </body>
     </html>
   );
