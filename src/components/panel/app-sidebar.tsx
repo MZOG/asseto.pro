@@ -38,21 +38,61 @@ export function AppSidebar() {
   const [plan, setPlan] = useState<"free" | "pro">("free");
   const [companyName, setCompanyName] = useState<string>();
 
+  const [counts, setCounts] = useState({
+    broken: 0,
+    maintenance: 0,
+    closed: 0,
+    assets: 0,
+  });
+
   useEffect(() => {
     const supabase = createClient();
     supabase.auth.getUser().then(({ data: { user } }) => {
       if (!user) return;
-      supabase
-        .from("profiles")
-        .select("plan, company_name")
-        .eq("id", user.id)
-        .single()
-        .then(({ data }) => {
-          setCompanyName(data?.company_name || "Asseto");
-          if (data?.plan === "pro") setPlan("pro");
+
+      Promise.all([
+        supabase
+          .from("profiles")
+          .select("plan, company_name")
+          .eq("id", user.id)
+          .single(),
+        supabase
+          .from("issues")
+          .select("id, assets!inner(owner_id)", { count: "exact", head: true })
+          .eq("assets.owner_id", user.id)
+          .eq("status", "broken"),
+        supabase
+          .from("issues")
+          .select("id, assets!inner(owner_id)", { count: "exact", head: true })
+          .eq("assets.owner_id", user.id)
+          .eq("status", "maintenance"),
+        supabase
+          .from("issues")
+          .select("id, assets!inner(owner_id)", { count: "exact", head: true })
+          .eq("assets.owner_id", user.id)
+          .eq("status", "closed"),
+        supabase
+          .from("assets")
+          .select("id", { count: "exact", head: true })
+          .eq("owner_id", user.id),
+      ]).then(([profile, broken, maintenance, closed, assets]) => {
+        setCompanyName(profile.data?.company_name || "Asseto");
+        if (profile.data?.plan === "pro") setPlan("pro");
+        setCounts({
+          broken: broken.count ?? 0,
+          maintenance: maintenance.count ?? 0,
+          closed: closed.count ?? 0,
+          assets: assets.count ?? 0,
         });
+      });
     });
   }, []);
+
+  const Badge = ({ count }: { count: number }) => (
+    <span className="ml-auto text-xs bg-gray-100 text-gray-500 font-medium px-1.5 py-0.5 rounded-md min-w-5 text-center">
+      {count}
+    </span>
+  );
 
   const handleNavClick = () => setOpenMobile(false);
 
@@ -119,16 +159,19 @@ export function AppSidebar() {
                   href: "/panel/awarie",
                   label: "Aktywne",
                   icon: TriangleAlert,
+                  count: counts.broken,
                 },
                 {
                   href: "/panel/awarie/serwis",
                   label: "W serwisie",
                   icon: Wrench,
+                  count: counts.maintenance,
                 },
                 {
                   href: "/panel/awarie/zamkniete",
                   label: "Zamknięte",
                   icon: CheckCheck,
+                  count: counts.closed,
                 },
               ].map((link) => (
                 <SidebarMenuItem key={link.href}>
@@ -139,6 +182,7 @@ export function AppSidebar() {
                   >
                     <Link href={link.href} onClick={handleNavClick}>
                       <link.icon size={16} /> {link.label}
+                      <Badge count={link.count} />
                     </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
@@ -159,6 +203,7 @@ export function AppSidebar() {
                 >
                   <Link href="/panel/maszyny" onClick={handleNavClick}>
                     <Factory size={16} /> Maszyny
+                    <Badge count={counts.assets} />
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>

@@ -8,9 +8,12 @@ import {
   Factory,
   Calendar,
   TrendingUp,
+  Lock,
 } from "lucide-react";
 import Link from "next/link";
 import { PanelCard, type Stat } from "@/components/panel/panel-card";
+import { ProFeaturesModal } from "@/components/panel/pro-features-modal";
+import { Button } from "@/components/ui/button";
 
 export default async function PanelIndexPage() {
   const userId = (await headers()).get("x-user-id");
@@ -27,47 +30,44 @@ export default async function PanelIndexPage() {
     { data: assets },
     { data: profile },
     { count: issuesThisMonth },
-    { count: servicesThisMonth },
     { data: topIssues },
+    { data: upcomingServices },
   ] = await Promise.all([
     supabase.from("assets").select("id, status").eq("owner_id", userId),
-
     supabase.from("profiles").select("plan").eq("id", userId).single(),
-
     supabase
       .from("issues")
       .select("*, assets!inner(owner_id)", { count: "exact", head: true })
       .eq("assets.owner_id", userId)
       .gte("created_at", firstDayOfMonth),
-
-    supabase
-      .from("issues")
-      .select("*, assets!inner(owner_id)", { count: "exact", head: true })
-      .eq("assets.owner_id", userId)
-      .eq("status", "closed")
-      .gte("closed_at", firstDayOfMonth),
-
     supabase
       .from("issues")
       .select("asset_id, assets!inner(name, owner_id)")
       .eq("assets.owner_id", userId),
+    supabase
+      .from("services")
+      .select("id, next_service_at, assets!inner(name, owner_id)")
+      .eq("assets.owner_id", userId)
+      .gte("next_service_at", now.toISOString().split("T")[0])
+      .order("next_service_at", { ascending: true })
+      .limit(3),
   ]);
 
-  type AssetIssueMap = Record<
-    number,
+  const issuesByAsset: Record<
+    string,
     { id: string; name: string; count: number }
-  >;
+  > = {};
 
-  const issuesByAsset = (topIssues ?? []).reduce<AssetIssueMap>(
-    (acc, issue) => {
-      const id = issue.asset_id;
-      if (!id) return acc;
-      const name = (issue.assets as any)?.name ?? "—";
-      acc[id] = { id, name, count: (acc[id]?.count ?? 0) + 1 };
-      return acc;
-    },
-    {},
-  );
+  (topIssues ?? []).forEach((issue) => {
+    const id = issue.asset_id;
+    if (!id) return;
+    const name = (issue.assets as any)?.name ?? "—";
+    issuesByAsset[id] = {
+      id,
+      name,
+      count: (issuesByAsset[id]?.count ?? 0) + 1,
+    };
+  });
 
   const topAssets = Object.values(issuesByAsset)
     .sort((a, b) => b.count - a.count)
@@ -78,61 +78,52 @@ export default async function PanelIndexPage() {
   const maintenance =
     assets?.filter((a) => a.status === "maintenance").length ?? 0;
   const working = assets?.filter((a) => a.status === "working").length ?? 0;
-
   const isPro = profile?.plan === "pro";
   const limit = isPro ? null : 10;
 
   const stats: Stat[] = [
     {
-      label: "Uszkodzone maszyny",
-      value: broken,
-      icon: TriangleAlert,
-      className: "text-red-600 bg-red-50/50 border-red-200",
-      iconClass: "text-red-500",
-    },
-    {
       label: "Uszkodzone",
       value: broken,
       icon: TriangleAlert,
-      className: "text-red-600 bg-red-50/50 border-red-200",
+      className: "bg-white border-gray-200",
+      iconClass: "text-red-500",
+    },
+    {
+      label: "Awarie w tym miesiącu",
+      value: issuesThisMonth ?? 0,
+      icon: Calendar,
+      className: "bg-white border-gray-200",
+      iconClass: "text-orange-500",
+    },
+    {
+      label: "Uszkodzone maszyny",
+      value: broken,
+      icon: TriangleAlert,
+      className: "bg-white border-gray-200",
       iconClass: "text-red-500",
     },
     {
       label: "W serwisie",
       value: maintenance,
       icon: Wrench,
-      className: "text-yellow-600 bg-yellow-50/50 border-yellow-200",
+      className: "bg-white border-gray-200",
       iconClass: "text-yellow-500",
     },
     {
       label: "Sprawne",
       value: working,
       icon: CheckCircle,
-      className: "text-green-600 bg-green-50/50 border-green-200",
+      className: "bg-white border-gray-200",
       iconClass: "text-green-500",
     },
     {
       label: "Maszyny",
       value: isPro ? `${total}` : `${total} / ${limit}`,
       icon: Factory,
-      className: "text-blue-600 bg-blue-50/50 border-blue-200",
+      className: "bg-white border-gray-200",
       iconClass: "text-blue-500",
     },
-
-    {
-      label: "Awarie w tym miesiącu",
-      value: issuesThisMonth ?? 0,
-      icon: Calendar,
-      className: "text-orange-600 bg-orange-50/50 border-orange-200",
-      iconClass: "text-orange-500",
-    },
-    // {
-    //   label: "Serwisy w tym miesiącu",
-    //   value: servicesThisMonth ?? 0,
-    //   icon: Calendar,
-    //   className: "text-purple-600 bg-purple-50/50 border-purple-100",
-    //   iconClass: "text-purple-500",
-    // },
   ];
 
   return (
@@ -170,16 +161,93 @@ export default async function PanelIndexPage() {
       </div>
 
       {/* Serwisy */}
-      {/* <h2 className="text-xs font-medium text-gray-400 tracking-wider mb-3">
-        Serwisy
-      </h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
-        {stats
-          .filter((s) => ["Serwisy w tym miesiącu"].includes(s.label))
-          .map((stat) => (
-            <PanelCard key={stat.label} stat={stat} />
-          ))}
-      </div> */}
+      <div className="mb-6">
+        <h2 className="text-xs font-medium text-gray-400 tracking-wider mb-3">
+          Zbliżające się serwisy
+        </h2>
+
+        {isPro ? (
+          <div className="space-y-2 max-w-sm">
+            {(upcomingServices ?? []).length === 0 ? (
+              <p className="text-sm text-gray-400">
+                Brak zaplanowanych serwisów.
+              </p>
+            ) : (
+              (upcomingServices ?? []).map((s: any) => {
+                const date = new Date(s.next_service_at).toLocaleDateString(
+                  "pl-PL",
+                  {
+                    day: "numeric",
+                    month: "long",
+                    year: "numeric",
+                  },
+                );
+                const daysLeft = Math.ceil(
+                  (new Date(s.next_service_at).getTime() - now.getTime()) /
+                    (1000 * 60 * 60 * 24),
+                );
+                const isUrgent = daysLeft <= 7;
+
+                return (
+                  <Link
+                    key={s.id}
+                    href={`/panel/serwisy/${s.assets.id ?? s.asset_id}`}
+                    className="flex items-center justify-between bg-white border border-gray-200 rounded-lg px-4 py-2.5 hover:border-blue-200 hover:bg-blue-50/30 transition-all"
+                  >
+                    <span className="text-sm font-medium text-gray-900">
+                      {(s.assets as any).name}
+                    </span>
+                    <span
+                      className={`text-xs font-medium ${isUrgent ? "text-red-600" : "text-gray-500"}`}
+                    >
+                      {date}
+                    </span>
+                  </Link>
+                );
+              })
+            )}
+            <Button asChild variant="secondary">
+              <Link
+                href="/panel/serwisy"
+                // className="text-xs text-blue-600 hover:text-blue-700 font-medium block mt-1"
+              >
+                Zobacz wszystkie serwisy
+              </Link>
+            </Button>
+          </div>
+        ) : (
+          <div className="relative max-w-sm">
+            {/* Blur overlay */}
+            <div className="space-y-2 blur-xs pointer-events-none select-none">
+              {[
+                { name: "Maszyna przykładowa", date: "15 stycznia 2025" },
+                { name: "Urządzenie nr 2", date: "22 stycznia 2025" },
+                { name: "Sprzęt w hali A", date: "1 lutego 2025" },
+              ].map((item) => (
+                <div
+                  key={item.name}
+                  className="flex items-center justify-between bg-white border border-gray-200 rounded-lg px-4 py-2.5"
+                >
+                  <span className="text-sm font-medium text-gray-900">
+                    {item.name}
+                  </span>
+                  <span className="text-xs text-gray-500">{item.date}</span>
+                </div>
+              ))}
+            </div>
+
+            {/* Lock overlay */}
+            <div className="absolute inset-0 flex items-center justify-center">
+              <ProFeaturesModal>
+                <Button variant="default">
+                  <Lock size={14} />
+                  Odblokuj w planie Pro
+                </Button>
+              </ProFeaturesModal>
+            </div>
+          </div>
+        )}
+      </div>
 
       {/* Najczęściej psujące się */}
       {topAssets.length > 0 && (
@@ -195,11 +263,11 @@ export default async function PanelIndexPage() {
               <Link
                 href={`/panel/maszyny/${asset.id}`}
                 key={asset.name}
-                className="flex items-center justify-between bg-white border border-gray-200 rounded-lg px-4 py-2.5 hover:bg-primary hover:text-white"
+                className="flex items-center justify-between bg-white border border-gray-200 rounded-lg px-4 py-2.5 hover:border-blue-200 hover:bg-blue-50/30 transition-all"
               >
                 <div className="flex items-center gap-3">
                   <span className="text-xs font-medium w-4">{i + 1}.</span>
-                  <span className="text-sm  font-medium">{asset.name}</span>
+                  <span className="text-sm font-medium">{asset.name}</span>
                 </div>
                 <span className="text-xs">
                   {asset.count}{" "}
