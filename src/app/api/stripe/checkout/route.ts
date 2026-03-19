@@ -47,9 +47,6 @@ export async function POST() {
     success_url: `${process.env.NEXT_PUBLIC_APP_URL}/panel?success=true`,
     cancel_url: `${process.env.NEXT_PUBLIC_APP_URL}/cennik?canceled=true`,
     metadata: { supabase_user_id: user.id },
-    // firma
-    tax_id_collection: { enabled: true },
-    automatic_tax: { enabled: true },
   });
 
   return NextResponse.json({ url: session.url });
