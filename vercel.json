@@ -3,6 +3,10 @@
     {
       "path": "/api/services/notify",
       "schedule": "0 7 * * *"
+    },
+    {
+      "path": "/api/reports/weekly",
+      "schedule": "0 7 * * 1"
     }
   ]
 }

@@ -5,6 +5,7 @@ import { createClient } from "@/lib/supabase/server";
 import { Separator } from "@/components/ui/separator";
 import SubscriptionSection from "@/components/panel/subscription-panel";
 import { ServiceSettings } from "@/components/panel/settings-service-section";
+import { ReportsSettings } from "@/components/panel/ustawienia/reports-section";
 
 export default async function SettingsPage() {
   const userId = (await headers()).get("x-user-id");
@@ -41,6 +42,14 @@ export default async function SettingsPage() {
         userId={userId}
         defaultServicePhone={data?.default_service_phone}
         defaultServiceEmail={data?.default_service_email}
+      />
+
+      <Separator className="my-5" />
+      <ReportsSettings
+        userId={userId}
+        reportIssues={data?.report_issues ?? true}
+        reportServices={data?.report_services ?? true}
+        isPro={data?.plan === "pro"}
       />
     </section>
   );

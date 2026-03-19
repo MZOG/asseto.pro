@@ -216,14 +216,14 @@ export function AppSidebar() {
         </SidebarGroup>
       </SidebarContent>
 
-      <div className="px-3 pb-3 hidden md:block">
+      {/* <div className="px-3 pb-3 hidden md:block">
         <div className="bg-primary rounded-lg p-3">
           <p className="text-sm text-white">
             Jesteśmy w fazie testów. Mogą pojawić się błędy, dziękujemy za
             cierpliwość!
           </p>
         </div>
-      </div>
+      </div> */}
 
       <SidebarFooter>
         <SidebarMenu>
