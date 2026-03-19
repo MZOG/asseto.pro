@@ -160,128 +160,130 @@ export default async function PanelIndexPage() {
           ))}
       </div>
 
-      {/* Serwisy */}
-      <div className="mb-6">
-        <h2 className="text-xs font-medium text-gray-400 tracking-wider mb-3">
-          Zbliżające się serwisy
-        </h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        {/* Serwisy */}
+        <div className="mb-6">
+          <h2 className="text-xs font-medium text-gray-400 tracking-wider mb-3">
+            Zbliżające się serwisy
+          </h2>
 
-        {isPro ? (
-          <div className="space-y-2 max-w-sm">
-            {(upcomingServices ?? []).length === 0 ? (
-              <p className="text-sm text-gray-400">
-                Brak zaplanowanych serwisów.
-              </p>
-            ) : (
-              (upcomingServices ?? []).map((s: any) => {
-                const date = new Date(s.next_service_at).toLocaleDateString(
-                  "pl-PL",
-                  {
-                    day: "numeric",
-                    month: "long",
-                    year: "numeric",
-                  },
-                );
-                const daysLeft = Math.ceil(
-                  (new Date(s.next_service_at).getTime() - now.getTime()) /
-                    (1000 * 60 * 60 * 24),
-                );
-                const isUrgent = daysLeft <= 7;
+          {isPro ? (
+            <div className="space-y-2 max-w-sm">
+              {(upcomingServices ?? []).length === 0 ? (
+                <p className="text-sm text-gray-400">
+                  Brak zaplanowanych serwisów.
+                </p>
+              ) : (
+                (upcomingServices ?? []).map((s: any) => {
+                  const date = new Date(s.next_service_at).toLocaleDateString(
+                    "pl-PL",
+                    {
+                      day: "numeric",
+                      month: "long",
+                      year: "numeric",
+                    },
+                  );
+                  const daysLeft = Math.ceil(
+                    (new Date(s.next_service_at).getTime() - now.getTime()) /
+                      (1000 * 60 * 60 * 24),
+                  );
+                  const isUrgent = daysLeft <= 7;
 
-                return (
-                  <Link
-                    key={s.id}
-                    href={`/panel/serwisy/${s.assets.id ?? s.asset_id}`}
-                    className="flex items-center justify-between bg-white border border-gray-200 rounded-lg px-4 py-2.5 hover:border-blue-200 hover:bg-blue-50/30 transition-all"
+                  return (
+                    <Link
+                      key={s.id}
+                      href={`/panel/serwisy/${s.assets.id ?? s.asset_id}`}
+                      className="flex items-center justify-between bg-white border border-gray-200 rounded-lg px-4 py-2.5 hover:border-blue-200 hover:bg-blue-50/30 transition-all"
+                    >
+                      <span className="text-sm font-medium text-gray-900">
+                        {(s.assets as any).name}
+                      </span>
+                      <span
+                        className={`text-xs font-medium ${isUrgent ? "text-red-600" : "text-gray-500"}`}
+                      >
+                        {date}
+                      </span>
+                    </Link>
+                  );
+                })
+              )}
+              <Button asChild variant="secondary">
+                <Link
+                  href="/panel/serwisy"
+                  // className="text-xs text-blue-600 hover:text-blue-700 font-medium block mt-1"
+                >
+                  Zobacz wszystkie serwisy
+                </Link>
+              </Button>
+            </div>
+          ) : (
+            <div className="relative max-w-sm">
+              {/* Blur overlay */}
+              <div className="space-y-2 blur-xs pointer-events-none select-none">
+                {[
+                  { name: "Maszyna przykładowa", date: "15 stycznia 2025" },
+                  { name: "Urządzenie nr 2", date: "22 stycznia 2025" },
+                  { name: "Sprzęt w hali A", date: "1 lutego 2025" },
+                ].map((item) => (
+                  <div
+                    key={item.name}
+                    className="flex items-center justify-between bg-white border border-gray-200 rounded-lg px-4 py-2.5"
                   >
                     <span className="text-sm font-medium text-gray-900">
-                      {(s.assets as any).name}
+                      {item.name}
                     </span>
-                    <span
-                      className={`text-xs font-medium ${isUrgent ? "text-red-600" : "text-gray-500"}`}
-                    >
-                      {date}
-                    </span>
-                  </Link>
-                );
-              })
-            )}
-            <Button asChild variant="secondary">
-              <Link
-                href="/panel/serwisy"
-                // className="text-xs text-blue-600 hover:text-blue-700 font-medium block mt-1"
-              >
-                Zobacz wszystkie serwisy
-              </Link>
-            </Button>
-          </div>
-        ) : (
-          <div className="relative max-w-sm">
-            {/* Blur overlay */}
-            <div className="space-y-2 blur-xs pointer-events-none select-none">
-              {[
-                { name: "Maszyna przykładowa", date: "15 stycznia 2025" },
-                { name: "Urządzenie nr 2", date: "22 stycznia 2025" },
-                { name: "Sprzęt w hali A", date: "1 lutego 2025" },
-              ].map((item) => (
-                <div
-                  key={item.name}
-                  className="flex items-center justify-between bg-white border border-gray-200 rounded-lg px-4 py-2.5"
-                >
-                  <span className="text-sm font-medium text-gray-900">
-                    {item.name}
-                  </span>
-                  <span className="text-xs text-gray-500">{item.date}</span>
-                </div>
-              ))}
-            </div>
+                    <span className="text-xs text-gray-500">{item.date}</span>
+                  </div>
+                ))}
+              </div>
 
-            {/* Lock overlay */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <ProFeaturesModal>
-                <Button variant="default">
-                  <Lock size={14} />
-                  Odblokuj w planie Pro
-                </Button>
-              </ProFeaturesModal>
+              {/* Lock overlay */}
+              <div className="absolute inset-0 flex items-center justify-center">
+                <ProFeaturesModal>
+                  <Button variant="default">
+                    <Lock size={14} />
+                    Odblokuj w planie Pro
+                  </Button>
+                </ProFeaturesModal>
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* Najczęściej psujące się */}
+        {topAssets.length > 0 && (
+          <div>
+            <div className="flex items-center gap-2 mb-3">
+              <TrendingUp size={15} className="text-gray-400" />
+              <h2 className="text-xs font-medium text-gray-400 tracking-wider">
+                Najczęściej psujące się maszyny
+              </h2>
+            </div>
+            <div className="space-y-2 max-w-sm">
+              {topAssets.map((asset, i) => (
+                <Link
+                  href={`/panel/maszyny/${asset.id}`}
+                  key={asset.name}
+                  className="flex items-center justify-between bg-white border border-gray-200 rounded-lg px-4 py-2.5 hover:border-blue-200 hover:bg-blue-50/30 transition-all"
+                >
+                  <div className="flex items-center gap-3">
+                    <span className="text-xs font-medium w-4">{i + 1}.</span>
+                    <span className="text-sm font-medium">{asset.name}</span>
+                  </div>
+                  <span className="text-xs">
+                    {asset.count}{" "}
+                    {asset.count === 1
+                      ? "awaria"
+                      : asset.count < 5
+                        ? "awarie"
+                        : "awarii"}
+                  </span>
+                </Link>
+              ))}
             </div>
           </div>
         )}
       </div>
-
-      {/* Najczęściej psujące się */}
-      {topAssets.length > 0 && (
-        <div>
-          <div className="flex items-center gap-2 mb-3">
-            <TrendingUp size={15} className="text-gray-400" />
-            <h2 className="text-xs font-medium text-gray-400 tracking-wider">
-              Najczęściej psujące się maszyny
-            </h2>
-          </div>
-          <div className="space-y-2 max-w-sm">
-            {topAssets.map((asset, i) => (
-              <Link
-                href={`/panel/maszyny/${asset.id}`}
-                key={asset.name}
-                className="flex items-center justify-between bg-white border border-gray-200 rounded-lg px-4 py-2.5 hover:border-blue-200 hover:bg-blue-50/30 transition-all"
-              >
-                <div className="flex items-center gap-3">
-                  <span className="text-xs font-medium w-4">{i + 1}.</span>
-                  <span className="text-sm font-medium">{asset.name}</span>
-                </div>
-                <span className="text-xs">
-                  {asset.count}{" "}
-                  {asset.count === 1
-                    ? "awaria"
-                    : asset.count < 5
-                      ? "awarie"
-                      : "awarii"}
-                </span>
-              </Link>
-            ))}
-          </div>
-        </div>
-      )}
     </section>
   );
 }
