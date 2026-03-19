@@ -17,6 +17,7 @@ import Link from "next/link";
 import IssueStatusSelect from "@/components/panel/issue-status-select";
 import NotifyServiceButton from "@/components/panel/notify-service-button";
 import { Separator } from "@/components/ui/separator";
+import PrioritySelect from "@/components/panel/awarie/priority-select";
 
 export default async function IssuePage({
   params,
@@ -53,7 +54,10 @@ export default async function IssuePage({
     <section className="max-w-2xl">
       <div className="flex items-center justify-between mb-6">
         <PageHeader title={`Awaria #${issue.id}`} />
-        <IssueStatusSelect issueId={issue.id} currentStatus={issue.status} />
+        <div className="flex items-center gap-2">
+          <PrioritySelect issueId={issue.id} currentPriority={issue.priority} />
+          <IssueStatusSelect issueId={issue.id} currentStatus={issue.status} />
+        </div>
       </div>
 
       <div className="space-y-5">

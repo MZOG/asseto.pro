@@ -3,6 +3,7 @@ import { Card, CardContent, CardFooter, CardHeader } from "../ui/card";
 import StatusBadge from "./status-badge";
 import { Button } from "../ui/button";
 import Link from "next/link";
+import PriorityBadge from "./awarie/priority-badge";
 
 interface IssueProps {
   issue: {
@@ -11,6 +12,7 @@ interface IssueProps {
     description: string | null;
     created_at: string;
     assets: { name: string } | null;
+    priority: string | null;
   };
 }
 
@@ -18,7 +20,11 @@ export default function IssueCard({ issue }: IssueProps) {
   return (
     <Card key={issue.id} className="">
       <CardHeader>
-        <StatusBadge status={issue.status} />
+        <div className="flex flex-col md:flex-row justify-between items-center">
+          <StatusBadge status={issue.status} />
+          <PriorityBadge priority={issue.priority} />
+        </div>
+
         <p className="text-sm font-medium mt-1">{issue.assets?.name ?? "—"}</p>
       </CardHeader>
       <CardContent>

@@ -37,9 +37,9 @@ export function AppSidebar() {
   const { setOpenMobile } = useSidebar();
   const [plan, setPlan] = useState<"free" | "pro">("free");
   const [companyName, setCompanyName] = useState<string>();
-
   const [counts, setCounts] = useState({
     broken: 0,
+    critical: 0,
     maintenance: 0,
     closed: 0,
     assets: 0,
@@ -65,6 +65,12 @@ export function AppSidebar() {
           .from("issues")
           .select("id, assets!inner(owner_id)", { count: "exact", head: true })
           .eq("assets.owner_id", user.id)
+          .eq("status", "broken")
+          .eq("priority", "critical"),
+        supabase
+          .from("issues")
+          .select("id, assets!inner(owner_id)", { count: "exact", head: true })
+          .eq("assets.owner_id", user.id)
           .eq("status", "maintenance"),
         supabase
           .from("issues")
@@ -75,11 +81,12 @@ export function AppSidebar() {
           .from("assets")
           .select("id", { count: "exact", head: true })
           .eq("owner_id", user.id),
-      ]).then(([profile, broken, maintenance, closed, assets]) => {
+      ]).then(([profile, broken, critical, maintenance, closed, assets]) => {
         setCompanyName(profile.data?.company_name || "Asseto");
         if (profile.data?.plan === "pro") setPlan("pro");
         setCounts({
           broken: broken.count ?? 0,
+          critical: critical.count ?? 0,
           maintenance: maintenance.count ?? 0,
           closed: closed.count ?? 0,
           assets: assets.count ?? 0,
@@ -88,8 +95,18 @@ export function AppSidebar() {
     });
   }, []);
 
-  const Badge = ({ count }: { count: number }) => (
-    <span className="ml-auto text-xs bg-gray-100 text-gray-500 font-medium px-1.5 py-0.5 rounded-md min-w-5 text-center">
+  const Badge = ({
+    count,
+    critical = false,
+  }: {
+    count: number;
+    critical?: boolean;
+  }) => (
+    <span
+      className={`ml-auto text-xs font-medium px-1.5 py-0.5 rounded-md min-w-5 text-center ${
+        critical ? "bg-red-100 text-red-600" : "bg-gray-100 text-gray-500"
+      }`}
+    >
       {count}
     </span>
   );
@@ -154,39 +171,45 @@ export function AppSidebar() {
           <SidebarGroupLabel>Awarie</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              {[
-                {
-                  href: "/panel/awarie",
-                  label: "Aktywne",
-                  icon: TriangleAlert,
-                  count: counts.broken,
-                },
-                {
-                  href: "/panel/awarie/serwis",
-                  label: "W serwisie",
-                  icon: Wrench,
-                  count: counts.maintenance,
-                },
-                {
-                  href: "/panel/awarie/zamkniete",
-                  label: "Zamknięte",
-                  icon: CheckCheck,
-                  count: counts.closed,
-                },
-              ].map((link) => (
-                <SidebarMenuItem key={link.href}>
-                  <SidebarMenuButton
-                    asChild
-                    isActive={pathname === link.href}
-                    className="text-sm"
-                  >
-                    <Link href={link.href} onClick={handleNavClick}>
-                      <link.icon size={16} /> {link.label}
-                      <Badge count={link.count} />
-                    </Link>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
+              <SidebarMenuItem>
+                <SidebarMenuButton
+                  asChild
+                  isActive={pathname === "/panel/awarie"}
+                  className="text-sm"
+                >
+                  <Link href="/panel/awarie" onClick={handleNavClick}>
+                    <TriangleAlert size={16} /> Aktywne
+                    <Badge
+                      count={counts.broken}
+                      critical={counts.critical > 0}
+                    />
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton
+                  asChild
+                  isActive={pathname === "/panel/awarie/serwis"}
+                  className="text-sm"
+                >
+                  <Link href="/panel/awarie/serwis" onClick={handleNavClick}>
+                    <Wrench size={16} /> W serwisie
+                    <Badge count={counts.maintenance} />
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton
+                  asChild
+                  isActive={pathname === "/panel/awarie/zamkniete"}
+                  className="text-sm"
+                >
+                  <Link href="/panel/awarie/zamkniete" onClick={handleNavClick}>
+                    <CheckCheck size={16} /> Zamknięte
+                    <Badge count={counts.closed} />
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
@@ -211,24 +234,26 @@ export function AppSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
 
-        <SidebarGroup>
-          <SidebarGroupLabel>Serwis</SidebarGroupLabel>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              <SidebarMenuItem>
-                <SidebarMenuButton
-                  asChild
-                  isActive={pathname.startsWith("/panel/serwisy")}
-                  className="text-sm"
-                >
-                  <Link href="/panel/serwisy" onClick={handleNavClick}>
-                    <Wrench size={16} /> Serwisy
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
+        {plan === "pro" && (
+          <SidebarGroup>
+            <SidebarGroupLabel>Serwis</SidebarGroupLabel>
+            <SidebarGroupContent>
+              <SidebarMenu>
+                <SidebarMenuItem>
+                  <SidebarMenuButton
+                    asChild
+                    isActive={pathname.startsWith("/panel/serwisy")}
+                    className="text-sm"
+                  >
+                    <Link href="/panel/serwisy" onClick={handleNavClick}>
+                      <Wrench size={16} /> Serwisy
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              </SidebarMenu>
+            </SidebarGroupContent>
+          </SidebarGroup>
+        )}
 
         <SidebarGroup>
           <SidebarGroupLabel>Pomoc</SidebarGroupLabel>
@@ -260,15 +285,6 @@ export function AppSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
-
-      {/* <div className="px-3 pb-3 hidden md:block">
-        <div className="bg-primary rounded-lg p-3">
-          <p className="text-sm text-white">
-            Jesteśmy w fazie testów. Mogą pojawić się błędy, dziękujemy za
-            cierpliwość!
-          </p>
-        </div>
-      </div> */}
 
       <SidebarFooter>
         <SidebarMenu>

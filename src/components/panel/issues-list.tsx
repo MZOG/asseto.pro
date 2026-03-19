@@ -55,6 +55,7 @@ interface Issue {
   closed_at: string | null;
   description: string | null;
   status: string | null;
+  priority: string | null;
   assets: { name: string } | null;
 }
 
@@ -80,7 +81,7 @@ export default function IssuesList({ status, isPro, userId }: Props) {
       const { data } = await supabase
         .from("issues")
         .select(
-          "id, created_at, closed_at, description, status, assets!inner(name, owner_id)",
+          "id, created_at, closed_at, description, status, priority, assets!inner(name, owner_id)",
         )
         .eq("status", status)
         .eq("assets.owner_id", userId)

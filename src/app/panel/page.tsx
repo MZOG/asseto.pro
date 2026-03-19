@@ -46,7 +46,7 @@ export default async function PanelIndexPage() {
       .eq("assets.owner_id", userId),
     supabase
       .from("services")
-      .select("id, next_service_at, assets!inner(name, owner_id)")
+      .select("id, next_service_at, asset_id, assets!inner(name, owner_id)")
       .eq("assets.owner_id", userId)
       .gte("next_service_at", now.toISOString().split("T")[0])
       .order("next_service_at", { ascending: true })
@@ -192,7 +192,7 @@ export default async function PanelIndexPage() {
                   return (
                     <Link
                       key={s.id}
-                      href={`/panel/serwisy/${s.assets.id ?? s.asset_id}`}
+                      href={`/panel/serwisy/${s.asset_id}`}
                       className="flex items-center justify-between bg-white border border-gray-200 rounded-lg px-4 py-2.5 hover:border-blue-200 hover:bg-blue-50/30 transition-all"
                     >
                       <span className="text-sm font-medium text-gray-900">

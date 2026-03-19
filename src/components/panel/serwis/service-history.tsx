@@ -14,6 +14,8 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
+import { serviceTypeConfig } from "@/lib/utils/service";
+
 const typeConfig = {
   inspection: {
     label: "Przegląd",
@@ -78,8 +80,8 @@ export default function ServiceHistory({
     <div className="space-y-2">
       {services.map((service) => {
         const type =
-          typeConfig[service.type as keyof typeof typeConfig] ??
-          typeConfig.inspection;
+          serviceTypeConfig[service.type as keyof typeof serviceTypeConfig] ??
+          serviceTypeConfig.inspection;
         const TypeIcon = type.icon;
         const isExpanded = expanded === service.id;
         const date = new Date(service.serviced_at).toLocaleDateString("pl-PL", {
