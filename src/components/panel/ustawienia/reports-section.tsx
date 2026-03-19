@@ -63,7 +63,10 @@ export function ReportsSettings({
             Raporty tygodniowe dostępne w planie Pro.
           </p>
           <ProFeaturesModal>
-            <Button>Przejdź na Pro →</Button>
+            <Button variant="default">
+              <Lock size={14} />
+              Odblokuj w planie Pro
+            </Button>
           </ProFeaturesModal>
         </div>
       ) : (

@@ -4,8 +4,9 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
-import { Mail, Loader2, ChevronDown, ChevronUp } from "lucide-react";
+import { Mail, Loader2, ChevronDown, ChevronUp, Lock } from "lucide-react";
 import { useUpgrade } from "@/hooks/use-upgrade";
+import { ProFeaturesModal } from "./pro-features-modal";
 
 interface Props {
   issueId: string;
@@ -88,13 +89,12 @@ export default function NotifyServiceButton({
         <p className="text-xs text-gray-500 flex-1">
           Powiadomienia e-mail do serwisanta dostępne w planie Pro.
         </p>
-        <Button onClick={upgrade} disabled={upgradeLoading}>
-          {loading ? (
-            <Loader2 size={11} className="animate-spin inline" />
-          ) : (
-            "Przejdź na Pro →"
-          )}
-        </Button>
+        <ProFeaturesModal>
+          <Button variant="default">
+            <Lock size={14} />
+            Odblokuj w planie Pro
+          </Button>
+        </ProFeaturesModal>
       </div>
     );
   }

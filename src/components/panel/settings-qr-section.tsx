@@ -17,6 +17,7 @@ import {
 import { Loader2, Lock } from "lucide-react";
 import Link from "next/link";
 import { useUpgrade } from "@/hooks/use-upgrade";
+import { ProFeaturesModal } from "./pro-features-modal";
 
 interface QrSettingsProps {
   userId: string | null;
@@ -78,13 +79,12 @@ export function QrSettings({
             Edycja etykiet dostępna w planie Pro.
           </p>
 
-          <Button onClick={upgrade} disabled={loading}>
-            {loading ? (
-              <Loader2 size={11} className="animate-spin inline" />
-            ) : (
-              "Przejdź na Pro →"
-            )}
-          </Button>
+          <ProFeaturesModal>
+            <Button variant="default">
+              <Lock size={14} />
+              Odblokuj w planie Pro
+            </Button>
+          </ProFeaturesModal>
         </div>
       )}
       <div className="space-y-1.5">
