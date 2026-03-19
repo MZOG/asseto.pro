@@ -42,10 +42,20 @@ export default function Hero() {
             asChild
             className="bg-blue-600 hover:bg-blue-700! text-white rounded-lg px-5 shadow-lg shadow-blue-200"
           >
-            <Link href="/rejestracja">Wypróbuj za darmo</Link>
+            <Link
+              href="/rejestracja"
+              data-umami-event="Hero Singup"
+              data-umami-event-page="Hero Signup Register"
+            >
+              Wypróbuj za darmo
+            </Link>
           </Button>
           <Button asChild variant="ghost" size="lg" className="rounded-lg">
-            <Link href="/logowanie">
+            <Link
+              href="/logowanie"
+              data-umami-event="Hero Login"
+              data-umami-event-page="Hero Login Click"
+            >
               <LogIn size={16} className="mr-1.5" />
               Zaloguj się
             </Link>

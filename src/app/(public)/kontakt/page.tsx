@@ -268,8 +268,8 @@ export default function KontaktPage() {
                 type="submit"
                 disabled={loading}
                 className="w-full bg-blue-600 hover:bg-blue-700 text-white"
-                data-umami-event="Wyślij wiadomość"
-                data-umami-event-page="Formularz kontaktowy"
+                data-umami-event="Contact"
+                data-umami-event-page="Contact Form Button Send"
               >
                 {loading ? (
                   <>
