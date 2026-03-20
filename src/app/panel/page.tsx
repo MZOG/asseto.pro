@@ -250,13 +250,13 @@ export default async function PanelIndexPage() {
           )}
         </div>
 
-        {/* Najczęściej psujące się */}
+        {/* Najczęściej zgłaszane maszyny */}
         {topAssets.length > 0 && (
           <div>
             <div className="flex items-center gap-2 mb-3">
               <TrendingUp size={15} className="text-gray-400" />
               <h2 className="text-xs font-medium text-gray-400 tracking-wider">
-                Najczęściej psujące się maszyny
+                Najczęściej zgłaszane maszyny
               </h2>
             </div>
             <div className="space-y-2 max-w-sm">
