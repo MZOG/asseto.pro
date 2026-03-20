@@ -32,7 +32,7 @@ export default function LoginForm() {
   useEffect(() => {
     if (searchParams.get("demo") === "true") {
       setEmail("demo@asseto.pro");
-      setPassword("demo");
+      setPassword("demo123");
     }
   }, []);
 
