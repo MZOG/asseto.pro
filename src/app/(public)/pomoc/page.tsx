@@ -85,7 +85,7 @@ const faqs = [
 
 export default function PomocPage() {
   return (
-    <div className="pt-5 pb-20 px-4">
+    <div className="pt-14 pb-20 px-4">
       <div className="max-w-2xl mx-auto">
         <div className="mb-12 text-center">
           <span className="text-xs font-semibold uppercase tracking-widest text-blue-600 mb-3 block">

@@ -89,7 +89,7 @@ const plans = [
 
 export default function CennikPage() {
   return (
-    <div className="pt-5 pb-20 px-4">
+    <div className="pt-14 pb-20 px-4">
       <div className="max-w-5xl mx-auto">
         {/* Header */}
         <div className="text-center mb-14">

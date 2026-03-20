@@ -84,7 +84,7 @@ export default function KontaktPage() {
   };
 
   return (
-    <div className="pt-5 mb-20 px-4">
+    <div className="pt-14 pb-20 px-4">
       <div className="max-w-5xl mx-auto">
         {/* Header — wycentrowany od md */}
         <div className="mb-14 text-left md:text-center">
