@@ -2,6 +2,7 @@ import HowItWorks from "@/components/public/how-it-works";
 import Hero from "@/components/public/hero-section";
 import ScanningSteps from "@/components/public/scanning-steps";
 import { Metadata } from "next";
+import CtaSection from "@/components/public/cta-section";
 
 // export const metadata: Metadata = {
 //   title: "Asseto - Zarządzaj usterkami przez kod QR",
@@ -24,6 +25,7 @@ export default function Home() {
       <Hero />
       <HowItWorks />
       <ScanningSteps />
+      <CtaSection />
     </>
   );
 }

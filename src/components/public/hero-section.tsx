@@ -54,6 +54,18 @@ export default function Hero() {
           </Button>
         </div>
 
+        <div className="flex items-center justify-center gap-2 mt-4 bg-white border border-gray-200 rounded-xl px-4 py-3 max-w-md mx-auto">
+          <span className="text-xs text-gray-500">
+            Chcesz zobaczyć jak działa Asseto?
+          </span>
+          <Link
+            href="/logowanie?demo=true"
+            className="text-xs font-medium text-blue-600 hover:text-blue-700 transition-colors"
+          >
+            Zaloguj się na konto demo
+          </Link>
+        </div>
+
         {/* Mini badges */}
         <div className="flex flex-wrap items-center justify-center gap-4 mt-8">
           {badges.map(({ icon: Icon, label }) => (

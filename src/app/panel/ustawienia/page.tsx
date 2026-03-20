@@ -17,7 +17,7 @@ export default async function SettingsPage() {
     .eq("id", userId)
     .single();
 
-  const { qr_label_top, qr_label_bottom, plan } = data;
+  const { qr_label_top, qr_label_bottom, qr_print_size, plan } = data;
 
   return (
     <section>
@@ -33,7 +33,7 @@ export default async function SettingsPage() {
         userId={userId}
         defaultLabelTop={qr_label_top}
         defaultLabelBottom={qr_label_bottom}
-        defaultPrintSize={data?.qr_print_size}
+        defaultPrintSize={qr_print_size}
         isPro={plan === "pro"}
       />
       <Separator className="my-5" />
