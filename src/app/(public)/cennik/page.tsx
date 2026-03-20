@@ -59,6 +59,7 @@ const plans = [
         label: "Przypomnienia e-mail o zbliżających się serwisach",
         included: true,
       },
+      { label: "Panel serwisanta z dostępem przez link", included: true },
       { label: "Raporty", included: true },
       { label: "Eksport danych", included: true },
       { label: "Priorytetowe wsparcie", included: true },

@@ -36,7 +36,7 @@ export default async function IssuePage({
       assets!inner(
         id, name, serial_number, reference_number,
         location, image_url, service_phone, service_email,
-        owner_id,
+        owner_id, service_token,
         profiles!inner(company_name, plan, default_service_email)
       )
     `,
@@ -234,6 +234,7 @@ export default async function IssuePage({
             companyName={profile?.company_name}
             serviceEmail={asset.service_email ?? profile?.default_service_email}
             isPro={profile?.plan === "pro"}
+            serviceToken={asset.service_token}
           />
         </div>
       </div>

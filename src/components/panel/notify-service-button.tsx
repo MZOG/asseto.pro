@@ -16,6 +16,7 @@ interface Props {
   companyName: string | null;
   serviceEmail: string | null;
   isPro: boolean;
+  serviceToken: string | null;
 }
 
 export default function NotifyServiceButton({
@@ -26,10 +27,15 @@ export default function NotifyServiceButton({
   companyName,
   serviceEmail,
   isPro,
+  serviceToken,
 }: Props) {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const { upgrade, loading: upgradeLoading } = useUpgrade();
+
+  const serviceUrl = serviceToken
+    ? `${window.location.origin}/serwis/${serviceToken}`
+    : null;
 
   const reportedAt = new Date(createdAt).toLocaleString("pl-PL", {
     day: "numeric",
@@ -46,7 +52,11 @@ export default function NotifyServiceButton({
     ``,
     `Opis usterki:`,
     description ?? "Brak opisu",
-  ].join("\n");
+    ``,
+    serviceUrl ? `Panel serwisanta: ${serviceUrl}` : "",
+  ]
+    .filter(Boolean)
+    .join("\n");
 
   const [message, setMessage] = useState(defaultMessage);
 

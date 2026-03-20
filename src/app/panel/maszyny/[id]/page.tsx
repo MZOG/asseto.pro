@@ -10,6 +10,7 @@ import Link from "next/link";
 import { Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { serviceTypeConfig } from "@/lib/utils/service";
+import ServiceTokenSection from "@/components/panel/serwisExternal/service-token-section";
 
 export default async function MaszynaPage({
   params,
@@ -192,6 +193,13 @@ export default async function MaszynaPage({
             </div>
           )}
         </div>
+      )}
+
+      {isPro && (
+        <ServiceTokenSection
+          assetId={asset.id}
+          serviceToken={asset.service_token}
+        />
       )}
 
       {/* Historia awarii */}
