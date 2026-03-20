@@ -25,7 +25,7 @@ const features = [
   "Priorytetowe wsparcie",
 ];
 
-export function ProFeaturesModal() {
+export function ProFeaturesModal({ text }: { text?: string }) {
   const { upgrade, loading } = useUpgrade();
 
   return (
@@ -33,7 +33,7 @@ export function ProFeaturesModal() {
       <DialogTrigger asChild>
         <Button variant="asseto">
           <Zap size={14} />
-          Odblokuj planie Pro
+          {text ? text : "Odblokuj w planie Pro"}
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-sm">

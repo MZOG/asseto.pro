@@ -73,11 +73,13 @@ export function QrSettings({
   return (
     <div className="space-y-4">
       {!isPro && (
-        <div className="flex items-center gap-2 bg-gray-50 border border-gray-200 rounded-lg px-3 py-2.5">
-          <Lock size={13} className="text-gray-400 shrink-0" />
-          <p className="text-xs text-gray-500 flex-1">
-            Edycja etykiet dostępna w planie Pro.
-          </p>
+        <div className="flex flex-col md:flex-row justify-between items-center gap-2 bg-gray-50 border border-gray-200 rounded-lg px-3 py-2.5">
+          <div className="flex gap-1 items-center">
+            <Lock size={13} className="text-gray-400 shrink-0" />
+            <p className="text-xs text-gray-500 flex-1">
+              Edycja etykiet dostępna w planie Pro.
+            </p>
+          </div>
 
           <ProFeaturesModal />
         </div>

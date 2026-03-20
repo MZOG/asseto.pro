@@ -94,11 +94,13 @@ export default function NotifyServiceButton({
 
   if (!isPro) {
     return (
-      <div className="flex items-center gap-2 bg-gray-50 border border-gray-200 rounded-lg px-3 py-2.5 mt-3">
-        <Mail size={14} className="text-gray-400 shrink-0" />
-        <p className="text-xs text-gray-500 flex-1">
-          Powiadomienia e-mail do serwisanta dostępne w planie Pro.
-        </p>
+      <div className="flex flex-col md:flex-row items-center justify-between gap-2 bg-gray-50 border border-gray-200 rounded-lg px-3 py-2.5 mt-3">
+        <div>
+          <Mail size={14} className="text-gray-400 shrink-0 hidden" />
+          <p className="text-xs text-gray-500 flex-1 text-center md:text-left">
+            Powiadomienia e-mail do serwisanta dostępne w planie Pro.
+          </p>
+        </div>
         <ProFeaturesModal />
       </div>
     );

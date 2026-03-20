@@ -118,7 +118,7 @@ export default function SubscriptionSection({
           <div className="space-y-3">
             {!isPro && (
               <div>
-                <ul className="space-y-2 columns-3 my-2 text-sm">
+                <ul className="space-y-2 md:columns-3 my-2 text-sm">
                   <li className="flex items-center gap-2.5 text-gray-700">
                     <Check size={14} className="text-blue-600 shrink-0" />
                     Nielimitowane maszyny

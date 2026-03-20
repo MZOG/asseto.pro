@@ -243,7 +243,7 @@ export default function IssuesList({ status, isPro, userId }: Props) {
               </Button>
             </>
           ) : (
-            <ProFeaturesModal />
+            <ProFeaturesModal text="Eksport dostępny w Pro" />
           )}
         </div>
       </div>

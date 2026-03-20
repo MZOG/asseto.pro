@@ -16,6 +16,7 @@ import { PanelCard, type Stat } from "@/components/panel/panel-card";
 import { ProFeaturesModal } from "@/components/panel/pro-features-modal";
 import { Button } from "@/components/ui/button";
 import DashboardCharts from "@/components/panel/dashboard-charts";
+import { cn } from "@/lib/utils";
 
 export default async function PanelIndexPage() {
   const userId = (await headers()).get("x-user-id");
@@ -314,13 +315,9 @@ export default async function PanelIndexPage() {
           <h2 className="text-xs font-medium text-gray-400 tracking-wider mb-3">
             Analityka
           </h2>
-          <div className="blur-sm pointer-events-none select-none space-y-4">
-            <div className="h-24 bg-white border border-gray-200 rounded-xl" />
-            <div className="h-48 bg-white border border-gray-200 rounded-xl" />
-            <div className="h-40 bg-white border border-gray-200 rounded-xl" />
-          </div>
-          <div className="absolute inset-0 flex items-center justify-center">
-            <ProFeaturesModal />
+
+          <div>
+            <ProFeaturesModal text="Analityka dostępna w Pro" />
           </div>
         </div>
       )}
