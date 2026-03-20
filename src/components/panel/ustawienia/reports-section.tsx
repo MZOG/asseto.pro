@@ -62,12 +62,7 @@ export function ReportsSettings({
           <p className="text-xs text-gray-500 flex-1">
             Raporty tygodniowe dostępne w planie Pro.
           </p>
-          <ProFeaturesModal>
-            <Button variant="default">
-              <Lock size={14} />
-              Odblokuj w planie Pro
-            </Button>
-          </ProFeaturesModal>
+          <ProFeaturesModal />
         </div>
       ) : (
         <div className="space-y-4 bg-white border border-gray-200 rounded-xl p-5 max-w-lg">
