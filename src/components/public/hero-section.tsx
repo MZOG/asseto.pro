@@ -59,6 +59,7 @@ export default function Hero() {
             Chcesz zobaczyć jak działa Asseto?
           </span>
           <Link
+            data-umami-event="Demo login"
             href="/logowanie?demo=true"
             className="md:text-xs font-medium text-blue-600 hover:text-blue-700 transition-colors"
           >
