@@ -129,9 +129,9 @@ export default async function SerwisyPage() {
               <Link
                 key={asset.id}
                 href={`/panel/serwisy/${asset.id}`}
-                className="flex items-center justify-between bg-white border border-gray-200 rounded-xl px-5 py-4 hover:border-blue-200 hover:bg-blue-50/30 transition-all group"
+                className="flex flex-col md:flex-row md:items-center justify-between bg-white border border-gray-200 rounded-xl px-3 py-3 hover:border-blue-200 hover:bg-blue-50/30 transition-all group"
               >
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-2">
                   {/* Status indicator */}
                   <div
                     className={`w-2 h-2 rounded-full shrink-0 ${
@@ -149,17 +149,17 @@ export default async function SerwisyPage() {
                     <p className="text-sm font-semibold text-gray-900">
                       {asset.name}
                     </p>
-                    {asset.location && (
+                    {/* {asset.location && (
                       <p className="text-xs text-gray-400 mt-0.5">
                         {asset.location}
                       </p>
-                    )}
+                    )} */}
                   </div>
                 </div>
 
-                <div className="flex items-center gap-6">
+                <div className="flex items-center justify-between gap-6">
                   {/* Ostatni serwis */}
-                  <div className="hidden sm:block text-right">
+                  <div className="mt-3 md:mt-0 text-right">
                     <p className="text-xs text-gray-400 mb-0.5">
                       Ostatni serwis
                     </p>
@@ -169,7 +169,7 @@ export default async function SerwisyPage() {
                   </div>
 
                   {/* Następny serwis */}
-                  <div className="text-right">
+                  <div className="md:text-right mt-3 md:mt-0">
                     <p className="text-xs text-gray-400 mb-0.5">
                       Następny serwis
                     </p>
@@ -195,7 +195,7 @@ export default async function SerwisyPage() {
 
                   <ChevronRight
                     size={15}
-                    className="text-gray-400 group-hover:text-blue-600 transition-colors shrink-0"
+                    className="hidden text-gray-400 group-hover:text-blue-600 transition-colors shrink-0"
                   />
                 </div>
               </Link>
@@ -205,7 +205,7 @@ export default async function SerwisyPage() {
       )}
 
       {/* Legenda */}
-      <div className="flex items-center gap-5 mt-6">
+      <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-5 mt-6">
         {[
           { color: "bg-red-500", label: "Przeterminowany" },
           { color: "bg-yellow-400", label: "Za 14 dni lub mniej" },

@@ -20,7 +20,7 @@ export default function IssueCard({ issue }: IssueProps) {
   return (
     <Card key={issue.id} className="">
       <CardHeader>
-        <div className="flex flex-col md:flex-row justify-between items-center">
+        <div className="flex md:flex-row justify-between items-center">
           <StatusBadge status={issue.status} />
           <PriorityBadge priority={issue.priority} />
         </div>

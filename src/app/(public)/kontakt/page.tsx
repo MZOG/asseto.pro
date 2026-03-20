@@ -87,7 +87,7 @@ export default function KontaktPage() {
     <div className="pt-14 pb-20 px-4">
       <div className="max-w-5xl mx-auto">
         {/* Header — wycentrowany od md */}
-        <div className="mb-14 text-left md:text-center">
+        <div className="mb-14 text-center">
           <span className="text-xs font-semibold uppercase tracking-widest text-blue-600 mb-3 block">
             Kontakt
           </span>

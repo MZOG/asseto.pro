@@ -52,11 +52,23 @@ export default async function IssuePage({
 
   return (
     <section className="max-w-2xl">
-      <div className="flex items-center justify-between mb-6">
-        <PageHeader title={`Awaria #${issue.id}`} />
+      <div className="flex flex-col md:flex-row md:items-center justify-between mb-6">
+        <PageHeader title={`Awaria #${issue.id}`} className="mb-5 md:mb-0" />
         <div className="flex items-center gap-2">
-          <PrioritySelect issueId={issue.id} currentPriority={issue.priority} />
-          <IssueStatusSelect issueId={issue.id} currentStatus={issue.status} />
+          <div>
+            <p className="text-xs mb-1">Priorytet</p>
+            <PrioritySelect
+              issueId={issue.id}
+              currentPriority={issue.priority}
+            />
+          </div>
+          <div>
+            <p className="text-xs mb-1">Status</p>
+            <IssueStatusSelect
+              issueId={issue.id}
+              currentStatus={issue.status}
+            />
+          </div>
         </div>
       </div>
 
