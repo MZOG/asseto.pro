@@ -234,26 +234,24 @@ export function AppSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
 
-        {plan === "pro" && (
-          <SidebarGroup>
-            <SidebarGroupLabel>Serwis</SidebarGroupLabel>
-            <SidebarGroupContent>
-              <SidebarMenu>
-                <SidebarMenuItem>
-                  <SidebarMenuButton
-                    asChild
-                    isActive={pathname.startsWith("/panel/serwisy")}
-                    className="text-sm"
-                  >
-                    <Link href="/panel/serwisy" onClick={handleNavClick}>
-                      <Wrench size={16} /> Serwisy
-                    </Link>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              </SidebarMenu>
-            </SidebarGroupContent>
-          </SidebarGroup>
-        )}
+        <SidebarGroup>
+          <SidebarGroupLabel>Serwis</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              <SidebarMenuItem>
+                <SidebarMenuButton
+                  asChild
+                  isActive={pathname.startsWith("/panel/serwisy")}
+                  className="text-sm"
+                >
+                  <Link href="/panel/serwisy" onClick={handleNavClick}>
+                    <Wrench size={16} /> Serwisy
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
 
         <SidebarGroup>
           <SidebarGroupLabel>Pomoc</SidebarGroupLabel>

@@ -315,7 +315,6 @@ export default async function PanelIndexPage() {
           <h2 className="text-xs font-medium text-gray-400 tracking-wider mb-3">
             Analityka
           </h2>
-
           <div>
             <ProFeaturesModal text="Analityka dostępna w Pro" />
           </div>
