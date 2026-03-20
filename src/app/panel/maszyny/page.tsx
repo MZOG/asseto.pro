@@ -28,7 +28,7 @@ export default async function EquipmentPage() {
       <div className="flex items-center justify-between mb-6">
         <PageHeader title="Maszyny" className="mb-0" />
         {atLimit ? (
-          <ProFeaturesModal>Dodaj więcej maszyn</ProFeaturesModal>
+          <ProFeaturesModal text="Dodaj więcej maszyn" />
         ) : (
           <Button asChild className="bg-blue-600 hover:bg-blue-700 text-white">
             <Link href="/panel/maszyny/dodaj">
