@@ -91,6 +91,13 @@ export default async function MaszynaPage({
         defaultServiceEmail={profile?.default_service_email}
       />
 
+      {isPro && (
+        <ServiceTokenSection
+          assetId={asset.id}
+          serviceToken={asset.service_token}
+        />
+      )}
+
       {/* Kod QR */}
       <div className="bg-white border border-gray-200 rounded-xl p-5">
         <h2 className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-4">
@@ -193,13 +200,6 @@ export default async function MaszynaPage({
             </div>
           )}
         </div>
-      )}
-
-      {isPro && (
-        <ServiceTokenSection
-          assetId={asset.id}
-          serviceToken={asset.service_token}
-        />
       )}
 
       {/* Historia awarii */}

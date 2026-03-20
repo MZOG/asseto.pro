@@ -87,7 +87,9 @@ export default function IssuesList({ status, isPro, userId }: Props) {
         .eq("assets.owner_id", userId)
         .gte("created_at", from)
         .lte("created_at", to)
-        .order("created_at", { ascending: false });
+        .order(status === "closed" ? "closed_at" : "created_at", {
+          ascending: false,
+        });
 
       setIssues((data as unknown as Issue[]) ?? []);
       setLoading(false);
