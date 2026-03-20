@@ -1,6 +1,14 @@
-export default function PageHeader({ title }: { title: string }) {
+import { cn } from "@/lib/utils";
+
+export default function PageHeader({
+  title,
+  className,
+}: {
+  title: string;
+  className?: string;
+}) {
   return (
-    <header className="mb-5">
+    <header className={cn("mb-5", className)}>
       <h1 className="font-medium">{title}</h1>
     </header>
   );
