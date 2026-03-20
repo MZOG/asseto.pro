@@ -99,12 +99,7 @@ export default function NotifyServiceButton({
         <p className="text-xs text-gray-500 flex-1">
           Powiadomienia e-mail do serwisanta dostępne w planie Pro.
         </p>
-        <ProFeaturesModal>
-          <Button variant="default">
-            <Lock size={14} />
-            Odblokuj w planie Pro
-          </Button>
-        </ProFeaturesModal>
+        <ProFeaturesModal />
       </div>
     );
   }

@@ -92,11 +92,7 @@ export default async function SerwisyPage() {
             Zarządzanie serwisami, historia przeglądów i powiadomienia o
             zbliżających się serwisach.
           </p>
-          <ProFeaturesModal>
-            <Button className="bg-blue-600 hover:bg-blue-700 text-white">
-              Zobacz plan Pro
-            </Button>
-          </ProFeaturesModal>
+          <ProFeaturesModal />
         </div>
       </section>
     );

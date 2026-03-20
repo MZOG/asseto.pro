@@ -10,6 +10,7 @@ import {
   AlertTriangle,
   Link,
   Upload,
+  Check,
 } from "lucide-react";
 import { ProFeaturesModal } from "./pro-features-modal";
 
@@ -117,11 +118,48 @@ export default function SubscriptionSection({
           <div className="space-y-3">
             {!isPro && (
               <div>
-                <ProFeaturesModal>
-                  <p className="text-primary text-sm font-medium flex items-center gap-2 cursor-pointer hover:underline underline-offset-2">
-                    Co zawiera plan Pro? <Upload size={13} />
-                  </p>
-                </ProFeaturesModal>
+                <ul className="space-y-2 columns-3 my-2 text-sm">
+                  <li className="flex items-center gap-2.5 text-gray-700">
+                    <Check size={14} className="text-blue-600 shrink-0" />
+                    Nielimitowane maszyny
+                  </li>
+                  <li className="flex items-center gap-2.5 text-gray-700">
+                    <Check size={14} className="text-blue-600 shrink-0" />
+                    Zgłoszenia przez QR
+                  </li>
+                  <li className="flex items-center gap-2.5 text-gray-700">
+                    <Check size={14} className="text-blue-600 shrink-0" />
+                    Panel zarządzania
+                  </li>
+                  <li className="flex items-center gap-2.5 text-gray-700">
+                    <Check size={14} className="text-blue-600 shrink-0" />
+                    Powiadomienia Telegram
+                  </li>
+                  <li className="flex items-center gap-2.5 text-gray-700">
+                    <Check size={14} className="text-blue-600 shrink-0" />
+                    Zarządzanie serwisami i przeglądami
+                  </li>
+                  <li className="flex items-center gap-2.5 text-gray-700">
+                    <Check size={14} className="text-blue-600 shrink-0" />
+                    Przypomnienia e-mail o zbliżających się serwisach
+                  </li>
+                  <li className="flex items-center gap-2.5 text-gray-700">
+                    <Check size={14} className="text-blue-600 shrink-0" />
+                    Panel serwisanta z dostępem przez link
+                  </li>
+                  <li className="flex items-center gap-2.5 text-gray-700">
+                    <Check size={14} className="text-blue-600 shrink-0" />
+                    Raporty tygodniowe
+                  </li>
+                  <li className="flex items-center gap-2.5 text-gray-700">
+                    <Check size={14} className="text-blue-600 shrink-0" />
+                    Eksport danych (CSV, PDF)
+                  </li>
+                  <li className="flex items-center gap-2.5 text-gray-700">
+                    <Check size={14} className="text-blue-600 shrink-0" />
+                    Priorytetowe wsparcie
+                  </li>
+                </ul>
               </div>
             )}
             <Button

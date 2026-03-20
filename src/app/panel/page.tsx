@@ -9,11 +9,13 @@ import {
   Calendar,
   TrendingUp,
   Lock,
+  Zap,
 } from "lucide-react";
 import Link from "next/link";
 import { PanelCard, type Stat } from "@/components/panel/panel-card";
 import { ProFeaturesModal } from "@/components/panel/pro-features-modal";
 import { Button } from "@/components/ui/button";
+import DashboardCharts from "@/components/panel/dashboard-charts";
 
 export default async function PanelIndexPage() {
   const userId = (await headers()).get("x-user-id");
@@ -32,6 +34,7 @@ export default async function PanelIndexPage() {
     { count: issuesThisMonth },
     { data: topIssues },
     { data: upcomingServices },
+    { data: chartIssues },
   ] = await Promise.all([
     supabase.from("assets").select("id, status").eq("owner_id", userId),
     supabase.from("profiles").select("plan").eq("id", userId).single(),
@@ -51,6 +54,18 @@ export default async function PanelIndexPage() {
       .gte("next_service_at", now.toISOString().split("T")[0])
       .order("next_service_at", { ascending: true })
       .limit(3),
+    supabase
+      .from("issues")
+      .select("created_at, closed_at, status, assets!inner(name, owner_id)")
+      .eq("assets.owner_id", userId)
+      .gte(
+        "created_at",
+        new Date(
+          now.getFullYear(),
+          now.getMonth() - 1,
+          now.getDate(),
+        ).toISOString(),
+      ),
   ]);
 
   const issuesByAsset: Record<
@@ -239,12 +254,7 @@ export default async function PanelIndexPage() {
 
               {/* Lock overlay */}
               <div className="absolute inset-0 flex items-center justify-center">
-                <ProFeaturesModal>
-                  <Button variant="default">
-                    <Lock size={14} />
-                    Odblokuj w planie Pro
-                  </Button>
-                </ProFeaturesModal>
+                <ProFeaturesModal />
               </div>
             </div>
           )}
@@ -284,6 +294,36 @@ export default async function PanelIndexPage() {
           </div>
         )}
       </div>
+
+      {isPro ? (
+        <>
+          <h2 className="text-xs font-medium text-gray-400 tracking-wider mb-3 mt-6">
+            Analityka
+          </h2>
+          <DashboardCharts
+            issues={(chartIssues ?? []).map((i: any) => ({
+              created_at: i.created_at,
+              closed_at: i.closed_at,
+              status: i.status,
+              asset_name: i.assets?.name ?? "—",
+            }))}
+          />
+        </>
+      ) : (
+        <div className="relative mt-6">
+          <h2 className="text-xs font-medium text-gray-400 tracking-wider mb-3">
+            Analityka
+          </h2>
+          <div className="blur-sm pointer-events-none select-none space-y-4">
+            <div className="h-24 bg-white border border-gray-200 rounded-xl" />
+            <div className="h-48 bg-white border border-gray-200 rounded-xl" />
+            <div className="h-40 bg-white border border-gray-200 rounded-xl" />
+          </div>
+          <div className="absolute inset-0 flex items-center justify-center">
+            <ProFeaturesModal />
+          </div>
+        </div>
+      )}
     </section>
   );
 }

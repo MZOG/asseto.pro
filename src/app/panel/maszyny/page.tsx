@@ -28,12 +28,7 @@ export default async function EquipmentPage() {
       <div className="flex items-center justify-between mb-6">
         <PageHeader title="Maszyny" />
         {atLimit ? (
-          <ProFeaturesModal>
-            <Button className="bg-blue-600 hover:bg-blue-700 text-white">
-              <Zap size={14} />
-              Przejdź na Pro
-            </Button>
-          </ProFeaturesModal>
+          <ProFeaturesModal />
         ) : (
           <Button asChild className="bg-blue-600 hover:bg-blue-700 text-white">
             <Link href="/panel/maszyny/dodaj">

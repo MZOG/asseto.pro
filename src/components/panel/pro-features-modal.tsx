@@ -25,12 +25,17 @@ const features = [
   "Priorytetowe wsparcie",
 ];
 
-export function ProFeaturesModal({ children }: { children: React.ReactNode }) {
+export function ProFeaturesModal() {
   const { upgrade, loading } = useUpgrade();
 
   return (
     <Dialog>
-      <DialogTrigger asChild>{children}</DialogTrigger>
+      <DialogTrigger asChild>
+        <Button variant="asseto">
+          <Zap size={14} />
+          Odblokuj planie Pro
+        </Button>
+      </DialogTrigger>
       <DialogContent className="sm:max-w-sm">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">

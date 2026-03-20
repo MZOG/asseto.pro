@@ -243,12 +243,7 @@ export default function IssuesList({ status, isPro, userId }: Props) {
               </Button>
             </>
           ) : (
-            <ProFeaturesModal>
-              <Button variant="outline" size="sm">
-                <Download size={13} className="mr-1.5" />
-                Eksport
-              </Button>
-            </ProFeaturesModal>
+            <ProFeaturesModal />
           )}
         </div>
       </div>

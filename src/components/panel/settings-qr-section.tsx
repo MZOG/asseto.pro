@@ -79,12 +79,7 @@ export function QrSettings({
             Edycja etykiet dostępna w planie Pro.
           </p>
 
-          <ProFeaturesModal>
-            <Button variant="default">
-              <Lock size={14} />
-              Odblokuj w planie Pro
-            </Button>
-          </ProFeaturesModal>
+          <ProFeaturesModal />
         </div>
       )}
       <div className="space-y-1.5">
