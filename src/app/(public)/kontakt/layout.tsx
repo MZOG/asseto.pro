@@ -8,6 +8,13 @@ export const metadata: Metadata = {
     title: "Kontakt - Asseto",
     description:
       "Masz pytania? Napisz do nas na marcin@asseto.pro lub wypełnij formularz.",
+    images: [
+      {
+        url: "https://asseto.pro/api/og?title=Skontaktuj się z nami&description=Masz pytania? Chętnie pomożemy. Odpowiadamy w ciągu 24 godzin.",
+        width: 1200,
+        height: 630,
+      },
+    ],
     url: "https://asseto.pro/kontakt",
     siteName: "Asseto",
     locale: "pl_PL",

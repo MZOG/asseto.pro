@@ -20,6 +20,18 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  openGraph: {
+    siteName: "Asseto",
+    locale: "pl_PL",
+    type: "website",
+    images: [
+      {
+        url: "/api/og",
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
 };
 
 export default function RootLayout({

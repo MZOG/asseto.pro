@@ -14,7 +14,7 @@ export const metadata: Metadata = {
       "Plan darmowy do 10 urządzeń. Plan Pro z nielimitowanymi urządzeniami od 149 zł miesięcznie.",
     images: [
       {
-        url: "https://asseto.pro/api/og?title=Cennik&description=Prosty, przejrzysty cennik&description=Zacznij za darmo i przejdź na wyższy plan gdy Twój biznes rośnie. Bez ukrytych opłat.",
+        url: "https://asseto.pro/api/og?title=Prosty, przejrzysty cennik&description=Zacznij za darmo i przejdź na wyższy plan gdy Twój biznes rośnie. Bez ukrytych opłat.",
         width: 1200,
         height: 630,
       },

@@ -13,6 +13,13 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Pomoc i FAQ — Asseto",
     description: "Znajdź odpowiedź na swoje pytanie lub skontaktuj się z nami.",
+    images: [
+      {
+        url: "https://asseto.pro/api/og?title=Często zadawane pytania&description=Znajdź odpowiedź na swoje pytanie lub skontaktuj się z nami.",
+        width: 1200,
+        height: 630,
+      },
+    ],
     url: "https://asseto.pro/pomoc",
     siteName: "Asseto",
     locale: "pl_PL",

@@ -35,6 +35,13 @@ export const metadata: Metadata = {
     title: "Zarządzaj usterkami przez kod QR - Asseto",
     description:
       "Każdy może zgłosić usterkę w 30 sekund. Ty reagujesz zanim problem urośnie. Bez aplikacji, bez rejestracji.",
+    images: [
+      {
+        url: "https://asseto.pro/api/og?title=Zarządzaj usterkami przez kod QR&description=Każdy może zgłosić usterkę w 30 sekund. Ty reagujesz zanim problem urośnie. Bez aplikacji, bez rejestracji.",
+        width: 1200,
+        height: 630,
+      },
+    ],
     url: "https://asseto.pro/dla-firm",
     siteName: "Asseto",
     locale: "pl_PL",
