@@ -13,7 +13,7 @@ const badges = [
 export default function Hero() {
   return (
     <section id="hero" className="relative overflow-hidden">
-      <div className="relative max-w-6xl px-5 mx-auto pt-10 pb-16">
+      <div className="relative max-w-6xl px-5 mx-auto pt-14 pb-16">
         {/* Badge górny */}
         <div className="flex justify-center mb-8">
           <span className="inline-flex items-center gap-1.5 bg-white border border-gray-200 text-gray-600 text-xs font-medium px-3 py-1.5 rounded-full ">

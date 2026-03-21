@@ -153,9 +153,6 @@ export async function GET(request: NextRequest) {
             Asseto
           </span>
         </div>
-        <span style={{ fontSize: "22px", color: "#9ca3af", fontWeight: 500 }}>
-          asseto.pro
-        </span>
       </div>
     </div>,
     { width: 1200, height: 630 },
