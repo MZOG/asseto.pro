@@ -4,8 +4,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
-import { Mail, Loader2, ChevronDown, ChevronUp, Lock } from "lucide-react";
-import { useUpgrade } from "@/hooks/use-upgrade";
+import { Mail, Loader2, ChevronDown, ChevronUp } from "lucide-react";
 import { ProFeaturesModal } from "./pro-features-modal";
 
 interface Props {
@@ -31,34 +30,33 @@ export default function NotifyServiceButton({
 }: Props) {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
-  const { upgrade, loading: upgradeLoading } = useUpgrade();
 
-  const serviceUrl = serviceToken
-    ? `${window.location.origin}/serwis/${serviceToken}`
-    : null;
+  const [message, setMessage] = useState(() => {
+    const serviceUrl = serviceToken
+      ? `${typeof window !== "undefined" ? window.location.origin : "https://asseto.pro"}/serwis/${serviceToken}`
+      : null;
 
-  const reportedAt = new Date(createdAt).toLocaleString("pl-PL", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-    hour: "2-digit",
-    minute: "2-digit",
+    const reportedAt = new Date(createdAt).toLocaleString("pl-PL", {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+
+    return [
+      `Firma: ${companyName ?? "—"}`,
+      `Data zgłoszenia: ${reportedAt}`,
+      `Maszyna: ${assetName}`,
+      ``,
+      `Opis usterki:`,
+      description ?? "Brak opisu",
+      ``,
+      serviceUrl ? `Panel serwisanta: ${serviceUrl}` : "",
+    ]
+      .filter(Boolean)
+      .join("\n");
   });
-
-  const defaultMessage = [
-    `Firma: ${companyName ?? "—"}`,
-    `Data zgłoszenia: ${reportedAt}`,
-    `Maszyna: ${assetName}`,
-    ``,
-    `Opis usterki:`,
-    description ?? "Brak opisu",
-    ``,
-    serviceUrl ? `Panel serwisanta: ${serviceUrl}` : "",
-  ]
-    .filter(Boolean)
-    .join("\n");
-
-  const [message, setMessage] = useState(defaultMessage);
 
   if (!serviceEmail) {
     return (
@@ -95,12 +93,9 @@ export default function NotifyServiceButton({
   if (!isPro) {
     return (
       <div className="flex flex-col md:flex-row items-center justify-between gap-2 bg-gray-50 border border-gray-200 rounded-lg px-3 py-2.5 mt-3">
-        <div>
-          <Mail size={14} className="text-gray-400 shrink-0 hidden" />
-          <p className="text-xs text-gray-500 flex-1 text-center md:text-left">
-            Powiadomienia e-mail do serwisanta dostępne w planie Pro.
-          </p>
-        </div>
+        <p className="text-xs text-gray-500 flex-1 text-center md:text-left">
+          Powiadomienia e-mail do serwisanta dostępne w planie Pro.
+        </p>
         <ProFeaturesModal />
       </div>
     );
@@ -108,7 +103,11 @@ export default function NotifyServiceButton({
 
   return (
     <div className="space-y-3 mt-3">
-      <Button variant="outline" onClick={() => setOpen((prev) => !prev)}>
+      <Button
+        variant="outline"
+        size="sm"
+        onClick={() => setOpen((prev) => !prev)}
+      >
         <Mail size={14} className="mr-1.5" />
         Poinformuj serwis
         {open ? (
@@ -119,23 +118,22 @@ export default function NotifyServiceButton({
       </Button>
 
       {open && (
-        <div className="pace-y-3 mt-1">
-          <div>
-            <p className="text-xs text-gray-400 mb-1">
-              Do:{" "}
-              <span className="text-gray-600 font-medium">{serviceEmail}</span>
-            </p>
-          </div>
+        <div className="space-y-3">
+          <p className="text-xs text-gray-400">
+            Do:{" "}
+            <span className="text-gray-600 font-medium">{serviceEmail}</span>
+          </p>
           <Textarea
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             rows={8}
             className="text-sm bg-white resize-none"
           />
-          <div className="flex gap-2 mt-3">
+          <div className="flex gap-2">
             <Button
               onClick={handleSend}
               disabled={loading}
+              size="sm"
               className="bg-blue-600 hover:bg-blue-700 text-white"
             >
               {loading ? (
@@ -152,6 +150,7 @@ export default function NotifyServiceButton({
             </Button>
             <Button
               variant="ghost"
+              size="sm"
               onClick={() => setOpen(false)}
               disabled={loading}
             >
