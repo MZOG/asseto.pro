@@ -93,17 +93,17 @@ const components = {
     />
   ),
   hr: () => <hr className="border-gray-200 my-8" />,
-  CallToAction: () => (
-    <div className="bg-blue-50 border border-blue-200 rounded-xl p-6 my-6 text-center">
-      <p className="text-gray-700 font-medium mb-3">Wypróbuj Asseto za darmo</p>
-      <a
-        href="/rejestracja"
-        className="inline-block bg-blue-600 text-white text-sm font-semibold px-5 py-2 rounded-lg hover:bg-blue-700 transition-colors"
-      >
-        Zacznij teraz →
-      </a>
-    </div>
-  ),
+  // CallToAction: () => (
+  //   <div className="bg-blue-50 border border-blue-200 rounded-xl p-6 my-6 text-center">
+  //     <p className="text-gray-700 font-medium mb-3">Wypróbuj Asseto za darmo</p>
+  //     <a
+  //       href="/rejestracja"
+  //       className="inline-block bg-blue-600 text-white text-sm font-semibold px-5 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+  //     >
+  //       Zacznij teraz →
+  //     </a>
+  //   </div>
+  // ),
 };
 
 export default async function BlogPostPage({
