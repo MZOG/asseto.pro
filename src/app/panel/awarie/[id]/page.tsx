@@ -240,7 +240,6 @@ export default async function IssuePage({
           )}
 
           <NotifyServiceButton
-            issueId={issue.id}
             assetName={asset.name}
             description={issue.description}
             createdAt={issue.created_at}
