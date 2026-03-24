@@ -15,6 +15,7 @@ export interface BlogPost {
   readingTime: string;
   content: string;
   image?: string | null;
+  published?: boolean;
 }
 
 export function getAllPosts(): BlogPost[] {
@@ -39,8 +40,10 @@ export function getAllPosts(): BlogPost[] {
         readingTime: rt.text.replace("min read", "min czytania"),
         content,
         image: data.image ?? null,
+        published: data.published ?? false,
       };
     })
+    .filter((post) => post.published === true)
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 }
 

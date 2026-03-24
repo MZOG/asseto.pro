@@ -5,6 +5,7 @@ import { getAllPosts, getPostBySlug } from "@/lib/blog";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { Calendar, Clock, ArrowLeft, Tag } from "lucide-react";
 import Image from "next/image";
+import remarkGfm from "remark-gfm";
 
 export async function generateStaticParams() {
   const posts = getAllPosts();
@@ -97,6 +98,30 @@ const components = {
     />
   ),
   hr: () => <hr className="border-gray-200 my-8" />,
+  table: (props: any) => (
+    <div className="overflow-x-auto my-6">
+      <table className="w-full text-sm border-collapse" {...props} />
+    </div>
+  ),
+  thead: (props: any) => <thead className="bg-gray-50" {...props} />,
+  th: (props: any) => (
+    <th
+      className="text-left px-4 py-2.5 font-semibold text-gray-700 border border-gray-200 text-xs uppercase tracking-wider"
+      {...props}
+    />
+  ),
+  td: (props: any) => (
+    <td
+      className="px-4 py-2.5 text-gray-600 border border-gray-200"
+      {...props}
+    />
+  ),
+  tr: (props: any) => (
+    <tr
+      className="even:bg-gray-50 hover:bg-blue-50/30 transition-colors"
+      {...props}
+    />
+  ),
   // CallToAction: () => (
   //   <div className="bg-blue-50 border border-blue-200 rounded-xl p-6 my-6 text-center">
   //     <p className="text-gray-700 font-medium mb-3">Wypróbuj Asseto za darmo</p>
@@ -193,7 +218,15 @@ export default async function BlogPostPage({
 
         {/* Treść */}
         <article className="prose-custom">
-          <MDXRemote source={post.content} components={components} />
+          <MDXRemote
+            source={post.content}
+            components={components}
+            options={{
+              mdxOptions: {
+                remarkPlugins: [remarkGfm],
+              },
+            }}
+          />
         </article>
 
         {/* CTA */}
