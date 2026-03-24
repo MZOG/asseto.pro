@@ -3,6 +3,7 @@ import Hero from "@/components/public/hero-section";
 import ScanningSteps from "@/components/public/scanning-steps";
 import CtaSection from "@/components/public/cta-section";
 import { Metadata } from "next";
+import BlogSection from "@/components/public/blog-section";
 
 export const metadata: Metadata = {
   title: {
@@ -34,6 +35,7 @@ export default function Home() {
       <Hero />
       <HowItWorks />
       <ScanningSteps />
+      <BlogSection />
       <CtaSection />
     </>
   );

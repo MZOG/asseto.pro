@@ -7,6 +7,7 @@ const nextConfig: NextConfig = {
   // images: {
   //   domains: ["app.asseto.pro", "asseto.pro"],
   // },
+  pageExtensions: ["ts", "tsx", "mdx"],
   images: {
     remotePatterns: [
       {
