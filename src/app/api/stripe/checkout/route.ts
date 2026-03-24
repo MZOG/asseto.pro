@@ -1,8 +1,16 @@
+// src/app/api/stripe/checkout/route.ts
 import { NextResponse } from "next/server";
 import { stripe } from "@/lib/stripe";
 import { createClient } from "@/lib/supabase/server";
 
-export async function POST() {
+const PLAN_TO_PRICE: Record<string, string> = {
+  starter: process.env.STRIPE_STARTER_PRICE_ID!,
+  growth: process.env.STRIPE_GROWTH_PRICE_ID!,
+  business: process.env.STRIPE_BUSINESS_PRICE_ID!,
+  enterprise: process.env.STRIPE_ENTERPRISE_PRICE_ID!,
+};
+
+export async function POST(request: Request) {
   const supabase = await createClient();
   const {
     data: { user },
@@ -12,6 +20,14 @@ export async function POST() {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
+  const { plan } = await request.json();
+
+  const priceId = PLAN_TO_PRICE[plan];
+  if (!priceId) {
+    return NextResponse.json({ error: "Nieprawidłowy plan." }, { status: 400 });
+  }
+
+  // Pobierz lub stwórz Stripe Customer
   const { data: profile } = await supabase
     .from("profiles")
     .select("stripe_customer_id")
@@ -33,19 +49,18 @@ export async function POST() {
       .eq("id", user.id);
   }
 
-  // Stwórz Checkout Session
   const session = await stripe.checkout.sessions.create({
-    locale: "pl",
     customer: customerId,
     mode: "subscription",
-    line_items: [
-      {
-        price: process.env.STRIPE_PRO_PRICE_ID!,
-        quantity: 1,
-      },
-    ],
+    locale: "pl",
+    customer_update: {
+      address: "auto",
+      name: "auto",
+    },
+    automatic_tax: { enabled: true },
+    line_items: [{ price: priceId, quantity: 1 }],
     success_url: `${process.env.NEXT_PUBLIC_APP_URL}/panel?success=true`,
-    cancel_url: `${process.env.NEXT_PUBLIC_APP_URL}/cennik?canceled=true`,
+    cancel_url: `${process.env.NEXT_PUBLIC_APP_URL}/panel/ustawienia?canceled=true`,
     metadata: { supabase_user_id: user.id },
   });
 

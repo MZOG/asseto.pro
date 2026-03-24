@@ -4,8 +4,9 @@ import PageHeader from "@/components/panel/page-header";
 import AssetsCard from "@/components/panel/assets-card";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Plus, Zap } from "lucide-react";
+import { Plus } from "lucide-react";
 import { ProFeaturesModal } from "@/components/panel/pro-features-modal";
+import { getPlanLimit, isPro } from "@/lib/utils/plan";
 
 export default async function EquipmentPage() {
   const supabase = await createClient();
@@ -20,8 +21,9 @@ export default async function EquipmentPage() {
     supabase.from("profiles").select("plan").eq("id", userId).single(),
   ]);
 
-  const isPro = profile?.plan === "pro";
-  const atLimit = !isPro && (assets?.length ?? 0) >= 10;
+  const userPlan = profile?.plan ?? "free";
+  const limit = getPlanLimit(userPlan);
+  const atLimit = (assets?.length ?? 0) >= limit;
 
   return (
     <section>

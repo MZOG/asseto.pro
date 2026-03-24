@@ -1,4 +1,3 @@
-// src/app/panel/maszyny/dodaj/add-asset-form.tsx
 "use client";
 
 import { useEffect, useState } from "react";
@@ -10,6 +9,7 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Loader2, AlertCircle } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import { toast } from "sonner";
+import { getPlanLimit } from "@/lib/utils/plan";
 
 export default function AddAssetForm() {
   const router = useRouter();
@@ -17,7 +17,7 @@ export default function AddAssetForm() {
   const [serialNumber, setSerialNumber] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [isPro, setIsPro] = useState(false);
+  const [plan, setPlan] = useState<string>("free");
   const [planLoaded, setPlanLoaded] = useState(false);
 
   useEffect(() => {
@@ -27,7 +27,7 @@ export default function AddAssetForm() {
       .select("plan")
       .single()
       .then(({ data }) => {
-        setIsPro(data?.plan === "pro");
+        setPlan(data?.plan ?? "free");
         setPlanLoaded(true);
       });
   }, []);
@@ -53,17 +53,16 @@ export default function AddAssetForm() {
       return;
     }
 
-    if (!isPro) {
-      const { count } = await supabase
-        .from("assets")
-        .select("id", { count: "exact", head: true })
-        .eq("owner_id", user.id);
+    const limit = getPlanLimit(plan);
+    const { count } = await supabase
+      .from("assets")
+      .select("id", { count: "exact", head: true })
+      .eq("owner_id", user.id);
 
-      if ((count ?? 0) >= 10) {
-        toast.error("Osiągnąłeś limit 10 maszyn. Przejdź na plan Pro.");
-        setLoading(false);
-        return;
-      }
+    if ((count ?? 0) >= limit) {
+      toast.error(`Osiągnąłeś limit ${limit} maszyn. Przejdź na wyższy plan.`);
+      setLoading(false);
+      return;
     }
 
     const { data: asset, error: insertError } = await supabase

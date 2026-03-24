@@ -6,6 +6,7 @@ import { Separator } from "@/components/ui/separator";
 import SubscriptionSection from "@/components/panel/subscription-panel";
 import { ServiceSettings } from "@/components/panel/settings-service-section";
 import { ReportsSettings } from "@/components/panel/ustawienia/reports-section";
+import { isPro } from "@/lib/utils/plan";
 
 export default async function SettingsPage() {
   const userId = (await headers()).get("x-user-id");
@@ -17,6 +18,11 @@ export default async function SettingsPage() {
     .eq("id", userId)
     .single();
 
+  const { count: assetCount } = await supabase
+    .from("assets")
+    .select("id", { count: "exact", head: true })
+    .eq("owner_id", userId);
+
   const { qr_label_top, qr_label_bottom, qr_print_size, plan } = data;
 
   return (
@@ -24,6 +30,7 @@ export default async function SettingsPage() {
       <PageHeader title="Ustawienia" />
       <SubscriptionSection
         plan={data?.plan ?? "free"}
+        assetCount={assetCount ?? 0}
         subscriptionStatus={data?.subscription_status}
         subscriptionEndsAt={data?.subscription_ends_at}
       />
@@ -34,7 +41,7 @@ export default async function SettingsPage() {
         defaultLabelTop={qr_label_top}
         defaultLabelBottom={qr_label_bottom}
         defaultPrintSize={qr_print_size}
-        isPro={plan === "pro"}
+        isPro={isPro(plan)}
       />
       <Separator className="my-5" />
 
@@ -49,7 +56,7 @@ export default async function SettingsPage() {
         userId={userId}
         reportIssues={data?.report_issues ?? true}
         reportServices={data?.report_services ?? true}
-        isPro={data?.plan === "pro"}
+        isPro={isPro(data?.plan ?? "free")}
       />
     </section>
   );

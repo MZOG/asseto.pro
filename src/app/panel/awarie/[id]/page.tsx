@@ -18,6 +18,7 @@ import IssueStatusSelect from "@/components/panel/issue-status-select";
 import NotifyServiceButton from "@/components/panel/notify-service-button";
 import { Separator } from "@/components/ui/separator";
 import PrioritySelect from "@/components/panel/awarie/priority-select";
+import { isPro } from "@/lib/utils/plan";
 
 export default async function IssuePage({
   params,
@@ -245,7 +246,7 @@ export default async function IssuePage({
             createdAt={issue.created_at}
             companyName={profile?.company_name}
             serviceEmail={asset.service_email ?? profile?.default_service_email}
-            isPro={profile?.plan === "pro"}
+            isPro={isPro(profile?.plan ?? "free")}
             serviceToken={asset.service_token}
           />
         </div>

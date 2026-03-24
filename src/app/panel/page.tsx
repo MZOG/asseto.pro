@@ -8,15 +8,13 @@ import {
   Factory,
   Calendar,
   TrendingUp,
-  Lock,
-  Zap,
 } from "lucide-react";
 import Link from "next/link";
 import { PanelCard, type Stat } from "@/components/panel/panel-card";
 import { ProFeaturesModal } from "@/components/panel/pro-features-modal";
 import { Button } from "@/components/ui/button";
 import DashboardCharts from "@/components/panel/dashboard-charts";
-import { cn } from "@/lib/utils";
+import { isPro, getPlanLimit } from "@/lib/utils/plan";
 
 export default async function PanelIndexPage() {
   const userId = (await headers()).get("x-user-id");
@@ -94,8 +92,8 @@ export default async function PanelIndexPage() {
   const maintenance =
     assets?.filter((a) => a.status === "maintenance").length ?? 0;
   const working = assets?.filter((a) => a.status === "working").length ?? 0;
-  const isPro = profile?.plan === "pro";
-  const limit = isPro ? null : 10;
+  const userPlan = profile?.plan ?? "free";
+  const limit = getPlanLimit(userPlan);
 
   const stats: Stat[] = [
     {
@@ -135,7 +133,7 @@ export default async function PanelIndexPage() {
     },
     {
       label: "Maszyny",
-      value: isPro ? `${total}` : `${total} / ${limit}`,
+      value: `${total} / ${limit}`,
       icon: Factory,
       className: "bg-white border-gray-200",
       iconClass: "text-blue-500",
@@ -183,7 +181,7 @@ export default async function PanelIndexPage() {
             Zbliżające się serwisy
           </h2>
 
-          {isPro ? (
+          {isPro(profile?.plan ?? "free") ? (
             <div className="space-y-2 max-w-sm">
               {(upcomingServices ?? []).length === 0 ? (
                 <p className="text-sm text-gray-400">
@@ -296,7 +294,7 @@ export default async function PanelIndexPage() {
         )}
       </div>
 
-      {isPro ? (
+      {isPro(profile?.plan ?? "free") ? (
         <>
           <h2 className="text-xs font-medium text-gray-400 tracking-wider mb-3 mt-6">
             Analityka

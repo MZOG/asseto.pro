@@ -8,7 +8,6 @@ import { Mail, Loader2, ChevronDown, ChevronUp } from "lucide-react";
 import { ProFeaturesModal } from "./pro-features-modal";
 
 interface Props {
-  issueId: string;
   assetName: string;
   description: string | null;
   createdAt: string;
@@ -19,7 +18,6 @@ interface Props {
 }
 
 export default function NotifyServiceButton({
-  issueId,
   assetName,
   description,
   createdAt,

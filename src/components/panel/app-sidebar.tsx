@@ -30,12 +30,13 @@ import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
 import { useRouter, usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { isPro } from "@/lib/utils/plan";
 
 export function AppSidebar() {
   const router = useRouter();
   const pathname = usePathname();
   const { setOpenMobile } = useSidebar();
-  const [plan, setPlan] = useState<"free" | "pro">("free");
+  const [plan, setPlan] = useState<string>("free");
   const [companyName, setCompanyName] = useState<string>();
   const [counts, setCounts] = useState({
     broken: 0,
@@ -83,7 +84,7 @@ export function AppSidebar() {
           .eq("owner_id", user.id),
       ]).then(([profile, broken, critical, maintenance, closed, assets]) => {
         setCompanyName(profile.data?.company_name || "Asseto");
-        if (profile.data?.plan === "pro") setPlan("pro");
+        setPlan(profile.data?.plan ?? "free");
         setCounts({
           broken: broken.count ?? 0,
           critical: critical.count ?? 0,
@@ -129,13 +130,11 @@ export function AppSidebar() {
             <div className="w-5 h-5 bg-blue-600 rounded-sm flex items-center justify-center">
               <ScanQrCode size={12} className="text-white" />
             </div>
-            <span className="font-medium text-sm">
-              {companyName ?? "Asseto"}
-            </span>
+            <span className="font-medium text-sm">Asseto</span>
           </div>
-          {plan === "pro" ? (
+          {isPro(plan) ? (
             <span className="inline-flex items-center gap-1 bg-blue-100 text-blue-700 text-xs font-semibold px-1.5 py-0.5 rounded-sm">
-              <Zap size={10} /> Pro
+              <Zap size={10} /> {plan}
             </span>
           ) : (
             <Link href="/cennik" onClick={handleNavClick}>

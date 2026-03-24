@@ -3,8 +3,8 @@ import { createClient } from "@/lib/supabase/server";
 import PageHeader from "@/components/panel/page-header";
 import Link from "next/link";
 import { ProFeaturesModal } from "@/components/panel/pro-features-modal";
-import { Button } from "@/components/ui/button";
-import { ChevronRight, Lock } from "lucide-react";
+import { ChevronRight } from "lucide-react";
+import { isPro } from "@/lib/utils/plan";
 
 function getServiceStatus(nextServiceAt: string | null) {
   if (!nextServiceAt) return "none";
@@ -44,8 +44,6 @@ export default async function SerwisyPage() {
     .eq("id", userId)
     .single();
 
-  const isPro = profile?.plan === "pro";
-
   const { data: assets } = await supabase
     .from("assets")
     .select(
@@ -84,7 +82,7 @@ export default async function SerwisyPage() {
         <PageHeader title="Serwisy" />
       </div>
 
-      {!isPro ? (
+      {!isPro(profile?.plan ?? "free") ? (
         // ── Free — zblurowany podgląd
         <div className="relative">
           <div className="blur-xs pointer-events-none select-none space-y-2">

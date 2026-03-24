@@ -2,6 +2,7 @@ import { headers } from "next/headers";
 import { createClient } from "@/lib/supabase/server";
 import PageHeader from "@/components/panel/page-header";
 import IssuesList from "@/components/panel/issues-list";
+import { isPro } from "@/lib/utils/plan";
 
 export default async function IssuesPage() {
   const userId = (await headers()).get("x-user-id");
@@ -18,7 +19,7 @@ export default async function IssuesPage() {
       <div className="mt-4">
         <IssuesList
           status="broken"
-          isPro={profile?.plan === "pro"}
+          isPro={isPro(profile?.plan ?? "free")}
           userId={userId ?? ""}
         />
       </div>

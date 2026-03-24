@@ -5,6 +5,13 @@ import Stripe from "stripe";
 
 export const config = { api: { bodyParser: false } };
 
+const PRICE_TO_PLAN: Record<string, string> = {
+  [process.env.STRIPE_STARTER_PRICE_ID!]: "starter",
+  [process.env.STRIPE_GROWTH_PRICE_ID!]: "growth",
+  [process.env.STRIPE_BUSINESS_PRICE_ID!]: "business",
+  [process.env.STRIPE_ENTERPRISE_PRICE_ID!]: "enterprise",
+};
+
 export async function POST(request: NextRequest) {
   const body = await request.text();
   const signature = request.headers.get("stripe-signature")!;
@@ -26,19 +33,17 @@ export async function POST(request: NextRequest) {
   switch (event.type) {
     // Płatność zakończona sukcesem — aktywuj plan Pro
     case "checkout.session.completed": {
-      const session = event.data.object as Stripe.Checkout.Session;
+      const session = await stripe.checkout.sessions.retrieve(
+        (event.data.object as Stripe.Checkout.Session).id,
+        { expand: ["line_items"] },
+      );
+      const priceId = session.line_items?.data[0]?.price?.id ?? "";
+      const plan = PRICE_TO_PLAN[priceId] ?? "starter";
       const userId = session.metadata?.supabase_user_id;
-      const subscriptionId = session.subscription as string;
+      // const subscriptionId = session.subscription as string;
 
       if (userId) {
-        await supabase
-          .from("profiles")
-          .update({
-            plan: "pro",
-            stripe_subscription_id: subscriptionId,
-            subscription_status: "active",
-          })
-          .eq("id", userId);
+        await supabase.from("profiles").update({ plan }).eq("id", userId);
       }
       break;
     }
