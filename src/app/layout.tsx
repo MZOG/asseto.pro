@@ -32,6 +32,12 @@ export const metadata: Metadata = {
       },
     ],
   },
+  twitter: {
+    card: "summary_large_image",
+    site: "@asseto_pro",
+    creator: "@asseto_pro",
+    images: ["/api/og"],
+  },
 };
 
 export default function RootLayout({

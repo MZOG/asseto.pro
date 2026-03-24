@@ -24,6 +24,12 @@ export const metadata: Metadata = {
     locale: "pl_PL",
     type: "website",
   },
+  twitter: {
+    card: "summary_large_image",
+    images: [
+      "/api/og?title=Cennik&description=Plan darmowy do 10 urządzeń. Plan Pro z nielimitowanymi urządzeniami od 149 zł miesięcznie.",
+    ],
+  },
 };
 
 const plans = [

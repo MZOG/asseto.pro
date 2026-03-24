@@ -20,6 +20,12 @@ export const metadata: Metadata = {
     locale: "pl_PL",
     type: "website",
   },
+  twitter: {
+    card: "summary_large_image",
+    images: [
+      "/api/og?title=Kontakt&description=Masz pytania? Napisz do nas na marcin@asseto.pro lub wypełnij formularz.",
+    ],
+  },
 };
 
 export default function KontaktLayout({

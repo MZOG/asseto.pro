@@ -20,7 +20,7 @@ import {
 import { Button } from "@/components/ui/button";
 
 export const metadata: Metadata = {
-  title: "Zarządzaj usterkami przez kod QR — Asseto dla firm",
+  title: "Asseto dla firm",
   description:
     "Asseto to system do zgłaszania usterek przez kod QR. Idealne dla siłowni, placów zabaw, magazynów i obiektów sportowych. Bez aplikacji, bez rejestracji. Zacznij za darmo.",
   keywords: [
@@ -46,6 +46,12 @@ export const metadata: Metadata = {
     siteName: "Asseto",
     locale: "pl_PL",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: [
+      "/api/og?title=Asseto dla firm&description=Każdy może zgłosić usterkę w 30 sekund. Ty reagujesz zanim problem urośnie. Bez aplikacji, bez rejestracji.",
+    ],
   },
 };
 

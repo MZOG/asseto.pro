@@ -25,6 +25,12 @@ export const metadata: Metadata = {
     locale: "pl_PL",
     type: "website",
   },
+  twitter: {
+    card: "summary_large_image",
+    images: [
+      "/api/og?title=Pomoc&description=Odpowiedzi na najczęściej zadawane pytania dotyczące Asseto — jak działa system, kody QR, zgłoszenia, subskrypcja i bezpieczeństwo danych.",
+    ],
+  },
 };
 
 const faqs = [

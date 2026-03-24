@@ -20,6 +20,12 @@ export const metadata: Metadata = {
       },
     ],
   },
+  twitter: {
+    card: "summary_large_image",
+    images: [
+      "/api/og?title=Blog&description=Artykuły o zarządzaniu usterkami, utrzymaniu sprzętu i systemach QR dla firm i obiektów.",
+    ],
+  },
 };
 
 interface Props {
