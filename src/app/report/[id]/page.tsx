@@ -2,7 +2,7 @@ import { createClient } from "@/lib/supabase/server";
 import { notFound } from "next/navigation";
 import ReportForm from "@/components/public/report-form";
 import StatusBadge from "@/components/panel/status-badge";
-import { ScanLine } from "lucide-react";
+import { ScanQrCode } from "lucide-react";
 
 export default async function ReportPage({
   params,
@@ -32,7 +32,7 @@ export default async function ReportPage({
       <div className="w-full max-w-sm">
         <div className="flex items-center gap-2.5 mb-8 justify-center">
           <div className="w-7 h-7 bg-blue-600 rounded-sm flex items-center justify-center">
-            <ScanLine size={16} className="text-white" />
+            <ScanQrCode size={16} className="text-white" />
           </div>
           <span className="text-gray-900 font-medium text-lg tracking-tight">
             Asseto

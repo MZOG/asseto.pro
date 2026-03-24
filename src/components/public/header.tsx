@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ScanLine, Menu, Zap, LogIn } from "lucide-react";
+import { ScanQrCode, Menu, Zap, LogIn } from "lucide-react";
 import Link from "next/link";
 import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
@@ -40,7 +40,7 @@ export default function Header() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
             <div className="w-7 h-7 bg-blue-600 rounded-sm flex items-center justify-center">
-              <ScanLine size={16} className="text-white" />
+              <ScanQrCode size={16} className="text-white" />
             </div>
             <span className="text-gray-900 font-medium text-lg tracking-tight">
               Asseto

@@ -14,7 +14,7 @@ import {
   CardDescription,
 } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { ScanLine, Loader2, AlertCircle } from "lucide-react";
+import { ScanQrCode, Loader2, AlertCircle } from "lucide-react";
 import { toast } from "sonner";
 
 export default function UstawHasloPage() {
@@ -57,7 +57,7 @@ export default function UstawHasloPage() {
       <div className="w-full max-w-sm">
         <div className="flex items-center gap-2.5 mb-8 justify-center">
           <div className="w-8 h-8 bg-blue-600 rounded-sm flex items-center justify-center">
-            <ScanLine size={18} className="text-white" />
+            <ScanQrCode size={18} className="text-white" />
           </div>
           <span className="text-gray-900 font-semibold text-lg tracking-tight">
             Asseto

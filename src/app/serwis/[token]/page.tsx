@@ -2,7 +2,7 @@
 // Publiczny widok dla serwisanta — dostęp przez token
 import { createClient } from "@/lib/supabase/server";
 import { notFound } from "next/navigation";
-import { ScanLine } from "lucide-react";
+import { ScanQrCode } from "lucide-react";
 import ServiceIssueHistory from "@/components/panel/serwisExternal/service-issue-history";
 import ServiceHistory from "@/components/panel/serwisExternal/service-history";
 // import AddServiceNoteForm from '@/components/panel/serwisExternal/'
@@ -62,7 +62,7 @@ export default async function SerwisantPage({
       {/* Header */}
       <div className="bg-white border-b border-gray-200 px-4 py-3 flex items-center gap-2">
         <div className="w-6 h-6 bg-blue-600 rounded-sm flex items-center justify-center">
-          <ScanLine size={14} className="text-white" />
+          <ScanQrCode size={14} className="text-white" />
         </div>
         <span className="font-semibold text-sm text-gray-900">Asseto</span>
         <span className="text-gray-300 text-xs ml-1">· Panel serwisanta</span>

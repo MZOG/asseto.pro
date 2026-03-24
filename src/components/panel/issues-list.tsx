@@ -217,7 +217,6 @@ export default function IssuesList({ status, isPro, userId }: Props) {
             <>
               <Button
                 variant="outline"
-                size="sm"
                 onClick={exportCsv}
                 disabled={exportingCsv || loading}
               >
@@ -230,7 +229,6 @@ export default function IssuesList({ status, isPro, userId }: Props) {
               </Button>
               <Button
                 variant="outline"
-                size="sm"
                 onClick={exportPdf}
                 disabled={exportingPdf || loading}
               >

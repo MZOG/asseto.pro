@@ -133,15 +133,13 @@ export default function AssetInfoTab({
       (f) => f.label.trim() && f.value.trim(),
     );
     if (validNewFields.length > 0) {
-      await supabase
-        .from("asset_fields")
-        .insert(
-          validNewFields.map((f) => ({
-            asset_id: asset.id,
-            label: f.label,
-            value: f.value,
-          })),
-        );
+      await supabase.from("asset_fields").insert(
+        validNewFields.map((f) => ({
+          asset_id: asset.id,
+          label: f.label,
+          value: f.value,
+        })),
+      );
       setNewFields([]);
     }
     await Promise.all(fieldUpdates);
@@ -167,12 +165,7 @@ export default function AssetInfoTab({
                 className="w-24 h-24 object-cover rounded-lg border border-gray-200 shrink-0"
               />
               <div className="flex flex-col gap-1.5">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  asChild
-                  disabled={uploading}
-                >
+                <Button variant="outline" asChild disabled={uploading}>
                   <label htmlFor="image-upload" className="cursor-pointer">
                     {uploading ? (
                       <Loader2 size={14} className="animate-spin mr-1.5" />
@@ -184,7 +177,6 @@ export default function AssetInfoTab({
                 </Button>
                 <Button
                   variant="ghost"
-                  size="sm"
                   onClick={handleImageDelete}
                   className="text-red-500 hover:text-red-600"
                 >
@@ -198,7 +190,7 @@ export default function AssetInfoTab({
               <div className="w-24 h-24 bg-gray-100 rounded-lg border border-gray-200 flex items-center justify-center shrink-0">
                 <Upload size={20} className="text-gray-400" />
               </div>
-              <Button variant="outline" size="sm" asChild disabled={uploading}>
+              <Button variant="outline" asChild disabled={uploading}>
                 <label htmlFor="image-upload" className="cursor-pointer">
                   {uploading ? (
                     <Loader2 size={14} className="animate-spin mr-1.5" />
@@ -372,7 +364,6 @@ export default function AssetInfoTab({
         ))}
         <Button
           variant="outline"
-          size="sm"
           onClick={() =>
             setNewFields((prev) => [...prev, { label: "", value: "" }])
           }

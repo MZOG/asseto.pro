@@ -98,7 +98,6 @@ export default function AssetServiceTab({
         <Button
           onClick={handleSave}
           disabled={saving}
-          size="sm"
           className="mt-4 bg-blue-600 hover:bg-blue-700 text-white"
         >
           {saving ? (

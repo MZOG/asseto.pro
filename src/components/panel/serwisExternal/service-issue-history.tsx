@@ -159,7 +159,6 @@ export default function ServiceIssueHistory({
                     className="text-sm resize-none"
                   />
                   <Button
-                    size="sm"
                     onClick={() => handleSaveNote(issue.id)}
                     disabled={saving === issue.id}
                     className="mt-2 bg-blue-600 hover:bg-blue-700 text-white"

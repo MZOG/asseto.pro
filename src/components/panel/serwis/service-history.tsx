@@ -190,7 +190,6 @@ export default function ServiceHistory({
                 <div className="flex justify-end pt-1">
                   <Button
                     variant="ghost"
-                    size="sm"
                     onClick={() => handleDelete(service.id)}
                     disabled={deleting === service.id}
                     className="text-gray-400 hover:text-red-500 text-xs"

@@ -1,4 +1,4 @@
-import { QrCode, LayoutDashboard, ScanLine } from "lucide-react";
+import { QrCode, LayoutDashboard, ScanQrCode } from "lucide-react";
 
 const cards = [
   {
@@ -8,7 +8,7 @@ const cards = [
       "Wygeneruj kod QR dla każdego urządzenia i wydrukuj go w dowolnym rozmiarze. Naklejka na maszynie to wszystko, czego potrzebuje Twój zespół.",
   },
   {
-    icon: ScanLine,
+    icon: ScanQrCode,
     title: "Błyskawiczne zgłoszenia",
     description:
       "Pracownik skanuje kod QR, opisuje problem i wysyła zgłoszenie w kilkanaście sekund. Żadnych telefonów, żadnych arkuszy Excel.",

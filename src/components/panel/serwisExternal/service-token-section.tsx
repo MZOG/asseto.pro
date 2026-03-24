@@ -66,13 +66,12 @@ export default function ServiceTokenSection({
             </span>
           </div>
           <div className="flex gap-2">
-            <Button variant="outline" size="sm" onClick={copyLink}>
+            <Button variant="outline" onClick={copyLink}>
               <Copy size={13} className="mr-1.5" />
               Kopiuj link
             </Button>
             <Button
               variant="ghost"
-              size="sm"
               onClick={generateToken}
               disabled={generating}
             >
@@ -102,7 +101,6 @@ export default function ServiceTokenSection({
           </p>
           <Button
             variant="outline"
-            size="sm"
             onClick={generateToken}
             disabled={generating}
           >

@@ -19,7 +19,7 @@ import {
   TriangleAlert,
   Cog,
   LogOut,
-  ScanLine,
+  ScanQrCode,
   Zap,
   Wrench,
   CheckCheck,
@@ -127,7 +127,7 @@ export function AppSidebar() {
         <div className="flex items-center justify-between px-2">
           <div className="flex items-center gap-2">
             <div className="w-5 h-5 bg-blue-600 rounded-sm flex items-center justify-center">
-              <ScanLine size={12} className="text-white" />
+              <ScanQrCode size={12} className="text-white" />
             </div>
             <span className="font-medium text-sm">
               {companyName ?? "Asseto"}

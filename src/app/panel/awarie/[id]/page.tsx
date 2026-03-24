@@ -11,7 +11,7 @@ import {
   MapPin,
   Phone,
   Mail,
-  ScanLine,
+  ScanQrCode,
 } from "lucide-react";
 import Link from "next/link";
 import IssueStatusSelect from "@/components/panel/issue-status-select";
@@ -170,7 +170,7 @@ export default async function IssuePage({
               />
             ) : (
               <div className="w-20 h-20 bg-gray-100 rounded-lg border border-gray-200 flex items-center justify-center shrink-0">
-                <ScanLine size={20} className="text-gray-300" />
+                <ScanQrCode size={20} className="text-gray-300" />
               </div>
             )}
 

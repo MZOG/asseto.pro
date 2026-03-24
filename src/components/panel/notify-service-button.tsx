@@ -103,11 +103,7 @@ export default function NotifyServiceButton({
 
   return (
     <div className="space-y-3 mt-3">
-      <Button
-        variant="outline"
-        size="sm"
-        onClick={() => setOpen((prev) => !prev)}
-      >
+      <Button variant="outline" onClick={() => setOpen((prev) => !prev)}>
         <Mail size={14} className="mr-1.5" />
         Poinformuj serwis
         {open ? (
@@ -133,7 +129,6 @@ export default function NotifyServiceButton({
             <Button
               onClick={handleSend}
               disabled={loading}
-              size="sm"
               className="bg-blue-600 hover:bg-blue-700 text-white"
             >
               {loading ? (
@@ -150,7 +145,6 @@ export default function NotifyServiceButton({
             </Button>
             <Button
               variant="ghost"
-              size="sm"
               onClick={() => setOpen(false)}
               disabled={loading}
             >

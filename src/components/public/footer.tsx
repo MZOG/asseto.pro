@@ -1,5 +1,5 @@
 // src/components/public/footer.tsx
-import { ScanLine } from "lucide-react";
+import { ScanQrCode } from "lucide-react";
 import Link from "next/link";
 
 const links = [
@@ -18,7 +18,7 @@ export default function Footer() {
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
           <div className="w-6 h-6 bg-blue-600 rounded-sm flex items-center justify-center">
-            <ScanLine size={14} className="text-white" />
+            <ScanQrCode size={14} className="text-white" />
           </div>
           <span className="text-gray-900 font-medium tracking-tight">
             Asseto
