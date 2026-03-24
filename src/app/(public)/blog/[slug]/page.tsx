@@ -4,6 +4,7 @@ import Link from "next/link";
 import { getAllPosts, getPostBySlug } from "@/lib/blog";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { Calendar, Clock, ArrowLeft, Tag } from "lucide-react";
+import Image from "next/image";
 
 export async function generateStaticParams() {
   const posts = getAllPosts();
@@ -92,6 +93,17 @@ const components = {
     />
   ),
   hr: () => <hr className="border-gray-200 my-8" />,
+  CallToAction: () => (
+    <div className="bg-blue-50 border border-blue-200 rounded-xl p-6 my-6 text-center">
+      <p className="text-gray-700 font-medium mb-3">Wypróbuj Asseto za darmo</p>
+      <a
+        href="/rejestracja"
+        className="inline-block bg-blue-600 text-white text-sm font-semibold px-5 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+      >
+        Zacznij teraz →
+      </a>
+    </div>
+  ),
 };
 
 export default async function BlogPostPage({
@@ -119,6 +131,22 @@ export default async function BlogPostPage({
           <ArrowLeft size={14} />
           Wróć do bloga
         </Link>
+
+        {/* Obrazek główny */}
+        {post.image && (
+          <div className="relative w-full h-64 md:h-80 rounded-2xl overflow-hidden mb-8">
+            <Image
+              src={post.image}
+              alt={post.title}
+              fill
+              sizes="(max-width: 768px) 100vw, 672px"
+              className="object-cover"
+              priority
+              placeholder="blur"
+              blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg=="
+            />
+          </div>
+        )}
 
         {/* Header */}
         <div className="mb-8">

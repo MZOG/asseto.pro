@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { getAllPosts, getAllCategories } from "@/lib/blog";
 import { Calendar, Clock, ArrowRight, Tag } from "lucide-react";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Blog",
@@ -83,44 +84,70 @@ export default async function BlogPage({ searchParams }: Props) {
             Brak artykułów w tej kategorii.
           </p>
         ) : (
-          <div className="space-y-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {posts.map((post) => (
               <Link
                 key={post.slug}
                 href={`/blog/${post.slug}`}
-                className="group block bg-white border border-gray-200 rounded-2xl p-6 hover:border-blue-200 transition-all"
+                className="group bg-white border border-gray-200 rounded-2xl overflow-hidden hover:border-blue-200  transition-all"
               >
-                <div className="flex items-center gap-3 mb-3">
-                  <span className="text-xs font-semibold bg-blue-50 text-blue-600 px-2.5 py-1 rounded-full">
-                    {post.category}
-                  </span>
-                  <div className="flex items-center gap-1 text-xs text-gray-400">
-                    <Calendar size={11} />
-                    {new Date(post.date).toLocaleDateString("pl-PL", {
-                      day: "numeric",
-                      month: "long",
-                      year: "numeric",
-                    })}
+                {/* Zdjęcie */}
+                {post.image ? (
+                  <div className="relative w-full h-44 overflow-hidden">
+                    <Image
+                      src={post.image}
+                      alt={post.title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                      priority
+                      placeholder="blur"
+                      blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg=="
+                    />
                   </div>
-                  <div className="flex items-center gap-1 text-xs text-gray-400">
-                    <Clock size={11} />
-                    {post.readingTime}
+                ) : (
+                  <div className="w-full h-44 bg-linear-to-br from-blue-50 to-blue-100 flex items-center justify-center">
+                    <span className="text-4xl">📋</span>
                   </div>
-                </div>
+                )}
 
-                <h2 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
-                  {post.title}
-                </h2>
-                <p className="text-sm text-gray-500 leading-relaxed mb-4">
-                  {post.description}
-                </p>
+                {/* Treść */}
+                <div className="p-5">
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="text-xs font-semibold bg-blue-50 text-blue-600 px-2 py-0.5 rounded-full">
+                      {post.category}
+                    </span>
+                    <div className="flex items-center gap-1 text-xs text-gray-400">
+                      <Clock size={10} />
+                      {post.readingTime}
+                    </div>
+                  </div>
 
-                <div className="flex items-center gap-1 text-xs font-medium text-blue-600">
-                  Czytaj dalej{" "}
-                  <ArrowRight
-                    size={13}
-                    className="group-hover:translate-x-1 transition-transform"
-                  />
+                  <h3 className="font-semibold text-gray-900 leading-snug mb-2 group-hover:text-blue-600 transition-colors line-clamp-2">
+                    {post.title}
+                  </h3>
+
+                  <p className="text-xs text-gray-500 leading-relaxed line-clamp-2 mb-4">
+                    {post.description}
+                  </p>
+
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-1 text-xs text-gray-400">
+                      <Calendar size={10} />
+                      {new Date(post.date).toLocaleDateString("pl-PL", {
+                        day: "numeric",
+                        month: "short",
+                        year: "numeric",
+                      })}
+                    </div>
+                    <span className="text-xs font-medium text-blue-600 flex items-center gap-1">
+                      Czytaj{" "}
+                      <ArrowRight
+                        size={11}
+                        className="group-hover:translate-x-0.5 transition-transform"
+                      />
+                    </span>
+                  </div>
                 </div>
               </Link>
             ))}
