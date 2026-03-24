@@ -1,5 +1,3 @@
-// src/app/serwis/[token]/page.tsx
-// Publiczny widok dla serwisanta — dostęp przez token
 import { createClient } from "@/lib/supabase/server";
 import { notFound } from "next/navigation";
 import { ScanQrCode } from "lucide-react";
@@ -80,7 +78,7 @@ export default async function SerwisantPage({
               />
             ) : (
               <div className="w-16 h-16 bg-gray-100 rounded-lg border border-gray-200 flex items-center justify-center shrink-0">
-                <ScanLine size={18} className="text-gray-300" />
+                <ScanQrCode size={18} className="text-gray-300" />
               </div>
             )}
             <div className="flex-1">
