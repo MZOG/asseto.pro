@@ -18,6 +18,7 @@ import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 const links = [
   { href: "/cennik", label: "Cennik" },
   { href: "/pomoc", label: "Pomoc" },
+  { href: "/blog", label: "Blog" },
   { href: "/kontakt", label: "Kontakt" },
 ];
 
