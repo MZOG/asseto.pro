@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import PageHeader from "@/components/panel/page-header";
 import AssetDeleteButton from "@/components/panel/asset-delete-button";
 import AssetTabs from "@/components/panel/maszyny/asset-tabs";
+import { isPro } from "@/lib/utils/plan";
 
 export default async function MaszynaPage({
   params,
@@ -69,7 +70,7 @@ export default async function MaszynaPage({
         fields={fields ?? []}
         issues={issues ?? []}
         services={services ?? []}
-        isPro={profile?.plan === "pro"}
+        isPro={isPro(profile?.plan ?? "free")}
       />
     </section>
   );
