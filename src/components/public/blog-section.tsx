@@ -15,7 +15,7 @@ export default function BlogSection() {
         {/* Header */}
         <div className="flex items-end justify-between mb-10">
           <div>
-            <span className="text-xs font-semibold uppercase tracking-widest text-blue-600 mb-3 block">
+            <span className="text-xs font-semibold uppercase text-blue-600 mb-3 block">
               Blog
             </span>
             <h2 className="text-3xl font-semibold text-gray-900">

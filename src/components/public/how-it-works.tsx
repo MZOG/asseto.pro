@@ -27,7 +27,7 @@ export default function HowItWorks() {
       <div className="max-w-6xl mx-auto px-5">
         {/* Header */}
         <div className="max-w-2xl mb-14">
-          <span className="text-xs font-semibold uppercase tracking-widest text-blue-600 mb-3 block">
+          <span className="text-xs font-semibold uppercase text-blue-600 mb-3 block">
             Jak to działa
           </span>
           <h2 className="text-3xl font-semibold text-gray-900 leading-tight mb-4">

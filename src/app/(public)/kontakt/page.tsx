@@ -88,13 +88,13 @@ export default function KontaktPage() {
       <div className="max-w-5xl mx-auto">
         {/* Header — wycentrowany od md */}
         <div className="mb-14 text-center">
-          <span className="text-xs font-semibold uppercase tracking-widest text-blue-600 mb-3 block">
+          <span className="text-xs font-semibold uppercase text-blue-600 mb-3 block">
             Kontakt
           </span>
           <h1 className="text-4xl font-semibold text-gray-900 mb-4">
             Skontaktuj się z nami
           </h1>
-          <p className="text-gray-500 text-base md:max-w-md md:mx-auto">
+          <p className="text-gray-500 text-base md:max-w-xl md:mx-auto">
             Masz pytania? Chętnie pomożemy. Odpowiadamy w ciągu 24 godzin.
           </p>
         </div>

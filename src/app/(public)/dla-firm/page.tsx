@@ -183,7 +183,7 @@ export default function DlaFirmPage() {
       <section className="py-20 px-4 bg-white">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-14">
-            <span className="text-xs font-semibold uppercase tracking-widest text-red-500 mb-3 block">
+            <span className="text-xs font-semibold uppercase text-red-500 mb-3 block">
               Problem
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
@@ -218,7 +218,7 @@ export default function DlaFirmPage() {
       <section className="py-20 px-4">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-14">
-            <span className="text-xs font-semibold uppercase tracking-widest text-blue-600 mb-3 block">
+            <span className="text-xs font-semibold uppercase text-blue-600 mb-3 block">
               Rozwiązanie
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
@@ -269,7 +269,7 @@ export default function DlaFirmPage() {
       <section className="py-20 px-4 bg-white">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-14">
-            <span className="text-xs font-semibold uppercase tracking-widest text-blue-600 mb-3 block">
+            <span className="text-xs font-semibold uppercase text-blue-600 mb-3 block">
               Dla kogo
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
@@ -317,7 +317,7 @@ export default function DlaFirmPage() {
         <div className="max-w-5xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
-              <span className="text-xs font-semibold uppercase tracking-widest text-blue-600 mb-3 block">
+              <span className="text-xs font-semibold uppercase text-blue-600 mb-3 block">
                 Dlaczego Asseto
               </span>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">

@@ -117,7 +117,7 @@ export default function CennikPage() {
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-14">
-          <span className="text-xs font-semibold uppercase tracking-widest text-blue-600 mb-3 block">
+          <span className="text-xs font-semibold uppercase text-blue-600 mb-3 block">
             Cennik
           </span>
           <h1 className="text-4xl font-semibold text-gray-900 mb-4">

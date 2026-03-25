@@ -45,10 +45,10 @@ export default async function BlogPage({ searchParams }: Props) {
       <div className="max-w-5xl mx-auto">
         {/* Header */}
         <div className="mb-12 text-center">
-          <span className="text-xs font-semibold uppercase tracking-widest text-blue-600 mb-3 block">
+          <span className="text-xs font-semibold uppercase text-blue-600 mb-3 block">
             Blog
           </span>
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
+          <h1 className="text-4xl font-semibold text-gray-900 mb-4">
             Wiedza o zarządzaniu usterkami
           </h1>
           <p className="text-gray-500 text-base max-w-xl mx-auto text-center">

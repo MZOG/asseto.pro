@@ -101,7 +101,7 @@ export default function PomocPage() {
     <div className="pt-14 pb-20 px-4">
       <div className="max-w-2xl mx-auto">
         <div className="mb-12 text-center">
-          <span className="text-xs font-semibold uppercase tracking-widest text-blue-600 mb-3 block">
+          <span className="text-xs font-semibold uppercase text-blue-600 mb-3 block">
             Pomoc
           </span>
           <h1 className="text-4xl font-semibold text-gray-900 mb-4">

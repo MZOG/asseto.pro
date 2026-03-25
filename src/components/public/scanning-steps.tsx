@@ -27,7 +27,7 @@ export default function ScanningSteps() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Lewa — teksty */}
           <div>
-            <span className="text-xs font-semibold uppercase tracking-widest text-blue-600 mb-3 block">
+            <span className="text-xs font-semibold uppercase text-blue-600 mb-3 block">
               Zgłaszanie usterek
             </span>
             <h2 className="text-3xl font-semibold text-gray-900 leading-tight mb-4">
