@@ -128,7 +128,6 @@ export default function CennikPage() {
             Bez ukrytych opłat.
           </p>
         </div>
-
         {/* Plans grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 items-start mb-12">
           {plans.map((plan) => (
@@ -162,10 +161,10 @@ export default function CennikPage() {
                     {plan.period}
                   </span>
                 </div>
-                <p className="text-xs text-blue-600 font-semibold mb-1">
+                <p className="text-sm text-blue-600 font-semibold ">
                   {plan.limit}
                 </p>
-                <p className="text-xs text-gray-400">{plan.description}</p>
+                {/* <p className="text-xs text-gray-400">{plan.description}</p> */}
               </div>
 
               <Button
@@ -178,92 +177,43 @@ export default function CennikPage() {
             </div>
           ))}
         </div>
+        {/* Co zawiera każdy plan płatny */}
+        <div className="mt-12">
+          <div className="text-center mb-8">
+            <p className="font-semibold text-gray-900 mb-1">
+              Wszystkie plany płatne zawierają:
+            </p>
+            <p className="text-xs text-gray-400">
+              Różnica między planami to tylko limit maszyn.
+            </p>
+          </div>
 
-        {/* Feature comparison table */}
-        <div className="bg-white border border-gray-200 rounded-2xl overflow-hidden">
-          <div className="grid grid-cols-6 border-b border-gray-100">
-            <div className="col-span-1 p-4">
-              <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider">
-                Funkcja
-              </p>
-            </div>
-            {plans.map((plan) => (
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mx-auto">
+            {features.map((feature) => (
               <div
-                key={plan.name}
-                className={cn(
-                  "p-4 text-center",
-                  plan.recommended && "bg-blue-50/50",
-                )}
+                key={feature.label}
+                className="flex items-center gap-3 bg-white border border-gray-100 rounded-xl px-4 py-3"
               >
-                <p className="text-xs font-semibold text-gray-700">
-                  {plan.name}
-                </p>
+                <div className="w-7 h-7 bg-blue-50 rounded-lg flex items-center justify-center shrink-0">
+                  <Check size={14} className="text-blue-600" />
+                </div>
+                <span className="text-sm text-gray-700">{feature.label}</span>
               </div>
             ))}
           </div>
 
-          {/* Limit maszyn */}
-          <div className="grid grid-cols-6 border-b border-gray-100 hover:bg-gray-50 transition-colors">
-            <div className="col-span-1 p-4">
-              <p className="text-sm text-gray-700 font-medium">Limit maszyn</p>
+          {/* Plan darmowy */}
+          <div className="mt-4 bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 flex items-center gap-3">
+            <div className="w-7 h-7 bg-gray-100 rounded-lg flex items-center justify-center shrink-0 mt-0.5">
+              <Minus size={14} className="text-gray-400" />
             </div>
-            {plans.map((plan) => (
-              <div
-                key={plan.name}
-                className={cn(
-                  "p-4 text-center",
-                  plan.recommended && "bg-blue-50/50",
-                )}
-              >
-                <p className="text-xs font-semibold text-blue-600">
-                  {plan.limit}
-                </p>
-              </div>
-            ))}
+            <p className="text-xs text-gray-500 leading-relaxed">
+              Plan darmowy zawiera pierwsze 5 funkcji z listy: zgłoszenia przez
+              QR, panel zarządzania, powiadomienia e-mail o awariach, zdjęcia w
+              zgłoszeniach i historię awarii.
+            </p>
           </div>
-
-          {/* Features */}
-          {features.map((feature, i) => (
-            <div
-              key={feature.label}
-              className={cn(
-                "grid grid-cols-6 hover:bg-gray-50 transition-colors",
-                i < features.length - 1 && "border-b border-gray-100",
-              )}
-            >
-              <div className="col-span-1 p-4">
-                <p className="text-sm text-gray-700">{feature.label}</p>
-              </div>
-              {plans.map((plan) => {
-                const included =
-                  plan.name === "Darmowy" ? i < plan.includedFeatures : true;
-                return (
-                  <div
-                    key={plan.name}
-                    className={cn(
-                      "p-4 flex items-center justify-center",
-                      plan.recommended && "bg-blue-50/50",
-                    )}
-                  >
-                    {included ? (
-                      <Check size={16} className="text-blue-600" />
-                    ) : (
-                      <Minus size={16} className="text-gray-300" />
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-          ))}
         </div>
-
-        {/* Darmowy plan — które features */}
-        <p className="text-xs text-gray-400 text-center mt-4">
-          * Plan darmowy zawiera: zgłoszenia przez QR, panel zarządzania,
-          powiadomienia e-mail o awariach, zdjęcia w zgłoszeniach i historię
-          awarii.
-        </p>
-
         {/* Bottom note */}
         <p className="text-center text-sm text-gray-400 mt-8">
           Masz pytania?{" "}
