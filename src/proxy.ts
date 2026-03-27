@@ -1,9 +1,26 @@
-import { type NextRequest, NextResponse } from "next/server";
+// src/proxy.ts
+import createMiddleware from "next-intl/middleware";
+import { NextRequest, NextResponse } from "next/server";
 import { createServerClient } from "@supabase/ssr";
+import { routing } from "./i18n/routing";
 
-export async function proxy(request: NextRequest) {
-  let supabaseResponse = NextResponse.next({ request });
+const handleI18nRouting = createMiddleware(routing);
 
+const authPaths = ["/panel", "/dashboard"];
+const guestOnlyPaths = [
+  "/logowanie",
+  "/rejestracja",
+  "/login",
+  "/register",
+  "/reset-hasla",
+  "/reset-password",
+];
+
+export default async function proxy(request: NextRequest) {
+  // Krok 1: next-intl obsługuje locale routing
+  const response = handleI18nRouting(request);
+
+  // Krok 2: Supabase auth
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
@@ -13,12 +30,8 @@ export async function proxy(request: NextRequest) {
           return request.cookies.getAll();
         },
         setAll(cookiesToSet) {
-          cookiesToSet.forEach(({ name, value }) =>
-            request.cookies.set(name, value),
-          );
-          supabaseResponse = NextResponse.next({ request });
           cookiesToSet.forEach(({ name, value, options }) =>
-            supabaseResponse.cookies.set(name, value, options),
+            response.cookies.set(name, value, options),
           );
         },
       },
@@ -29,28 +42,40 @@ export async function proxy(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser();
 
-  if (!user && request.nextUrl.pathname.startsWith("/panel")) {
-    return NextResponse.redirect(new URL("/logowanie", request.url));
+  // Usuń prefix locale z pathname żeby sprawdzić auth
+  const { pathname } = request.nextUrl;
+  const pathnameWithoutLocale = pathname.replace(/^\/(pl|en)/, "") || "/";
+
+  const requiresAuth = authPaths.some((p) =>
+    pathnameWithoutLocale.startsWith(p),
+  );
+  const isGuestOnly = guestOnlyPaths.some((p) =>
+    pathnameWithoutLocale.startsWith(p),
+  );
+
+  const locale = pathname.split("/")[1];
+
+  if (requiresAuth && !user) {
+    const loginPath = locale === "en" ? "/en/login" : "/pl/logowanie";
+    return NextResponse.redirect(
+      new URL(`${loginPath}?next=${pathname}`, request.url),
+    );
   }
 
-  if (
-    user &&
-    (request.nextUrl.pathname.startsWith("/logowanie") ||
-      request.nextUrl.pathname.startsWith("/rejestracja"))
-  ) {
-    return NextResponse.redirect(new URL("/panel", request.url));
+  if (isGuestOnly && user) {
+    const dashboardPath = locale === "en" ? "/en/dashboard" : "/pl/panel";
+    return NextResponse.redirect(new URL(dashboardPath, request.url));
   }
 
+  // Krok 3: inject user headers
   if (user) {
-    supabaseResponse.headers.set("x-user-id", user.id);
-    supabaseResponse.headers.set("x-user-email", user.email ?? "");
+    response.headers.set("x-user-id", user.id);
+    response.headers.set("x-user-email", user.email ?? "");
   }
 
-  return supabaseResponse;
+  return response;
 }
 
 export const config = {
-  matcher: [
-    "/((?!_next/static|_next/image|favicon.ico|auth/callback|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
-  ],
+  matcher: "/((?!api|_next|_vercel|auth/callback|.*\\..*).*)",
 };

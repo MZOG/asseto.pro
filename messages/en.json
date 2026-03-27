@@ -1,0 +1,264 @@
+{
+  "common": {
+    "appName": "Asseto",
+    "loading": "Loading...",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "add": "Add",
+    "back": "Back",
+    "close": "Close",
+    "confirm": "Confirm",
+    "search": "Search",
+    "noData": "No data",
+    "error": "An error occurred",
+    "success": "Saved",
+    "required": "Required field"
+  },
+
+  "nav": {
+    "pricing": "Pricing",
+    "blog": "Blog",
+    "help": "Help",
+    "contact": "Contact",
+    "forBusiness": "For Business",
+    "login": "Log in",
+    "register": "Start for free",
+    "dashboard": "Dashboard"
+  },
+
+  "auth": {
+    "login": "Log in",
+    "loginDescription": "Manage your equipment and issues",
+    "emailPlaceholder": "john@company.com",
+    "register": "Register",
+    "email": "Email address",
+    "password": "Password",
+    "forgotPassword": "Forgot password?",
+    "loginButton": "Log in",
+    "registerButton": "Create account",
+    "noAccount": "Don't have an account?",
+    "hasAccount": "Already have an account?",
+    "resetPassword": "Reset password",
+    "checkEmail": "Check your email",
+    "loginError": "Wrong password or e-mail",
+    "backToHome": "Back to homepage",
+    "copy": "Asseto. All rights reserved.",
+
+    "registerPasswordError": "Hasło musi mieć co najmniej 8 znaków.",
+    "registerSamePasswrods": "Hasła nie są identyczne.",
+    "createAccount": "Create account",
+    "startManagingAccount": "Start manage your assets",
+    "repeatPassword": "Repeat password",
+    "backToLogin": "Back to login →",
+    "passwordLength": "at least 8 characters"
+  },
+
+  "panel": {
+    "overview": "Overview",
+    "assets": "Assets",
+    "issues": "Issues",
+    "services": "Services",
+    "settings": "Settings",
+    "profile": "My profile",
+    "logout": "Log out",
+    "help": "Help",
+    "active": "Active",
+    "inService": "In service",
+    "closed": "Closed"
+  },
+
+  "assets": {
+    "title": "Assets",
+    "addAsset": "Add asset",
+    "assetName": "Asset name",
+    "serialNumber": "Serial number",
+    "referenceNumber": "Reference number",
+    "location": "Location",
+    "status": "Status",
+    "nextInspection": "Next inspection",
+    "notes": "Notes",
+    "qrCode": "QR Code",
+    "customFields": "Custom fields",
+    "addField": "Add field",
+    "noAssets": "No assets yet. Add your first asset.",
+    "limitReached": "You have reached the limit of {limit} assets. Upgrade your plan.",
+    "tabs": {
+      "info": "Information",
+      "service": "Service",
+      "issues": "Issues",
+      "notes": "Notes"
+    },
+    "status": {
+      "working": "Working",
+      "broken": "Broken",
+      "maintenance": "In service",
+      "closed": "Closed"
+    }
+  },
+
+  "issues": {
+    "title": "Issues",
+    "newIssue": "New issue",
+    "description": "Issue description",
+    "status": "Status",
+    "priority": "Priority",
+    "reportedAt": "Reported at",
+    "closedAt": "Closed at",
+    "serviceNotes": "Service notes",
+    "reporterPhone": "Reporter's phone",
+    "noIssues": "No issues.",
+    "priorities": {
+      "low": "Low",
+      "normal": "Normal",
+      "high": "High",
+      "critical": "Critical"
+    },
+    "statuses": {
+      "broken": "Broken",
+      "maintenance": "In service",
+      "closed": "Closed"
+    }
+  },
+
+  "services": {
+    "title": "Services",
+    "addService": "Add service entry",
+    "servicedAt": "Service date",
+    "nextServiceAt": "Next service",
+    "type": "Service type",
+    "performedBy": "Performed by",
+    "cost": "Cost",
+    "notes": "Notes",
+    "noServices": "No service history.",
+    "types": {
+      "inspection": "Inspection",
+      "repair": "Repair",
+      "replacement": "Part replacement"
+    },
+    "statuses": {
+      "overdue": "Overdue",
+      "soon": "Within 14 days",
+      "ok": "Scheduled",
+      "none": "No date"
+    }
+  },
+
+  "report": {
+    "title": "Report an issue",
+    "subtitle": "Scan and describe the problem",
+    "descriptionLabel": "Issue description",
+    "descriptionPlaceholder": "Describe what happened...",
+    "photoLabel": "Photo",
+    "photoOptional": "(optional)",
+    "photoPlaceholder": "Click to add a photo",
+    "phoneLabel": "Phone number",
+    "phoneOptional": "(optional)",
+    "phonePlaceholder": "e.g. 600 700 800",
+    "submitButton": "Submit report",
+    "successTitle": "Thank you for your report!",
+    "successMessage": "Your report has been submitted. We will take care of it as soon as possible.",
+    "required": "Issue description is required."
+  },
+
+  "pricing": {
+    "title": "Pricing",
+    "subtitle": "Simple, transparent pricing",
+    "description": "Start for free and upgrade as your business grows.",
+    "free": "Free",
+    "monthly": "per month",
+    "forever": "forever",
+    "vatNote": "+ VAT",
+    "popular": "Popular",
+    "startFree": "Start for free",
+    "choosePlan": "Choose {plan}",
+    "allPaidPlansInclude": "All paid plans include:",
+    "differenceNote": "The only difference between plans is the asset limit.",
+    "questions": "Have questions?",
+    "contactUs": "Contact us",
+    "replyTime": "— we reply within 24 hours."
+  },
+
+  "subscription": {
+    "title": "Subscription",
+    "active": "Active",
+    "canceled": "Canceled",
+    "free": "Free",
+    "pastDueWarning": "Your last payment failed. Update your payment method to keep access.",
+    "machineCount": "You are using {count}/{limit} assets on the free plan.",
+    "nearLimit": "You are approaching your limit.",
+    "choosePlan": "Choose a plan",
+    "renewSubscription": "Renew subscription",
+    "manageSubscription": "Manage subscription",
+    "changePlan": "Change plan",
+    "hidePlans": "Hide plans",
+    "changeNote": "Changes will take effect from the next billing period.",
+    "current": "Current",
+    "recommended": "Recommended",
+    "redirecting": "Redirecting...",
+    "upgradeTo": "Switch to {plan}",
+    "selectPlan": "Choose {plan}"
+  },
+
+  "settings": {
+    "title": "Settings",
+    "qr": {
+      "title": "QR Settings",
+      "labelTop": "Top label",
+      "labelBottom": "Bottom label",
+      "printSize": "Print size"
+    },
+    "service": {
+      "title": "Service contact",
+      "phone": "Phone",
+      "email": "Email"
+    },
+    "reports": {
+      "title": "Reports",
+      "issues": "Issue reports",
+      "services": "Service reports"
+    }
+  },
+
+  "landing": {
+    "hero": {
+      "badge": "Equipment fault management system",
+      "betaBadge": "Now available in beta",
+      "title": "Manage equipment issues via QR code",
+      "titleHighlight": "QR code",
+      "subtitle": "An employee scans the code, describes the problem — you react.",
+      "subtitleSecond": "No phone calls, no spreadsheets.",
+      "cta": "Start for free",
+      "ctaLogin": "Log in",
+      "demoText": "Want to see how Asseto works?",
+      "demoLink": "Log in to the demo account",
+      "badge1": "Instant reports",
+      "badge2": "No installation",
+      "badge3": "Full history",
+      "browserBar": "asseto.pro/dashboard",
+      "imageAlt": "Asseto — issue management dashboard"
+    },
+    "howItWorks": {
+      "title": "How does it work?",
+      "step1": "Attach a QR code to your equipment",
+      "step2": "User scans and reports the issue",
+      "step3": "You get an instant notification"
+    }
+  },
+
+  "serwisant": {
+    "title": "Service portal",
+    "issueHistory": "Issues",
+    "serviceHistory": "Service history",
+    "addServiceEntry": "Add service entry",
+    "noIssues": "No issues.",
+    "noServices": "No service entries.",
+    "saveNote": "Save note",
+    "saving": "Saving...",
+    "saved": "Saved",
+    "issueDescription": "Issue description",
+    "serviceNote": "Service note",
+    "noteplaceholder": "Add a service note..."
+  }
+}

@@ -1,7 +1,7 @@
 "use client";
-
+import { useTranslations } from "next-intl";
 import { useState } from "react";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { createClient } from "@/lib/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -30,6 +30,7 @@ export default function RegisterPage() {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [confirmPassword, setConfirmPassword] = useState("");
+  const t = useTranslations("auth");
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -84,10 +85,10 @@ export default function RegisterPage() {
         <Card className="bg-white border-gray-200 shadow-sm">
           <CardHeader className="space-y-1 pb-4">
             <CardTitle className="text-gray-900 text-xl font-semibold text-center">
-              Załóż konto
+              {t("createAccount")}
             </CardTitle>
             <CardDescription className="text-gray-500 text-sm text-center">
-              Zacznij zarządzać swoimi maszynami
+              {t("startManagingAccount")}
             </CardDescription>
           </CardHeader>
 
@@ -99,7 +100,7 @@ export default function RegisterPage() {
                 </div>
                 <div>
                   <p className="text-gray-900 font-medium text-sm">
-                    Sprawdź skrzynkę
+                    {t("checkEmail")}
                   </p>
                   <p className="text-gray-500 text-xs mt-1">
                     Wysłaliśmy link aktywacyjny na{" "}
@@ -110,7 +111,7 @@ export default function RegisterPage() {
                   href="/logowanie"
                   className="text-xs text-blue-600 hover:text-blue-700 font-medium transition-colors mt-2"
                 >
-                  Wróć do logowania →
+                  {t("backToLogin")}
                 </Link>
               </div>
             </CardContent>
@@ -136,7 +137,7 @@ export default function RegisterPage() {
                   <Input
                     id="email"
                     type="email"
-                    placeholder="jan@firma.pl"
+                    placeholder={t("emailPlaceholder")}
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
@@ -149,12 +150,12 @@ export default function RegisterPage() {
                     htmlFor="password"
                     className="text-gray-700 text-sm font-medium"
                   >
-                    Hasło
+                    {t("password")}
                   </Label>
                   <Input
                     id="password"
                     type="password"
-                    placeholder="min. 8 znaków"
+                    placeholder={t("passwordLength")}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
@@ -167,12 +168,12 @@ export default function RegisterPage() {
                     htmlFor="confirmPassword"
                     className="text-gray-700 text-sm font-medium"
                   >
-                    Potwierdź hasło
+                    {t("repeatPassword")}
                   </Label>
                   <Input
                     id="confirmPassword"
                     type="password"
-                    placeholder="Powtórz hasło"
+                    placeholder={t("repeatPassword")}
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
                     required
@@ -193,17 +194,17 @@ export default function RegisterPage() {
                       Rejestracja...
                     </>
                   ) : (
-                    "Zarejestruj się"
+                    t("registerButton")
                   )}
                 </Button>
 
                 <p className="text-gray-500 text-center">
-                  Masz już konto?{" "}
+                  {t("hasAccount")}{" "}
                   <Link
                     href="/logowanie"
                     className="text-blue-600 hover:text-blue-700 font-medium transition-colors"
                   >
-                    Zaloguj się
+                    {t("loginButton")}
                   </Link>
                 </p>
               </CardFooter>
@@ -215,13 +216,13 @@ export default function RegisterPage() {
           <Button asChild variant="ghost">
             <Link href="/">
               <ArrowLeft />
-              Wróć do strony głównej
+              {t("backToHome")}
             </Link>
           </Button>
         </div>
 
         <p className="text-center text-gray-400 text-xs mt-6">
-          © {new Date().getFullYear()} Asseto. Wszelkie prawa zastrzeżone.
+          © {new Date().getFullYear()} {t("copy")}
         </p>
       </div>
     </div>
