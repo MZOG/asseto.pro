@@ -1,6 +1,7 @@
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { ScanQrCode, Mail, ArrowLeft } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import { getTranslations } from "next-intl/server";
 
 export default async function CheckEmailPage({
   searchParams,
@@ -8,6 +9,7 @@ export default async function CheckEmailPage({
   searchParams: Promise<{ email?: string }>;
 }) {
   const { email } = await searchParams;
+  const t = await getTranslations("auth");
 
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
@@ -32,10 +34,10 @@ export default async function CheckEmailPage({
               {/* Text */}
               <div className="space-y-1.5">
                 <h2 className="text-gray-900 font-semibold text-lg">
-                  Sprawdź skrzynkę
+                  {t("checkMail")}
                 </h2>
                 <p className="text-gray-500 text-sm leading-relaxed">
-                  Wysłaliśmy link do resetu hasła na adres
+                  {t("checkMailDescription")}
                 </p>
                 {email && (
                   <p className="text-blue-600 font-medium text-sm">{email}</p>
@@ -45,11 +47,21 @@ export default async function CheckEmailPage({
               {/* Note */}
               <div className="bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 w-full">
                 <p className="text-gray-500 text-xs leading-relaxed">
-                  Nie widzisz emaila? Sprawdź folder{" "}
-                  <span className="text-gray-700 font-medium">spam</span>.
+                  {t.rich("checkEmailSpam", {
+                    strong: (chunks) => (
+                      <span className="text-gray-700 font-medium">
+                        {chunks}
+                      </span>
+                    ),
+                  })}
                   <span className="block">
-                    Link jest ważny przez{" "}
-                    <span className="text-gray-700 font-medium">60 minut.</span>
+                    {t.rich("checkMailExpiry", {
+                      strong: (chunks) => (
+                        <span className="text-gray-700 font-medium">
+                          {chunks}
+                        </span>
+                      ),
+                    })}
                   </span>
                 </p>
               </div>
@@ -60,14 +72,14 @@ export default async function CheckEmailPage({
                 className="flex items-center gap-1.5 text-xs text-gray-500 hover:text-blue-600 transition-colors mt-1"
               >
                 <ArrowLeft size={13} />
-                Wróć do logowania
+                {t("checkMailBack")}
               </Link>
             </div>
           </CardContent>
         </Card>
 
         <p className="text-center text-gray-400 text-xs mt-6">
-          © {new Date().getFullYear()} Asseto. Wszelkie prawa zastrzeżone.
+          © {new Date().getFullYear()} {t("copy")}
         </p>
       </div>
     </div>

@@ -1,15 +1,12 @@
-import { LogIn, QrCode, Zap, Shield, BarChart3 } from "lucide-react";
+import { LogIn, Zap, Shield, BarChart3 } from "lucide-react";
 import { Button } from "../ui/button";
 import { Link } from "@/i18n/routing";
 import Image from "next/image";
 import DashboardImage from "../../../public/dashboard.png";
 import { getTranslations } from "next-intl/server";
 
-import { getLocale } from "next-intl/server";
 export const dynamic = "force-dynamic";
 export default async function Hero() {
-  const locale = await getLocale();
-  console.log("Hero locale:", locale);
   const t = await getTranslations("landing.hero");
 
   const badges = [

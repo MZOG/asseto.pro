@@ -45,6 +45,7 @@
     "loginError": "Nieprawidłowy email lub hasło.",
     "backToHome": "Wróć do strony głównej",
     "copy": "Asseto. Wszelkie prawa zastrzeżone.",
+    "sending": "Wysyłanie...",
 
     "registerPasswordError": "Hasło musi mieć co najmniej 8 znaków.",
     "registerSamePasswrods": "Hasła nie są identyczne.",
@@ -52,7 +53,16 @@
     "startManagingAccount": "Zacznij zarządzać swoimi maszynami",
     "repeatPassword": "Powtórz hasło",
     "backToLogin": "Wróć do logowania →",
-    "passwordLength": "min. 8 znaków"
+    "passwordLength": "min. 8 znaków",
+
+    "rememberPassword": "Pamiętasz hasło?",
+    "resetDescription": "Wyślemy Ci link do ustawienia nowego hasła",
+
+    "checkMail": "Sprawdź skrzynkę",
+    "checkMailDescription": "Wysłaliśmy link do resetu hasła na adres",
+    "checkEmailSpam": "Nie widzisz emaila? Sprawdź folder <strong>spam</strong>.",
+    "checkMailExpiry": "Link jest ważny przez <strong>60 minut</strong>.",
+    "checkMailBack": "Wróć do logowania"
   },
 
   "panel": {

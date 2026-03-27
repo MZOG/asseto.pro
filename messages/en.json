@@ -45,6 +45,7 @@
     "loginError": "Wrong password or e-mail",
     "backToHome": "Back to homepage",
     "copy": "Asseto. All rights reserved.",
+    "sending": "Sending...",
 
     "registerPasswordError": "Hasło musi mieć co najmniej 8 znaków.",
     "registerSamePasswrods": "Hasła nie są identyczne.",
@@ -52,7 +53,16 @@
     "startManagingAccount": "Start manage your assets",
     "repeatPassword": "Repeat password",
     "backToLogin": "Back to login →",
-    "passwordLength": "at least 8 characters"
+    "passwordLength": "at least 8 characters",
+
+    "rememberPassword": "Remember password?",
+    "resetDescription": "We will send you a link to set a new password",
+
+    "checkMail": "Check your inbox",
+    "checkMailDescription": "We have sent a password reset link to",
+    "checkEmailSpam": "Can't see the email? Check your <strong>spam</strong> folder.",
+    "checkMailExpiry": "The link is valid for <strong>60 minutes.</strong>",
+    "checkMailBack": "Back to login"
   },
 
   "panel": {

@@ -1,8 +1,8 @@
 "use client";
-
+import { useTranslations } from "next-intl";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
-import Link from "next/link";
+import { useRouter } from "@/i18n/routing";
+import { Link } from "@/i18n/routing";
 import { createClient } from "@/lib/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -23,6 +23,7 @@ export default function ResetHaslaPage() {
   const [email, setEmail] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const t = useTranslations("auth");
 
   const handleReset = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -40,7 +41,10 @@ export default function ResetHaslaPage() {
       return;
     }
 
-    router.push(`/email?email=${encodeURIComponent(email)}`);
+    router.push({
+      pathname: "/email",
+      query: { email },
+    });
   };
 
   return (
@@ -58,10 +62,10 @@ export default function ResetHaslaPage() {
         <Card className="bg-white border-gray-200 shadow-sm">
           <CardHeader className="space-y-1 pb-4">
             <CardTitle className="text-gray-900 text-xl font-semibold text-center">
-              Reset hasła
+              {t("resetPassword")}
             </CardTitle>
             <CardDescription className="text-gray-500 text-sm text-center">
-              Wyślemy Ci link do ustawienia nowego hasła
+              {t("resetDescription")}
             </CardDescription>
           </CardHeader>
 
@@ -86,7 +90,7 @@ export default function ResetHaslaPage() {
                 <Input
                   id="email"
                   type="email"
-                  placeholder="jan@firma.pl"
+                  placeholder={t("emailPlaceholder")}
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
@@ -104,20 +108,20 @@ export default function ResetHaslaPage() {
                 {loading ? (
                   <>
                     <Loader2 size={15} className="animate-spin mr-2" />
-                    Wysyłanie...
+                    {t("sending")}
                   </>
                 ) : (
-                  "Resetuj hasło"
+                  t("resetPassword")
                 )}
               </Button>
 
               <p className="text-gray-500 text-center">
-                Pamiętasz hasło?{" "}
+                {t("rememberPassword")}{" "}
                 <Link
                   href="/logowanie"
                   className="text-blue-600 hover:text-blue-700 font-medium transition-colors"
                 >
-                  Zaloguj się
+                  {t("login")}
                 </Link>
               </p>
             </CardFooter>
@@ -125,7 +129,7 @@ export default function ResetHaslaPage() {
         </Card>
 
         <p className="text-center text-gray-400 text-xs mt-6">
-          © {new Date().getFullYear()} Asseto. Wszelkie prawa zastrzeżone.
+          © {new Date().getFullYear()} {t("copy")}
         </p>
       </div>
     </div>

@@ -21,6 +21,8 @@ export const routing = defineRouting({
     "/logowanie": { pl: "/logowanie", en: "/login" },
     "/rejestracja": { pl: "/rejestracja", en: "/register" },
     "/reset-hasla": { pl: "/reset-hasla", en: "/reset-password" },
+    "/ustaw-haslo": { pl: "/ustaw-haslo", en: "/set-passwrod" },
+    "/email": { pl: "/email", en: "/email" },
     "/panel": { pl: "/panel", en: "/dashboard" },
     "/panel/maszyny": { pl: "/panel/maszyny", en: "/dashboard/assets" },
     "/panel/maszyny/dodaj": {
