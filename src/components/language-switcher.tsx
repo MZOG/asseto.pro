@@ -6,10 +6,12 @@ import { useState, useRef, useEffect } from "react";
 import { ChevronDown } from "lucide-react";
 import PL from "country-flag-icons/react/3x2/PL";
 import GB from "country-flag-icons/react/3x2/GB";
+import DE from "country-flag-icons/react/3x2/DE";
 
 const languages = [
   { code: "pl", label: "PL", Flag: PL },
   { code: "en", label: "EN", Flag: GB },
+  // { code: "de", label: "DE", Flag: DE },
 ];
 
 export default function LanguageSwitcher() {

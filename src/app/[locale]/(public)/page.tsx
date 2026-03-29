@@ -5,29 +5,25 @@ import CtaSection from "@/components/public/cta-section";
 import { Metadata } from "next";
 import BlogSection from "@/components/public/blog-section";
 
-export const metadata: Metadata = {
-  title: {
-    absolute: "Asseto - Zarządzaj usterkami przez kod QR",
-  },
-  description:
-    "Asseto to prosty system do zgłaszania i zarządzania usterkami oparty o kody QR. Bez aplikacji, bez rejestracji. Działa wszędzie — siłownia, hotel, zakład produkcyjny.",
-  openGraph: {
-    title: "Asseto - Zarządzaj usterkami przez kod QR",
-    description:
-      "Prosty system zgłaszania usterek przez kod QR. Bez aplikacji, bez rejestracji.",
-    images: [
-      {
-        url: "https://asseto.pro/api/og?title=Zarządzaj usterkami przez kod QR&description=Prosty system zgłaszania usterek przez kod QR. Bez aplikacji, bez rejestracji.",
-        width: 1200,
-        height: 630,
-      },
-    ],
-    url: "https://asseto.pro",
-    siteName: "Asseto",
-    locale: "pl_PL",
-    type: "website",
-  },
-};
+import { getTranslations } from "next-intl/server";
+import { generateSeo } from "@/lib/seo";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "seo.index" });
+
+  return generateSeo({
+    title: t("title"),
+    description: t("description"),
+    locale,
+    pathnameKey: "/",
+    absolute: true,
+  });
+}
 
 export default function Home() {
   return (

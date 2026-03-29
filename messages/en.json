@@ -1,4 +1,11 @@
 {
+  "seo": {
+    "index": {
+      "title": "Manage equipment issues via QR code",
+      "description": "An employee scans the code, describes the problem — you react.",
+      "path": "/en"
+    }
+  },
   "common": {
     "appName": "Asseto",
     "loading": "Loading...",

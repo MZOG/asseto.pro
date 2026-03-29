@@ -3,16 +3,20 @@ import { defineRouting } from "next-intl/routing";
 import { createNavigation } from "next-intl/navigation";
 
 export const routing = defineRouting({
-  locales: ["pl", "en"],
+  locales: ["pl", "en", "de"],
   defaultLocale: "pl",
   localePrefix: "as-needed",
   pathnames: {
     "/": "/",
-    "/cennik": { pl: "/cennik", en: "/pricing" },
-    "/blog": "/blog",
-    "/kontakt": { pl: "/kontakt", en: "/contact" },
-    "/pomoc": { pl: "/pomoc", en: "/help" },
-    "/dla-firm": { pl: "/dla-firm", en: "/for-business" },
+    "/cennik": { pl: "/cennik", en: "/pricing", de: "/preise" },
+    "/blog": { pl: "/blog", en: "/blog", de: "/blog" },
+    "/kontakt": { pl: "/kontakt", en: "/contact", de: "/kontakt" },
+    "/pomoc": { pl: "/pomoc", en: "/help", de: "/hilfe" },
+    "/dla-firm": {
+      pl: "/dla-firm",
+      en: "/for-business",
+      de: "/fuer-unternehmen",
+    },
     "/polityka-prywatnosci": {
       pl: "/polityka-prywatnosci",
       en: "/privacy-policy",

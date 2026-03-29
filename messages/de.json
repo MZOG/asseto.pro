@@ -1,11 +1,4 @@
 {
-  "seo": {
-    "index": {
-      "title": "Zarządzaj usterkami przez kod QR",
-      "description": "Pracownik skanuje kod, opisuje problem — Ty reagujesz.",
-      "path": "/"
-    }
-  },
   "common": {
     "appName": "Asseto",
     "loading": "Ładowanie...",
@@ -23,6 +16,7 @@
     "success": "Zapisano",
     "required": "Pole wymagane"
   },
+
   "nav": {
     "pricing": "Cennik",
     "blog": "Blog",
