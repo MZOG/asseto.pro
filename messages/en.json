@@ -62,7 +62,16 @@
     "checkMailDescription": "We have sent a password reset link to",
     "checkEmailSpam": "Can't see the email? Check your <strong>spam</strong> folder.",
     "checkMailExpiry": "The link is valid for <strong>60 minutes.</strong>",
-    "checkMailBack": "Back to login"
+    "checkMailBack": "Back to login",
+
+    "resetPasswordError": "Something went wrong. Try again.",
+    "setPasswordError": "Failed to change the password. Please try again.",
+    "setPasswordSuccess": "Password has been changed.",
+    "newPassword": "New password",
+    "setNewPassword": "Set a new password for your account",
+    "confirmPassword": "Confirm password",
+    "newPasswordSaving": "Saving...",
+    "setNewPasswordButton": "Set new password"
   },
 
   "panel": {

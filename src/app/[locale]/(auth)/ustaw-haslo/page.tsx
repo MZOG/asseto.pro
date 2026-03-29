@@ -1,7 +1,7 @@
 "use client";
-
+import { useTranslations } from "next-intl";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/i18n/routing";
 import { createClient } from "@/lib/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -23,18 +23,19 @@ export default function UstawHasloPage() {
   const [confirm, setConfirm] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const t = useTranslations("auth");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
 
     if (password.length < 8) {
-      setError("Hasło musi mieć co najmniej 8 znaków.");
+      setError(t("registerPasswordError"));
       return;
     }
 
     if (password !== confirm) {
-      setError("Hasła nie są identyczne.");
+      setError(t("registerSamePasswords"));
       return;
     }
 
@@ -43,12 +44,12 @@ export default function UstawHasloPage() {
     const { error } = await supabase.auth.updateUser({ password });
 
     if (error) {
-      setError("Nie udało się zmienić hasła. Spróbuj ponownie.");
+      setError(t("setPasswordError"));
       setLoading(false);
       return;
     }
 
-    toast.success("Hasło zostało zmienione.");
+    toast.success(t("setPasswordSuccess"));
     router.push("/panel");
   };
 
@@ -67,10 +68,10 @@ export default function UstawHasloPage() {
         <Card className="bg-white border-gray-200 shadow-sm">
           <CardHeader className="pb-4">
             <CardTitle className="text-gray-900 text-xl font-semibold text-center">
-              Nowe hasło
+              {t("newPassword")}
             </CardTitle>
             <CardDescription className="text-gray-500 text-sm text-center">
-              Ustaw nowe hasło do swojego konta
+              {t("setNewPassword")}
             </CardDescription>
           </CardHeader>
           <form onSubmit={handleSubmit}>
@@ -88,12 +89,12 @@ export default function UstawHasloPage() {
                   htmlFor="password"
                   className="text-gray-700 text-sm font-medium"
                 >
-                  Nowe hasło
+                  {t("newPassword")}
                 </Label>
                 <Input
                   id="password"
                   type="password"
-                  placeholder="min. 8 znaków"
+                  placeholder={t("passwordLength")}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
@@ -105,12 +106,12 @@ export default function UstawHasloPage() {
                   htmlFor="confirm"
                   className="text-gray-700 text-sm font-medium"
                 >
-                  Potwierdź hasło
+                  {t("confirmPassword")}
                 </Label>
                 <Input
                   id="confirm"
                   type="password"
-                  placeholder="Powtórz nowe hasło"
+                  placeholder={t("repeatPassword")}
                   value={confirm}
                   onChange={(e) => setConfirm(e.target.value)}
                   required
@@ -125,10 +126,10 @@ export default function UstawHasloPage() {
                 {loading ? (
                   <>
                     <Loader2 size={15} className="animate-spin mr-2" />
-                    Zapisywanie...
+                    {t("newPasswordSaving")}
                   </>
                 ) : (
-                  "Ustaw nowe hasło"
+                  <>{t("setNewPasswordButton")}</>
                 )}
               </Button>
             </CardContent>

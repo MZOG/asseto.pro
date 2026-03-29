@@ -62,7 +62,16 @@
     "checkMailDescription": "Wysłaliśmy link do resetu hasła na adres",
     "checkEmailSpam": "Nie widzisz emaila? Sprawdź folder <strong>spam</strong>.",
     "checkMailExpiry": "Link jest ważny przez <strong>60 minut</strong>.",
-    "checkMailBack": "Wróć do logowania"
+    "checkMailBack": "Wróć do logowania",
+
+    "resetPasswordError": "Coś poszło nie tak. Spróbuj ponownie.",
+    "setPasswordError": "Nie udało się zmienić hasła. Spróbuj ponownie.",
+    "setPasswordSuccess": "Hasło zostało zmienione.",
+    "newPassword": "Nowe hasło",
+    "setNewPassword": "Ustaw nowe hasło do swojego konta",
+    "confirmPassword": "Potwierdź hasło",
+    "newPasswordSaving": "Zapisywanie...",
+    "setNewPasswordButton": "Ustaw nowe hasło"
   },
 
   "panel": {

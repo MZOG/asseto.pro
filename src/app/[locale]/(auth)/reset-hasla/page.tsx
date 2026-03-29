@@ -17,8 +17,10 @@ import {
 } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Loader2, ScanQrCode, AlertCircle } from "lucide-react";
+import { useLocale } from "next-intl";
 
 export default function ResetHaslaPage() {
+  const locale = useLocale();
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -32,11 +34,11 @@ export default function ResetHaslaPage() {
 
     const supabase = createClient();
     const { error } = await supabase.auth.resetPasswordForEmail(email, {
-      redirectTo: `${window.location.origin}/auth/callback?next=/ustaw-haslo`,
+      redirectTo: `${window.location.origin}/auth/callback?next=${locale === "en" ? "/en/set-password" : "/ustaw-haslo"}`,
     });
 
     if (error) {
-      setError("Coś poszło nie tak. Spróbuj ponownie.");
+      setError(t("resetPasswordError"));
       setLoading(false);
       return;
     }
