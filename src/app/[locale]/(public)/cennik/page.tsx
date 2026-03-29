@@ -2,35 +2,25 @@ import Link from "next/link";
 import { Check, Minus, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { Metadata } from "next";
 
-export const metadata: Metadata = {
-  title: "Cennik",
-  description:
-    "Zacznij za darmo i przejdź na wyższy plan gdy Twój biznes rośnie. Prosty, przejrzysty cennik bez ukrytych opłat.",
-  openGraph: {
-    title: "Cennik - Asseto",
-    description:
-      "Plan darmowy do 10 urządzeń. Plany płatne od 99 zł miesięcznie.",
-    images: [
-      {
-        url: "https://asseto.pro/api/og?title=Prosty, przejrzysty cennik&description=Zacznij za darmo i przejdź na wyższy plan gdy Twój biznes rośnie.",
-        width: 1200,
-        height: 630,
-      },
-    ],
-    url: "https://asseto.pro/cennik",
-    siteName: "Asseto",
-    locale: "pl_PL",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    images: [
-      "/api/og?title=Cennik&description=Plan darmowy do 10 urządzeń. Plany płatne od 99 zł miesięcznie.",
-    ],
-  },
-};
+import { getTranslations } from "next-intl/server";
+import { generateSeo } from "@/lib/seo";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "seo.pricing" });
+
+  return generateSeo({
+    title: t("title"),
+    description: t("description"),
+    locale,
+    pathnameKey: "/cennik",
+  });
+}
 
 const features = [
   { label: "Zgłoszenia przez QR", included: true },

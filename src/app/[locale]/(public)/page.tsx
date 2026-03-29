@@ -2,7 +2,6 @@ import HowItWorks from "@/components/public/how-it-works";
 import Hero from "@/components/public/hero-section";
 import ScanningSteps from "@/components/public/scanning-steps";
 import CtaSection from "@/components/public/cta-section";
-import { Metadata } from "next";
 import BlogSection from "@/components/public/blog-section";
 
 import { getTranslations } from "next-intl/server";

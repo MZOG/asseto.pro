@@ -4,6 +4,10 @@
       "title": "Manage equipment issues via QR code",
       "description": "An employee scans the code, describes the problem — you react.",
       "path": "/en"
+    },
+    "pricing": {
+      "title": "Pricing",
+      "description": "Start for free and upgrade as your business grows."
     }
   },
   "common": {

@@ -4,6 +4,10 @@
       "title": "Zarządzaj usterkami przez kod QR",
       "description": "Pracownik skanuje kod, opisuje problem — Ty reagujesz.",
       "path": "/"
+    },
+    "pricing": {
+      "title": "Cennik",
+      "description": "Zacznij za darmo i przejdź na wyższy plan gdy Twój biznes rośnie."
     }
   },
   "common": {
