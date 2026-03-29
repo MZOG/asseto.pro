@@ -78,6 +78,7 @@ interface SeoProps {
   absolute?: boolean;
   type?: "website" | "article";
   publishedTime?: string;
+  pathname?: string;
 }
 
 export function generateSeo({
@@ -88,10 +89,11 @@ export function generateSeo({
   absolute = false,
   type = "website",
   publishedTime,
+  pathname,
 }: SeoProps): Metadata {
   const ogLocale = localeMap[locale] ?? "pl_PL";
   const isDefault = locale === routing.defaultLocale;
-  const localizedPath = getLocalizedPath(pathnameKey, locale);
+  const localizedPath = pathname ?? getLocalizedPath(pathnameKey, locale);
 
   const url = isDefault
     ? `${BASE_URL}${localizedPath}`

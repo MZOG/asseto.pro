@@ -6,6 +6,7 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import { Calendar, Clock, ArrowLeft, Tag } from "lucide-react";
 import Image from "next/image";
 import remarkGfm from "remark-gfm";
+import { generateSeo } from "@/lib/seo";
 
 export async function generateStaticParams() {
   const posts = getAllPosts();
@@ -15,33 +16,20 @@ export async function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ slug: string; locale: string }>;
 }): Promise<Metadata> {
-  const { slug } = await params;
+  const { slug, locale } = await params;
   const post = getPostBySlug(slug);
   if (!post) return {};
 
-  return {
+  return generateSeo({
     title: post.title,
     description: post.description,
-    openGraph: {
-      title: post.title,
-      description: post.description,
-      type: "article",
-      publishedTime: post.date,
-      images: [
-        {
-          url: `/api/og?title=${encodeURIComponent(post.title)}&description=${encodeURIComponent(post.description)}`,
-          width: 1200,
-          height: 630,
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      images: [`/api/og?title=${post.title}&description=${post.description}`],
-    },
-  };
+    locale,
+    pathname: `/blog/${slug}`,
+    type: "article",
+    publishedTime: post.date,
+  });
 }
 
 const components = {
