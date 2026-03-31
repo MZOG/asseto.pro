@@ -125,8 +125,7 @@
     "contact": "Kontakt",
     "forBusiness": "Dla firm",
     "login": "Zaloguj się",
-    "register": "Zacznij za darmo",
-    "dashboard": "Panel"
+    "register": "Zacznij za darmo"
   },
 
   "auth": {
@@ -186,7 +185,35 @@
     "help": "Pomoc",
     "active": "Aktywne",
     "inService": "W serwisie",
-    "closed": "Zamknięte"
+    "closed": "Zamknięte",
+
+    "dashboard": {
+      "title": "Przegląd",
+      "issues": "Awarie",
+      "machines": "Maszyny",
+      "upcomingServices": "Zbliżające się serwisy",
+      "noServices": "Brak zaplanowanych serwisów.",
+      "allServices": "Zobacz wszystkie serwisy",
+      "topAssets": "Najczęściej zgłaszane maszyny",
+      "analytics": "Analityka",
+      "analyticsProText": "Analityka dostępna w Pro",
+      "issue": "awaria",
+      "issues2": "awarie",
+      "issues5": "awarii",
+      "stats": {
+        "broken": "Uszkodzone",
+        "issuesThisMonth": "Awarie w tym miesiącu",
+        "brokenAssets": "Uszkodzone maszyny",
+        "inService": "W serwisie",
+        "working": "Sprawne",
+        "assets": "Maszyny"
+      },
+      "mockServices": [
+        { "name": "Maszyna przykładowa", "date": "15 stycznia 2025" },
+        { "name": "Urządzenie nr 2", "date": "22 stycznia 2025" },
+        { "name": "Sprzęt w hali A", "date": "1 lutego 2025" }
+      ]
+    }
   },
 
   "assets": {

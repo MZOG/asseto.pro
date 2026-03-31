@@ -17,7 +17,7 @@ export default async function Hero() {
 
   return (
     <section id="hero" className="relative overflow-hidden">
-      <div className="relative max-w-6xl px-5 mx-auto pt-14 pb-16">
+      <div className="relative max-w-6xl px-5 mx-auto pt-14 pb-10">
         <div className="flex justify-center mb-8">
           <span className="inline-flex items-center gap-1.5 bg-white border border-gray-200 text-gray-600 text-xs font-medium px-3 py-1.5 rounded-full">
             <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
@@ -42,15 +42,12 @@ export default async function Hero() {
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mt-10">
-          <Button
-            asChild
-            className="bg-blue-600 hover:bg-blue-700! text-white rounded-lg px-5 shadow-lg shadow-blue-200"
-          >
+          <Button asChild variant="asseto" className="px-5 shadow-lg">
             <Link href="/rejestracja" data-umami-event="Hero signup register">
               {t("cta")}
             </Link>
           </Button>
-          <Button asChild variant="ghost" size="lg" className="rounded-lg">
+          <Button asChild variant="ghost" size="lg">
             <Link href="/logowanie" data-umami-event="Hero login click">
               <LogIn size={16} className="mr-1.5" />
               {t("ctaLogin")}
@@ -58,7 +55,7 @@ export default async function Hero() {
           </Button>
         </div>
 
-        <div className="md:text-xs flex flex-col md:flex-row items-center justify-center gap-2 mt-4 bg-white border border-gray-200 rounded-xl sm:px-4 py-4 max-w-lg mx-auto">
+        <div className="md:text-xs flex flex-col md:flex-row items-center justify-center gap-2 mt-8 bg-white border border-gray-200 rounded-xl sm:px-4 py-4 max-w-lg mx-auto">
           <span className="text-gray-500">{t("demoText")}</span>
           <Link
             data-umami-event="Demo login"

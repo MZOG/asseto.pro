@@ -27,14 +27,31 @@ export const routing = defineRouting({
     "/reset-hasla": { pl: "/reset-hasla", en: "/reset-password" },
     "/ustaw-haslo": { pl: "/ustaw-haslo", en: "/set-passwrod" },
     "/email": { pl: "/email", en: "/email" },
+
+    // panel
     "/panel": { pl: "/panel", en: "/dashboard" },
     "/panel/maszyny": { pl: "/panel/maszyny", en: "/dashboard/assets" },
     "/panel/maszyny/dodaj": {
       pl: "/panel/maszyny/dodaj",
       en: "/dashboard/assets/add",
     },
+    "/panel/maszyny/[id]": {
+      pl: "/panel/maszyny/[id]",
+      en: "/dashboard/assets/[id]",
+    },
+
     "/panel/awarie": { pl: "/panel/awarie", en: "/dashboard/issues" },
+    "/panel/awarie/[id]": {
+      pl: "/panel/awarie/[id]",
+      en: "/dashboard/issues/[id]",
+    },
+
     "/panel/serwisy": { pl: "/panel/serwisy", en: "/dashboard/services" },
+    "/panel/serwisy/[assetId]": {
+      pl: "/panel/serwisy/[assetId]",
+      en: "/dashboard/services/[assetId]",
+    },
+
     "/panel/ustawienia": { pl: "/panel/ustawienia", en: "/dashboard/settings" },
     "/panel/profil": { pl: "/panel/profil", en: "/dashboard/profile" },
   },

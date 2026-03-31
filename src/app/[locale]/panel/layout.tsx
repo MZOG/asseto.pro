@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import { headers } from "next/headers";
 import { Toaster } from "@/components/ui/sonner";
 import FeedbackButton from "@/components/panel/feedback-button";
+import LanguageSwitcher from "@/components/public/language-switcher";
 
 export default async function PanelLayout({
   children,
@@ -17,8 +18,9 @@ export default async function PanelLayout({
     <SidebarProvider>
       <AppSidebar />
       <main className="w-full bg-white">
-        <div className="px-3 py-2 border-b">
+        <div className="px-3 py-2 border-b flex justify-between">
           <SidebarTrigger />
+          <LanguageSwitcher />
         </div>
         <div className="p-5">{children}</div>
         <Toaster />

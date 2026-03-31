@@ -14,7 +14,7 @@ import {
   DrawerTitle,
 } from "@/components/ui/drawer";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
-import LanguageSwitcher from "../language-switcher";
+import LanguageSwitcher from "./language-switcher";
 
 export default function Header() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);

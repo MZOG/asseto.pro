@@ -9,14 +9,16 @@ import {
   Calendar,
   TrendingUp,
 } from "lucide-react";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { PanelCard, type Stat } from "@/components/panel/panel-card";
 import { ProFeaturesModal } from "@/components/panel/pro-features-modal";
 import { Button } from "@/components/ui/button";
 import DashboardCharts from "@/components/panel/dashboard-charts";
 import { isPro, getPlanLimit } from "@/lib/utils/plan";
+import { getTranslations } from "next-intl/server";
 
 export default async function PanelIndexPage() {
+  const t = await getTranslations("panel.dashboard");
   const userId = (await headers()).get("x-user-id");
   const supabase = await createClient();
 
@@ -71,7 +73,6 @@ export default async function PanelIndexPage() {
     string,
     { id: string; name: string; count: number }
   > = {};
-
   (topIssues ?? []).forEach((issue) => {
     const id = issue.asset_id;
     if (!id) return;
@@ -95,44 +96,50 @@ export default async function PanelIndexPage() {
   const userPlan = profile?.plan ?? "free";
   const limit = getPlanLimit(userPlan);
 
+  const getIssueWord = (count: number) => {
+    if (count === 1) return t("issue");
+    if (count >= 2 && count <= 4) return t("issues2");
+    return t("issues5");
+  };
+
   const stats: Stat[] = [
     {
-      label: "Uszkodzone",
+      label: t("stats.broken"),
       value: broken,
       icon: TriangleAlert,
       className: "bg-white border-gray-200",
       iconClass: "text-red-500",
     },
     {
-      label: "Awarie w tym miesiącu",
+      label: t("stats.issuesThisMonth"),
       value: issuesThisMonth ?? 0,
       icon: Calendar,
       className: "bg-white border-gray-200",
       iconClass: "text-orange-500",
     },
     {
-      label: "Uszkodzone maszyny",
+      label: t("stats.brokenAssets"),
       value: broken,
       icon: TriangleAlert,
       className: "bg-white border-gray-200",
       iconClass: "text-red-500",
     },
     {
-      label: "W serwisie",
+      label: t("stats.inService"),
       value: maintenance,
       icon: Wrench,
       className: "bg-white border-gray-200",
       iconClass: "text-yellow-500",
     },
     {
-      label: "Sprawne",
+      label: t("stats.working"),
       value: working,
       icon: CheckCircle,
       className: "bg-white border-gray-200",
       iconClass: "text-green-500",
     },
     {
-      label: "Maszyny",
+      label: t("stats.assets"),
       value: `${total} / ${limit}`,
       icon: Factory,
       className: "bg-white border-gray-200",
@@ -140,34 +147,40 @@ export default async function PanelIndexPage() {
     },
   ];
 
+  const mockServices = t.raw("mockServices") as {
+    name: string;
+    date: string;
+  }[];
+
   return (
     <section>
-      <PageHeader title="Przegląd" />
+      <PageHeader title={t("title")} />
 
-      {/* Awarie */}
       <h2 className="text-xs font-medium text-gray-400 tracking-wider mb-3">
-        Awarie
+        {t("issues")}
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
         {stats
           .filter((s) =>
-            ["Uszkodzone", "Awarie w tym miesiącu"].includes(s.label),
+            [t("stats.broken"), t("stats.issuesThisMonth")].includes(s.label),
           )
           .map((stat) => (
             <PanelCard key={stat.label} stat={stat} />
           ))}
       </div>
 
-      {/* Maszyny */}
       <h2 className="text-xs font-medium text-gray-400 tracking-wider mb-3">
-        Maszyny
+        {t("machines")}
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
         {stats
           .filter((s) =>
-            ["Uszkodzone maszyny", "Sprawne", "W serwisie", "Maszyny"].includes(
-              s.label,
-            ),
+            [
+              t("stats.brokenAssets"),
+              t("stats.working"),
+              t("stats.inService"),
+              t("stats.assets"),
+            ].includes(s.label),
           )
           .map((stat) => (
             <PanelCard key={stat.label} stat={stat} />
@@ -175,38 +188,33 @@ export default async function PanelIndexPage() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-        {/* Serwisy */}
         <div className="mb-6">
           <h2 className="text-xs font-medium text-gray-400 tracking-wider mb-3">
-            Zbliżające się serwisy
+            {t("upcomingServices")}
           </h2>
 
           {isPro(profile?.plan ?? "free") ? (
             <div className="space-y-2 max-w-sm">
               {(upcomingServices ?? []).length === 0 ? (
-                <p className="text-sm text-gray-400">
-                  Brak zaplanowanych serwisów.
-                </p>
+                <p className="text-sm text-gray-400">{t("noServices")}</p>
               ) : (
                 (upcomingServices ?? []).map((s: any) => {
                   const date = new Date(s.next_service_at).toLocaleDateString(
                     "pl-PL",
-                    {
-                      day: "numeric",
-                      month: "long",
-                      year: "numeric",
-                    },
+                    { day: "numeric", month: "long", year: "numeric" },
                   );
                   const daysLeft = Math.ceil(
                     (new Date(s.next_service_at).getTime() - now.getTime()) /
                       (1000 * 60 * 60 * 24),
                   );
                   const isUrgent = daysLeft <= 7;
-
                   return (
                     <Link
                       key={s.id}
-                      href={`/panel/serwisy/${s.asset_id}`}
+                      href={{
+                        pathname: "/panel/serwisy/[assetId]",
+                        params: { assetId: s.asset_id },
+                      }}
                       className="flex items-center justify-between bg-white border border-gray-200 rounded-lg px-4 py-2.5 hover:border-blue-200 hover:bg-blue-50/30 transition-all"
                     >
                       <span className="text-sm font-medium text-gray-900">
@@ -222,23 +230,13 @@ export default async function PanelIndexPage() {
                 })
               )}
               <Button asChild variant="secondary">
-                <Link
-                  href="/panel/serwisy"
-                  // className="text-xs text-blue-600 hover:text-blue-700 font-medium block mt-1"
-                >
-                  Zobacz wszystkie serwisy
-                </Link>
+                <Link href="/panel/serwisy">{t("allServices")}</Link>
               </Button>
             </div>
           ) : (
             <div className="relative max-w-sm">
-              {/* Blur overlay */}
               <div className="space-y-2 blur-xs pointer-events-none select-none">
-                {[
-                  { name: "Maszyna przykładowa", date: "15 stycznia 2025" },
-                  { name: "Urządzenie nr 2", date: "22 stycznia 2025" },
-                  { name: "Sprzęt w hali A", date: "1 lutego 2025" },
-                ].map((item) => (
+                {mockServices.map((item) => (
                   <div
                     key={item.name}
                     className="flex items-center justify-between bg-white border border-gray-200 rounded-lg px-4 py-2.5"
@@ -250,8 +248,6 @@ export default async function PanelIndexPage() {
                   </div>
                 ))}
               </div>
-
-              {/* Lock overlay */}
               <div className="absolute inset-0 flex items-center justify-center">
                 <ProFeaturesModal />
               </div>
@@ -259,19 +255,21 @@ export default async function PanelIndexPage() {
           )}
         </div>
 
-        {/* Najczęściej zgłaszane maszyny */}
         {topAssets.length > 0 && (
           <div>
             <div className="flex items-center gap-2 mb-3">
               <TrendingUp size={15} className="text-gray-400" />
               <h2 className="text-xs font-medium text-gray-400 tracking-wider">
-                Najczęściej zgłaszane maszyny
+                {t("topAssets")}
               </h2>
             </div>
             <div className="space-y-2 max-w-sm">
               {topAssets.map((asset, i) => (
                 <Link
-                  href={`/panel/maszyny/${asset.id}`}
+                  href={{
+                    pathname: "/panel/maszyny/[id]",
+                    params: { id: asset.id },
+                  }}
                   key={asset.name}
                   className="flex items-center justify-between bg-white border border-gray-200 rounded-lg px-4 py-2.5 hover:border-blue-200 hover:bg-blue-50/30 transition-all"
                 >
@@ -280,12 +278,7 @@ export default async function PanelIndexPage() {
                     <span className="text-sm font-medium">{asset.name}</span>
                   </div>
                   <span className="text-xs">
-                    {asset.count}{" "}
-                    {asset.count === 1
-                      ? "awaria"
-                      : asset.count < 5
-                        ? "awarie"
-                        : "awarii"}
+                    {asset.count} {getIssueWord(asset.count)}
                   </span>
                 </Link>
               ))}
@@ -297,7 +290,7 @@ export default async function PanelIndexPage() {
       {isPro(profile?.plan ?? "free") ? (
         <>
           <h2 className="text-xs font-medium text-gray-400 tracking-wider mb-3 mt-6">
-            Analityka
+            {t("analytics")}
           </h2>
           <DashboardCharts
             issues={(chartIssues ?? []).map((i: any) => ({
@@ -311,11 +304,9 @@ export default async function PanelIndexPage() {
       ) : (
         <div className="relative mt-6">
           <h2 className="text-xs font-medium text-gray-400 tracking-wider mb-3">
-            Analityka
+            {t("analytics")}
           </h2>
-          <div>
-            <ProFeaturesModal text="Analityka dostępna w Pro" />
-          </div>
+          <ProFeaturesModal text={t("analyticsProText")} />
         </div>
       )}
     </section>

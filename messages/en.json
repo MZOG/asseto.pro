@@ -185,7 +185,35 @@
     "help": "Help",
     "active": "Active",
     "inService": "In service",
-    "closed": "Closed"
+    "closed": "Closed",
+
+    "dashboard": {
+      "title": "Overview",
+      "issues": "Issues",
+      "machines": "Assets",
+      "upcomingServices": "Upcoming services",
+      "noServices": "No scheduled services.",
+      "allServices": "View all services",
+      "topAssets": "Most reported assets",
+      "analytics": "Analytics",
+      "analyticsProText": "Analytics available in Pro",
+      "issue": "issue",
+      "issues2": "issues",
+      "issues5": "issues",
+      "stats": {
+        "broken": "Broken",
+        "issuesThisMonth": "Issues this month",
+        "brokenAssets": "Broken assets",
+        "inService": "In service",
+        "working": "Working",
+        "assets": "Assets"
+      },
+      "mockServices": [
+        { "name": "Example machine", "date": "January 15, 2025" },
+        { "name": "Device no. 2", "date": "January 22, 2025" },
+        { "name": "Equipment in hall A", "date": "February 1, 2025" }
+      ]
+    }
   },
 
   "assets": {
