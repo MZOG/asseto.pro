@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -20,6 +21,7 @@ interface FormErrors {
 }
 
 export default function KontaktPage() {
+  const t = useTranslations("contactPage");
   const [form, setForm] = useState({
     name: "",
     company: "",
@@ -37,24 +39,19 @@ export default function KontaktPage() {
   ) => {
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));
-    if (errors[name as keyof FormErrors]) {
+    if (errors[name as keyof FormErrors])
       setErrors((prev) => ({ ...prev, [name]: undefined }));
-    }
   };
 
   const validate = (): boolean => {
     const newErrors: FormErrors = {};
-    if (!form.name.trim()) newErrors.name = "Imię i nazwisko jest wymagane.";
-    if (!form.email.trim()) {
-      newErrors.email = "Adres e-mail jest wymagany.";
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
-      newErrors.email = "Podaj prawidłowy adres e-mail.";
-    }
-    if (!form.message.trim()) {
-      newErrors.message = "Wiadomość jest wymagana.";
-    } else if (form.message.trim().length < 10) {
-      newErrors.message = "Wiadomość musi mieć co najmniej 10 znaków.";
-    }
+    if (!form.name.trim()) newErrors.name = t("errors.nameRequired");
+    if (!form.email.trim()) newErrors.email = t("errors.emailRequired");
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email))
+      newErrors.email = t("errors.emailInvalid");
+    if (!form.message.trim()) newErrors.message = t("errors.messageRequired");
+    else if (form.message.trim().length < 10)
+      newErrors.message = t("errors.messageTooShort");
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -64,20 +61,17 @@ export default function KontaktPage() {
     setServerError(null);
     if (!validate()) return;
     setLoading(true);
-
     const res = await fetch("/api/kontakt", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(form),
     });
     const data = await res.json();
-
     if (!res.ok) {
-      setServerError(data.error ?? "Nie udało się wysłać wiadomości.");
+      setServerError(data.error ?? t("errorDefault"));
       setLoading(false);
       return;
     }
-
     setSent(true);
     setForm({ name: "", company: "", email: "", phone: "", message: "" });
     setLoading(false);
@@ -86,25 +80,22 @@ export default function KontaktPage() {
   return (
     <div className="pt-14 pb-20 px-4">
       <div className="max-w-5xl mx-auto">
-        {/* Header — wycentrowany od md */}
         <div className="mb-14 text-center">
           <span className="text-xs font-semibold uppercase text-blue-600 mb-3 block">
-            Kontakt
+            {t("badge")}
           </span>
           <h1 className="text-4xl font-semibold text-gray-900 mb-4">
-            Skontaktuj się z nami
+            {t("title")}
           </h1>
           <p className="text-gray-500 text-base md:max-w-xl md:mx-auto">
-            Masz pytania? Chętnie pomożemy. Odpowiadamy w ciągu 24 godzin.
+            {t("description")}
           </p>
         </div>
 
-        {/* Grid — dane po lewej, formularz po prawej */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Lewa — dane kontaktowe */}
           <div>
             <h2 className="text-sm font-semibold text-gray-900 mb-6">
-              Dane kontaktowe
+              {t("contactInfo")}
             </h2>
             <div className="space-y-5">
               <div className="flex items-start gap-4">
@@ -112,7 +103,9 @@ export default function KontaktPage() {
                   <Mail size={18} className="text-blue-600" />
                 </div>
                 <div>
-                  <p className="text-xs text-gray-400 mb-1">E-mail</p>
+                  <p className="text-xs text-gray-400 mb-1">
+                    {t("emailLabel")}
+                  </p>
                   <a
                     href="mailto:marcin@asseto.pro"
                     className="text-gray-700 font-medium hover:text-blue-600 transition-colors"
@@ -121,13 +114,14 @@ export default function KontaktPage() {
                   </a>
                 </div>
               </div>
-
               <div className="flex items-start gap-4">
                 <div className="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center shrink-0">
                   <Phone size={18} className="text-blue-600" />
                 </div>
                 <div>
-                  <p className="text-xs text-gray-400 mb-1">Telefon</p>
+                  <p className="text-xs text-gray-400 mb-1">
+                    {t("phoneLabel")}
+                  </p>
                   <a
                     href="tel:+48739907919"
                     className="text-gray-700 font-medium hover:text-blue-600 transition-colors"
@@ -136,23 +130,25 @@ export default function KontaktPage() {
                   </a>
                 </div>
               </div>
-
               <div className="flex items-start gap-4">
                 <div className="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center shrink-0">
                   <MessageSquare size={18} className="text-blue-600" />
                 </div>
                 <div>
-                  <p className="text-xs text-gray-400 mb-1">Czas odpowiedzi</p>
-                  <p className="text-gray-700 font-medium">Do 24 godzin</p>
+                  <p className="text-xs text-gray-400 mb-1">
+                    {t("responseTimeLabel")}
+                  </p>
+                  <p className="text-gray-700 font-medium">
+                    {t("responseTime")}
+                  </p>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Prawa — formularz */}
           <div className="bg-white border border-gray-200 rounded-2xl p-6">
             <h2 className="text-sm font-semibold text-gray-900 mb-5">
-              Wyślij wiadomość
+              {t("sendMessage")}
             </h2>
 
             {sent && (
@@ -163,10 +159,10 @@ export default function KontaktPage() {
                 />
                 <div>
                   <p className="text-sm font-medium text-green-800">
-                    Wiadomość wysłana!
+                    {t("successTitle")}
                   </p>
                   <p className="text-xs text-green-700 mt-0.5">
-                    Odezwiemy się w ciągu 24 godzin.
+                    {t("successDesc")}
                   </p>
                 </div>
               </div>
@@ -179,15 +175,15 @@ export default function KontaktPage() {
             )}
 
             <form onSubmit={handleSubmit} className="space-y-4" noValidate>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1  gap-4">
                 <div className="space-y-1.5">
                   <Label htmlFor="name">
-                    Imię i nazwisko <span className="text-red-500">*</span>
+                    {t("name")} <span className="text-red-500">*</span>
                   </Label>
                   <Input
                     id="name"
                     name="name"
-                    placeholder="Jan Kowalski"
+                    placeholder={t("namePlaceholder")}
                     value={form.name}
                     onChange={handleChange}
                     className={
@@ -201,27 +197,26 @@ export default function KontaktPage() {
                   )}
                 </div>
                 <div className="space-y-1.5">
-                  <Label htmlFor="company">Nazwa firmy</Label>
+                  <Label htmlFor="company">{t("company")}</Label>
                   <Input
                     id="company"
                     name="company"
-                    placeholder="Firma Sp. z o.o."
+                    placeholder={t("companyPlaceholder")}
                     value={form.company}
                     onChange={handleChange}
                   />
                 </div>
               </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1  gap-4">
                 <div className="space-y-1.5">
                   <Label htmlFor="email">
-                    Adres e-mail <span className="text-red-500">*</span>
+                    {t("email")} <span className="text-red-500">*</span>
                   </Label>
                   <Input
                     id="email"
                     name="email"
                     type="email"
-                    placeholder="jan@firma.pl"
+                    placeholder={t("emailPlaceholder")}
                     value={form.email}
                     onChange={handleChange}
                     className={
@@ -235,35 +230,32 @@ export default function KontaktPage() {
                   )}
                 </div>
                 <div className="space-y-1.5">
-                  <Label htmlFor="phone">Numer telefonu</Label>
+                  <Label htmlFor="phone">{t("phone")}</Label>
                   <Input
                     id="phone"
                     name="phone"
-                    placeholder="+48 000 000 000"
+                    placeholder={t("phonePlaceholder")}
                     value={form.phone}
                     onChange={handleChange}
                   />
                 </div>
               </div>
-
               <div className="space-y-1.5">
                 <Label htmlFor="message">
-                  Wiadomość <span className="text-red-500">*</span>
+                  {t("message")} <span className="text-red-500">*</span>
                 </Label>
                 <Textarea
                   id="message"
                   name="message"
-                  placeholder="W czym możemy pomóc?"
+                  placeholder={t("messagePlaceholder")}
                   value={form.message}
                   onChange={handleChange}
-                  rows={5}
-                  className={`resize-none ${errors.message ? "border-red-400 focus-visible:ring-red-400" : ""}`}
+                  className={`resize-none h-30 ${errors.message ? "border-red-400 focus-visible:ring-red-400" : ""}`}
                 />
                 {errors.message && (
                   <p className="text-xs text-red-500">{errors.message}</p>
                 )}
               </div>
-
               <Button
                 type="submit"
                 disabled={loading}
@@ -273,10 +265,10 @@ export default function KontaktPage() {
                 {loading ? (
                   <>
                     <Loader2 size={14} className="animate-spin mr-1.5" />
-                    Wysyłanie...
+                    {t("sending")}
                   </>
                 ) : (
-                  "Wyślij wiadomość"
+                  t("send")
                 )}
               </Button>
             </form>

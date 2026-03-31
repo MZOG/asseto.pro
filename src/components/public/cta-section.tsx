@@ -1,8 +1,11 @@
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ScanQrCode } from "lucide-react";
+import { getTranslations } from "next-intl/server";
 
-export default function CtaSection() {
+export default async function CtaSection() {
+  const t = await getTranslations("landing.cta");
+
   return (
     <section className="py-20 px-4 bg-blue-600">
       <div className="max-w-2xl mx-auto text-center">
@@ -10,19 +13,16 @@ export default function CtaSection() {
           <ScanQrCode size={24} className="text-white" />
         </div>
         <h2 className="text-3xl md:text-4xl font-semibold text-white mb-4">
-          Zacznij zarządzać usterkami dziś
+          {t("title")}
         </h2>
-        <p className="text-blue-200 mb-8 text-base">
-          Pierwsze 10 urządzeń za darmo. Bez karty kredytowej. Konfiguracja
-          zajmuje 5 minut.
-        </p>
+        <p className="text-blue-200 mb-8 text-base">{t("description")}</p>
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
           <Button
             asChild
             className="bg-white text-blue-600 hover:bg-white/80! hover:text-primary rounded-xl px-4 h-11 font-medium"
           >
             <Link href="/rejestracja">
-              Załóż darmowe konto
+              {t("register")}
               <ArrowRight size={16} className="ml-2" />
             </Link>
           </Button>
@@ -31,7 +31,7 @@ export default function CtaSection() {
             variant="ghost"
             className="rounded-xl px-4 h-11 font-medium text-white"
           >
-            <Link href="/logowanie?demo=true">Wypróbuj demo</Link>
+            <Link href="/logowanie">{t("demo")}</Link>
           </Button>
         </div>
       </div>

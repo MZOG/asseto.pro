@@ -6,6 +6,7 @@ import BlogSection from "@/components/public/blog-section";
 
 import { getTranslations } from "next-intl/server";
 import { generateSeo } from "@/lib/seo";
+import PanelShowcase from "@/components/public/panel-showcase";
 
 export async function generateMetadata({
   params,
@@ -28,6 +29,7 @@ export default function Home() {
   return (
     <>
       <Hero />
+      <PanelShowcase />
       <HowItWorks />
       <ScanningSteps />
       <BlogSection />

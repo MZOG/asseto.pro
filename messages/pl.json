@@ -10,6 +10,97 @@
       "description": "Zacznij za darmo i przejdź na wyższy plan gdy Twój biznes rośnie."
     }
   },
+
+  "pricingPage": {
+    "badge": "Cennik",
+    "title": "Prosty, przejrzysty cennik",
+    "description": "Zacznij za darmo i przejdź na wyższy plan gdy Twój biznes rośnie. Bez ukrytych opłat.",
+    "popular": "Popularny",
+    "allPlansInclude": "Wszystkie plany płatne zawierają:",
+    "differenceNote": "Różnica między planami to tylko limit maszyn.",
+    "freeNote": "Plan darmowy zawiera pierwsze 5 funkcji z listy: zgłoszenia przez QR, panel zarządzania, powiadomienia e-mail o awariach, zdjęcia w zgłoszeniach i historię awarii.",
+    "questions": "Masz pytania?",
+    "contact": "Napisz do nas",
+    "replyTime": "— odpowiemy w ciągu 24 godzin.",
+    "plans": {
+      "free": { "name": "Darmowy", "price": "0 zł", "period": "na zawsze", "limit": "do 10 maszyn", "description": "Idealny do przetestowania.", "cta": "Zacznij za darmo" },
+      "starter": { "name": "Starter", "price": "99 zł", "period": "miesięcznie + VAT", "limit": "do 50 maszyn", "description": "Dla małych obiektów i firm.", "cta": "Wybierz Starter" },
+      "growth": { "name": "Growth", "price": "199 zł", "period": "miesięcznie + VAT", "limit": "do 100 maszyn", "description": "Dla rozwijających się firm.", "cta": "Wybierz Growth" },
+      "business": { "name": "Business", "price": "299 zł", "period": "miesięcznie + VAT", "limit": "do 150 maszyn", "description": "Dla większych obiektów.", "cta": "Wybierz Business" },
+      "enterprise": { "name": "Enterprise", "price": "399 zł", "period": "miesięcznie + VAT", "limit": "do 200 maszyn", "description": "Dla dużych organizacji.", "cta": "Wybierz Enterprise" }
+    },
+    "features": {
+      "qr": "Zgłoszenia przez QR",
+      "panel": "Panel zarządzania",
+      "emailIssues": "Powiadomienia e-mail o awariach",
+      "photos": "Zdjęcia w zgłoszeniach",
+      "history": "Historia awarii",
+      "emailService": "Powiadomienia e-mail do serwisanta",
+      "servicePortal": "Panel serwisanta z dostępem przez link",
+      "serviceManagement": "Zarządzanie serwisami i przeglądami",
+      "reminders": "Przypomnienia o serwisach",
+      "priorities": "Priorytety zgłoszeń",
+      "reports": "Raporty tygodniowe",
+      "export": "Eksport danych (CSV, PDF)",
+      "support": "Priorytetowe wsparcie"
+    }
+  },
+
+  "helpPage": {
+    "badge": "Pomoc",
+    "title": "Często zadawane pytania",
+    "notFound": "Nie znalazłeś odpowiedzi?",
+    "contact": "Napisz do nas",
+    "faqs": [
+      { "q": "Czym jest Asseto?", "a": "Asseto to system do zarządzania usterkami oparty o kody QR. Każde urządzenie lub obiekt otrzymuje naklejkę z kodem QR — wystarczy go zeskanować telefonem żeby zgłosić problem. Bez instalowania aplikacji, bez rejestracji." },
+      { "q": "Kto może zgłosić usterkę?", "a": "Każda osoba która ma dostęp do kodu QR — niezależnie od tego czy to obiekt publiczny, siłownia, hotel, zakład produkcyjny czy cokolwiek innego. Formularz zgłoszenia jest dostępny bez logowania i działa na każdym smartfonie." },
+      { "q": "Jak wygenerować kod QR dla urządzenia?", "a": "Po dodaniu urządzenia w panelu, kod QR jest generowany automatycznie. Możesz wybrać rozmiar wydruku (S, M, L, XL), pobrać gotowy PDF i nakleić na urządzenie. Każde urządzenie ma unikalny kod." },
+      { "q": "Czy potrzebuję specjalnego sprzętu lub aplikacji?", "a": "Nie. Do zarządzania potrzebujesz tylko przeglądarki internetowej. Do skanowania kodów QR wystarczy aparat w smartfonie — standardowa kamera w iOS i Android obsługuje skanowanie bez dodatkowych aplikacji." },
+      { "q": "Ile urządzeń mogę dodać?", "a": "W planie darmowym możesz dodać do 10 urządzeń. Plany płatne oferują od 50 do 200 urządzeń w zależności od wybranego planu." },
+      { "q": "Czy dostanę powiadomienie o nowym zgłoszeniu?", "a": "Tak — po każdym nowym zgłoszeniu na adres e-mail przypisany do konta wysyłane jest powiadomienie z opisem problemu, nazwą urządzenia i linkiem do panelu." },
+      { "q": "Jak działają statusy zgłoszeń?", "a": "Każde zgłoszenie ma jeden z trzech statusów: Uszkodzone (nowe zgłoszenie wymagające interwencji), W serwisie (problem w trakcie naprawy) oraz Zamknięte (naprawa zakończona). Zmiana statusu automatycznie aktualizuje też status urządzenia." },
+      { "q": "Czy mogę przypisać serwisanta do urządzenia?", "a": "Tak — każde urządzenie może mieć przypisany numer telefonu i adres e-mail serwisanta. Z poziomu zgłoszenia możesz wysłać do niego gotową wiadomość e-mail z opisem problemu jednym kliknięciem. Funkcja dostępna w planach płatnych." },
+      { "q": "Czym różni się plan darmowy od płatnych?", "a": "Plan darmowy pozwala zarządzać do 10 urządzeniami i obsługiwać zgłoszenia przez QR. Plany płatne oferują więcej urządzeń, powiadomienia e-mail do serwisanta, panel serwisanta, edycję etykiet QR, eksport danych oraz priorytetowe wsparcie." },
+      { "q": "Jak anulować subskrypcję?", "a": "Subskrypcję możesz anulować w dowolnym momencie z poziomu panelu w sekcji Ustawienia → Subskrypcja. Dostęp do planu pozostaje aktywny do końca opłaconego okresu rozliczeniowego." },
+      { "q": "Czy moje dane są bezpieczne?", "a": "Tak. Dane przechowujemy na serwerach Supabase z szyfrowaniem. Płatności obsługuje Stripe — nie przechowujemy danych kart płatniczych. Każdy użytkownik ma dostęp wyłącznie do swoich urządzeń i zgłoszeń." },
+      { "q": "Mam pytanie którego tu nie ma — co robię?", "a": "Napisz do nas przez stronę Kontakt lub bezpośrednio na marcin@asseto.pro. Odpowiadamy w ciągu 24 godzin." }
+    ]
+  },
+
+  "contactPage": {
+    "badge": "Kontakt",
+    "title": "Skontaktuj się z nami",
+    "description": "Masz pytania? Chętnie pomożemy. Odpowiadamy w ciągu 24 godzin.",
+    "contactInfo": "Dane kontaktowe",
+    "emailLabel": "E-mail",
+    "phoneLabel": "Telefon",
+    "responseTimeLabel": "Czas odpowiedzi",
+    "responseTime": "Do 24 godzin",
+    "sendMessage": "Wyślij wiadomość",
+    "successTitle": "Wiadomość wysłana!",
+    "successDesc": "Odezwiemy się w ciągu 24 godzin.",
+    "name": "Imię i nazwisko",
+    "namePlaceholder": "Jan Kowalski",
+    "company": "Nazwa firmy",
+    "companyPlaceholder": "Firma Sp. z o.o.",
+    "email": "Adres e-mail",
+    "emailPlaceholder": "jan@firma.pl",
+    "phone": "Numer telefonu",
+    "phonePlaceholder": "+48 000 000 000",
+    "message": "Wiadomość",
+    "messagePlaceholder": "W czym możemy pomóc?",
+    "send": "Wyślij wiadomość",
+    "sending": "Wysyłanie...",
+    "errorDefault": "Nie udało się wysłać wiadomości.",
+    "errors": {
+      "nameRequired": "Imię i nazwisko jest wymagane.",
+      "emailRequired": "Adres e-mail jest wymagany.",
+      "emailInvalid": "Podaj prawidłowy adres e-mail.",
+      "messageRequired": "Wiadomość jest wymagana.",
+      "messageTooShort": "Wiadomość musi mieć co najmniej 10 znaków."
+    }
+  },
+
   "common": {
     "appName": "Asseto",
     "loading": "Ładowanie...",
@@ -269,10 +360,58 @@
       "imageAlt": "Asseto — panel zarządzania awariami"
     },
     "howItWorks": {
-      "title": "Jak to działa?",
-      "step1": "Naklejasz kod QR na urządzeniu",
-      "step2": "Użytkownik skanuje i zgłasza",
-      "step3": "Ty dostajesz powiadomienie"
+      "badge": "Jak to działa",
+      "title": "Zarządzanie awariami nigdy nie było prostsze",
+      "description": "Asseto łączy pracowników z obsługą techniczną w kilka sekund — bez aplikacji, bez rejestracji.",
+      "cards": [
+        {
+          "title": "Oznacz swój sprzęt",
+          "description": "Wygeneruj kod QR dla każdego urządzenia i wydrukuj go w dowolnym rozmiarze. Naklejka na maszynie to wszystko, czego potrzebuje Twój zespół."
+        },
+        {
+          "title": "Błyskawiczne zgłoszenia",
+          "description": "Pracownik skanuje kod QR, opisuje problem i wysyła zgłoszenie w kilkanaście sekund. Żadnych telefonów, żadnych arkuszy Excel."
+        },
+        {
+          "title": "Pełna kontrola w panelu",
+          "description": "Wszystkie zgłoszenia, historia awarii i status maszyn w jednym miejscu. Reaguj szybciej i planuj przeglądy z wyprzedzeniem."
+        }
+      ]
+    },
+    "scanningSteps": {
+      "badge": "Zgłaszanie usterek",
+      "title": "Zgłoszenie w 3 krokach",
+      "description": "Zgłaszanie usterek bez konta, bez instalowania czegokolwiek.",
+      "mockup": {
+        "time": "9:41",
+        "label": "Zgłoszenie usterki",
+        "device": "Tokarka CNC #3",
+        "descLabel": "Opis usterki",
+        "descText": "Maszyna wydaje głośny dźwięk przy uruchomieniu...",
+        "submit": "Zgłoś usterkę"
+      },
+      "steps": [
+        { "number": "01", "title": "Zeskanuj kod QR", "description": "Każde urządzenie ma naklejkę z kodem QR. Wystarczy aparat w telefonie." },
+        { "number": "02", "title": "Opisz problem", "description": "Krótki opis wystarczy. Formularz jest prosty i działa na każdym telefonie." },
+        { "number": "03", "title": "Gotowe", "description": "Zgłoszenie trafia do panelu natychmiast. Obsługa techniczna widzi problem i może działać." }
+      ]
+    },
+    "panelShowcase": {
+      "tabs": [
+        { "label": "Przegląd", "description": "Wszystkie awarie i statystyki w jednym miejscu" },
+        { "label": "Awarie", "description": "Lista aktywnych awarii z priorytetami i statusami" },
+        { "label": "Szczegóły awarii", "description": "Pełna historia zgłoszenia, zdjęcia i notatki serwisanta" },
+        { "label": "Maszyny", "description": "Wszystkie urządzenia z kodami QR i historią awarii" },
+        { "label": "Widok maszyny", "description": "Serwisy, awarie i notatki dla konkretnego urządzenia" },
+        { "label": "Serwisy", "description": "Harmonogram przeglądów i historia serwisów" },
+        { "label": "Formularz QR", "description": "Formularz zgłoszenia usterki — bez aplikacji, bez rejestracji" }
+      ]
+    },
+    "cta": {
+      "title": "Zacznij zarządzać usterkami dziś",
+      "description": "Pierwsze 10 urządzeń za darmo. Bez karty kredytowej. Konfiguracja zajmuje 5 minut.",
+      "register": "Załóż darmowe konto",
+      "demo": "Wypróbuj demo"
     }
   },
 
@@ -289,5 +428,16 @@
     "issueDescription": "Opis usterki",
     "serviceNote": "Notatka serwisanta",
     "noteplaceholder": "Dodaj notatkę serwisową..."
+  },
+
+  "footer": {
+    "links": [
+      { "href": "/cennik", "label": "Cennik" },
+      { "href": "/pomoc", "label": "Pomoc" },
+      { "href": "/blog", "label": "Blog" },
+      { "href": "/kontakt", "label": "Kontakt" },
+      { "href": "/polityka-prywatnosci", "label": "Polityka prywatności" },
+      { "href": "/regulamin", "label": "Regulamin" }
+    ]
   }
 }

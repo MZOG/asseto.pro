@@ -72,7 +72,7 @@ export default async function Hero() {
           </Link>
         </div>
 
-        <div className="flex flex-wrap items-center justify-center gap-4 mt-8">
+        {/* <div className="flex flex-wrap items-center justify-center gap-4 mt-8">
           {badges.map(({ icon: Icon, label }) => (
             <div
               key={label}
@@ -82,30 +82,7 @@ export default async function Hero() {
               {label}
             </div>
           ))}
-        </div>
-
-        <div className="mt-16 relative">
-          <div className="relative rounded-xl overflow-hidden border border-gray-200 shadow-2xl shadow-gray-300/50">
-            <div className="bg-gray-100 border-b border-gray-200 px-4 py-2.5 flex items-center gap-2">
-              <div className="flex gap-1.5">
-                <div className="w-3 h-3 rounded-full bg-red-400" />
-                <div className="w-3 h-3 rounded-full bg-yellow-400" />
-                <div className="w-3 h-3 rounded-full bg-green-400" />
-              </div>
-              <div className="flex-1 mx-4">
-                <div className="bg-white border border-gray-200 rounded-md px-3 py-1 text-xs text-gray-400 max-w-xs mx-auto text-center">
-                  {t("browserBar")}
-                </div>
-              </div>
-            </div>
-            <Image
-              src={DashboardImage}
-              alt={t("imageAlt")}
-              className="w-full"
-              priority
-            />
-          </div>
-        </div>
+        </div> */}
       </div>
     </section>
   );
