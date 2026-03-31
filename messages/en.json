@@ -22,11 +22,46 @@
     "contact": "Contact us",
     "replyTime": "— we reply within 24 hours.",
     "plans": {
-      "free": { "name": "Free", "price": "$0", "period": "forever", "limit": "up to 10 assets", "description": "Perfect for testing.", "cta": "Start for free" },
-      "starter": { "name": "Starter", "price": "$25", "period": "per month + VAT", "limit": "up to 50 assets", "description": "For small facilities.", "cta": "Choose Starter" },
-      "growth": { "name": "Growth", "price": "$49", "period": "per month + VAT", "limit": "up to 100 assets", "description": "For growing companies.", "cta": "Choose Growth" },
-      "business": { "name": "Business", "price": "$79", "period": "per month + VAT", "limit": "up to 150 assets", "description": "For larger facilities.", "cta": "Choose Business" },
-      "enterprise": { "name": "Enterprise", "price": "$99", "period": "per month + VAT", "limit": "up to 200 assets", "description": "For large organizations.", "cta": "Choose Enterprise" }
+      "free": {
+        "name": "Free",
+        "price": "$0",
+        "period": "forever",
+        "limit": "up to 10 assets",
+        "description": "Perfect for testing.",
+        "cta": "Start for free"
+      },
+      "starter": {
+        "name": "Starter",
+        "price": "$25",
+        "period": "per month + VAT",
+        "limit": "up to 50 assets",
+        "description": "For small facilities.",
+        "cta": "Choose Starter"
+      },
+      "growth": {
+        "name": "Growth",
+        "price": "$49",
+        "period": "per month + VAT",
+        "limit": "up to 100 assets",
+        "description": "For growing companies.",
+        "cta": "Choose Growth"
+      },
+      "business": {
+        "name": "Business",
+        "price": "$79",
+        "period": "per month + VAT",
+        "limit": "up to 150 assets",
+        "description": "For larger facilities.",
+        "cta": "Choose Business"
+      },
+      "enterprise": {
+        "name": "Enterprise",
+        "price": "$99",
+        "period": "per month + VAT",
+        "limit": "up to 200 assets",
+        "description": "For large organizations.",
+        "cta": "Choose Enterprise"
+      }
     },
     "features": {
       "qr": "QR code reports",
@@ -85,18 +120,54 @@
     "notFound": "Can't find your answer?",
     "contact": "Contact us",
     "faqs": [
-      { "q": "What is Asseto?", "a": "Asseto is a QR code-based fault management system. Every device or object gets a QR code sticker — just scan it with your phone to report a problem. No app installation, no registration required." },
-      { "q": "Who can report an issue?", "a": "Anyone with access to the QR code — whether it's a public facility, gym, hotel, production plant, or anything else. The report form is accessible without logging in and works on any smartphone." },
-      { "q": "How do I generate a QR code for a device?", "a": "After adding a device in the panel, the QR code is generated automatically. You can choose the print size (S, M, L, XL), download a ready-to-print PDF, and stick it on the device. Each device has a unique code." },
-      { "q": "Do I need special hardware or an app?", "a": "No. You only need a web browser to manage your devices. To scan QR codes, a standard smartphone camera is enough — iOS and Android both support QR scanning natively without any additional apps." },
-      { "q": "How many devices can I add?", "a": "The free plan allows up to 10 devices. Paid plans support between 50 and 200 devices depending on the plan you choose." },
-      { "q": "Will I get notified about new reports?", "a": "Yes — after every new report, an email notification is sent to the address linked to your account, including a description of the problem, the device name, and a link to the panel." },
-      { "q": "How do issue statuses work?", "a": "Each issue has one of three statuses: Broken (new report requiring action), In service (issue being repaired), and Closed (repair complete). Changing the status automatically updates the device status as well." },
-      { "q": "Can I assign a service technician to a device?", "a": "Yes — each device can have a phone number and email address assigned to a service technician. From an issue, you can send them a ready-made email with the problem description in one click. Available on paid plans." },
-      { "q": "What is the difference between the free and paid plans?", "a": "The free plan lets you manage up to 10 devices and handle QR reports. Paid plans offer more devices, email notifications to technicians, a service portal, QR label editing, data export, and priority support." },
-      { "q": "How do I cancel my subscription?", "a": "You can cancel at any time from the panel under Settings → Subscription. Access to your paid plan remains active until the end of the current billing period." },
-      { "q": "Is my data secure?", "a": "Yes. Data is stored on Supabase servers with encryption. Payments are handled by Stripe — we never store card details. Each user only has access to their own devices and reports." },
-      { "q": "I have a question that's not listed here — what do I do?", "a": "Contact us via the Contact page or directly at marcin@asseto.pro. We respond within 24 hours." }
+      {
+        "q": "What is Asseto?",
+        "a": "Asseto is a QR code-based fault management system. Every device or object gets a QR code sticker — just scan it with your phone to report a problem. No app installation, no registration required."
+      },
+      {
+        "q": "Who can report an issue?",
+        "a": "Anyone with access to the QR code — whether it's a public facility, gym, hotel, production plant, or anything else. The report form is accessible without logging in and works on any smartphone."
+      },
+      {
+        "q": "How do I generate a QR code for a device?",
+        "a": "After adding a device in the panel, the QR code is generated automatically. You can choose the print size (S, M, L, XL), download a ready-to-print PDF, and stick it on the device. Each device has a unique code."
+      },
+      {
+        "q": "Do I need special hardware or an app?",
+        "a": "No. You only need a web browser to manage your devices. To scan QR codes, a standard smartphone camera is enough — iOS and Android both support QR scanning natively without any additional apps."
+      },
+      {
+        "q": "How many devices can I add?",
+        "a": "The free plan allows up to 10 devices. Paid plans support between 50 and 200 devices depending on the plan you choose."
+      },
+      {
+        "q": "Will I get notified about new reports?",
+        "a": "Yes — after every new report, an email notification is sent to the address linked to your account, including a description of the problem, the device name, and a link to the panel."
+      },
+      {
+        "q": "How do issue statuses work?",
+        "a": "Each issue has one of three statuses: Broken (new report requiring action), In service (issue being repaired), and Closed (repair complete). Changing the status automatically updates the device status as well."
+      },
+      {
+        "q": "Can I assign a service technician to a device?",
+        "a": "Yes — each device can have a phone number and email address assigned to a service technician. From an issue, you can send them a ready-made email with the problem description in one click. Available on paid plans."
+      },
+      {
+        "q": "What is the difference between the free and paid plans?",
+        "a": "The free plan lets you manage up to 10 devices and handle QR reports. Paid plans offer more devices, email notifications to technicians, a service portal, QR label editing, data export, and priority support."
+      },
+      {
+        "q": "How do I cancel my subscription?",
+        "a": "You can cancel at any time from the panel under Settings → Subscription. Access to your paid plan remains active until the end of the current billing period."
+      },
+      {
+        "q": "Is my data secure?",
+        "a": "Yes. Data is stored on Supabase servers with encryption. Payments are handled by Stripe — we never store card details. Each user only has access to their own devices and reports."
+      },
+      {
+        "q": "I have a question that's not listed here — what do I do?",
+        "a": "Contact us via the Contact page or directly at marcin@asseto.pro. We respond within 24 hours."
+      }
     ]
   },
   "common": {
@@ -114,7 +185,15 @@
     "noData": "No data",
     "error": "An error occurred",
     "success": "Saved",
-    "required": "Required field"
+    "required": "Required field",
+
+    "status": {
+      "broken": "Broken",
+      "maintenance": "In service",
+      "working": "Working",
+      "closed": "Closed",
+      "unknown": "Unknown"
+    }
   },
 
   "nav": {
@@ -180,12 +259,80 @@
     "issues": "Issues",
     "services": "Services",
     "settings": "Settings",
-    "profile": "My profile",
     "logout": "Log out",
     "help": "Help",
     "active": "Active",
     "inService": "In service",
     "closed": "Closed",
+
+    "proModal": {
+      "title": "What's included in Pro?",
+      "defaultText": "Unlock in Pro plan",
+      "price": "from $25",
+      "period": "/ month",
+      "upgradeButton": "Upgrade to Pro",
+      "redirecting": "Redirecting...",
+      "features": [
+        "Unlimited assets",
+        "Email notifications for new issues",
+        "Telegram notifications",
+        "QR label editing",
+        "Email notifications to service technician",
+        "Service portal with link access",
+        "Service and inspection management",
+        "Email reminders for upcoming services",
+        "Reports and data export",
+        "Priority support"
+      ]
+    },
+
+    "profile": {
+      "title": "My profile",
+      "account": "Account",
+      "emailLabel": "Email address",
+      "data": "Details",
+      "password": "Password",
+      "passwordDesc": "We will send a password reset link to {email}",
+
+      "form": {
+        "name": "Full name",
+        "namePlaceholder": "John Smith",
+        "company": "Company name",
+        "companyPlaceholder": "Company Ltd.",
+        "phone": "Phone number",
+        "phonePlaceholder": "e.g. 739907919",
+        "save": "Save changes",
+        "saving": "Saving...",
+        "errorSave": "Failed to save.",
+        "successSave": "Profile updated."
+      },
+
+      "resetPassword": {
+        "send": "Send password reset link",
+        "sending": "Sending...",
+        "sent": "Link sent",
+        "error": "Failed to send email.",
+        "success": "Password reset link has been sent."
+      }
+    },
+
+    "sidebar": {
+      "overview": "Overview",
+      "issues": "Issues",
+      "active": "Active",
+      "inService": "In service",
+      "closed": "Closed",
+      "equipment": "Equipment",
+      "assets": "Assets",
+      "service": "Service",
+      "services": "Services",
+      "help": "Help",
+      "issuesQA": "Issues Q&A",
+      "assetsQA": "Assets Q&A",
+      "profile": "My profile",
+      "settings": "Settings",
+      "logout": "Log out"
+    },
 
     "dashboard": {
       "title": "Overview",
@@ -213,6 +360,41 @@
         { "name": "Device no. 2", "date": "January 22, 2025" },
         { "name": "Equipment in hall A", "date": "February 1, 2025" }
       ]
+    },
+
+    "issuesList": {
+      "ranges": {
+        "all": "All",
+        "7d": "Last 7 days",
+        "14d": "Last 14 days",
+        "month": "This month",
+        "prev_month": "Previous month"
+      },
+      "exportPro": "Export available in Pro",
+      "loading": "Loading...",
+      "empty": "No issues in the selected period.",
+      "csv": {
+        "id": "ID",
+        "asset": "Asset name",
+        "status": "Status",
+        "description": "Issue description",
+        "createdAt": "Reported at",
+        "closedAt": "Closed at"
+      },
+      "pdf": {
+        "title": "Issues",
+        "generated": "Generated",
+        "asset": "Asset",
+        "status": "Status",
+        "description": "Description",
+        "createdAt": "Reported at",
+        "closedAt": "Closed at"
+      }
+    },
+
+    "issueCard": {
+      "added": "Reported:",
+      "details": "Details"
     }
   },
 
@@ -418,20 +600,53 @@
         "submit": "Submit report"
       },
       "steps": [
-        { "number": "01", "title": "Scan the QR code", "description": "Every device has a QR code sticker. Just use your phone camera." },
-        { "number": "02", "title": "Describe the problem", "description": "A short description is enough. The form is simple and works on any phone." },
-        { "number": "03", "title": "Done", "description": "The report reaches the panel instantly. The technical team sees the problem and can act." }
+        {
+          "number": "01",
+          "title": "Scan the QR code",
+          "description": "Every device has a QR code sticker. Just use your phone camera."
+        },
+        {
+          "number": "02",
+          "title": "Describe the problem",
+          "description": "A short description is enough. The form is simple and works on any phone."
+        },
+        {
+          "number": "03",
+          "title": "Done",
+          "description": "The report reaches the panel instantly. The technical team sees the problem and can act."
+        }
       ]
     },
     "panelShowcase": {
       "tabs": [
-        { "label": "Overview", "description": "All issues and statistics in one place" },
-        { "label": "Issues", "description": "List of active issues with priorities and statuses" },
-        { "label": "Issue details", "description": "Full report history, photos and service notes" },
-        { "label": "Assets", "description": "All devices with QR codes and issue history" },
-        { "label": "Asset view", "description": "Services, issues and notes for a specific device" },
-        { "label": "Services", "description": "Inspection schedule and service history" },
-        { "label": "QR form", "description": "Issue report form — no app, no registration" }
+        {
+          "label": "Overview",
+          "description": "All issues and statistics in one place"
+        },
+        {
+          "label": "Issues",
+          "description": "List of active issues with priorities and statuses"
+        },
+        {
+          "label": "Issue details",
+          "description": "Full report history, photos and service notes"
+        },
+        {
+          "label": "Assets",
+          "description": "All devices with QR codes and issue history"
+        },
+        {
+          "label": "Asset view",
+          "description": "Services, issues and notes for a specific device"
+        },
+        {
+          "label": "Services",
+          "description": "Inspection schedule and service history"
+        },
+        {
+          "label": "QR form",
+          "description": "Issue report form — no app, no registration"
+        }
       ]
     },
     "cta": {

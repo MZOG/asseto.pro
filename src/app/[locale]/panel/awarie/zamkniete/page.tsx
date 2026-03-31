@@ -3,8 +3,10 @@ import { createClient } from "@/lib/supabase/server";
 import PageHeader from "@/components/panel/page-header";
 import IssuesList from "@/components/panel/issues-list";
 import { isPro } from "@/lib/utils/plan";
+import { getTranslations } from "next-intl/server";
 
 export default async function IssuesZamknietePage() {
+  const t = await getTranslations("panel");
   const userId = (await headers()).get("x-user-id");
   const supabase = await createClient();
   const { data: profile } = await supabase
@@ -15,7 +17,7 @@ export default async function IssuesZamknietePage() {
 
   return (
     <section>
-      <PageHeader title="Zamknięte" />
+      <PageHeader title={t("closed")} />
       <div className="mt-4">
         <IssuesList
           status="closed"

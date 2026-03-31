@@ -23,11 +23,46 @@
     "contact": "Napisz do nas",
     "replyTime": "— odpowiemy w ciągu 24 godzin.",
     "plans": {
-      "free": { "name": "Darmowy", "price": "0 zł", "period": "na zawsze", "limit": "do 10 maszyn", "description": "Idealny do przetestowania.", "cta": "Zacznij za darmo" },
-      "starter": { "name": "Starter", "price": "99 zł", "period": "miesięcznie + VAT", "limit": "do 50 maszyn", "description": "Dla małych obiektów i firm.", "cta": "Wybierz Starter" },
-      "growth": { "name": "Growth", "price": "199 zł", "period": "miesięcznie + VAT", "limit": "do 100 maszyn", "description": "Dla rozwijających się firm.", "cta": "Wybierz Growth" },
-      "business": { "name": "Business", "price": "299 zł", "period": "miesięcznie + VAT", "limit": "do 150 maszyn", "description": "Dla większych obiektów.", "cta": "Wybierz Business" },
-      "enterprise": { "name": "Enterprise", "price": "399 zł", "period": "miesięcznie + VAT", "limit": "do 200 maszyn", "description": "Dla dużych organizacji.", "cta": "Wybierz Enterprise" }
+      "free": {
+        "name": "Darmowy",
+        "price": "0 zł",
+        "period": "na zawsze",
+        "limit": "do 10 maszyn",
+        "description": "Idealny do przetestowania.",
+        "cta": "Zacznij za darmo"
+      },
+      "starter": {
+        "name": "Starter",
+        "price": "99 zł",
+        "period": "miesięcznie + VAT",
+        "limit": "do 50 maszyn",
+        "description": "Dla małych obiektów i firm.",
+        "cta": "Wybierz Starter"
+      },
+      "growth": {
+        "name": "Growth",
+        "price": "199 zł",
+        "period": "miesięcznie + VAT",
+        "limit": "do 100 maszyn",
+        "description": "Dla rozwijających się firm.",
+        "cta": "Wybierz Growth"
+      },
+      "business": {
+        "name": "Business",
+        "price": "299 zł",
+        "period": "miesięcznie + VAT",
+        "limit": "do 150 maszyn",
+        "description": "Dla większych obiektów.",
+        "cta": "Wybierz Business"
+      },
+      "enterprise": {
+        "name": "Enterprise",
+        "price": "399 zł",
+        "period": "miesięcznie + VAT",
+        "limit": "do 200 maszyn",
+        "description": "Dla dużych organizacji.",
+        "cta": "Wybierz Enterprise"
+      }
     },
     "features": {
       "qr": "Zgłoszenia przez QR",
@@ -52,18 +87,54 @@
     "notFound": "Nie znalazłeś odpowiedzi?",
     "contact": "Napisz do nas",
     "faqs": [
-      { "q": "Czym jest Asseto?", "a": "Asseto to system do zarządzania usterkami oparty o kody QR. Każde urządzenie lub obiekt otrzymuje naklejkę z kodem QR — wystarczy go zeskanować telefonem żeby zgłosić problem. Bez instalowania aplikacji, bez rejestracji." },
-      { "q": "Kto może zgłosić usterkę?", "a": "Każda osoba która ma dostęp do kodu QR — niezależnie od tego czy to obiekt publiczny, siłownia, hotel, zakład produkcyjny czy cokolwiek innego. Formularz zgłoszenia jest dostępny bez logowania i działa na każdym smartfonie." },
-      { "q": "Jak wygenerować kod QR dla urządzenia?", "a": "Po dodaniu urządzenia w panelu, kod QR jest generowany automatycznie. Możesz wybrać rozmiar wydruku (S, M, L, XL), pobrać gotowy PDF i nakleić na urządzenie. Każde urządzenie ma unikalny kod." },
-      { "q": "Czy potrzebuję specjalnego sprzętu lub aplikacji?", "a": "Nie. Do zarządzania potrzebujesz tylko przeglądarki internetowej. Do skanowania kodów QR wystarczy aparat w smartfonie — standardowa kamera w iOS i Android obsługuje skanowanie bez dodatkowych aplikacji." },
-      { "q": "Ile urządzeń mogę dodać?", "a": "W planie darmowym możesz dodać do 10 urządzeń. Plany płatne oferują od 50 do 200 urządzeń w zależności od wybranego planu." },
-      { "q": "Czy dostanę powiadomienie o nowym zgłoszeniu?", "a": "Tak — po każdym nowym zgłoszeniu na adres e-mail przypisany do konta wysyłane jest powiadomienie z opisem problemu, nazwą urządzenia i linkiem do panelu." },
-      { "q": "Jak działają statusy zgłoszeń?", "a": "Każde zgłoszenie ma jeden z trzech statusów: Uszkodzone (nowe zgłoszenie wymagające interwencji), W serwisie (problem w trakcie naprawy) oraz Zamknięte (naprawa zakończona). Zmiana statusu automatycznie aktualizuje też status urządzenia." },
-      { "q": "Czy mogę przypisać serwisanta do urządzenia?", "a": "Tak — każde urządzenie może mieć przypisany numer telefonu i adres e-mail serwisanta. Z poziomu zgłoszenia możesz wysłać do niego gotową wiadomość e-mail z opisem problemu jednym kliknięciem. Funkcja dostępna w planach płatnych." },
-      { "q": "Czym różni się plan darmowy od płatnych?", "a": "Plan darmowy pozwala zarządzać do 10 urządzeniami i obsługiwać zgłoszenia przez QR. Plany płatne oferują więcej urządzeń, powiadomienia e-mail do serwisanta, panel serwisanta, edycję etykiet QR, eksport danych oraz priorytetowe wsparcie." },
-      { "q": "Jak anulować subskrypcję?", "a": "Subskrypcję możesz anulować w dowolnym momencie z poziomu panelu w sekcji Ustawienia → Subskrypcja. Dostęp do planu pozostaje aktywny do końca opłaconego okresu rozliczeniowego." },
-      { "q": "Czy moje dane są bezpieczne?", "a": "Tak. Dane przechowujemy na serwerach Supabase z szyfrowaniem. Płatności obsługuje Stripe — nie przechowujemy danych kart płatniczych. Każdy użytkownik ma dostęp wyłącznie do swoich urządzeń i zgłoszeń." },
-      { "q": "Mam pytanie którego tu nie ma — co robię?", "a": "Napisz do nas przez stronę Kontakt lub bezpośrednio na marcin@asseto.pro. Odpowiadamy w ciągu 24 godzin." }
+      {
+        "q": "Czym jest Asseto?",
+        "a": "Asseto to system do zarządzania usterkami oparty o kody QR. Każde urządzenie lub obiekt otrzymuje naklejkę z kodem QR — wystarczy go zeskanować telefonem żeby zgłosić problem. Bez instalowania aplikacji, bez rejestracji."
+      },
+      {
+        "q": "Kto może zgłosić usterkę?",
+        "a": "Każda osoba która ma dostęp do kodu QR — niezależnie od tego czy to obiekt publiczny, siłownia, hotel, zakład produkcyjny czy cokolwiek innego. Formularz zgłoszenia jest dostępny bez logowania i działa na każdym smartfonie."
+      },
+      {
+        "q": "Jak wygenerować kod QR dla urządzenia?",
+        "a": "Po dodaniu urządzenia w panelu, kod QR jest generowany automatycznie. Możesz wybrać rozmiar wydruku (S, M, L, XL), pobrać gotowy PDF i nakleić na urządzenie. Każde urządzenie ma unikalny kod."
+      },
+      {
+        "q": "Czy potrzebuję specjalnego sprzętu lub aplikacji?",
+        "a": "Nie. Do zarządzania potrzebujesz tylko przeglądarki internetowej. Do skanowania kodów QR wystarczy aparat w smartfonie — standardowa kamera w iOS i Android obsługuje skanowanie bez dodatkowych aplikacji."
+      },
+      {
+        "q": "Ile urządzeń mogę dodać?",
+        "a": "W planie darmowym możesz dodać do 10 urządzeń. Plany płatne oferują od 50 do 200 urządzeń w zależności od wybranego planu."
+      },
+      {
+        "q": "Czy dostanę powiadomienie o nowym zgłoszeniu?",
+        "a": "Tak — po każdym nowym zgłoszeniu na adres e-mail przypisany do konta wysyłane jest powiadomienie z opisem problemu, nazwą urządzenia i linkiem do panelu."
+      },
+      {
+        "q": "Jak działają statusy zgłoszeń?",
+        "a": "Każde zgłoszenie ma jeden z trzech statusów: Uszkodzone (nowe zgłoszenie wymagające interwencji), W serwisie (problem w trakcie naprawy) oraz Zamknięte (naprawa zakończona). Zmiana statusu automatycznie aktualizuje też status urządzenia."
+      },
+      {
+        "q": "Czy mogę przypisać serwisanta do urządzenia?",
+        "a": "Tak — każde urządzenie może mieć przypisany numer telefonu i adres e-mail serwisanta. Z poziomu zgłoszenia możesz wysłać do niego gotową wiadomość e-mail z opisem problemu jednym kliknięciem. Funkcja dostępna w planach płatnych."
+      },
+      {
+        "q": "Czym różni się plan darmowy od płatnych?",
+        "a": "Plan darmowy pozwala zarządzać do 10 urządzeniami i obsługiwać zgłoszenia przez QR. Plany płatne oferują więcej urządzeń, powiadomienia e-mail do serwisanta, panel serwisanta, edycję etykiet QR, eksport danych oraz priorytetowe wsparcie."
+      },
+      {
+        "q": "Jak anulować subskrypcję?",
+        "a": "Subskrypcję możesz anulować w dowolnym momencie z poziomu panelu w sekcji Ustawienia → Subskrypcja. Dostęp do planu pozostaje aktywny do końca opłaconego okresu rozliczeniowego."
+      },
+      {
+        "q": "Czy moje dane są bezpieczne?",
+        "a": "Tak. Dane przechowujemy na serwerach Supabase z szyfrowaniem. Płatności obsługuje Stripe — nie przechowujemy danych kart płatniczych. Każdy użytkownik ma dostęp wyłącznie do swoich urządzeń i zgłoszeń."
+      },
+      {
+        "q": "Mam pytanie którego tu nie ma — co robię?",
+        "a": "Napisz do nas przez stronę Kontakt lub bezpośrednio na marcin@asseto.pro. Odpowiadamy w ciągu 24 godzin."
+      }
     ]
   },
 
@@ -116,7 +187,14 @@
     "noData": "Brak danych",
     "error": "Wystąpił błąd",
     "success": "Zapisano",
-    "required": "Pole wymagane"
+    "required": "Pole wymagane",
+    "status": {
+      "broken": "Uszkodzona",
+      "maintenance": "W serwisie",
+      "working": "Sprawna",
+      "closed": "Zamknięta",
+      "unknown": "Nieznany"
+    }
   },
   "nav": {
     "pricing": "Cennik",
@@ -180,12 +258,80 @@
     "issues": "Awarie",
     "services": "Serwisy",
     "settings": "Ustawienia",
-    "profile": "Mój profil",
     "logout": "Wyloguj się",
     "help": "Pomoc",
     "active": "Aktywne",
     "inService": "W serwisie",
     "closed": "Zamknięte",
+
+    "proModal": {
+      "title": "Co zawiera plan Pro?",
+      "defaultText": "Odblokuj w planie Pro",
+      "price": "od 99 zł",
+      "period": "/ miesiąc",
+      "upgradeButton": "Przejdź na Pro",
+      "redirecting": "Przekierowywanie...",
+      "features": [
+        "Nielimitowane maszyny",
+        "Powiadomienia e-mail przy nowej awarii",
+        "Powiadomienia Telegram",
+        "Edycja etykiet kodu QR",
+        "Powiadomienia e-mail do serwisanta",
+        "Panel serwisanta z dostępem przez link",
+        "Zarządzanie serwisami i przeglądami",
+        "Przypomnienia e-mail o zbliżającym się serwisie",
+        "Raporty i eksport danych",
+        "Priorytetowe wsparcie"
+      ]
+    },
+
+    "profile": {
+      "title": "Mój profil",
+      "account": "Konto",
+      "emailLabel": "Adres e-mail",
+      "data": "Dane",
+      "password": "Hasło",
+      "passwordDesc": "Wyślemy link do zmiany hasła na adres {email}",
+
+      "form": {
+        "name": "Imię i nazwisko",
+        "namePlaceholder": "Jan Kowalski",
+        "company": "Nazwa firmy",
+        "companyPlaceholder": "Firma Sp. z o.o.",
+        "phone": "Numer telefonu",
+        "phonePlaceholder": "np. 739907919",
+        "save": "Zapisz zmiany",
+        "saving": "Zapisywanie...",
+        "errorSave": "Nie udało się zapisać.",
+        "successSave": "Profil zaktualizowany."
+      },
+
+      "resetPassword": {
+        "send": "Wyślij link do zmiany hasła",
+        "sending": "Wysyłanie...",
+        "sent": "Link wysłany",
+        "error": "Nie udało się wysłać e-maila.",
+        "success": "Link do zmiany hasła został wysłany."
+      }
+    },
+
+    "sidebar": {
+      "overview": "Przegląd",
+      "issues": "Awarie",
+      "active": "Aktywne",
+      "inService": "W serwisie",
+      "closed": "Zamknięte",
+      "equipment": "Sprzęt",
+      "assets": "Maszyny",
+      "service": "Serwis",
+      "services": "Serwisy",
+      "help": "Pomoc",
+      "issuesQA": "Awarie Q&A",
+      "assetsQA": "Maszyny Q&A",
+      "profile": "Mój profil",
+      "settings": "Ustawienia",
+      "logout": "Wyloguj się"
+    },
 
     "dashboard": {
       "title": "Przegląd",
@@ -213,6 +359,41 @@
         { "name": "Urządzenie nr 2", "date": "22 stycznia 2025" },
         { "name": "Sprzęt w hali A", "date": "1 lutego 2025" }
       ]
+    },
+
+    "issuesList": {
+      "ranges": {
+        "all": "Wszystkie",
+        "7d": "Ostatnie 7 dni",
+        "14d": "Ostatnie 14 dni",
+        "month": "Ten miesiąc",
+        "prev_month": "Poprzedni miesiąc"
+      },
+      "exportPro": "Eksport dostępny w Pro",
+      "loading": "Ładowanie...",
+      "empty": "Brak awarii w wybranym okresie.",
+      "csv": {
+        "id": "ID",
+        "asset": "Nazwa maszyny",
+        "status": "Status",
+        "description": "Opis usterki",
+        "createdAt": "Data zgłoszenia",
+        "closedAt": "Data zamknięcia"
+      },
+      "pdf": {
+        "title": "Awarie",
+        "generated": "Wygenerowano",
+        "asset": "Maszyna",
+        "status": "Status",
+        "description": "Opis",
+        "createdAt": "Data zgłoszenia",
+        "closedAt": "Data zamknięcia"
+      }
+    },
+
+    "issueCard": {
+      "added": "Dodano:",
+      "details": "Szczegóły"
     }
   },
 
@@ -418,20 +599,53 @@
         "submit": "Zgłoś usterkę"
       },
       "steps": [
-        { "number": "01", "title": "Zeskanuj kod QR", "description": "Każde urządzenie ma naklejkę z kodem QR. Wystarczy aparat w telefonie." },
-        { "number": "02", "title": "Opisz problem", "description": "Krótki opis wystarczy. Formularz jest prosty i działa na każdym telefonie." },
-        { "number": "03", "title": "Gotowe", "description": "Zgłoszenie trafia do panelu natychmiast. Obsługa techniczna widzi problem i może działać." }
+        {
+          "number": "01",
+          "title": "Zeskanuj kod QR",
+          "description": "Każde urządzenie ma naklejkę z kodem QR. Wystarczy aparat w telefonie."
+        },
+        {
+          "number": "02",
+          "title": "Opisz problem",
+          "description": "Krótki opis wystarczy. Formularz jest prosty i działa na każdym telefonie."
+        },
+        {
+          "number": "03",
+          "title": "Gotowe",
+          "description": "Zgłoszenie trafia do panelu natychmiast. Obsługa techniczna widzi problem i może działać."
+        }
       ]
     },
     "panelShowcase": {
       "tabs": [
-        { "label": "Przegląd", "description": "Wszystkie awarie i statystyki w jednym miejscu" },
-        { "label": "Awarie", "description": "Lista aktywnych awarii z priorytetami i statusami" },
-        { "label": "Szczegóły awarii", "description": "Pełna historia zgłoszenia, zdjęcia i notatki serwisanta" },
-        { "label": "Maszyny", "description": "Wszystkie urządzenia z kodami QR i historią awarii" },
-        { "label": "Widok maszyny", "description": "Serwisy, awarie i notatki dla konkretnego urządzenia" },
-        { "label": "Serwisy", "description": "Harmonogram przeglądów i historia serwisów" },
-        { "label": "Formularz QR", "description": "Formularz zgłoszenia usterki — bez aplikacji, bez rejestracji" }
+        {
+          "label": "Przegląd",
+          "description": "Wszystkie awarie i statystyki w jednym miejscu"
+        },
+        {
+          "label": "Awarie",
+          "description": "Lista aktywnych awarii z priorytetami i statusami"
+        },
+        {
+          "label": "Szczegóły awarii",
+          "description": "Pełna historia zgłoszenia, zdjęcia i notatki serwisanta"
+        },
+        {
+          "label": "Maszyny",
+          "description": "Wszystkie urządzenia z kodami QR i historią awarii"
+        },
+        {
+          "label": "Widok maszyny",
+          "description": "Serwisy, awarie i notatki dla konkretnego urządzenia"
+        },
+        {
+          "label": "Serwisy",
+          "description": "Harmonogram przeglądów i historia serwisów"
+        },
+        {
+          "label": "Formularz QR",
+          "description": "Formularz zgłoszenia usterki — bez aplikacji, bez rejestracji"
+        }
       ]
     },
     "cta": {

@@ -7,6 +7,7 @@ import { ChevronDown } from "lucide-react";
 import PL from "country-flag-icons/react/3x2/PL";
 import GB from "country-flag-icons/react/3x2/GB";
 import DE from "country-flag-icons/react/3x2/DE";
+import { useParams } from "next/navigation";
 
 const languages = [
   { code: "pl", label: "PL", Flag: PL },
@@ -18,6 +19,7 @@ export default function LanguageSwitcher() {
   const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
+  const params = useParams();
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -34,7 +36,11 @@ export default function LanguageSwitcher() {
   }, []);
 
   const switchLocale = (code: string) => {
-    router.replace(pathname, { locale: code });
+    router.replace(
+      // @ts-expect-error — params mogą zawierać dowolne klucze
+      { pathname, params },
+      { locale: code },
+    );
     setOpen(false);
   };
 

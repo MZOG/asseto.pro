@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import {
   Dialog,
   DialogContent,
@@ -11,30 +10,28 @@ import {
 import { Button } from "@/components/ui/button";
 import { useUpgrade } from "@/hooks/use-upgrade";
 import { Check, Zap, Loader2 } from "lucide-react";
+import { useTranslations } from "next-intl";
 
-const features = [
-  "Nielimitowane maszyny",
-  "Powiadomienia e-mail przy nowej awarii",
-  "Powiadomienia Telegram",
-  "Edycja etykiet kodu QR",
-  "Powiadomienia e-mail do serwisanta",
-  "Panel serwisanta z dostępem przez link",
-  "Zarządzanie serwisami i przeglądami",
-  "Przypomnienia e-mail o zbliżającym się serwisie",
-  "Raporty i eksport danych",
-  "Priorytetowe wsparcie",
-];
-
-export function ProFeaturesModal({ text }: { text?: string }) {
+export function ProFeaturesModal({
+  children,
+  text,
+}: {
+  children?: React.ReactNode;
+  text?: string;
+}) {
+  const t = useTranslations("panel.proModal");
   const { upgrade, loading } = useUpgrade();
+  const features = t.raw("features") as string[];
 
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="asseto">
-          <Zap size={14} />
-          {text ? text : "Odblokuj w planie Pro"}
-        </Button>
+        {children ?? (
+          <Button variant="asseto">
+            <Zap size={14} />
+            {text ?? t("defaultText")}
+          </Button>
+        )}
       </DialogTrigger>
       <DialogContent className="sm:max-w-sm">
         <DialogHeader>
@@ -42,7 +39,7 @@ export function ProFeaturesModal({ text }: { text?: string }) {
             <span className="inline-flex items-center gap-1 bg-blue-100 text-blue-700 text-xs font-semibold px-2 py-0.5 rounded-full">
               <Zap size={11} /> Pro
             </span>
-            Co zawiera plan Pro?
+            {t("title")}
           </DialogTitle>
         </DialogHeader>
 
@@ -60,8 +57,11 @@ export function ProFeaturesModal({ text }: { text?: string }) {
 
         <div className="pt-2 border-t border-gray-100">
           <p className="text-center text-lg font-bold text-gray-900 mb-3">
-            149 zł{" "}
-            <span className="text-sm font-normal text-gray-400">/ miesiąc</span>
+            {t("price")}
+            <span className="text-sm font-normal text-gray-400">
+              {" "}
+              {t("period")}
+            </span>
           </p>
           <Button
             onClick={upgrade}
@@ -71,12 +71,12 @@ export function ProFeaturesModal({ text }: { text?: string }) {
             {loading ? (
               <>
                 <Loader2 size={14} className="animate-spin mr-1.5" />
-                Przekierowywanie...
+                {t("redirecting")}
               </>
             ) : (
               <>
                 <Zap size={14} className="mr-1.5" />
-                Przejdź na Pro
+                {t("upgradeButton")}
               </>
             )}
           </Button>

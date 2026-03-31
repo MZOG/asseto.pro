@@ -18,7 +18,7 @@ export default async function PanelLayout({
     <SidebarProvider>
       <AppSidebar />
       <main className="w-full bg-white">
-        <div className="px-3 py-2 border-b flex justify-between">
+        <div className="px-3 py-2 border-b flex items-center justify-between">
           <SidebarTrigger />
           <LanguageSwitcher />
         </div>

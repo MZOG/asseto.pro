@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
+import { useTranslations } from "next-intl";
 
 interface Props {
   userId: string | null;
@@ -21,6 +22,7 @@ export default function ProfileForm({
   companyName,
   phone,
 }: Props) {
+  const t = useTranslations("panel.profile.form");
   const [form, setForm] = useState({ name, companyName, phone });
   const [saving, setSaving] = useState(false);
 
@@ -32,7 +34,6 @@ export default function ProfileForm({
   const handleSave = async () => {
     setSaving(true);
     const supabase = createClient();
-
     const { error } = await supabase
       .from("profiles")
       .update({
@@ -42,43 +43,39 @@ export default function ProfileForm({
       })
       .eq("id", userId);
 
-    if (error) {
-      toast.error("Nie udało się zapisać.");
-    } else {
-      toast.success("Profil zaktualizowany.");
-    }
-
+    if (error) toast.error(t("errorSave"));
+    else toast.success(t("successSave"));
     setSaving(false);
   };
 
   return (
     <div className="space-y-4">
       <div className="space-y-1.5">
-        <Label htmlFor="name">Imię i nazwisko</Label>
+        <Label htmlFor="name">{t("name")}</Label>
         <Input
           id="name"
           name="name"
-          placeholder="Jan Kowalski"
+          placeholder={t("namePlaceholder")}
           value={form.name}
           onChange={handleChange}
         />
       </div>
       <div className="space-y-1.5">
-        <Label htmlFor="companyName">Nazwa firmy</Label>
+        <Label htmlFor="companyName">{t("company")}</Label>
         <Input
           id="companyName"
           name="companyName"
-          placeholder="Firma Sp. z o.o."
+          placeholder={t("companyPlaceholder")}
           value={form.companyName}
           onChange={handleChange}
         />
       </div>
       <div className="space-y-1.5">
-        <Label htmlFor="phone">Numer telefonu</Label>
+        <Label htmlFor="phone">{t("phone")}</Label>
         <Input
           id="phone"
           name="phone"
-          placeholder="np. 739907919"
+          placeholder={t("phonePlaceholder")}
           value={form.phone}
           onChange={handleChange}
         />
@@ -87,10 +84,10 @@ export default function ProfileForm({
         {saving ? (
           <>
             <Loader2 size={14} className="animate-spin mr-1.5" />
-            Zapisywanie...
+            {t("saving")}
           </>
         ) : (
-          "Zapisz zmiany"
+          t("save")
         )}
       </Button>
     </div>
