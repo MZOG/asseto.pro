@@ -532,6 +532,98 @@
           "answer": "Tak — na stronie maszyny w prawym górnym rogu znajdziesz przycisk usuwania (ikona kosza). Usunięcie maszyny jest nieodwracalne — razem z nią zostaną usunięte wszystkie powiązane awarie i dane. Upewnij się że na pewno chcesz to zrobić."
         }
       ]
+    },
+
+    "assetTabs": {
+      "info": "Informacje",
+      "service": "Serwis",
+      "issues": "Awarie",
+      "notes": "Notatki"
+    },
+
+    "assetInfo": {
+      "photo": "Zdjęcie",
+      "changePhoto": "Zmień zdjęcie",
+      "deletePhoto": "Usuń zdjęcie",
+      "addPhoto": "Dodaj zdjęcie",
+      "photoUpdated": "Zdjęcie zaktualizowane.",
+      "photoDeleted": "Zdjęcie usunięte.",
+      "info": "Informacje",
+      "name": "Nazwa maszyny",
+      "status": "Status",
+      "location": "Lokalizacja",
+      "locationPlaceholder": "np. Hala A, stanowisko 3",
+      "serialNumber": "Numer seryjny",
+      "referenceNumber": "Numer referencyjny",
+      "nextInspection": "Data następnego przeglądu",
+      "customFields": "Własne pola",
+      "fieldName": "Nazwa",
+      "fieldValue": "Wartość",
+      "addField": "Dodaj pole",
+      "fieldDeleted": "Pole usunięte.",
+      "qrCode": "Kod QR",
+      "save": "Zapisz zmiany",
+      "saving": "Zapisywanie...",
+      "saved": "Zapisano zmiany.",
+      "statuses": {
+        "working": "Sprawna",
+        "broken": "Uszkodzona",
+        "maintenance": "W serwisie",
+        "closed": "Zamknięta"
+      }
+    },
+
+    "assetService": {
+      "technicianData": "Dane serwisanta",
+      "phone": "Telefon",
+      "phonePlaceholder": "np. 739907919",
+      "email": "Email",
+      "emailPlaceholder": "serwis@firma.pl",
+      "save": "Zapisz",
+      "saving": "Zapisywanie...",
+      "saved": "Zapisano.",
+      "error": "Nie udało się zapisać.",
+      "addService": "Dodaj wpis serwisowy",
+      "serviceHistory": "Historia serwisów"
+    },
+
+    "serviceToken": {
+      "title": "Link dla serwisanta",
+      "copy": "Kopiuj link",
+      "reset": "Resetuj link",
+      "generating": "Generowanie...",
+      "generate": "Generuj link dla serwisanta",
+      "desc": "Serwisant może przeglądać awarie, dodawać notatki i wpisy serwisowe. Resetuj link aby unieważnić dostęp.",
+      "noTokenDesc": "Wygeneruj link który możesz udostępnić serwisantowi. Serwisant nie musi się rejestrować.",
+      "errorGenerate": "Nie udało się wygenerować linku.",
+      "successGenerate": "Link wygenerowany.",
+      "successCopy": "Link skopiowany."
+    },
+
+    "addServiceForm": {
+      "servicedAt": "Data serwisu *",
+      "nextServiceAt": "Następny serwis",
+      "type": "Typ serwisu",
+      "performedBy": "Wykonał",
+      "performedByPlaceholder": "Imię, firma serwisowa...",
+      "cost": "Koszt (zł)",
+      "costPlaceholder": "np. 350",
+      "notes": "Notatki",
+      "notesPlaceholder": "Co zostało zrobione, wymienione części, uwagi...",
+      "photo": "Zdjęcie",
+      "photoOptional": "(opcjonalnie)",
+      "addPhoto": "Dodaj zdjęcie z serwisu",
+      "preview": "Podgląd",
+      "submit": "Dodaj wpis serwisowy",
+      "saving": "Zapisywanie...",
+      "errorDate": "Data serwisu jest wymagana.",
+      "errorSave": "Nie udało się zapisać.",
+      "success": "Wpis serwisowy dodany.",
+      "types": {
+        "inspection": "Przegląd",
+        "repair": "Naprawa",
+        "replacement": "Wymiana części"
+      }
     }
   },
 

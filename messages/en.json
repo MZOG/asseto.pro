@@ -533,6 +533,98 @@
           "answer": "Yes — on the asset page in the top right corner you'll find a delete button (trash icon). Deleting an asset is irreversible — all associated issues and data will be deleted along with it. Make sure you really want to do this."
         }
       ]
+    },
+
+    "assetTabs": {
+      "info": "Information",
+      "service": "Service",
+      "issues": "Issues",
+      "notes": "Notes"
+    },
+
+    "assetInfo": {
+      "photo": "Photo",
+      "changePhoto": "Change photo",
+      "deletePhoto": "Delete photo",
+      "addPhoto": "Add photo",
+      "photoUpdated": "Photo updated.",
+      "photoDeleted": "Photo deleted.",
+      "info": "Information",
+      "name": "Asset name",
+      "status": "Status",
+      "location": "Location",
+      "locationPlaceholder": "e.g. Hall A, station 3",
+      "serialNumber": "Serial number",
+      "referenceNumber": "Reference number",
+      "nextInspection": "Next inspection date",
+      "customFields": "Custom fields",
+      "fieldName": "Name",
+      "fieldValue": "Value",
+      "addField": "Add field",
+      "fieldDeleted": "Field deleted.",
+      "qrCode": "QR Code",
+      "save": "Save changes",
+      "saving": "Saving...",
+      "saved": "Changes saved.",
+      "statuses": {
+        "working": "Working",
+        "broken": "Broken",
+        "maintenance": "In service",
+        "closed": "Closed"
+      }
+    },
+
+    "assetService": {
+      "technicianData": "Service technician",
+      "phone": "Phone",
+      "phonePlaceholder": "e.g. 739907919",
+      "email": "Email",
+      "emailPlaceholder": "service@company.com",
+      "save": "Save",
+      "saving": "Saving...",
+      "saved": "Saved.",
+      "error": "Failed to save.",
+      "addService": "Add service entry",
+      "serviceHistory": "Service history"
+    },
+
+    "serviceToken": {
+      "title": "Service technician link",
+      "copy": "Copy link",
+      "reset": "Reset link",
+      "generating": "Generating...",
+      "generate": "Generate technician link",
+      "desc": "The technician can view issues, add notes and service entries. Reset the link to revoke access.",
+      "noTokenDesc": "Generate a link you can share with your service technician. No registration required.",
+      "errorGenerate": "Failed to generate link.",
+      "successGenerate": "Link generated.",
+      "successCopy": "Link copied."
+    },
+
+    "addServiceForm": {
+      "servicedAt": "Service date *",
+      "nextServiceAt": "Next service",
+      "type": "Service type",
+      "performedBy": "Performed by",
+      "performedByPlaceholder": "Name, service company...",
+      "cost": "Cost",
+      "costPlaceholder": "e.g. 350",
+      "notes": "Notes",
+      "notesPlaceholder": "What was done, replaced parts, remarks...",
+      "photo": "Photo",
+      "photoOptional": "(optional)",
+      "addPhoto": "Add service photo",
+      "preview": "Preview",
+      "submit": "Add service entry",
+      "saving": "Saving...",
+      "errorDate": "Service date is required.",
+      "errorSave": "Failed to save.",
+      "success": "Service entry added.",
+      "types": {
+        "inspection": "Inspection",
+        "repair": "Repair",
+        "replacement": "Part replacement"
+      }
     }
   },
 

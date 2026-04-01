@@ -8,9 +8,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { toast } from "sonner";
-import { Plus, Trash2, Loader2, Upload, X } from "lucide-react";
+import { Plus, Trash2, Loader2, Upload } from "lucide-react";
 import { QrCode } from "@/components/panel/qr-code";
-import StatusBadge from "@/components/panel/status-badge";
 import {
   Select,
   SelectContent,
@@ -18,19 +17,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-
-const statuses = [
-  { value: "working", label: "Sprawna" },
-  { value: "broken", label: "Uszkodzona" },
-  { value: "maintenance", label: "W serwisie" },
-  { value: "closed", label: "Zamknięta" },
-];
+import { useTranslations } from "next-intl";
 
 export default function AssetInfoTab({
   asset,
   fields: initialFields,
   profile,
 }: any) {
+  const t = useTranslations("panel.assetInfo");
   const router = useRouter();
   const [saving, setSaving] = useState(false);
   const [uploading, setUploading] = useState(false);
@@ -39,7 +33,6 @@ export default function AssetInfoTab({
   const [newFields, setNewFields] = useState<
     { label: string; value: string }[]
   >([]);
-
   const [form, setForm] = useState({
     name: asset.name ?? "",
     serial_number: asset.serial_number ?? "",
@@ -48,6 +41,13 @@ export default function AssetInfoTab({
     next_inspection_date: asset.next_inspection_date ?? "",
     status: asset.status ?? "working",
   });
+
+  const statuses = [
+    { value: "working", label: t("statuses.working") },
+    { value: "broken", label: t("statuses.broken") },
+    { value: "maintenance", label: t("statuses.maintenance") },
+    { value: "closed", label: t("statuses.closed") },
+  ];
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -72,7 +72,7 @@ export default function AssetInfoTab({
       .update({ image_url: publicUrl + `?t=${Date.now()}` })
       .eq("id", asset.id);
     setImageUrl(publicUrl + `?t=${Date.now()}`);
-    toast.success("Zdjęcie zaktualizowane.");
+    toast.success(t("photoUpdated"));
     setUploading(false);
   };
 
@@ -87,14 +87,14 @@ export default function AssetInfoTab({
       .update({ image_url: null })
       .eq("id", asset.id);
     setImageUrl(null);
-    toast.success("Zdjęcie usunięte.");
+    toast.success(t("photoDeleted"));
   };
 
   const removeExistingField = async (fieldId: number) => {
     const supabase = createClient();
     await supabase.from("asset_fields").delete().eq("id", fieldId);
     setFields((prev: any[]) => prev.filter((f: any) => f.id !== fieldId));
-    toast.success("Pole usunięte.");
+    toast.success(t("fieldDeleted"));
   };
 
   const updateExistingField = (
@@ -110,7 +110,6 @@ export default function AssetInfoTab({
   const handleSave = async () => {
     setSaving(true);
     const supabase = createClient();
-
     await supabase
       .from("assets")
       .update({
@@ -133,28 +132,28 @@ export default function AssetInfoTab({
       (f) => f.label.trim() && f.value.trim(),
     );
     if (validNewFields.length > 0) {
-      await supabase.from("asset_fields").insert(
-        validNewFields.map((f) => ({
-          asset_id: asset.id,
-          label: f.label,
-          value: f.value,
-        })),
-      );
+      await supabase
+        .from("asset_fields")
+        .insert(
+          validNewFields.map((f) => ({
+            asset_id: asset.id,
+            label: f.label,
+            value: f.value,
+          })),
+        );
       setNewFields([]);
     }
     await Promise.all(fieldUpdates);
-
-    toast.success("Zapisano zmiany.");
+    toast.success(t("saved"));
     router.refresh();
     setSaving(false);
   };
 
   return (
     <div className="space-y-6">
-      {/* Zdjęcie */}
       <div>
         <h2 className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-3">
-          Zdjęcie
+          {t("photo")}
         </h2>
         <div className="flex items-center gap-4">
           {imageUrl ? (
@@ -172,7 +171,7 @@ export default function AssetInfoTab({
                     ) : (
                       <Upload size={14} className="mr-1.5" />
                     )}
-                    Zmień zdjęcie
+                    {t("changePhoto")}
                   </label>
                 </Button>
                 <Button
@@ -181,7 +180,7 @@ export default function AssetInfoTab({
                   className="text-red-500 hover:text-red-600"
                 >
                   <Trash2 size={14} className="mr-1.5" />
-                  Usuń zdjęcie
+                  {t("deletePhoto")}
                 </Button>
               </div>
             </>
@@ -197,7 +196,7 @@ export default function AssetInfoTab({
                   ) : (
                     <Upload size={14} className="mr-1.5" />
                   )}
-                  Dodaj zdjęcie
+                  {t("addPhoto")}
                 </label>
               </Button>
             </>
@@ -215,14 +214,13 @@ export default function AssetInfoTab({
 
       <Separator />
 
-      {/* Informacje */}
       <div>
         <h2 className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-3">
-          Informacje
+          {t("info")}
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="space-y-1.5">
-            <Label htmlFor="name">Nazwa maszyny</Label>
+            <Label htmlFor="name">{t("name")}</Label>
             <Input
               id="name"
               name="name"
@@ -231,7 +229,7 @@ export default function AssetInfoTab({
             />
           </div>
           <div className="space-y-1.5">
-            <Label>Status</Label>
+            <Label>{t("status")}</Label>
             <Select
               value={form.status}
               onValueChange={(v) => setForm((prev) => ({ ...prev, status: v }))}
@@ -249,17 +247,17 @@ export default function AssetInfoTab({
             </Select>
           </div>
           <div className="space-y-1.5">
-            <Label htmlFor="location">Lokalizacja</Label>
+            <Label htmlFor="location">{t("location")}</Label>
             <Input
               id="location"
               name="location"
-              placeholder="np. Hala A, stanowisko 3"
+              placeholder={t("locationPlaceholder")}
               value={form.location}
               onChange={handleChange}
             />
           </div>
           <div className="space-y-1.5">
-            <Label htmlFor="serial_number">Numer seryjny</Label>
+            <Label htmlFor="serial_number">{t("serialNumber")}</Label>
             <Input
               id="serial_number"
               name="serial_number"
@@ -268,7 +266,7 @@ export default function AssetInfoTab({
             />
           </div>
           <div className="space-y-1.5">
-            <Label htmlFor="reference_number">Numer referencyjny</Label>
+            <Label htmlFor="reference_number">{t("referenceNumber")}</Label>
             <Input
               id="reference_number"
               name="reference_number"
@@ -277,9 +275,7 @@ export default function AssetInfoTab({
             />
           </div>
           <div className="space-y-1.5">
-            <Label htmlFor="next_inspection_date">
-              Data następnego przeglądu
-            </Label>
+            <Label htmlFor="next_inspection_date">{t("nextInspection")}</Label>
             <Input
               id="next_inspection_date"
               name="next_inspection_date"
@@ -293,10 +289,9 @@ export default function AssetInfoTab({
 
       <Separator />
 
-      {/* Własne pola */}
       <div>
         <h2 className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-3">
-          Własne pola
+          {t("customFields")}
         </h2>
         {fields.map((field: any) => (
           <div key={field.id} className="flex items-center gap-2 mb-2">
@@ -327,7 +322,7 @@ export default function AssetInfoTab({
         {newFields.map((field, i) => (
           <div key={i} className="flex items-center gap-2 mb-2">
             <Input
-              placeholder="Nazwa"
+              placeholder={t("fieldName")}
               value={field.label}
               onChange={(e) =>
                 setNewFields((prev) =>
@@ -339,7 +334,7 @@ export default function AssetInfoTab({
               className="max-w-[140px]"
             />
             <Input
-              placeholder="Wartość"
+              placeholder={t("fieldValue")}
               value={field.value}
               onChange={(e) =>
                 setNewFields((prev) =>
@@ -370,16 +365,15 @@ export default function AssetInfoTab({
           className="mt-1"
         >
           <Plus size={14} className="mr-1.5" />
-          Dodaj pole
+          {t("addField")}
         </Button>
       </div>
 
       <Separator />
 
-      {/* Kod QR */}
       <div>
         <h2 className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-4">
-          Kod QR
+          {t("qrCode")}
         </h2>
         <QrCode
           assetId={asset.id}
@@ -401,10 +395,10 @@ export default function AssetInfoTab({
         {saving ? (
           <>
             <Loader2 size={15} className="animate-spin mr-2" />
-            Zapisywanie...
+            {t("saving")}
           </>
         ) : (
-          "Zapisz zmiany"
+          t("save")
         )}
       </Button>
     </div>
