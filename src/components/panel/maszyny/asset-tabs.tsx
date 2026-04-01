@@ -43,9 +43,6 @@ export default function AssetTabs({
             </span>
           )}
         </TabsTrigger>
-        <TabsTrigger value="notes" className="flex-1">
-          {t("notes")}
-        </TabsTrigger>
       </TabsList>
 
       <TabsContent value="info">
@@ -61,9 +58,6 @@ export default function AssetTabs({
       </TabsContent>
       <TabsContent value="issues">
         <AssetIssuesTab issues={issues} />
-      </TabsContent>
-      <TabsContent value="notes">
-        <AssetNotesTab assetId={asset.id} initialNotes={asset.notes} />
       </TabsContent>
     </Tabs>
   );
