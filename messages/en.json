@@ -625,6 +625,33 @@
         "repair": "Repair",
         "replacement": "Part replacement"
       }
+    },
+
+    "serviceHistory": {
+      "empty": "No service entries.",
+      "notes": "Notes",
+      "performedBy": "Performed by",
+      "cost": "Cost",
+      "nextService": "Next service",
+      "photo": "Photo",
+      "photoAlt": "Service photo",
+      "delete": "Delete entry",
+      "errorDelete": "Failed to delete.",
+      "successDelete": "Entry deleted.",
+      "types": {
+        "inspection": "Inspection",
+        "repair": "Repair",
+        "replacement": "Part replacement"
+      }
+    },
+    "assetIssuesTab": {
+      "empty": "No issue history.",
+      "priorities": {
+        "low": "Low",
+        "normal": "Normal",
+        "high": "High",
+        "critical": "Critical"
+      }
     }
   },
 

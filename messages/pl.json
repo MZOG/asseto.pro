@@ -624,6 +624,34 @@
         "repair": "Naprawa",
         "replacement": "Wymiana części"
       }
+    },
+
+    "serviceHistory": {
+      "empty": "Brak wpisów serwisowych.",
+      "notes": "Notatki",
+      "performedBy": "Wykonał",
+      "cost": "Koszt",
+      "nextService": "Następny serwis",
+      "photo": "Zdjęcie",
+      "photoAlt": "Zdjęcie serwisu",
+      "delete": "Usuń wpis",
+      "errorDelete": "Nie udało się usunąć.",
+      "successDelete": "Wpis usunięty.",
+      "types": {
+        "inspection": "Przegląd",
+        "repair": "Naprawa",
+        "replacement": "Wymiana części"
+      }
+    },
+
+    "assetIssuesTab": {
+      "empty": "Brak historii awarii.",
+      "priorities": {
+        "low": "Niski",
+        "normal": "Normalny",
+        "high": "Wysoki",
+        "critical": "Krytyczny"
+      }
     }
   },
 
