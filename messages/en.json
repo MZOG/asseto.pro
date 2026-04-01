@@ -10,6 +10,7 @@
       "description": "Start for free and upgrade as your business grows."
     }
   },
+
   "pricingPage": {
     "badge": "Pricing",
     "title": "Simple, transparent pricing",
@@ -170,6 +171,7 @@
       }
     ]
   },
+
   "common": {
     "appName": "Asseto",
     "loading": "Loading...",
@@ -395,6 +397,142 @@
     "issueCard": {
       "added": "Reported:",
       "details": "Details"
+    },
+
+    "assetsPage": {
+      "title": "Assets",
+      "addMore": "Add more assets",
+      "add": "Add asset"
+    },
+
+    "assetsCard": {
+      "serialNumber": "Serial number:",
+      "issuesCount": "Issues:",
+      "quickReport": "Quick report",
+      "details": "Details"
+    },
+
+    "servicesPage": {
+      "title": "Services",
+      "proText": "Services available in Pro plan",
+      "noAssets": "No assets. Add an asset to track its services.",
+      "lastService": "Last service",
+      "nextService": "Next service",
+      "notSet": "Not set",
+      "legend": {
+        "overdue": "Overdue",
+        "soon": "Within 14 days",
+        "ok": "Scheduled",
+        "none": "No date"
+      },
+      "mock": [
+        {
+          "name": "Example machine",
+          "lastDate": "January 12, 2025",
+          "nextDate": "April 12, 2025",
+          "status": "ok"
+        },
+        {
+          "name": "Device no. 2",
+          "lastDate": "February 5, 2025",
+          "nextDate": "March 5, 2025",
+          "status": "soon"
+        },
+        {
+          "name": "Equipment in hall A",
+          "lastDate": null,
+          "nextDate": null,
+          "status": "none"
+        }
+      ]
+    },
+
+    "helpIssues": {
+      "title": "Help — Issues",
+      "subtitle": "Everything you need to know about reporting and managing issues.",
+      "sections": [
+        {
+          "question": "How does an employee report an issue?",
+          "answer": "Every machine has a QR code sticker. The employee scans it with their phone camera — no app installation, no login required. A form opens where they describe the problem and click \"Submit\". The report appears instantly in your panel.",
+          "statuses": null
+        },
+        {
+          "question": "What do the issue statuses mean?",
+          "answer": null,
+          "statuses": [
+            {
+              "label": "Broken",
+              "color": "bg-red-100 text-red-700",
+              "desc": "New report — the machine needs repair."
+            },
+            {
+              "label": "In service",
+              "color": "bg-yellow-100 text-yellow-700",
+              "desc": "The issue is currently being repaired."
+            },
+            {
+              "label": "Closed",
+              "color": "bg-gray-100 text-gray-600",
+              "desc": "Repair complete, machine is working."
+            }
+          ]
+        },
+        {
+          "question": "How do I change the issue status?",
+          "answer": "Go to the issue details — in the top right corner you'll find a dropdown menu with statuses. Changing the issue status automatically updates the machine status as well. When you close an issue, the machine returns to \"Working\" status.",
+          "statuses": null
+        },
+        {
+          "question": "Will I get notified about a new issue?",
+          "answer": "Yes — after every new report you'll receive an email with the issue description, machine name and a link to the panel. Make sure you have the correct email address in your account settings.",
+          "statuses": null
+        },
+        {
+          "question": "How do I notify the service technician about an issue?",
+          "answer": "In the issue details view you'll find a \"Notify service\" button. Clicking it will show a ready-made email with the machine details and issue description — you can edit it before sending. Available in the Pro plan.",
+          "statuses": null
+        },
+        {
+          "question": "Where can I find the history of closed issues?",
+          "answer": "In the sidebar under \"Issues\" you have a \"Closed\" tab — there you'll find all completed reports. You can browse them and check when they were closed.",
+          "statuses": null
+        }
+      ]
+    },
+
+    "helpAssets": {
+      "title": "Help — Assets",
+      "subtitle": "How to manage assets, QR codes and technical data.",
+      "sections": [
+        {
+          "question": "How do I add a new asset?",
+          "answer": "In the sidebar go to \"Assets\" and click \"Add asset\". Only the name is required — the serial number is optional. After adding you'll be redirected to the asset page where you can immediately generate a QR code."
+        },
+        {
+          "question": "How does the QR code work?",
+          "answer": "Each asset has a unique QR code that leads to the report form. You can choose the print size (S, M, L, XL), download a PDF and stick it on the asset. The code can be regenerated at any time — the old one stops working."
+        },
+        {
+          "question": "What are custom fields for?",
+          "answer": "Custom fields let you add any information to an asset — e.g. \"Year of manufacture\", \"Engine model\", \"Last inspection\". Each field has a name and a value. You can add and remove them at any time."
+        },
+        {
+          "question": "What is the asset location?",
+          "answer": "Location is a text field describing where the asset is physically located — e.g. \"Hall A, station 3\" or \"Floor 2, room 201\". It appears in issue details, making it easier for the technician to find the asset."
+        },
+        {
+          "question": "How do I set service technician details?",
+          "answer": "You can set a default phone number and email for the service technician in Settings — it will be automatically assigned to every new asset. You can also override it per asset in the \"Technician\" tab on the asset page."
+        },
+        {
+          "question": "How do I add an asset photo?",
+          "answer": "On the asset page in the \"Photo\" section click \"Add photo\". Supported formats are JPG, PNG and WEBP. The photo appears in issue details making it easier to identify the asset. You can change or remove it at any time."
+        },
+        {
+          "question": "Can I delete an asset?",
+          "answer": "Yes — on the asset page in the top right corner you'll find a delete button (trash icon). Deleting an asset is irreversible — all associated issues and data will be deleted along with it. Make sure you really want to do this."
+        }
+      ]
     }
   },
 
@@ -681,5 +819,25 @@
       { "href": "/privacy-policy", "label": "Privacy policy" },
       { "href": "/terms", "label": "Terms" }
     ]
+  },
+
+  "blog": {
+    "backToBlog": "Back to blog",
+    "ctaTitle": "Try Asseto for free",
+    "ctaDesc": "First 10 devices free. Setup takes 5 minutes.",
+    "ctaButton": "Get started →",
+    "prev": "← Previous",
+    "next": "Next →"
+  },
+
+  "blogPage": {
+    "title": "Blog",
+    "description": "Articles on fault management, equipment maintenance and QR systems for businesses and facilities.",
+    "heading": "Knowledge on fault management",
+    "subheading": "Practical tips, case studies and advice for facility and equipment managers.",
+    "all": "All",
+    "empty": "No articles in this category.",
+    "read": "Read",
+    "categoryParam": "category"
   }
 }

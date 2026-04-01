@@ -18,58 +18,64 @@ export interface BlogPost {
   published?: boolean;
 }
 
-export function getAllPosts(): BlogPost[] {
-  if (!fs.existsSync(BLOG_DIR)) return [];
+export function getAllPosts(locale = "pl"): BlogPost[] {
+  const dir = path.join(BLOG_DIR, locale);
+  if (!fs.existsSync(dir)) return [];
 
-  const files = fs.readdirSync(BLOG_DIR).filter((f) => f.endsWith(".mdx"));
-
-  return files
+  return fs
+    .readdirSync(dir)
+    .filter((f) => f.endsWith(".mdx"))
     .map((file) => {
       const slug = file.replace(".mdx", "");
-      const raw = fs.readFileSync(path.join(BLOG_DIR, file), "utf-8");
+      const raw = fs.readFileSync(path.join(dir, file), "utf-8");
       const { data, content } = matter(raw);
       const rt = readingTime(content);
-
       return {
         slug,
+        locale,
         title: data.title ?? "",
         description: data.description ?? "",
         date: data.date ?? "",
-        category: data.category ?? "Ogólne",
-        author: data.author ?? "Marcin",
-        readingTime: rt.text.replace("min read", "min czytania"),
-        content,
+        category: data.category ?? "",
+        author: data.author ?? "Marcin Zogrodnik",
         image: data.image ?? null,
         published: data.published ?? false,
+        readingTime: rt.text.replace("min read", "min czytania"),
+        content,
       };
     })
-    .filter((post) => post.published === true)
+    .filter((p) => p.published)
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 }
 
-export function getPostBySlug(slug: string): BlogPost | null {
-  const filePath = path.join(BLOG_DIR, `${slug}.mdx`);
+export function getPostBySlug(slug: string, locale = "pl"): BlogPost | null {
+  const filePath = path.join(BLOG_DIR, locale, `${slug}.mdx`);
   if (!fs.existsSync(filePath)) return null;
 
   const raw = fs.readFileSync(filePath, "utf-8");
   const { data, content } = matter(raw);
   const rt = readingTime(content);
 
-  return {
+  const post = {
     slug,
+    locale,
     title: data.title ?? "",
     description: data.description ?? "",
     date: data.date ?? "",
-    category: data.category ?? "Ogólne",
-    author: data.author ?? "Marcin",
+    category: data.category ?? "",
+    author: data.author ?? "Marcin Zogrodnik",
+    image: data.image ?? null,
+    published: data.published ?? false,
     readingTime: rt.text.replace("min read", "min czytania"),
     content,
-    image: data.image ?? null,
   };
+
+  if (!post.published) return null;
+  return post;
 }
 
-export function getAllCategories(): string[] {
-  const posts = getAllPosts();
+export function getAllCategories(locale = "pl"): string[] {
+  const posts = getAllPosts(locale);
   return [...new Set(posts.map((p) => p.category))];
 }
 

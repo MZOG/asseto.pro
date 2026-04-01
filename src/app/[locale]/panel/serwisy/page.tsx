@@ -1,10 +1,12 @@
 import { headers } from "next/headers";
 import { createClient } from "@/lib/supabase/server";
 import PageHeader from "@/components/panel/page-header";
-import Link from "next/link";
+import NextLink from "next/link";
 import { ProFeaturesModal } from "@/components/panel/pro-features-modal";
 import { ChevronRight } from "lucide-react";
 import { isPro } from "@/lib/utils/plan";
+import { getTranslations } from "next-intl/server";
+import { getLocale } from "next-intl/server";
 
 function getServiceStatus(nextServiceAt: string | null) {
   if (!nextServiceAt) return "none";
@@ -18,23 +20,21 @@ function getServiceStatus(nextServiceAt: string | null) {
   return "ok";
 }
 
-const mockAssets = [
-  {
-    name: "Maszyna przykładowa",
-    lastDate: "12 stycznia 2025",
-    nextDate: "12 kwietnia 2025",
-    status: "ok",
-  },
-  {
-    name: "Urządzenie nr 2",
-    lastDate: "5 lutego 2025",
-    nextDate: "5 marca 2025",
-    status: "soon",
-  },
-  { name: "Sprzęt w hali A", lastDate: null, nextDate: null, status: "none" },
-];
+const statusDot: Record<string, string> = {
+  overdue: "bg-red-500",
+  soon: "bg-yellow-400",
+  ok: "bg-green-500",
+  none: "bg-gray-300",
+};
+
+const statusText: Record<string, string> = {
+  overdue: "text-red-600",
+  soon: "text-yellow-600",
+};
 
 export default async function SerwisyPage() {
+  const t = await getTranslations("panel.servicesPage");
+  const locale = await getLocale();
   const userId = (await headers()).get("x-user-id");
   const supabase = await createClient();
 
@@ -43,11 +43,10 @@ export default async function SerwisyPage() {
     .select("plan")
     .eq("id", userId)
     .single();
-
   const { data: assets } = await supabase
     .from("assets")
     .select(
-      `id, name, location, status, services(serviced_at, next_service_at, type)`,
+      "id, name, location, status, services(serviced_at, next_service_at, type)",
     )
     .eq("owner_id", userId)
     .order("name", { ascending: true });
@@ -71,19 +70,38 @@ export default async function SerwisyPage() {
     })
     .sort((a: any, b: any) => {
       const order = { overdue: 0, soon: 1, ok: 2, none: 3 };
-      const aStatus = getServiceStatus(a.nextService?.next_service_at);
-      const bStatus = getServiceStatus(b.nextService?.next_service_at);
-      return order[aStatus] - order[bStatus];
+      return (
+        order[getServiceStatus(a.nextService?.next_service_at)] -
+        order[getServiceStatus(b.nextService?.next_service_at)]
+      );
     });
+
+  const mockAssets = t.raw("mock") as {
+    name: string;
+    lastDate: string | null;
+    nextDate: string | null;
+    status: string;
+  }[];
+  const dateLocale = locale === "en" ? "en-US" : "pl-PL";
+  const dateOptions: Intl.DateTimeFormatOptions = {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  };
+  const legend = [
+    { color: "bg-red-500", label: t("legend.overdue") },
+    { color: "bg-yellow-400", label: t("legend.soon") },
+    { color: "bg-green-500", label: t("legend.ok") },
+    { color: "bg-gray-300", label: t("legend.none") },
+  ];
 
   return (
     <section>
       <div className="flex items-center justify-between mb-6">
-        <PageHeader title="Serwisy" />
+        <PageHeader title={t("title")} />
       </div>
 
       {!isPro(profile?.plan ?? "free") ? (
-        // ── Free — zblurowany podgląd
         <div className="relative">
           <div className="blur-xs pointer-events-none select-none space-y-2">
             {mockAssets.map((asset, i) => (
@@ -93,15 +111,7 @@ export default async function SerwisyPage() {
               >
                 <div className="flex items-center gap-2">
                   <div
-                    className={`w-2 h-2 rounded-full shrink-0 ${
-                      asset.status === "overdue"
-                        ? "bg-red-500"
-                        : asset.status === "soon"
-                          ? "bg-yellow-400"
-                          : asset.status === "ok"
-                            ? "bg-green-500"
-                            : "bg-gray-300"
-                    }`}
+                    className={`w-2 h-2 rounded-full shrink-0 ${statusDot[asset.status]}`}
                   />
                   <p className="text-sm font-semibold text-gray-900">
                     {asset.name}
@@ -110,7 +120,7 @@ export default async function SerwisyPage() {
                 <div className="flex items-center gap-6">
                   <div className="mt-3 md:mt-0 text-right">
                     <p className="text-xs text-gray-400 mb-0.5">
-                      Ostatni serwis
+                      {t("lastService")}
                     </p>
                     <p className="text-xs font-medium text-gray-700">
                       {asset.lastDate ?? "—"}
@@ -118,29 +128,24 @@ export default async function SerwisyPage() {
                   </div>
                   <div className="md:text-right mt-3 md:mt-0">
                     <p className="text-xs text-gray-400 mb-0.5">
-                      Następny serwis
+                      {t("nextService")}
                     </p>
                     <p className="text-xs font-semibold text-gray-700">
-                      {asset.nextDate ?? "Nie ustawiono"}
+                      {asset.nextDate ?? t("notSet")}
                     </p>
                   </div>
                 </div>
               </div>
             ))}
           </div>
-
-          {/* Overlay */}
           <div className="absolute inset-0 flex items-center justify-center">
-            <ProFeaturesModal text="Serwisy dostępne w planie Pro" />
+            <ProFeaturesModal text={t("proText")} />
           </div>
         </div>
       ) : (
-        // ── Pro — pełny widok
         <>
           {assetsWithService.length === 0 ? (
-            <p className="text-sm text-gray-400">
-              Brak maszyn. Dodaj maszynę aby śledzić jej serwisy.
-            </p>
+            <p className="text-sm text-gray-400">{t("noAssets")}</p>
           ) : (
             <div className="space-y-2">
               {assetsWithService.map((asset: any) => {
@@ -150,46 +155,33 @@ export default async function SerwisyPage() {
                 const nextDate = asset.nextService?.next_service_at
                   ? new Date(
                       asset.nextService.next_service_at,
-                    ).toLocaleDateString("pl-PL", {
-                      day: "numeric",
-                      month: "long",
-                      year: "numeric",
-                    })
+                    ).toLocaleDateString(dateLocale, dateOptions)
                   : null;
                 const lastDate = asset.lastService?.serviced_at
                   ? new Date(asset.lastService.serviced_at).toLocaleDateString(
-                      "pl-PL",
-                      { day: "numeric", month: "long", year: "numeric" },
+                      dateLocale,
+                      dateOptions,
                     )
                   : null;
 
                 return (
-                  <Link
+                  <NextLink
                     key={asset.id}
                     href={`/panel/serwisy/${asset.id}`}
                     className="flex flex-col md:flex-row md:items-center justify-between bg-white border border-gray-200 rounded-xl px-3 py-3 hover:border-blue-200 hover:bg-blue-50/30 transition-all group"
                   >
                     <div className="flex items-center gap-2">
                       <div
-                        className={`w-2 h-2 rounded-full shrink-0 ${
-                          status === "overdue"
-                            ? "bg-red-500"
-                            : status === "soon"
-                              ? "bg-yellow-400"
-                              : status === "ok"
-                                ? "bg-green-500"
-                                : "bg-gray-300"
-                        }`}
+                        className={`w-2 h-2 rounded-full shrink-0 ${statusDot[status]}`}
                       />
                       <p className="text-sm font-semibold text-gray-900">
                         {asset.name}
                       </p>
                     </div>
-
                     <div className="flex items-center justify-between gap-6">
                       <div className="mt-3 md:mt-0 text-right">
                         <p className="text-xs text-gray-400 mb-0.5">
-                          Ostatni serwis
+                          {t("lastService")}
                         </p>
                         <p className="text-xs font-medium text-gray-700">
                           {lastDate ?? "—"}
@@ -197,17 +189,11 @@ export default async function SerwisyPage() {
                       </div>
                       <div className="md:text-right mt-3 md:mt-0">
                         <p className="text-xs text-gray-400 mb-0.5">
-                          Następny serwis
+                          {t("nextService")}
                         </p>
                         {nextDate ? (
                           <p
-                            className={`text-xs font-semibold ${
-                              status === "overdue"
-                                ? "text-red-600"
-                                : status === "soon"
-                                  ? "text-yellow-600"
-                                  : "text-gray-700"
-                            }`}
+                            className={`text-xs font-semibold ${statusText[status] ?? "text-gray-700"}`}
                           >
                             {status === "overdue" && (
                               <span className="mr-1">⚠</span>
@@ -215,7 +201,7 @@ export default async function SerwisyPage() {
                             {nextDate}
                           </p>
                         ) : (
-                          <p className="text-xs text-gray-400">Nie ustawiono</p>
+                          <p className="text-xs text-gray-400">{t("notSet")}</p>
                         )}
                       </div>
                       <ChevronRight
@@ -223,20 +209,14 @@ export default async function SerwisyPage() {
                         className="hidden md:block text-gray-400 group-hover:text-blue-600 transition-colors shrink-0"
                       />
                     </div>
-                  </Link>
+                  </NextLink>
                 );
               })}
             </div>
           )}
 
-          {/* Legenda */}
           <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-5 mt-6">
-            {[
-              { color: "bg-red-500", label: "Przeterminowany" },
-              { color: "bg-yellow-400", label: "Za 14 dni lub mniej" },
-              { color: "bg-green-500", label: "Zaplanowany" },
-              { color: "bg-gray-300", label: "Brak daty" },
-            ].map((l) => (
+            {legend.map((l) => (
               <div key={l.label} className="flex items-center gap-1.5">
                 <div className={`w-2 h-2 rounded-full ${l.color}`} />
                 <span className="text-xs text-gray-400">{l.label}</span>

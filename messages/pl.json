@@ -196,6 +196,7 @@
       "unknown": "Nieznany"
     }
   },
+
   "nav": {
     "pricing": "Cennik",
     "blog": "Blog",
@@ -203,7 +204,8 @@
     "contact": "Kontakt",
     "forBusiness": "Dla firm",
     "login": "Zaloguj się",
-    "register": "Zacznij za darmo"
+    "register": "Zacznij za darmo",
+    "dashboard": "Panel"
   },
 
   "auth": {
@@ -394,6 +396,142 @@
     "issueCard": {
       "added": "Dodano:",
       "details": "Szczegóły"
+    },
+
+    "assetsPage": {
+      "title": "Maszyny",
+      "addMore": "Dodaj więcej maszyn",
+      "add": "Dodaj maszynę"
+    },
+
+    "assetsCard": {
+      "serialNumber": "Numer seryjny:",
+      "issuesCount": "Ilość awarii:",
+      "quickReport": "Szybkie zgłoszenie",
+      "details": "Szczegóły"
+    },
+
+    "servicesPage": {
+      "title": "Serwisy",
+      "proText": "Serwisy dostępne w planie Pro",
+      "noAssets": "Brak maszyn. Dodaj maszynę aby śledzić jej serwisy.",
+      "lastService": "Ostatni serwis",
+      "nextService": "Następny serwis",
+      "notSet": "Nie ustawiono",
+      "legend": {
+        "overdue": "Przeterminowany",
+        "soon": "Za 14 dni lub mniej",
+        "ok": "Zaplanowany",
+        "none": "Brak daty"
+      },
+      "mock": [
+        {
+          "name": "Maszyna przykładowa",
+          "lastDate": "12 stycznia 2025",
+          "nextDate": "12 kwietnia 2025",
+          "status": "ok"
+        },
+        {
+          "name": "Urządzenie nr 2",
+          "lastDate": "5 lutego 2025",
+          "nextDate": "5 marca 2025",
+          "status": "soon"
+        },
+        {
+          "name": "Sprzęt w hali A",
+          "lastDate": null,
+          "nextDate": null,
+          "status": "none"
+        }
+      ]
+    },
+
+    "helpIssues": {
+      "title": "Pomoc — Awarie",
+      "subtitle": "Wszystko co musisz wiedzieć o zgłaszaniu i zarządzaniu awariami.",
+      "sections": [
+        {
+          "question": "Jak pracownik zgłasza awarię?",
+          "answer": "Każda maszyna ma naklejkę z kodem QR. Pracownik skanuje kod aparatem telefonu — bez instalowania aplikacji, bez logowania. Otwiera się formularz gdzie opisuje usterkę i klika \"Zgłoś\". Zgłoszenie pojawia się natychmiast w Twoim panelu.",
+          "statuses": null
+        },
+        {
+          "question": "Co oznaczają statusy awarii?",
+          "answer": null,
+          "statuses": [
+            {
+              "label": "Uszkodzona",
+              "color": "bg-red-100 text-red-700",
+              "desc": "Nowe zgłoszenie — maszyna wymaga naprawy."
+            },
+            {
+              "label": "W serwisie",
+              "color": "bg-yellow-100 text-yellow-700",
+              "desc": "Usterka jest w trakcie naprawy."
+            },
+            {
+              "label": "Zamknięta",
+              "color": "bg-gray-100 text-gray-600",
+              "desc": "Naprawa zakończona, maszyna sprawna."
+            }
+          ]
+        },
+        {
+          "question": "Jak zmienić status awarii?",
+          "answer": "Wejdź w szczegóły awarii — w prawym górnym rogu strony znajdziesz rozwijane menu ze statusami. Zmiana statusu awarii automatycznie aktualizuje też status maszyny. Gdy zamkniesz awarię, maszyna wróci do statusu \"Sprawna\".",
+          "statuses": null
+        },
+        {
+          "question": "Czy dostanę powiadomienie o nowej awarii?",
+          "answer": "Tak — po każdym nowym zgłoszeniu otrzymasz e-mail z opisem usterki, nazwą maszyny i linkiem do panelu. Upewnij się że masz poprawny adres e-mail w ustawieniach konta.",
+          "statuses": null
+        },
+        {
+          "question": "Jak poinformować serwisanta o awarii?",
+          "answer": "W widoku szczegółów awarii znajdziesz przycisk \"Poinformuj serwis\". Po kliknięciu pojawi się gotowa wiadomość e-mail z danymi maszyny i opisem usterki — możesz ją edytować przed wysłaniem. Funkcja dostępna w planie Pro.",
+          "statuses": null
+        },
+        {
+          "question": "Gdzie znajdę historię zamkniętych awarii?",
+          "answer": "W menu bocznym w sekcji \"Awarie\" masz zakładkę \"Zamknięte\" — tam znajdziesz wszystkie zakończone zgłoszenia. Możesz je przeglądać i sprawdzać kiedy zostały zamknięte.",
+          "statuses": null
+        }
+      ]
+    },
+
+    "helpAssets": {
+      "title": "Pomoc — Maszyny",
+      "subtitle": "Jak zarządzać maszynami, kodami QR i danymi technicznymi.",
+      "sections": [
+        {
+          "question": "Jak dodać nową maszynę?",
+          "answer": "W menu bocznym przejdź do \"Maszyny\" i kliknij przycisk \"Dodaj maszynę\". Wymagana jest tylko nazwa — numer seryjny jest opcjonalny. Po dodaniu zostaniesz przekierowany na stronę maszyny gdzie od razu możesz wygenerować kod QR."
+        },
+        {
+          "question": "Jak działa kod QR?",
+          "answer": "Każda maszyna ma unikalny kod QR który prowadzi do formularza zgłoszenia. Możesz wybrać rozmiar wydruku (S, M, L, XL), pobrać PDF i nakleić na maszynę. Kod można w każdej chwili wygenerować ponownie — stary przestaje działać."
+        },
+        {
+          "question": "Do czego służą własne pola?",
+          "answer": "Własne pola pozwalają dodać dowolne informacje do maszyny — np. \"Rok produkcji\", \"Model silnika\", \"Ostatni przegląd\". Każde pole ma nazwę i wartość. Możesz dodawać i usuwać je w dowolnym momencie."
+        },
+        {
+          "question": "Co to jest lokalizacja maszyny?",
+          "answer": "Lokalizacja to pole tekstowe opisujące gdzie fizycznie znajduje się maszyna — np. \"Hala A, stanowisko 3\" lub \"Piętro 2, pokój 201\". Pojawia się w szczegółach awarii, co ułatwia serwisantowi odnalezienie maszyny."
+        },
+        {
+          "question": "Jak ustawić dane serwisanta?",
+          "answer": "Możesz ustawić domyślny numer telefonu i e-mail serwisanta w Ustawieniach — zostanie automatycznie przypisany do każdej nowej maszyny. Możesz też nadpisać go per maszyna w zakładce \"Serwisant\" na stronie maszyny."
+        },
+        {
+          "question": "Jak dodać zdjęcie maszyny?",
+          "answer": "Na stronie maszyny w sekcji \"Zdjęcie\" kliknij \"Dodaj zdjęcie\". Obsługiwane formaty to JPG, PNG i WEBP. Zdjęcie pojawia się w szczegółach awarii co ułatwia identyfikację maszyny. Możesz je w każdej chwili zmienić lub usunąć."
+        },
+        {
+          "question": "Czy mogę usunąć maszynę?",
+          "answer": "Tak — na stronie maszyny w prawym górnym rogu znajdziesz przycisk usuwania (ikona kosza). Usunięcie maszyny jest nieodwracalne — razem z nią zostaną usunięte wszystkie powiązane awarie i dane. Upewnij się że na pewno chcesz to zrobić."
+        }
+      ]
     }
   },
 
@@ -680,5 +818,25 @@
       { "href": "/polityka-prywatnosci", "label": "Polityka prywatności" },
       { "href": "/regulamin", "label": "Regulamin" }
     ]
+  },
+
+  "blog": {
+    "backToBlog": "Wróć do bloga",
+    "ctaTitle": "Wypróbuj Asseto za darmo",
+    "ctaDesc": "Pierwsze 10 urządzeń bez opłat. Konfiguracja zajmuje 5 minut.",
+    "ctaButton": "Zacznij za darmo →",
+    "prev": "← Poprzedni",
+    "next": "Następny →"
+  },
+
+  "blogPage": {
+    "title": "Blog",
+    "description": "Artykuły o zarządzaniu usterkami, utrzymaniu sprzętu i systemach QR dla firm i obiektów.",
+    "heading": "Wiedza o zarządzaniu usterkami",
+    "subheading": "Praktyczne porady, case study i wskazówki dla zarządców obiektów i sprzętu.",
+    "all": "Wszystkie",
+    "empty": "Brak artykułów w tej kategorii.",
+    "read": "Czytaj",
+    "categoryParam": "kategoria"
   }
 }

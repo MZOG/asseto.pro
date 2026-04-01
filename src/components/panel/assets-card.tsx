@@ -1,8 +1,9 @@
-import { formatDate } from "@/lib/utils";
+"use client";
 import { Card, CardContent, CardFooter, CardHeader } from "../ui/card";
 import StatusBadge from "./status-badge";
 import { Button } from "../ui/button";
-import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/routing";
 
 interface AssetsProps {
   asset: {
@@ -12,14 +13,14 @@ interface AssetsProps {
     serial_number: string;
     created_at: string;
     issues: {};
-    assets: {
-      name: string;
-    };
+    assets: { name: string };
   };
 }
 
 export default function AssetsCard({ asset }: AssetsProps) {
+  const t = useTranslations("panel.assetsCard");
   const issuesCount = (asset.issues as any)[0].count;
+
   return (
     <Card>
       <CardHeader>
@@ -28,23 +29,25 @@ export default function AssetsCard({ asset }: AssetsProps) {
       </CardHeader>
       <CardContent>
         <p>
-          Numer seryjny:{" "}
+          {t("serialNumber")}{" "}
           <span className="font-medium">{asset.serial_number}</span>
         </p>
         <p>
-          Ilość awarii: <span className="font-medium">{issuesCount}</span>
+          {t("issuesCount")} <span className="font-medium">{issuesCount}</span>
         </p>
       </CardContent>
       <CardFooter className="flex justify-between">
-        {/* <p>
-          Dodano:{" "}
-          <span className="font-medium">{formatDate(asset.created_at)}</span>
-        </p> */}
         <Button asChild variant="secondary">
-          <Link href={`/report/${asset.id}`}>Szybkie zgłoszenie</Link>
+          <Link href={{ pathname: "/report/[id]", params: { id: asset.id } }}>
+            {t("quickReport")}
+          </Link>
         </Button>
         <Button asChild variant="outline">
-          <Link href={`/panel/maszyny/${asset.id}`}>Szczegóły</Link>
+          <Link
+            href={{ pathname: "/panel/maszyny/[id]", params: { id: asset.id } }}
+          >
+            {t("details")}
+          </Link>
         </Button>
       </CardFooter>
     </Card>

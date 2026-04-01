@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { getAllPosts, getPostBySlug } from "@/lib/blog";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { Calendar, Clock, ArrowLeft, Tag } from "lucide-react";
@@ -8,9 +8,15 @@ import Image from "next/image";
 import remarkGfm from "remark-gfm";
 import { generateSeo } from "@/lib/seo";
 
-export async function generateStaticParams() {
-  const posts = getAllPosts();
-  return posts.map((post) => ({ slug: post.slug }));
+import { getTranslations } from "next-intl/server";
+
+export async function generateStaticParams({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  return getAllPosts(locale).map((p) => ({ slug: p.slug }));
 }
 
 export async function generateMetadata({
@@ -126,13 +132,14 @@ const components = {
 export default async function BlogPostPage({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ slug: string; locale: string }>;
 }) {
-  const { slug } = await params;
-  const post = getPostBySlug(slug);
+  const { slug, locale } = await params;
+  const post = getPostBySlug(slug, locale);
+  const t = await getTranslations("blog");
   if (!post) notFound();
 
-  const allPosts = getAllPosts();
+  const allPosts = getAllPosts(locale);
   const currentIndex = allPosts.findIndex((p) => p.slug === slug);
   const prevPost = allPosts[currentIndex + 1] ?? null;
   const nextPost = allPosts[currentIndex - 1] ?? null;
@@ -146,7 +153,7 @@ export default async function BlogPostPage({
           className="inline-flex items-center gap-1.5 text-sm text-gray-400 hover:text-gray-700 mb-8 transition-colors"
         >
           <ArrowLeft size={14} />
-          Wróć do bloga
+          {t("backToBlog")}
         </Link>
 
         {/* Obrazek główny */}
@@ -219,17 +226,13 @@ export default async function BlogPostPage({
 
         {/* CTA */}
         <div className="mt-12 bg-blue-600 rounded-2xl p-8 text-center">
-          <h3 className="text-xl font-bold text-white mb-2">
-            Wypróbuj Asseto za darmo
-          </h3>
-          <p className="text-blue-200 text-sm mb-5">
-            Pierwsze 10 urządzeń bez opłat. Konfiguracja zajmuje 5 minut.
-          </p>
+          <h3 className="text-xl font-bold text-white mb-2">{t("ctaTitle")}</h3>
+          <p className="text-blue-200 text-sm mb-5">{t("ctaDesc")}</p>
           <Link
             href="/rejestracja"
             className="inline-block bg-white text-blue-600 font-semibold text-sm px-6 py-2.5 rounded-lg hover:bg-blue-50 transition-colors"
           >
-            Zacznij za darmo →
+            {t("ctaButton")}
           </Link>
         </div>
 
@@ -238,10 +241,13 @@ export default async function BlogPostPage({
           <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
             {prevPost && (
               <Link
-                href={`/blog/${prevPost.slug}`}
+                href={{
+                  pathname: "/blog/[slug]",
+                  params: { slug: prevPost.slug },
+                }}
                 className="group bg-white border border-gray-200 rounded-xl p-4 hover:border-blue-200 transition-all"
               >
-                <p className="text-xs text-gray-400 mb-1">← Poprzedni</p>
+                <p className="text-xs text-gray-400 mb-1">{t("prev")}</p>
                 <p className="text-sm font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">
                   {prevPost.title}
                 </p>
@@ -249,10 +255,13 @@ export default async function BlogPostPage({
             )}
             {nextPost && (
               <Link
-                href={`/blog/${nextPost.slug}`}
+                href={{
+                  pathname: "/blog/[slug]",
+                  params: { slug: nextPost.slug },
+                }}
                 className="group bg-white border border-gray-200 rounded-xl p-4 hover:border-blue-200 transition-all sm:text-right"
               >
-                <p className="text-xs text-gray-400 mb-1">Następny →</p>
+                <p className="text-xs text-gray-400 mb-1">{t("next")}</p>
                 <p className="text-sm font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">
                   {nextPost.title}
                 </p>

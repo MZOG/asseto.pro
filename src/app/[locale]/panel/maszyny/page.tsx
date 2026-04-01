@@ -2,13 +2,15 @@ import { headers } from "next/headers";
 import { createClient } from "@/lib/supabase/server";
 import PageHeader from "@/components/panel/page-header";
 import AssetsCard from "@/components/panel/assets-card";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 import { ProFeaturesModal } from "@/components/panel/pro-features-modal";
-import { getPlanLimit, isPro } from "@/lib/utils/plan";
+import { getPlanLimit } from "@/lib/utils/plan";
+import { getTranslations } from "next-intl/server";
 
 export default async function EquipmentPage() {
+  const t = await getTranslations("panel.assetsPage");
   const supabase = await createClient();
   const userId = (await headers()).get("x-user-id");
 
@@ -28,14 +30,14 @@ export default async function EquipmentPage() {
   return (
     <section>
       <div className="flex items-center justify-between mb-6">
-        <PageHeader title="Maszyny" className="mb-0" />
+        <PageHeader title={t("title")} className="mb-0" />
         {atLimit ? (
-          <ProFeaturesModal text="Dodaj więcej maszyn" />
+          <ProFeaturesModal text={t("addMore")} />
         ) : (
           <Button asChild className="bg-blue-600 hover:bg-blue-700 text-white">
             <Link href="/panel/maszyny/dodaj">
               <Plus size={14} />
-              Dodaj maszynę
+              {t("add")}
             </Link>
           </Button>
         )}
