@@ -1,9 +1,10 @@
 "use client";
-import { Card, CardContent, CardFooter, CardHeader } from "../ui/card";
+
 import StatusBadge from "./status-badge";
-import { Button } from "../ui/button";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
+import Image from "next/image";
+import { Button } from "../ui/button";
 
 interface AssetsProps {
   asset: {
@@ -12,8 +13,8 @@ interface AssetsProps {
     status: string;
     serial_number: string;
     created_at: string;
+    image_url?: string | null;
     issues: {};
-    assets: { name: string };
   };
 }
 
@@ -22,34 +23,54 @@ export default function AssetsCard({ asset }: AssetsProps) {
   const issuesCount = (asset.issues as any)[0].count;
 
   return (
-    <Card>
-      <CardHeader>
-        <StatusBadge status={asset.status} />
-        <p className="text-sm font-medium mt-1">{asset.name}</p>
-      </CardHeader>
-      <CardContent>
-        <p>
-          {t("serialNumber")}{" "}
-          <span className="font-medium">{asset.serial_number}</span>
+    <Link
+      href={{ pathname: "/panel/maszyny/[id]", params: { id: asset.id } }}
+      className="group flex bg-white border border-gray-200 rounded-xl overflow-hidden hover:border-gray-600 transition-all"
+    >
+      {/* Zdjęcie */}
+      <div className="w-30 shrink-0 border-r border-gray-100">
+        {asset.image_url ? (
+          <div className="relative w-full h-full min-h-25">
+            <Image
+              src={asset.image_url}
+              alt={asset.name}
+              fill
+              className="object-cover"
+            />
+          </div>
+        ) : (
+          <div className="w-full h-full min-h-[100px] bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
+            <span className="text-2xl">⚙️</span>
+          </div>
+        )}
+      </div>
+
+      {/* Treść */}
+      <div className="flex flex-col flex-1 min-w-0 p-3.5 gap-1.5">
+        <div className="flex items-center justify-between gap-2">
+          <StatusBadge status={asset.status} />
+          {issuesCount > 0 && (
+            <span className="text-xs font-medium bg-red-50 text-red-600 px-1.5 py-0.5 rounded-md">
+              {t("issuesCount")} {issuesCount}
+            </span>
+          )}
+        </div>
+
+        <p className="text-sm font-semibold text-gray-900 truncate">
+          {asset.name}
         </p>
-        <p>
-          {t("issuesCount")} <span className="font-medium">{issuesCount}</span>
-        </p>
-      </CardContent>
-      <CardFooter className="flex justify-between">
-        <Button asChild variant="secondary">
-          <Link href={{ pathname: "/report/[id]", params: { id: asset.id } }}>
-            {t("quickReport")}
-          </Link>
-        </Button>
-        <Button asChild variant="outline">
-          <Link
-            href={{ pathname: "/panel/maszyny/[id]", params: { id: asset.id } }}
-          >
-            {t("details")}
-          </Link>
-        </Button>
-      </CardFooter>
-    </Card>
+
+        {asset.serial_number && (
+          <p className="text-xs text-gray-400 truncate">
+            {t("serialNumber")}{" "}
+            <span className="font-medium text-gray-600">
+              {asset.serial_number}
+            </span>
+          </p>
+        )}
+
+        {/* Quick report */}
+      </div>
+    </Link>
   );
 }

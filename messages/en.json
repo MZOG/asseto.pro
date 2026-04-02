@@ -402,7 +402,9 @@
     "assetsPage": {
       "title": "Assets",
       "addMore": "Add more assets",
-      "add": "Add asset"
+      "add": "Add asset",
+      "search": "Search by name or serial number...",
+      "noResults": "No assets match your search."
     },
 
     "assetsCard": {

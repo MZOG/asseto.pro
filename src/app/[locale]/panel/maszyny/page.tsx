@@ -1,7 +1,7 @@
 import { headers } from "next/headers";
 import { createClient } from "@/lib/supabase/server";
 import PageHeader from "@/components/panel/page-header";
-import AssetsCard from "@/components/panel/assets-card";
+import AssetsList from "@/components/panel/asset-list";
 import { Link } from "@/i18n/routing";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
@@ -43,11 +43,7 @@ export default async function EquipmentPage() {
         )}
       </div>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mb-5">
-        {assets?.map((asset) => (
-          <AssetsCard key={asset.id} asset={asset} />
-        ))}
-      </div>
+      <AssetsList assets={assets ?? []} />
     </section>
   );
 }

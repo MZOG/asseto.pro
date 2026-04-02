@@ -92,7 +92,7 @@ export default function IssuesList({ status, isPro, userId }: Props) {
       let query = supabase
         .from("issues")
         .select(
-          "id, created_at, closed_at, description, status, priority, assets!inner(name, owner_id)",
+          "id, created_at, closed_at, description, status, priority, assets!inner(name, owner_id, image_url)",
           { count: "exact" },
         )
         .eq("status", status)

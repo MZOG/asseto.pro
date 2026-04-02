@@ -401,7 +401,9 @@
     "assetsPage": {
       "title": "Maszyny",
       "addMore": "Dodaj więcej maszyn",
-      "add": "Dodaj maszynę"
+      "add": "Dodaj maszynę",
+      "search": "Szukaj maszyny lub numeru seryjnego...",
+      "noResults": "Brak maszyn pasujących do wyszukiwania."
     },
 
     "assetsCard": {
