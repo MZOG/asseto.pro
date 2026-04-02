@@ -1,8 +1,8 @@
 "use client";
-
-import { useState } from "react";
+import { useTranslations } from "next-intl";
+import { ComponentProps, useState } from "react";
 import { ScanQrCode, Menu, Zap, LogIn } from "lucide-react";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { createClient } from "@/lib/supabase/client";
@@ -14,17 +14,22 @@ import {
   DrawerTitle,
 } from "@/components/ui/drawer";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
-
-const links = [
-  { href: "/cennik", label: "Cennik" },
-  { href: "/pomoc", label: "Pomoc" },
-  { href: "/blog", label: "Blog" },
-  { href: "/kontakt", label: "Kontakt" },
-];
+import LanguageSwitcher from "./language-switcher";
 
 export default function Header() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [open, setOpen] = useState(false);
+
+  const t = useTranslations("nav");
+
+  type Href = ComponentProps<typeof Link>["href"];
+
+  const links: { href: Href; label: string }[] = [
+    { href: "/cennik", label: t("pricing") },
+    { href: "/pomoc", label: t("help") },
+    { href: "/blog", label: t("blog") },
+    { href: "/kontakt", label: t("contact") },
+  ];
 
   useEffect(() => {
     const supabase = createClient();
@@ -51,7 +56,7 @@ export default function Header() {
           <nav className="hidden md:flex items-center gap-6">
             {links.map((link) => (
               <Link
-                key={link.href}
+                key={link.label}
                 href={link.href}
                 className="text-sm text-gray-500 hover:text-gray-900 transition-colors"
               >
@@ -64,15 +69,17 @@ export default function Header() {
           <div className="hidden md:flex items-center gap-2">
             {isLoggedIn ? (
               <Button asChild variant="ghost">
-                <Link href="/panel">Panel</Link>
+                <Link href="/panel">{t("dashboard")}</Link>
               </Button>
             ) : (
               <>
                 <Button asChild variant="ghost">
-                  <Link href="/logowanie">Zaloguj się</Link>
+                  <Link href="/logowanie">{t("login")}</Link>
                 </Button>
               </>
             )}
+
+            <LanguageSwitcher />
           </div>
 
           {/* Mobile — Drawer */}
@@ -90,7 +97,7 @@ export default function Header() {
                 <div className="px-6 py-6 space-y-1">
                   {/* Linki */}
                   {links.map((link) => (
-                    <DrawerClose asChild key={link.href}>
+                    <DrawerClose asChild key={link.label}>
                       <Link
                         href={link.href}
                         className="flex items-center text-base text-gray-700 hover:text-gray-900 py-3 border-b border-gray-100 last:border-0 transition-colors"

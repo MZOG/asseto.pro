@@ -36,7 +36,6 @@ export async function GET(request: NextRequest) {
     let issuesHtml = "";
     let servicesHtml = "";
 
-    // ── Awarie ──────────────────────────────────────────
     if (profile.report_issues) {
       const { data: issues } = await supabase
         .from("issues")

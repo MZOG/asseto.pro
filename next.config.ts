@@ -1,12 +1,14 @@
 import type { NextConfig } from "next";
+import createNextIntlPlugin from "next-intl/plugin";
+
+const withNextIntl = createNextIntlPlugin({
+  requestConfig: "./src/i18n/request.ts",
+  middleware: "./src/proxy.ts", // ← wskaż plik ręcznie
+});
 
 const nextConfig: NextConfig = {
-  /* config options here */
   reactCompiler: true,
   devIndicators: false,
-  // images: {
-  //   domains: ["app.asseto.pro", "asseto.pro"],
-  // },
   pageExtensions: ["ts", "tsx", "mdx"],
   images: {
     remotePatterns: [
@@ -22,4 +24,4 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default nextConfig;
+export default withNextIntl(nextConfig);

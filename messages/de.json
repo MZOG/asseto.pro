@@ -1,0 +1,283 @@
+{
+  "common": {
+    "appName": "Asseto",
+    "loading": "Ładowanie...",
+    "save": "Zapisz",
+    "cancel": "Anuluj",
+    "delete": "Usuń",
+    "edit": "Edytuj",
+    "add": "Dodaj",
+    "back": "Wróć",
+    "close": "Zamknij",
+    "confirm": "Potwierdź",
+    "search": "Szukaj",
+    "noData": "Brak danych",
+    "error": "Wystąpił błąd",
+    "success": "Zapisano",
+    "required": "Pole wymagane"
+  },
+
+  "nav": {
+    "pricing": "Cennik",
+    "blog": "Blog",
+    "help": "Pomoc",
+    "contact": "Kontakt",
+    "forBusiness": "Dla firm",
+    "login": "Zaloguj się",
+    "register": "Zacznij za darmo",
+    "dashboard": "Panel"
+  },
+
+  "auth": {
+    "login": "Logowanie",
+    "loginDescription": "Zarządzaj maszynami i awariami",
+    "emailPlaceholder": "jan@firma.pl",
+    "register": "Rejestracja",
+    "email": "Adres e-mail",
+    "password": "Hasło",
+    "forgotPassword": "Zapomniałem hasła",
+    "loginButton": "Zaloguj się",
+    "registerButton": "Zarejestruj się",
+    "noAccount": "Nie masz konta?",
+    "hasAccount": "Masz już konto?",
+    "resetPassword": "Resetuj hasło",
+    "checkEmail": "Sprawdź swój e-mail",
+    "loginError": "Nieprawidłowy email lub hasło.",
+    "backToHome": "Wróć do strony głównej",
+    "copy": "Asseto. Wszelkie prawa zastrzeżone.",
+    "sending": "Wysyłanie...",
+
+    "registerPasswordError": "Hasło musi mieć co najmniej 8 znaków.",
+    "registerSamePasswrods": "Hasła nie są identyczne.",
+    "createAccount": "Załóż konto",
+    "startManagingAccount": "Zacznij zarządzać swoimi maszynami",
+    "repeatPassword": "Powtórz hasło",
+    "backToLogin": "Wróć do logowania →",
+    "passwordLength": "min. 8 znaków",
+
+    "rememberPassword": "Pamiętasz hasło?",
+    "resetDescription": "Wyślemy Ci link do ustawienia nowego hasła",
+
+    "checkMail": "Sprawdź skrzynkę",
+    "checkMailDescription": "Wysłaliśmy link do resetu hasła na adres",
+    "checkEmailSpam": "Nie widzisz emaila? Sprawdź folder <strong>spam</strong>.",
+    "checkMailExpiry": "Link jest ważny przez <strong>60 minut</strong>.",
+    "checkMailBack": "Wróć do logowania",
+
+    "resetPasswordError": "Coś poszło nie tak. Spróbuj ponownie.",
+    "setPasswordError": "Nie udało się zmienić hasła. Spróbuj ponownie.",
+    "setPasswordSuccess": "Hasło zostało zmienione.",
+    "newPassword": "Nowe hasło",
+    "setNewPassword": "Ustaw nowe hasło do swojego konta",
+    "confirmPassword": "Potwierdź hasło",
+    "newPasswordSaving": "Zapisywanie...",
+    "setNewPasswordButton": "Ustaw nowe hasło"
+  },
+
+  "panel": {
+    "overview": "Przegląd",
+    "assets": "Maszyny",
+    "issues": "Awarie",
+    "services": "Serwisy",
+    "settings": "Ustawienia",
+    "profile": "Mój profil",
+    "logout": "Wyloguj się",
+    "help": "Pomoc",
+    "active": "Aktywne",
+    "inService": "W serwisie",
+    "closed": "Zamknięte"
+  },
+
+  "assets": {
+    "title": "Maszyny",
+    "addAsset": "Dodaj maszynę",
+    "assetName": "Nazwa maszyny",
+    "serialNumber": "Numer seryjny",
+    "referenceNumber": "Numer referencyjny",
+    "location": "Lokalizacja",
+    "status": "Status",
+    "nextInspection": "Następny przegląd",
+    "notes": "Notatki",
+    "qrCode": "Kod QR",
+    "customFields": "Własne pola",
+    "addField": "Dodaj pole",
+    "noAssets": "Brak maszyn. Dodaj pierwszą maszynę.",
+    "limitReached": "Osiągnąłeś limit {limit} maszyn. Przejdź na wyższy plan.",
+    "tabs": {
+      "info": "Informacje",
+      "service": "Serwis",
+      "issues": "Awarie",
+      "notes": "Notatki"
+    },
+    "status": {
+      "working": "Sprawna",
+      "broken": "Uszkodzona",
+      "maintenance": "W serwisie",
+      "closed": "Zamknięta"
+    }
+  },
+
+  "issues": {
+    "title": "Awarie",
+    "newIssue": "Nowa awaria",
+    "description": "Opis usterki",
+    "status": "Status",
+    "priority": "Priorytet",
+    "reportedAt": "Data zgłoszenia",
+    "closedAt": "Data zamknięcia",
+    "serviceNotes": "Notatki serwisanta",
+    "reporterPhone": "Telefon zgłaszającego",
+    "noIssues": "Brak awarii.",
+    "priorities": {
+      "low": "Niski",
+      "normal": "Normalny",
+      "high": "Wysoki",
+      "critical": "Krytyczny"
+    },
+    "statuses": {
+      "broken": "Uszkodzona",
+      "maintenance": "W serwisie",
+      "closed": "Zamknięta"
+    }
+  },
+
+  "services": {
+    "title": "Serwisy",
+    "addService": "Dodaj wpis serwisowy",
+    "servicedAt": "Data serwisu",
+    "nextServiceAt": "Następny serwis",
+    "type": "Typ serwisu",
+    "performedBy": "Wykonał",
+    "cost": "Koszt (zł)",
+    "notes": "Notatki",
+    "noServices": "Brak historii serwisów.",
+    "types": {
+      "inspection": "Przegląd",
+      "repair": "Naprawa",
+      "replacement": "Wymiana części"
+    },
+    "statuses": {
+      "overdue": "Przeterminowany",
+      "soon": "Za 14 dni lub mniej",
+      "ok": "Zaplanowany",
+      "none": "Brak daty"
+    }
+  },
+
+  "report": {
+    "title": "Zgłoszenie usterki",
+    "subtitle": "Zeskanuj i opisz problem",
+    "descriptionLabel": "Opis usterki",
+    "descriptionPlaceholder": "Opisz co się stało...",
+    "photoLabel": "Zdjęcie",
+    "photoOptional": "(opcjonalnie)",
+    "photoPlaceholder": "Kliknij aby dodać zdjęcie",
+    "phoneLabel": "Numer telefonu",
+    "phoneOptional": "(opcjonalnie)",
+    "phonePlaceholder": "np. 600 700 800",
+    "submitButton": "Zgłoś usterkę",
+    "successTitle": "Dziękujemy za zgłoszenie!",
+    "successMessage": "Twoje zgłoszenie zostało wysłane. Zajmiemy się nim jak najszybciej.",
+    "required": "Opis usterki jest wymagany."
+  },
+
+  "pricing": {
+    "title": "Cennik",
+    "subtitle": "Prosty, przejrzysty cennik",
+    "description": "Zacznij za darmo i przejdź na wyższy plan gdy Twój biznes rośnie.",
+    "free": "Darmowy",
+    "monthly": "miesięcznie",
+    "forever": "na zawsze",
+    "vatNote": "+ VAT",
+    "popular": "Popularny",
+    "startFree": "Zacznij za darmo",
+    "choosePlan": "Wybierz {plan}",
+    "allPaidPlansInclude": "Wszystkie plany płatne zawierają:",
+    "differenceNote": "Różnica między planami to tylko limit maszyn.",
+    "questions": "Masz pytania?",
+    "contactUs": "Napisz do nas",
+    "replyTime": "— odpowiemy w ciągu 24 godzin."
+  },
+
+  "subscription": {
+    "title": "Subskrypcja",
+    "active": "Aktywny",
+    "canceled": "Anulowany",
+    "free": "Darmowy",
+    "pastDueWarning": "Ostatnia płatność nie powiodła się. Zaktualizuj metodę płatności aby zachować dostęp.",
+    "machineCount": "Używasz {count}/{limit} maszyn w planie darmowym.",
+    "nearLimit": "Zbliżasz się do limitu.",
+    "choosePlan": "Wybierz plan",
+    "renewSubscription": "Odnów subskrypcję",
+    "manageSubscription": "Zarządzaj subskrypcją",
+    "changePlan": "Zmień plan",
+    "hidePlans": "Ukryj plany",
+    "changeNote": "Zmiana nastąpi od następnego okresu rozliczeniowego.",
+    "current": "Obecny",
+    "recommended": "Zalecany",
+    "redirecting": "Przekierowywanie...",
+    "upgradeTo": "Przejdź na {plan}",
+    "selectPlan": "Wybierz {plan}"
+  },
+
+  "settings": {
+    "title": "Ustawienia",
+    "qr": {
+      "title": "Ustawienia QR",
+      "labelTop": "Etykieta górna",
+      "labelBottom": "Etykieta dolna",
+      "printSize": "Rozmiar wydruku"
+    },
+    "service": {
+      "title": "Dane serwisanta",
+      "phone": "Telefon",
+      "email": "E-mail"
+    },
+    "reports": {
+      "title": "Raporty",
+      "issues": "Raporty awarii",
+      "services": "Raporty serwisów"
+    }
+  },
+
+  "landing": {
+    "hero": {
+      "badge": "System zarządzania usterkami",
+      "betaBadge": "Teraz dostępne w wersji beta",
+      "title": "Zarządzaj usterkami przez kod QR",
+      "titleHighlight": "kod QR",
+      "subtitle": "Pracownik skanuje kod, opisuje problem - Ty reagujesz.",
+      "subtitleSecond": "Żadnych telefonów, żadnych arkuszy.",
+      "cta": "Wypróbuj za darmo",
+      "ctaLogin": "Zaloguj się",
+      "demoText": "Chcesz zobaczyć jak działa Asseto?",
+      "demoLink": "Zaloguj się na konto demo",
+      "badge1": "Błyskawiczne zgłoszenia",
+      "badge2": "Bez instalacji",
+      "badge3": "Pełna historia",
+      "browserBar": "asseto.pro/panel",
+      "imageAlt": "Asseto — panel zarządzania awariami"
+    },
+    "howItWorks": {
+      "title": "Jak to działa?",
+      "step1": "Naklejasz kod QR na urządzeniu",
+      "step2": "Użytkownik skanuje i zgłasza",
+      "step3": "Ty dostajesz powiadomienie"
+    }
+  },
+
+  "serwisant": {
+    "title": "Panel serwisanta",
+    "issueHistory": "Awarie",
+    "serviceHistory": "Historia serwisów",
+    "addServiceEntry": "Dodaj wpis serwisowy",
+    "noIssues": "Brak awarii.",
+    "noServices": "Brak wpisów serwisowych.",
+    "saveNote": "Zapisz notatkę",
+    "saving": "Zapisywanie...",
+    "saved": "Zapisano",
+    "issueDescription": "Opis usterki",
+    "serviceNote": "Notatka serwisanta",
+    "noteplaceholder": "Dodaj notatkę serwisową..."
+  }
+}

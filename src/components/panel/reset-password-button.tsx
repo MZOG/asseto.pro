@@ -5,26 +5,25 @@ import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { Loader2, Mail } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
+import { useTranslations } from "next-intl";
 
 export default function ResetPasswordButton({ email }: { email: string }) {
+  const t = useTranslations("panel.profile.resetPassword");
   const [loading, setLoading] = useState(false);
   const [sent, setSent] = useState(false);
 
   const handleReset = async () => {
     setLoading(true);
     const supabase = createClient();
-
     const { error } = await supabase.auth.resetPasswordForEmail(email, {
+      // TODO: not sure about this
       redirectTo: `${window.location.origin}/auth/callback?next=/ustaw-haslo`,
     });
-
-    if (error) {
-      toast.error("Nie udało się wysłać e-maila.");
-    } else {
+    if (error) toast.error(t("error"));
+    else {
       setSent(true);
-      toast.success("Link do zmiany hasła został wysłany.");
+      toast.success(t("success"));
     }
-
     setLoading(false);
   };
 
@@ -33,17 +32,17 @@ export default function ResetPasswordButton({ email }: { email: string }) {
       {loading ? (
         <>
           <Loader2 size={14} className="animate-spin mr-1.5" />
-          Wysyłanie...
+          {t("sending")}
         </>
       ) : sent ? (
         <>
           <Mail size={14} className="mr-1.5" />
-          Link wysłany
+          {t("sent")}
         </>
       ) : (
         <>
           <Mail size={14} className="mr-1.5" />
-          Wyślij link do zmiany hasła
+          {t("send")}
         </>
       )}
     </Button>

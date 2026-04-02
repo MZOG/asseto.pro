@@ -1,21 +1,17 @@
-// src/components/public/footer.tsx
 import { ScanQrCode } from "lucide-react";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
+import { getTranslations } from "next-intl/server";
+import type { ComponentProps } from "react";
 
-const links = [
-  { href: "/cennik", label: "Cennik" },
-  { href: "/pomoc", label: "Pomoc" },
-  { href: "/blog", label: "Blog" },
-  { href: "/kontakt", label: "Kontakt" },
-  { href: "/polityka-prywatnosci", label: "Polityka prywatności" },
-  { href: "/regulamin", label: "Regulamin" },
-];
+type Href = ComponentProps<typeof Link>["href"];
 
-export default function Footer() {
+export default async function Footer() {
+  const t = await getTranslations("footer");
+  const links = t.raw("links") as { href: string; label: string }[];
+
   return (
     <footer className="border-t border-gray-200 bg-white py-10 px-4">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
-        {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
           <div className="w-6 h-6 bg-blue-600 rounded-sm flex items-center justify-center">
             <ScanQrCode size={14} className="text-white" />
@@ -25,12 +21,11 @@ export default function Footer() {
           </span>
         </Link>
 
-        {/* Linki */}
         <nav className="flex flex-wrap justify-center gap-x-6 gap-y-2">
           {links.map((link) => (
             <Link
               key={link.href}
-              href={link.href}
+              href={link.href as Href}
               className="text-sm text-gray-400 hover:text-gray-700 transition-colors"
             >
               {link.label}
@@ -38,7 +33,6 @@ export default function Footer() {
           ))}
         </nav>
 
-        {/* Copyright */}
         <p className="text-xs text-gray-400">
           © {new Date().getFullYear()} Asseto
         </p>

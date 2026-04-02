@@ -1,8 +1,8 @@
 "use client";
-
+import { useTranslations } from "next-intl";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
-import Link from "next/link";
+import { useRouter } from "@/i18n/routing";
+import { Link } from "@/i18n/routing";
 import { createClient } from "@/lib/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -26,6 +26,7 @@ export default function LoginForm() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const t = useTranslations("auth");
 
   const searchParams = useSearchParams();
 
@@ -48,12 +49,12 @@ export default function LoginForm() {
     });
 
     if (error) {
-      setError("Nieprawidłowy email lub hasło.");
+      setError(t("loginError"));
       setLoading(false);
       return;
     }
 
-    router.push("/panel");
+    router.push("/panel"); // routing
     router.refresh();
   };
 
@@ -73,10 +74,10 @@ export default function LoginForm() {
         <Card className="bg-white border-gray-200 shadow-sm">
           <CardHeader className="space-y-1 pb-4">
             <CardTitle className="text-gray-900 text-xl font-semibold text-center">
-              Zaloguj się
+              {t("login")}
             </CardTitle>
             <CardDescription className="text-gray-500 text-sm text-center">
-              Zarządzaj maszynami i awariami
+              {t("loginDescription")}
             </CardDescription>
           </CardHeader>
 
@@ -101,7 +102,7 @@ export default function LoginForm() {
                 <Input
                   id="email"
                   type="email"
-                  placeholder="jan@firma.pl"
+                  placeholder={t("emailPlaceholder")}
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
@@ -115,13 +116,13 @@ export default function LoginForm() {
                     htmlFor="password"
                     className="text-gray-700 text-sm font-medium"
                   >
-                    Hasło
+                    {t("password")}
                   </Label>
                   <Link
                     href="/reset-hasla"
                     className="text-sm text-blue-600 hover:text-blue-700 hover:underline underline-offset-2 transition-colors"
                   >
-                    Zapomniałeś?
+                    {t("forgotPassword")}
                   </Link>
                 </div>
                 <Input
@@ -148,17 +149,17 @@ export default function LoginForm() {
                     Logowanie...
                   </>
                 ) : (
-                  "Zaloguj się"
+                  t("loginButton")
                 )}
               </Button>
 
               <p className=" text-gray-500 text-center">
-                Nie masz konta?{" "}
+                {t("noAccount")}{" "}
                 <Link
                   href="/rejestracja"
                   className="text-blue-600 hover:text-blue-700 font-medium transition-colors"
                 >
-                  Zarejestruj się
+                  {t("registerButton")}
                 </Link>
               </p>
             </CardFooter>
@@ -169,13 +170,13 @@ export default function LoginForm() {
           <Button asChild variant="ghost">
             <Link href="/">
               <ArrowLeft />
-              Wróć do strony głównej
+              {t("backToHome")}
             </Link>
           </Button>
         </div>
 
         <p className="text-center text-gray-400 text-xs mt-6">
-          © {new Date().getFullYear()} Asseto. Wszelkie prawa zastrzeżone.
+          © {new Date().getFullYear()} {t("copy")}
         </p>
       </div>
     </div>

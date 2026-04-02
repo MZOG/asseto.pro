@@ -74,6 +74,7 @@ export default async function SerwisantPage({
               <img
                 src={asset.image_url}
                 alt={asset.name}
+                sizes="80px"
                 className="w-16 h-16 object-cover rounded-lg border border-gray-200 shrink-0"
               />
             ) : (

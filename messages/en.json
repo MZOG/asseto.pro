@@ -1,0 +1,989 @@
+{
+  "seo": {
+    "index": {
+      "title": "Manage equipment issues via QR code",
+      "description": "An employee scans the code, describes the problem — you react.",
+      "path": "/en"
+    },
+    "pricing": {
+      "title": "Pricing",
+      "description": "Start for free and upgrade as your business grows."
+    },
+    "login": {
+      "title": "Log in",
+      "description": "Log in to your Asseto panel and manage equipment issues via QR codes."
+    },
+    "register": {
+      "title": "Register",
+      "description": "Create a free account and start managing equipment issues via QR codes. First 10 devices free."
+    },
+    "resetPassword": {
+      "title": "Reset password",
+      "description": "Reset your Asseto account password."
+    }
+  },
+
+  "pricingPage": {
+    "badge": "Pricing",
+    "title": "Simple, transparent pricing",
+    "description": "Start for free and upgrade as your business grows. No hidden fees.",
+    "popular": "Popular",
+    "allPlansInclude": "All paid plans include:",
+    "differenceNote": "The only difference between plans is the asset limit.",
+    "freeNote": "The free plan includes the first 5 features: QR reports, management panel, email notifications for issues, photos in reports, and issue history.",
+    "questions": "Have questions?",
+    "contact": "Contact us",
+    "replyTime": "— we reply within 24 hours.",
+    "plans": {
+      "free": {
+        "name": "Free",
+        "price": "$0",
+        "period": "forever",
+        "limit": "up to 10 assets",
+        "description": "Perfect for testing.",
+        "cta": "Start for free"
+      },
+      "starter": {
+        "name": "Starter",
+        "price": "$25",
+        "period": "per month + VAT",
+        "limit": "up to 50 assets",
+        "description": "For small facilities.",
+        "cta": "Choose Starter"
+      },
+      "growth": {
+        "name": "Growth",
+        "price": "$49",
+        "period": "per month + VAT",
+        "limit": "up to 100 assets",
+        "description": "For growing companies.",
+        "cta": "Choose Growth"
+      },
+      "business": {
+        "name": "Business",
+        "price": "$79",
+        "period": "per month + VAT",
+        "limit": "up to 150 assets",
+        "description": "For larger facilities.",
+        "cta": "Choose Business"
+      },
+      "enterprise": {
+        "name": "Enterprise",
+        "price": "$99",
+        "period": "per month + VAT",
+        "limit": "up to 200 assets",
+        "description": "For large organizations.",
+        "cta": "Choose Enterprise"
+      }
+    },
+    "features": {
+      "qr": "QR code reports",
+      "panel": "Management panel",
+      "emailIssues": "Email notifications for issues",
+      "photos": "Photos in reports",
+      "history": "Issue history",
+      "emailService": "Email notifications to service technician",
+      "servicePortal": "Service portal with link access",
+      "serviceManagement": "Service and inspection management",
+      "reminders": "Service reminders",
+      "priorities": "Issue priorities",
+      "reports": "Weekly reports",
+      "export": "Data export (CSV, PDF)",
+      "support": "Priority support"
+    }
+  },
+
+  "contactPage": {
+    "badge": "Contact",
+    "title": "Get in touch",
+    "description": "Have questions? We're happy to help. We respond within 24 hours.",
+    "contactInfo": "Contact details",
+    "emailLabel": "Email",
+    "phoneLabel": "Phone",
+    "responseTimeLabel": "Response time",
+    "responseTime": "Within 24 hours",
+    "sendMessage": "Send a message",
+    "successTitle": "Message sent!",
+    "successDesc": "We'll get back to you within 24 hours.",
+    "name": "Full name",
+    "namePlaceholder": "John Smith",
+    "company": "Company name",
+    "companyPlaceholder": "Company Ltd.",
+    "email": "Email address",
+    "emailPlaceholder": "john@company.com",
+    "phone": "Phone number",
+    "phonePlaceholder": "+1 000 000 000",
+    "message": "Message",
+    "messagePlaceholder": "How can we help?",
+    "send": "Send message",
+    "sending": "Sending...",
+    "errorDefault": "Failed to send message.",
+    "errors": {
+      "nameRequired": "Full name is required.",
+      "emailRequired": "Email address is required.",
+      "emailInvalid": "Please enter a valid email address.",
+      "messageRequired": "Message is required.",
+      "messageTooShort": "Message must be at least 10 characters."
+    }
+  },
+
+  "helpPage": {
+    "badge": "Help",
+    "title": "Frequently asked questions",
+    "notFound": "Can't find your answer?",
+    "contact": "Contact us",
+    "faqs": [
+      {
+        "q": "What is Asseto?",
+        "a": "Asseto is a QR code-based fault management system. Every device or object gets a QR code sticker — just scan it with your phone to report a problem. No app installation, no registration required."
+      },
+      {
+        "q": "Who can report an issue?",
+        "a": "Anyone with access to the QR code — whether it's a public facility, gym, hotel, production plant, or anything else. The report form is accessible without logging in and works on any smartphone."
+      },
+      {
+        "q": "How do I generate a QR code for a device?",
+        "a": "After adding a device in the panel, the QR code is generated automatically. You can choose the print size (S, M, L, XL), download a ready-to-print PDF, and stick it on the device. Each device has a unique code."
+      },
+      {
+        "q": "Do I need special hardware or an app?",
+        "a": "No. You only need a web browser to manage your devices. To scan QR codes, a standard smartphone camera is enough — iOS and Android both support QR scanning natively without any additional apps."
+      },
+      {
+        "q": "How many devices can I add?",
+        "a": "The free plan allows up to 10 devices. Paid plans support between 50 and 200 devices depending on the plan you choose."
+      },
+      {
+        "q": "Will I get notified about new reports?",
+        "a": "Yes — after every new report, an email notification is sent to the address linked to your account, including a description of the problem, the device name, and a link to the panel."
+      },
+      {
+        "q": "How do issue statuses work?",
+        "a": "Each issue has one of three statuses: Broken (new report requiring action), In service (issue being repaired), and Closed (repair complete). Changing the status automatically updates the device status as well."
+      },
+      {
+        "q": "Can I assign a service technician to a device?",
+        "a": "Yes — each device can have a phone number and email address assigned to a service technician. From an issue, you can send them a ready-made email with the problem description in one click. Available on paid plans."
+      },
+      {
+        "q": "What is the difference between the free and paid plans?",
+        "a": "The free plan lets you manage up to 10 devices and handle QR reports. Paid plans offer more devices, email notifications to technicians, a service portal, QR label editing, data export, and priority support."
+      },
+      {
+        "q": "How do I cancel my subscription?",
+        "a": "You can cancel at any time from the panel under Settings → Subscription. Access to your paid plan remains active until the end of the current billing period."
+      },
+      {
+        "q": "Is my data secure?",
+        "a": "Yes. Data is stored on Supabase servers with encryption. Payments are handled by Stripe — we never store card details. Each user only has access to their own devices and reports."
+      },
+      {
+        "q": "I have a question that's not listed here — what do I do?",
+        "a": "Contact us via the Contact page or directly at marcin@asseto.pro. We respond within 24 hours."
+      }
+    ]
+  },
+
+  "common": {
+    "appName": "Asseto",
+    "loading": "Loading...",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "add": "Add",
+    "back": "Back",
+    "close": "Close",
+    "confirm": "Confirm",
+    "search": "Search",
+    "noData": "No data",
+    "error": "An error occurred",
+    "success": "Saved",
+    "required": "Required field",
+
+    "status": {
+      "broken": "Broken",
+      "maintenance": "In service",
+      "working": "Working",
+      "closed": "Closed",
+      "unknown": "Unknown"
+    }
+  },
+
+  "nav": {
+    "pricing": "Pricing",
+    "blog": "Blog",
+    "help": "Help",
+    "contact": "Contact",
+    "forBusiness": "For Business",
+    "login": "Log in",
+    "register": "Start for free",
+    "dashboard": "Dashboard"
+  },
+
+  "auth": {
+    "login": "Log in",
+    "loginDescription": "Manage your equipment and issues",
+    "emailPlaceholder": "john@company.com",
+    "register": "Register",
+    "email": "Email address",
+    "password": "Password",
+    "forgotPassword": "Forgot password?",
+    "loginButton": "Log in",
+    "registerButton": "Create account",
+    "noAccount": "Don't have an account?",
+    "hasAccount": "Already have an account?",
+    "resetPassword": "Reset password",
+    "checkEmail": "Check your email",
+    "loginError": "Wrong password or e-mail",
+    "backToHome": "Back to homepage",
+    "copy": "Asseto. All rights reserved.",
+    "sending": "Sending...",
+
+    "registerPasswordError": "Hasło musi mieć co najmniej 8 znaków.",
+    "registerSamePasswrods": "Hasła nie są identyczne.",
+    "createAccount": "Create account",
+    "startManagingAccount": "Start manage your assets",
+    "repeatPassword": "Repeat password",
+    "backToLogin": "Back to login →",
+    "passwordLength": "at least 8 characters",
+
+    "rememberPassword": "Remember password?",
+    "resetDescription": "We will send you a link to set a new password",
+
+    "checkMail": "Check your inbox",
+    "checkMailDescription": "We have sent a password reset link to",
+    "checkEmailSpam": "Can't see the email? Check your <strong>spam</strong> folder.",
+    "checkMailExpiry": "The link is valid for <strong>60 minutes.</strong>",
+    "checkMailBack": "Back to login",
+
+    "resetPasswordError": "Something went wrong. Try again.",
+    "setPasswordError": "Failed to change the password. Please try again.",
+    "setPasswordSuccess": "Password has been changed.",
+    "newPassword": "New password",
+    "setNewPassword": "Set a new password for your account",
+    "confirmPassword": "Confirm password",
+    "newPasswordSaving": "Saving...",
+    "setNewPasswordButton": "Set new password"
+  },
+
+  "panel": {
+    "overview": "Overview",
+    "assets": "Assets",
+    "issues": "Issues",
+    "services": "Services",
+    "settings": "Settings",
+    "logout": "Log out",
+    "help": "Help",
+    "active": "Active",
+    "inService": "In service",
+    "closed": "Closed",
+
+    "proModal": {
+      "title": "What's included in Pro?",
+      "defaultText": "Unlock in Pro plan",
+      "price": "from $25",
+      "period": "/ month",
+      "upgradeButton": "Upgrade to Pro",
+      "redirecting": "Redirecting...",
+      "features": [
+        "Unlimited assets",
+        "Email notifications for new issues",
+        "Telegram notifications",
+        "QR label editing",
+        "Email notifications to service technician",
+        "Service portal with link access",
+        "Service and inspection management",
+        "Email reminders for upcoming services",
+        "Reports and data export",
+        "Priority support"
+      ]
+    },
+
+    "profile": {
+      "title": "My profile",
+      "account": "Account",
+      "emailLabel": "Email address",
+      "data": "Details",
+      "password": "Password",
+      "passwordDesc": "We will send a password reset link to {email}",
+
+      "form": {
+        "name": "Full name",
+        "namePlaceholder": "John Smith",
+        "company": "Company name",
+        "companyPlaceholder": "Company Ltd.",
+        "phone": "Phone number",
+        "phonePlaceholder": "e.g. 739907919",
+        "save": "Save changes",
+        "saving": "Saving...",
+        "errorSave": "Failed to save.",
+        "successSave": "Profile updated."
+      },
+
+      "resetPassword": {
+        "send": "Send password reset link",
+        "sending": "Sending...",
+        "sent": "Link sent",
+        "error": "Failed to send email.",
+        "success": "Password reset link has been sent."
+      }
+    },
+
+    "sidebar": {
+      "overview": "Overview",
+      "issues": "Issues",
+      "active": "Active",
+      "inService": "In service",
+      "closed": "Closed",
+      "equipment": "Equipment",
+      "assets": "Assets",
+      "service": "Service",
+      "services": "Services",
+      "help": "Help",
+      "issuesQA": "Issues Q&A",
+      "assetsQA": "Assets Q&A",
+      "profile": "My profile",
+      "settings": "Settings",
+      "logout": "Log out"
+    },
+
+    "dashboard": {
+      "title": "Overview",
+      "issues": "Issues",
+      "machines": "Assets",
+      "upcomingServices": "Upcoming services",
+      "noServices": "No scheduled services.",
+      "allServices": "View all services",
+      "topAssets": "Most reported assets",
+      "analytics": "Analytics",
+      "analyticsProText": "Analytics available in Pro",
+      "issue": "issue",
+      "issues2": "issues",
+      "issues5": "issues",
+      "stats": {
+        "broken": "Broken",
+        "issuesThisMonth": "Issues this month",
+        "brokenAssets": "Broken assets",
+        "inService": "In service",
+        "working": "Working",
+        "assets": "Assets"
+      },
+      "mockServices": [
+        { "name": "Example machine", "date": "January 15, 2025" },
+        { "name": "Device no. 2", "date": "January 22, 2025" },
+        { "name": "Equipment in hall A", "date": "February 1, 2025" }
+      ]
+    },
+
+    "issuesList": {
+      "ranges": {
+        "all": "All",
+        "7d": "Last 7 days",
+        "14d": "Last 14 days",
+        "month": "This month",
+        "prev_month": "Previous month"
+      },
+      "exportPro": "Export available in Pro",
+      "loading": "Loading...",
+      "empty": "No issues in the selected period.",
+      "csv": {
+        "id": "ID",
+        "asset": "Asset name",
+        "status": "Status",
+        "description": "Issue description",
+        "createdAt": "Reported at",
+        "closedAt": "Closed at"
+      },
+      "pdf": {
+        "title": "Issues",
+        "generated": "Generated",
+        "asset": "Asset",
+        "status": "Status",
+        "description": "Description",
+        "createdAt": "Reported at",
+        "closedAt": "Closed at"
+      }
+    },
+
+    "issueCard": {
+      "added": "Reported:",
+      "details": "Details"
+    },
+
+    "assetsPage": {
+      "title": "Assets",
+      "addMore": "Add more assets",
+      "add": "Add asset",
+      "search": "Search by name or serial number...",
+      "noResults": "No assets match your search."
+    },
+
+    "assetsCard": {
+      "serialNumber": "Serial number:",
+      "issuesCount": "Issues:",
+      "quickReport": "Quick report",
+      "details": "Details"
+    },
+
+    "servicesPage": {
+      "title": "Services",
+      "proText": "Services available in Pro plan",
+      "noAssets": "No assets. Add an asset to track its services.",
+      "lastService": "Last service",
+      "nextService": "Next service",
+      "notSet": "Not set",
+      "legend": {
+        "overdue": "Overdue",
+        "soon": "Within 14 days",
+        "ok": "Scheduled",
+        "none": "No date"
+      },
+      "mock": [
+        {
+          "name": "Example machine",
+          "lastDate": "January 12, 2025",
+          "nextDate": "April 12, 2025",
+          "status": "ok"
+        },
+        {
+          "name": "Device no. 2",
+          "lastDate": "February 5, 2025",
+          "nextDate": "March 5, 2025",
+          "status": "soon"
+        },
+        {
+          "name": "Equipment in hall A",
+          "lastDate": null,
+          "nextDate": null,
+          "status": "none"
+        }
+      ]
+    },
+
+    "helpIssues": {
+      "title": "Help — Issues",
+      "subtitle": "Everything you need to know about reporting and managing issues.",
+      "sections": [
+        {
+          "question": "How does an employee report an issue?",
+          "answer": "Every machine has a QR code sticker. The employee scans it with their phone camera — no app installation, no login required. A form opens where they describe the problem and click \"Submit\". The report appears instantly in your panel.",
+          "statuses": null
+        },
+        {
+          "question": "What do the issue statuses mean?",
+          "answer": null,
+          "statuses": [
+            {
+              "label": "Broken",
+              "color": "bg-red-100 text-red-700",
+              "desc": "New report — the machine needs repair."
+            },
+            {
+              "label": "In service",
+              "color": "bg-yellow-100 text-yellow-700",
+              "desc": "The issue is currently being repaired."
+            },
+            {
+              "label": "Closed",
+              "color": "bg-gray-100 text-gray-600",
+              "desc": "Repair complete, machine is working."
+            }
+          ]
+        },
+        {
+          "question": "How do I change the issue status?",
+          "answer": "Go to the issue details — in the top right corner you'll find a dropdown menu with statuses. Changing the issue status automatically updates the machine status as well. When you close an issue, the machine returns to \"Working\" status.",
+          "statuses": null
+        },
+        {
+          "question": "Will I get notified about a new issue?",
+          "answer": "Yes — after every new report you'll receive an email with the issue description, machine name and a link to the panel. Make sure you have the correct email address in your account settings.",
+          "statuses": null
+        },
+        {
+          "question": "How do I notify the service technician about an issue?",
+          "answer": "In the issue details view you'll find a \"Notify service\" button. Clicking it will show a ready-made email with the machine details and issue description — you can edit it before sending. Available in the Pro plan.",
+          "statuses": null
+        },
+        {
+          "question": "Where can I find the history of closed issues?",
+          "answer": "In the sidebar under \"Issues\" you have a \"Closed\" tab — there you'll find all completed reports. You can browse them and check when they were closed.",
+          "statuses": null
+        }
+      ]
+    },
+
+    "helpAssets": {
+      "title": "Help — Assets",
+      "subtitle": "How to manage assets, QR codes and technical data.",
+      "sections": [
+        {
+          "question": "How do I add a new asset?",
+          "answer": "In the sidebar go to \"Assets\" and click \"Add asset\". Only the name is required — the serial number is optional. After adding you'll be redirected to the asset page where you can immediately generate a QR code."
+        },
+        {
+          "question": "How does the QR code work?",
+          "answer": "Each asset has a unique QR code that leads to the report form. You can choose the print size (S, M, L, XL), download a PDF and stick it on the asset. The code can be regenerated at any time — the old one stops working."
+        },
+        {
+          "question": "What are custom fields for?",
+          "answer": "Custom fields let you add any information to an asset — e.g. \"Year of manufacture\", \"Engine model\", \"Last inspection\". Each field has a name and a value. You can add and remove them at any time."
+        },
+        {
+          "question": "What is the asset location?",
+          "answer": "Location is a text field describing where the asset is physically located — e.g. \"Hall A, station 3\" or \"Floor 2, room 201\". It appears in issue details, making it easier for the technician to find the asset."
+        },
+        {
+          "question": "How do I set service technician details?",
+          "answer": "You can set a default phone number and email for the service technician in Settings — it will be automatically assigned to every new asset. You can also override it per asset in the \"Technician\" tab on the asset page."
+        },
+        {
+          "question": "How do I add an asset photo?",
+          "answer": "On the asset page in the \"Photo\" section click \"Add photo\". Supported formats are JPG, PNG and WEBP. The photo appears in issue details making it easier to identify the asset. You can change or remove it at any time."
+        },
+        {
+          "question": "Can I delete an asset?",
+          "answer": "Yes — on the asset page in the top right corner you'll find a delete button (trash icon). Deleting an asset is irreversible — all associated issues and data will be deleted along with it. Make sure you really want to do this."
+        }
+      ]
+    },
+
+    "assetTabs": {
+      "info": "Information",
+      "service": "Service",
+      "issues": "Issues",
+      "notes": "Notes"
+    },
+
+    "assetInfo": {
+      "photo": "Photo",
+      "changePhoto": "Change photo",
+      "deletePhoto": "Delete photo",
+      "addPhoto": "Add photo",
+      "photoUpdated": "Photo updated.",
+      "photoDeleted": "Photo deleted.",
+      "info": "Information",
+      "name": "Asset name",
+      "status": "Status",
+      "location": "Location",
+      "locationPlaceholder": "e.g. Hall A, station 3",
+      "serialNumber": "Serial number",
+      "referenceNumber": "Reference number",
+      "nextInspection": "Next inspection date",
+      "customFields": "Custom fields",
+      "fieldName": "Name",
+      "fieldValue": "Value",
+      "addField": "Add field",
+      "fieldDeleted": "Field deleted.",
+      "qrCode": "QR Code",
+      "save": "Save changes",
+      "saving": "Saving...",
+      "saved": "Changes saved.",
+      "statuses": {
+        "working": "Working",
+        "broken": "Broken",
+        "maintenance": "In service",
+        "closed": "Closed"
+      }
+    },
+
+    "assetService": {
+      "technicianData": "Service technician",
+      "phone": "Phone",
+      "phonePlaceholder": "e.g. 739907919",
+      "email": "Email",
+      "emailPlaceholder": "service@company.com",
+      "save": "Save",
+      "saving": "Saving...",
+      "saved": "Saved.",
+      "error": "Failed to save.",
+      "addService": "Add service entry",
+      "serviceHistory": "Service history"
+    },
+
+    "serviceToken": {
+      "title": "Service technician link",
+      "copy": "Copy link",
+      "reset": "Reset link",
+      "generating": "Generating...",
+      "generate": "Generate technician link",
+      "desc": "The technician can view issues, add notes and service entries. Reset the link to revoke access.",
+      "noTokenDesc": "Generate a link you can share with your service technician. No registration required.",
+      "errorGenerate": "Failed to generate link.",
+      "successGenerate": "Link generated.",
+      "successCopy": "Link copied."
+    },
+
+    "addServiceForm": {
+      "servicedAt": "Service date *",
+      "nextServiceAt": "Next service",
+      "type": "Service type",
+      "performedBy": "Performed by",
+      "performedByPlaceholder": "Name, service company...",
+      "cost": "Cost",
+      "costPlaceholder": "e.g. 350",
+      "notes": "Notes",
+      "notesPlaceholder": "What was done, replaced parts, remarks...",
+      "photo": "Photo",
+      "photoOptional": "(optional)",
+      "addPhoto": "Add service photo",
+      "preview": "Preview",
+      "submit": "Add service entry",
+      "saving": "Saving...",
+      "errorDate": "Service date is required.",
+      "errorSave": "Failed to save.",
+      "success": "Service entry added.",
+      "types": {
+        "inspection": "Inspection",
+        "repair": "Repair",
+        "replacement": "Part replacement"
+      }
+    },
+
+    "serviceHistory": {
+      "empty": "No service entries.",
+      "notes": "Notes",
+      "performedBy": "Performed by",
+      "cost": "Cost",
+      "nextService": "Next service",
+      "photo": "Photo",
+      "photoAlt": "Service photo",
+      "delete": "Delete entry",
+      "errorDelete": "Failed to delete.",
+      "successDelete": "Entry deleted.",
+      "types": {
+        "inspection": "Inspection",
+        "repair": "Repair",
+        "replacement": "Part replacement"
+      }
+    },
+    "assetIssuesTab": {
+      "empty": "No issue history.",
+      "priorities": {
+        "low": "Low",
+        "normal": "Normal",
+        "high": "High",
+        "critical": "Critical"
+      }
+    },
+    "feedback": {
+      "title": "Feedback / Report a bug",
+      "description": "Describe what's not working or what you'd like to change. Every piece of feedback is valuable to us.",
+      "placeholder": "E.g. Button X doesn't work, or I'm missing feature Y...",
+      "send": "Send",
+      "sending": "Sending...",
+      "cancel": "Cancel",
+      "successTitle": "Thank you for your feedback!",
+      "successDesc": "We'll respond as quickly as possible.",
+      "close": "Close",
+      "errorEmpty": "Please write a message before sending.",
+      "errorSend": "Failed to send. Please try again."
+    }
+  },
+
+  "assets": {
+    "title": "Assets",
+    "addAsset": "Add asset",
+    "assetName": "Asset name",
+    "serialNumber": "Serial number",
+    "referenceNumber": "Reference number",
+    "location": "Location",
+    "status": "Status",
+    "nextInspection": "Next inspection",
+    "notes": "Notes",
+    "qrCode": "QR Code",
+    "customFields": "Custom fields",
+    "addField": "Add field",
+    "noAssets": "No assets yet. Add your first asset.",
+    "limitReached": "You have reached the limit of {limit} assets. Upgrade your plan.",
+    "tabs": {
+      "info": "Information",
+      "service": "Service",
+      "issues": "Issues",
+      "notes": "Notes"
+    },
+    "status": {
+      "working": "Working",
+      "broken": "Broken",
+      "maintenance": "In service",
+      "closed": "Closed"
+    }
+  },
+
+  "issues": {
+    "title": "Issues",
+    "newIssue": "New issue",
+    "description": "Issue description",
+    "status": "Status",
+    "priority": "Priority",
+    "reportedAt": "Reported at",
+    "closedAt": "Closed at",
+    "serviceNotes": "Service notes",
+    "reporterPhone": "Reporter's phone",
+    "noIssues": "No issues.",
+    "priorities": {
+      "low": "Low",
+      "normal": "Normal",
+      "high": "High",
+      "critical": "Critical"
+    },
+    "statuses": {
+      "broken": "Broken",
+      "maintenance": "In service",
+      "closed": "Closed"
+    }
+  },
+
+  "services": {
+    "title": "Services",
+    "addService": "Add service entry",
+    "servicedAt": "Service date",
+    "nextServiceAt": "Next service",
+    "type": "Service type",
+    "performedBy": "Performed by",
+    "cost": "Cost",
+    "notes": "Notes",
+    "noServices": "No service history.",
+    "types": {
+      "inspection": "Inspection",
+      "repair": "Repair",
+      "replacement": "Part replacement"
+    },
+    "statuses": {
+      "overdue": "Overdue",
+      "soon": "Within 14 days",
+      "ok": "Scheduled",
+      "none": "No date"
+    }
+  },
+
+  "report": {
+    "title": "Report an issue",
+    "subtitle": "Scan and describe the problem",
+    "descriptionLabel": "Issue description",
+    "descriptionPlaceholder": "Describe what happened...",
+    "photoLabel": "Photo",
+    "photoOptional": "(optional)",
+    "photoPlaceholder": "Click to add a photo",
+    "phoneLabel": "Phone number",
+    "phoneOptional": "(optional)",
+    "phonePlaceholder": "e.g. 600 700 800",
+    "submitButton": "Submit report",
+    "successTitle": "Thank you for your report!",
+    "successMessage": "Your report has been submitted. We will take care of it as soon as possible.",
+    "required": "Issue description is required."
+  },
+
+  "pricing": {
+    "title": "Pricing",
+    "subtitle": "Simple, transparent pricing",
+    "description": "Start for free and upgrade as your business grows.",
+    "free": "Free",
+    "monthly": "per month",
+    "forever": "forever",
+    "vatNote": "+ VAT",
+    "popular": "Popular",
+    "startFree": "Start for free",
+    "choosePlan": "Choose {plan}",
+    "allPaidPlansInclude": "All paid plans include:",
+    "differenceNote": "The only difference between plans is the asset limit.",
+    "questions": "Have questions?",
+    "contactUs": "Contact us",
+    "replyTime": "— we reply within 24 hours."
+  },
+
+  "subscription": {
+    "title": "Subscription",
+    "active": "Active",
+    "canceled": "Canceled",
+    "free": "Free",
+    "pastDueWarning": "Your last payment failed. Update your payment method to keep access.",
+    "machineCount": "You are using {count}/{limit} assets on the free plan.",
+    "nearLimit": "You are approaching your limit.",
+    "choosePlan": "Choose a plan",
+    "renewSubscription": "Renew subscription",
+    "manageSubscription": "Manage subscription",
+    "changePlan": "Change plan",
+    "hidePlans": "Hide plans",
+    "changeNote": "Changes will take effect from the next billing period.",
+    "current": "Current",
+    "recommended": "Recommended",
+    "redirecting": "Redirecting...",
+    "upgradeTo": "Switch to {plan}",
+    "selectPlan": "Choose {plan}"
+  },
+
+  "settings": {
+    "title": "Settings",
+    "qr": {
+      "title": "QR Settings",
+      "labelTop": "Top label",
+      "labelBottom": "Bottom label",
+      "printSize": "Print size"
+    },
+    "service": {
+      "title": "Service contact",
+      "phone": "Phone",
+      "email": "Email"
+    },
+    "reports": {
+      "title": "Reports",
+      "issues": "Issue reports",
+      "services": "Service reports"
+    }
+  },
+
+  "landing": {
+    "hero": {
+      "badge": "Equipment fault management system",
+      "betaBadge": "Now available in beta",
+      "title": "Manage equipment issues via QR code",
+      "titleHighlight": "QR code",
+      "subtitle": "An employee scans the code, describes the problem — you react.",
+      "subtitleSecond": "No phone calls, no spreadsheets.",
+      "cta": "Start for free",
+      "ctaLogin": "Log in",
+      "demoText": "Want to see how Asseto works?",
+      "demoLink": "Log in to the demo account",
+      "badge1": "Instant reports",
+      "badge2": "No installation",
+      "badge3": "Full history",
+      "browserBar": "asseto.pro/dashboard",
+      "imageAlt": "Asseto — issue management dashboard"
+    },
+    "howItWorks": {
+      "badge": "How it works",
+      "title": "Fault management has never been simpler",
+      "description": "Asseto connects employees with technical support in seconds — no app, no registration.",
+      "cards": [
+        {
+          "title": "Label your equipment",
+          "description": "Generate a QR code for every device and print it in any size. A sticker on the machine is all your team needs."
+        },
+        {
+          "title": "Instant reports",
+          "description": "An employee scans the QR code, describes the problem, and submits a report in seconds. No phone calls, no Excel spreadsheets."
+        },
+        {
+          "title": "Full control in the panel",
+          "description": "All reports, fault history, and machine status in one place. React faster and plan inspections in advance."
+        }
+      ]
+    },
+    "scanningSteps": {
+      "badge": "Reporting issues",
+      "title": "Report in 3 steps",
+      "description": "Report issues without an account, without installing anything.",
+      "mockup": {
+        "time": "9:41",
+        "label": "Report an issue",
+        "device": "CNC Lathe #3",
+        "descLabel": "Issue description",
+        "descText": "The machine makes a loud noise on startup...",
+        "submit": "Submit report"
+      },
+      "steps": [
+        {
+          "number": "01",
+          "title": "Scan the QR code",
+          "description": "Every device has a QR code sticker. Just use your phone camera."
+        },
+        {
+          "number": "02",
+          "title": "Describe the problem",
+          "description": "A short description is enough. The form is simple and works on any phone."
+        },
+        {
+          "number": "03",
+          "title": "Done",
+          "description": "The report reaches the panel instantly. The technical team sees the problem and can act."
+        }
+      ]
+    },
+    "panelShowcase": {
+      "tabs": [
+        {
+          "label": "Overview",
+          "description": "All issues and statistics in one place"
+        },
+        {
+          "label": "Issues",
+          "description": "List of active issues with priorities and statuses"
+        },
+        {
+          "label": "Issue details",
+          "description": "Full report history, photos and service notes"
+        },
+        {
+          "label": "Assets",
+          "description": "All devices with QR codes and issue history"
+        },
+        {
+          "label": "Asset view",
+          "description": "Services, issues and notes for a specific device"
+        },
+        {
+          "label": "Services",
+          "description": "Inspection schedule and service history"
+        },
+        {
+          "label": "QR form",
+          "description": "Issue report form — no app, no registration"
+        }
+      ]
+    },
+    "cta": {
+      "title": "Start managing issues today",
+      "description": "First 10 devices for free. No credit card. Setup takes 5 minutes.",
+      "register": "Create free account",
+      "demo": "Try demo"
+    }
+  },
+
+  "serwisant": {
+    "title": "Service portal",
+    "issueHistory": "Issues",
+    "serviceHistory": "Service history",
+    "addServiceEntry": "Add service entry",
+    "noIssues": "No issues.",
+    "noServices": "No service entries.",
+    "saveNote": "Save note",
+    "saving": "Saving...",
+    "saved": "Saved",
+    "issueDescription": "Issue description",
+    "serviceNote": "Service note",
+    "noteplaceholder": "Add a service note..."
+  },
+
+  "footer": {
+    "links": [
+      { "href": "/pricing", "label": "Pricing" },
+      { "href": "/help", "label": "Help" },
+      { "href": "/blog", "label": "Blog" },
+      { "href": "/contact", "label": "Contact" },
+      { "href": "/privacy-policy", "label": "Privacy policy" },
+      { "href": "/terms", "label": "Terms" }
+    ]
+  },
+
+  "blog": {
+    "backToBlog": "Back to blog",
+    "ctaTitle": "Try Asseto for free",
+    "ctaDesc": "First 10 devices free. Setup takes 5 minutes.",
+    "ctaButton": "Get started →",
+    "prev": "← Previous",
+    "next": "Next →"
+  },
+
+  "blogPage": {
+    "title": "Blog",
+    "description": "Articles on fault management, equipment maintenance and QR systems for businesses and facilities.",
+    "heading": "Knowledge on fault management",
+    "subheading": "Practical tips, case studies and advice for facility and equipment managers.",
+    "all": "All",
+    "empty": "No articles in this category.",
+    "read": "Read",
+    "categoryParam": "category"
+  }
+}

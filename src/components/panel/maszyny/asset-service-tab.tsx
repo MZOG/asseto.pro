@@ -8,10 +8,11 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { toast } from "sonner";
-import { Loader2, Phone, Mail, Link2, RefreshCw, Copy } from "lucide-react";
+import { Loader2, Phone, Mail } from "lucide-react";
 import ServiceTokenSection from "../serwisExternal/service-token-section";
 import AddServiceForm from "../serwis/add-service-form";
 import ServiceHistory from "../serwis/service-history";
+import { useTranslations } from "next-intl";
 
 export default function AssetServiceTab({
   asset,
@@ -19,6 +20,7 @@ export default function AssetServiceTab({
   services,
   isPro,
 }: any) {
+  const t = useTranslations("panel.assetService");
   const router = useRouter();
   const [saving, setSaving] = useState(false);
   const [form, setForm] = useState({
@@ -42,10 +44,9 @@ export default function AssetServiceTab({
       })
       .eq("id", asset.id);
 
-    if (error) {
-      toast.error("Nie udało się zapisać.");
-    } else {
-      toast.success("Zapisano.");
+    if (error) toast.error(t("error"));
+    else {
+      toast.success(t("saved"));
       router.refresh();
     }
     setSaving(false);
@@ -53,14 +54,13 @@ export default function AssetServiceTab({
 
   return (
     <div className="space-y-6">
-      {/* Dane serwisanta */}
       <div>
         <h2 className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-3">
-          Dane serwisanta
+          {t("technicianData")}
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="space-y-1.5">
-            <Label htmlFor="service_phone">Telefon</Label>
+            <Label htmlFor="service_phone">{t("phone")}</Label>
             <div className="relative">
               <Phone
                 size={14}
@@ -69,7 +69,7 @@ export default function AssetServiceTab({
               <Input
                 id="service_phone"
                 name="service_phone"
-                placeholder="np. 739907919"
+                placeholder={t("phonePlaceholder")}
                 value={form.service_phone}
                 onChange={handleChange}
                 className="pl-9"
@@ -77,7 +77,7 @@ export default function AssetServiceTab({
             </div>
           </div>
           <div className="space-y-1.5">
-            <Label htmlFor="service_email">Email</Label>
+            <Label htmlFor="service_email">{t("email")}</Label>
             <div className="relative">
               <Mail
                 size={14}
@@ -87,7 +87,7 @@ export default function AssetServiceTab({
                 id="service_email"
                 name="service_email"
                 type="email"
-                placeholder="serwis@firma.pl"
+                placeholder={t("emailPlaceholder")}
                 value={form.service_email}
                 onChange={handleChange}
                 className="pl-9"
@@ -103,15 +103,14 @@ export default function AssetServiceTab({
           {saving ? (
             <>
               <Loader2 size={14} className="animate-spin mr-1.5" />
-              Zapisywanie...
+              {t("saving")}
             </>
           ) : (
-            "Zapisz"
+            t("save")
           )}
         </Button>
       </div>
 
-      {/* Link dla serwisanta */}
       {isPro && (
         <>
           <Separator />
@@ -124,12 +123,11 @@ export default function AssetServiceTab({
 
       <Separator />
 
-      {/* Dodaj wpis serwisowy */}
       {isPro && (
         <>
           <div>
             <h2 className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-4">
-              Dodaj wpis serwisowy
+              {t("addService")}
             </h2>
             <AddServiceForm assetId={asset.id} />
           </div>
@@ -137,10 +135,9 @@ export default function AssetServiceTab({
         </>
       )}
 
-      {/* Historia serwisów */}
       <div>
         <h2 className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-4">
-          Historia serwisów
+          {t("serviceHistory")}
         </h2>
         <ServiceHistory services={services} assetId={asset.id} />
       </div>

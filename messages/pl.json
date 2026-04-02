@@ -1,0 +1,990 @@
+{
+  "seo": {
+    "index": {
+      "title": "Zarządzaj usterkami przez kod QR",
+      "description": "Pracownik skanuje kod, opisuje problem - Ty reagujesz.",
+      "path": "/"
+    },
+    "pricing": {
+      "title": "Cennik",
+      "description": "Zacznij za darmo i przejdź na wyższy plan gdy Twój biznes rośnie."
+    },
+    "login": {
+      "title": "Logowanie",
+      "description": "Zaloguj się do panelu Asseto i zarządzaj usterkami swojego sprzętu przez kody QR."
+    },
+    "register": {
+      "title": "Rejestracja",
+      "description": "Załóż darmowe konto i zacznij zarządzać usterkami sprzętu przez kody QR. Pierwsze 10 urządzeń za darmo."
+    },
+    "resetPassword": {
+      "title": "Reset hasła",
+      "description": "Zresetuj hasło do swojego konta Asseto."
+    }
+  },
+
+  "pricingPage": {
+    "badge": "Cennik",
+    "title": "Prosty, przejrzysty cennik",
+    "description": "Zacznij za darmo i przejdź na wyższy plan gdy Twój biznes rośnie. Bez ukrytych opłat.",
+    "popular": "Popularny",
+    "allPlansInclude": "Wszystkie plany płatne zawierają:",
+    "differenceNote": "Różnica między planami to tylko limit maszyn.",
+    "freeNote": "Plan darmowy zawiera pierwsze 5 funkcji z listy: zgłoszenia przez QR, panel zarządzania, powiadomienia e-mail o awariach, zdjęcia w zgłoszeniach i historię awarii.",
+    "questions": "Masz pytania?",
+    "contact": "Napisz do nas",
+    "replyTime": "— odpowiemy w ciągu 24 godzin.",
+    "plans": {
+      "free": {
+        "name": "Darmowy",
+        "price": "0 zł",
+        "period": "na zawsze",
+        "limit": "do 10 maszyn",
+        "description": "Idealny do przetestowania.",
+        "cta": "Zacznij za darmo"
+      },
+      "starter": {
+        "name": "Starter",
+        "price": "99 zł",
+        "period": "miesięcznie + VAT",
+        "limit": "do 50 maszyn",
+        "description": "Dla małych obiektów i firm.",
+        "cta": "Wybierz Starter"
+      },
+      "growth": {
+        "name": "Growth",
+        "price": "199 zł",
+        "period": "miesięcznie + VAT",
+        "limit": "do 100 maszyn",
+        "description": "Dla rozwijających się firm.",
+        "cta": "Wybierz Growth"
+      },
+      "business": {
+        "name": "Business",
+        "price": "299 zł",
+        "period": "miesięcznie + VAT",
+        "limit": "do 150 maszyn",
+        "description": "Dla większych obiektów.",
+        "cta": "Wybierz Business"
+      },
+      "enterprise": {
+        "name": "Enterprise",
+        "price": "399 zł",
+        "period": "miesięcznie + VAT",
+        "limit": "do 200 maszyn",
+        "description": "Dla dużych organizacji.",
+        "cta": "Wybierz Enterprise"
+      }
+    },
+    "features": {
+      "qr": "Zgłoszenia przez QR",
+      "panel": "Panel zarządzania",
+      "emailIssues": "Powiadomienia e-mail o awariach",
+      "photos": "Zdjęcia w zgłoszeniach",
+      "history": "Historia awarii",
+      "emailService": "Powiadomienia e-mail do serwisanta",
+      "servicePortal": "Panel serwisanta z dostępem przez link",
+      "serviceManagement": "Zarządzanie serwisami i przeglądami",
+      "reminders": "Przypomnienia o serwisach",
+      "priorities": "Priorytety zgłoszeń",
+      "reports": "Raporty tygodniowe",
+      "export": "Eksport danych (CSV, PDF)",
+      "support": "Priorytetowe wsparcie"
+    }
+  },
+
+  "helpPage": {
+    "badge": "Pomoc",
+    "title": "Często zadawane pytania",
+    "notFound": "Nie znalazłeś odpowiedzi?",
+    "contact": "Napisz do nas",
+    "faqs": [
+      {
+        "q": "Czym jest Asseto?",
+        "a": "Asseto to system do zarządzania usterkami oparty o kody QR. Każde urządzenie lub obiekt otrzymuje naklejkę z kodem QR — wystarczy go zeskanować telefonem żeby zgłosić problem. Bez instalowania aplikacji, bez rejestracji."
+      },
+      {
+        "q": "Kto może zgłosić usterkę?",
+        "a": "Każda osoba która ma dostęp do kodu QR — niezależnie od tego czy to obiekt publiczny, siłownia, hotel, zakład produkcyjny czy cokolwiek innego. Formularz zgłoszenia jest dostępny bez logowania i działa na każdym smartfonie."
+      },
+      {
+        "q": "Jak wygenerować kod QR dla urządzenia?",
+        "a": "Po dodaniu urządzenia w panelu, kod QR jest generowany automatycznie. Możesz wybrać rozmiar wydruku (S, M, L, XL), pobrać gotowy PDF i nakleić na urządzenie. Każde urządzenie ma unikalny kod."
+      },
+      {
+        "q": "Czy potrzebuję specjalnego sprzętu lub aplikacji?",
+        "a": "Nie. Do zarządzania potrzebujesz tylko przeglądarki internetowej. Do skanowania kodów QR wystarczy aparat w smartfonie — standardowa kamera w iOS i Android obsługuje skanowanie bez dodatkowych aplikacji."
+      },
+      {
+        "q": "Ile urządzeń mogę dodać?",
+        "a": "W planie darmowym możesz dodać do 10 urządzeń. Plany płatne oferują od 50 do 200 urządzeń w zależności od wybranego planu."
+      },
+      {
+        "q": "Czy dostanę powiadomienie o nowym zgłoszeniu?",
+        "a": "Tak — po każdym nowym zgłoszeniu na adres e-mail przypisany do konta wysyłane jest powiadomienie z opisem problemu, nazwą urządzenia i linkiem do panelu."
+      },
+      {
+        "q": "Jak działają statusy zgłoszeń?",
+        "a": "Każde zgłoszenie ma jeden z trzech statusów: Uszkodzone (nowe zgłoszenie wymagające interwencji), W serwisie (problem w trakcie naprawy) oraz Zamknięte (naprawa zakończona). Zmiana statusu automatycznie aktualizuje też status urządzenia."
+      },
+      {
+        "q": "Czy mogę przypisać serwisanta do urządzenia?",
+        "a": "Tak — każde urządzenie może mieć przypisany numer telefonu i adres e-mail serwisanta. Z poziomu zgłoszenia możesz wysłać do niego gotową wiadomość e-mail z opisem problemu jednym kliknięciem. Funkcja dostępna w planach płatnych."
+      },
+      {
+        "q": "Czym różni się plan darmowy od płatnych?",
+        "a": "Plan darmowy pozwala zarządzać do 10 urządzeniami i obsługiwać zgłoszenia przez QR. Plany płatne oferują więcej urządzeń, powiadomienia e-mail do serwisanta, panel serwisanta, edycję etykiet QR, eksport danych oraz priorytetowe wsparcie."
+      },
+      {
+        "q": "Jak anulować subskrypcję?",
+        "a": "Subskrypcję możesz anulować w dowolnym momencie z poziomu panelu w sekcji Ustawienia → Subskrypcja. Dostęp do planu pozostaje aktywny do końca opłaconego okresu rozliczeniowego."
+      },
+      {
+        "q": "Czy moje dane są bezpieczne?",
+        "a": "Tak. Dane przechowujemy na serwerach Supabase z szyfrowaniem. Płatności obsługuje Stripe — nie przechowujemy danych kart płatniczych. Każdy użytkownik ma dostęp wyłącznie do swoich urządzeń i zgłoszeń."
+      },
+      {
+        "q": "Mam pytanie którego tu nie ma — co robię?",
+        "a": "Napisz do nas przez stronę Kontakt lub bezpośrednio na marcin@asseto.pro. Odpowiadamy w ciągu 24 godzin."
+      }
+    ]
+  },
+
+  "contactPage": {
+    "badge": "Kontakt",
+    "title": "Skontaktuj się z nami",
+    "description": "Masz pytania? Chętnie pomożemy. Odpowiadamy w ciągu 24 godzin.",
+    "contactInfo": "Dane kontaktowe",
+    "emailLabel": "E-mail",
+    "phoneLabel": "Telefon",
+    "responseTimeLabel": "Czas odpowiedzi",
+    "responseTime": "Do 24 godzin",
+    "sendMessage": "Wyślij wiadomość",
+    "successTitle": "Wiadomość wysłana!",
+    "successDesc": "Odezwiemy się w ciągu 24 godzin.",
+    "name": "Imię i nazwisko",
+    "namePlaceholder": "Jan Kowalski",
+    "company": "Nazwa firmy",
+    "companyPlaceholder": "Firma Sp. z o.o.",
+    "email": "Adres e-mail",
+    "emailPlaceholder": "jan@firma.pl",
+    "phone": "Numer telefonu",
+    "phonePlaceholder": "+48 000 000 000",
+    "message": "Wiadomość",
+    "messagePlaceholder": "W czym możemy pomóc?",
+    "send": "Wyślij wiadomość",
+    "sending": "Wysyłanie...",
+    "errorDefault": "Nie udało się wysłać wiadomości.",
+    "errors": {
+      "nameRequired": "Imię i nazwisko jest wymagane.",
+      "emailRequired": "Adres e-mail jest wymagany.",
+      "emailInvalid": "Podaj prawidłowy adres e-mail.",
+      "messageRequired": "Wiadomość jest wymagana.",
+      "messageTooShort": "Wiadomość musi mieć co najmniej 10 znaków."
+    }
+  },
+
+  "common": {
+    "appName": "Asseto",
+    "loading": "Ładowanie...",
+    "save": "Zapisz",
+    "cancel": "Anuluj",
+    "delete": "Usuń",
+    "edit": "Edytuj",
+    "add": "Dodaj",
+    "back": "Wróć",
+    "close": "Zamknij",
+    "confirm": "Potwierdź",
+    "search": "Szukaj",
+    "noData": "Brak danych",
+    "error": "Wystąpił błąd",
+    "success": "Zapisano",
+    "required": "Pole wymagane",
+    "status": {
+      "broken": "Uszkodzona",
+      "maintenance": "W serwisie",
+      "working": "Sprawna",
+      "closed": "Zamknięta",
+      "unknown": "Nieznany"
+    }
+  },
+
+  "nav": {
+    "pricing": "Cennik",
+    "blog": "Blog",
+    "help": "Pomoc",
+    "contact": "Kontakt",
+    "forBusiness": "Dla firm",
+    "login": "Zaloguj się",
+    "register": "Zacznij za darmo",
+    "dashboard": "Panel"
+  },
+
+  "auth": {
+    "login": "Logowanie",
+    "loginDescription": "Zarządzaj maszynami i awariami",
+    "emailPlaceholder": "jan@firma.pl",
+    "register": "Rejestracja",
+    "email": "Adres e-mail",
+    "password": "Hasło",
+    "forgotPassword": "Zapomniałem hasła",
+    "loginButton": "Zaloguj się",
+    "registerButton": "Zarejestruj się",
+    "noAccount": "Nie masz konta?",
+    "hasAccount": "Masz już konto?",
+    "resetPassword": "Resetuj hasło",
+    "checkEmail": "Sprawdź swój e-mail",
+    "loginError": "Nieprawidłowy email lub hasło.",
+    "backToHome": "Wróć do strony głównej",
+    "copy": "Asseto. Wszelkie prawa zastrzeżone.",
+    "sending": "Wysyłanie...",
+
+    "registerPasswordError": "Hasło musi mieć co najmniej 8 znaków.",
+    "registerSamePasswrods": "Hasła nie są identyczne.",
+    "createAccount": "Załóż konto",
+    "startManagingAccount": "Zacznij zarządzać swoimi maszynami",
+    "repeatPassword": "Powtórz hasło",
+    "backToLogin": "Wróć do logowania →",
+    "passwordLength": "min. 8 znaków",
+
+    "rememberPassword": "Pamiętasz hasło?",
+    "resetDescription": "Wyślemy Ci link do ustawienia nowego hasła",
+
+    "checkMail": "Sprawdź skrzynkę",
+    "checkMailDescription": "Wysłaliśmy link do resetu hasła na adres",
+    "checkEmailSpam": "Nie widzisz emaila? Sprawdź folder <strong>spam</strong>.",
+    "checkMailExpiry": "Link jest ważny przez <strong>60 minut</strong>.",
+    "checkMailBack": "Wróć do logowania",
+
+    "resetPasswordError": "Coś poszło nie tak. Spróbuj ponownie.",
+    "setPasswordError": "Nie udało się zmienić hasła. Spróbuj ponownie.",
+    "setPasswordSuccess": "Hasło zostało zmienione.",
+    "newPassword": "Nowe hasło",
+    "setNewPassword": "Ustaw nowe hasło do swojego konta",
+    "confirmPassword": "Potwierdź hasło",
+    "newPasswordSaving": "Zapisywanie...",
+    "setNewPasswordButton": "Ustaw nowe hasło"
+  },
+
+  "panel": {
+    "overview": "Przegląd",
+    "assets": "Maszyny",
+    "issues": "Awarie",
+    "services": "Serwisy",
+    "settings": "Ustawienia",
+    "logout": "Wyloguj się",
+    "help": "Pomoc",
+    "active": "Aktywne",
+    "inService": "W serwisie",
+    "closed": "Zamknięte",
+
+    "proModal": {
+      "title": "Co zawiera plan Pro?",
+      "defaultText": "Odblokuj w planie Pro",
+      "price": "od 99 zł",
+      "period": "/ miesiąc",
+      "upgradeButton": "Przejdź na Pro",
+      "redirecting": "Przekierowywanie...",
+      "features": [
+        "Nielimitowane maszyny",
+        "Powiadomienia e-mail przy nowej awarii",
+        "Powiadomienia Telegram",
+        "Edycja etykiet kodu QR",
+        "Powiadomienia e-mail do serwisanta",
+        "Panel serwisanta z dostępem przez link",
+        "Zarządzanie serwisami i przeglądami",
+        "Przypomnienia e-mail o zbliżającym się serwisie",
+        "Raporty i eksport danych",
+        "Priorytetowe wsparcie"
+      ]
+    },
+
+    "profile": {
+      "title": "Mój profil",
+      "account": "Konto",
+      "emailLabel": "Adres e-mail",
+      "data": "Dane",
+      "password": "Hasło",
+      "passwordDesc": "Wyślemy link do zmiany hasła na adres {email}",
+
+      "form": {
+        "name": "Imię i nazwisko",
+        "namePlaceholder": "Jan Kowalski",
+        "company": "Nazwa firmy",
+        "companyPlaceholder": "Firma Sp. z o.o.",
+        "phone": "Numer telefonu",
+        "phonePlaceholder": "np. 739907919",
+        "save": "Zapisz zmiany",
+        "saving": "Zapisywanie...",
+        "errorSave": "Nie udało się zapisać.",
+        "successSave": "Profil zaktualizowany."
+      },
+
+      "resetPassword": {
+        "send": "Wyślij link do zmiany hasła",
+        "sending": "Wysyłanie...",
+        "sent": "Link wysłany",
+        "error": "Nie udało się wysłać e-maila.",
+        "success": "Link do zmiany hasła został wysłany."
+      }
+    },
+
+    "sidebar": {
+      "overview": "Przegląd",
+      "issues": "Awarie",
+      "active": "Aktywne",
+      "inService": "W serwisie",
+      "closed": "Zamknięte",
+      "equipment": "Sprzęt",
+      "assets": "Maszyny",
+      "service": "Serwis",
+      "services": "Serwisy",
+      "help": "Pomoc",
+      "issuesQA": "Awarie Q&A",
+      "assetsQA": "Maszyny Q&A",
+      "profile": "Mój profil",
+      "settings": "Ustawienia",
+      "logout": "Wyloguj się"
+    },
+
+    "dashboard": {
+      "title": "Przegląd",
+      "issues": "Awarie",
+      "machines": "Maszyny",
+      "upcomingServices": "Zbliżające się serwisy",
+      "noServices": "Brak zaplanowanych serwisów.",
+      "allServices": "Zobacz wszystkie serwisy",
+      "topAssets": "Najczęściej zgłaszane maszyny",
+      "analytics": "Analityka",
+      "analyticsProText": "Analityka dostępna w Pro",
+      "issue": "awaria",
+      "issues2": "awarie",
+      "issues5": "awarii",
+      "stats": {
+        "broken": "Uszkodzone",
+        "issuesThisMonth": "Awarie w tym miesiącu",
+        "brokenAssets": "Uszkodzone maszyny",
+        "inService": "W serwisie",
+        "working": "Sprawne",
+        "assets": "Maszyny"
+      },
+      "mockServices": [
+        { "name": "Maszyna przykładowa", "date": "15 stycznia 2025" },
+        { "name": "Urządzenie nr 2", "date": "22 stycznia 2025" },
+        { "name": "Sprzęt w hali A", "date": "1 lutego 2025" }
+      ]
+    },
+
+    "issuesList": {
+      "ranges": {
+        "all": "Wszystkie",
+        "7d": "Ostatnie 7 dni",
+        "14d": "Ostatnie 14 dni",
+        "month": "Ten miesiąc",
+        "prev_month": "Poprzedni miesiąc"
+      },
+      "exportPro": "Eksport dostępny w Pro",
+      "loading": "Ładowanie...",
+      "empty": "Brak awarii w wybranym okresie.",
+      "csv": {
+        "id": "ID",
+        "asset": "Nazwa maszyny",
+        "status": "Status",
+        "description": "Opis usterki",
+        "createdAt": "Data zgłoszenia",
+        "closedAt": "Data zamknięcia"
+      },
+      "pdf": {
+        "title": "Awarie",
+        "generated": "Wygenerowano",
+        "asset": "Maszyna",
+        "status": "Status",
+        "description": "Opis",
+        "createdAt": "Data zgłoszenia",
+        "closedAt": "Data zamknięcia"
+      }
+    },
+
+    "issueCard": {
+      "added": "Dodano:",
+      "details": "Szczegóły"
+    },
+
+    "assetsPage": {
+      "title": "Maszyny",
+      "addMore": "Dodaj więcej maszyn",
+      "add": "Dodaj maszynę",
+      "search": "Szukaj maszyny lub numeru seryjnego...",
+      "noResults": "Brak maszyn pasujących do wyszukiwania."
+    },
+
+    "assetsCard": {
+      "serialNumber": "Numer seryjny:",
+      "issuesCount": "Ilość awarii:",
+      "quickReport": "Szybkie zgłoszenie",
+      "details": "Szczegóły"
+    },
+
+    "servicesPage": {
+      "title": "Serwisy",
+      "proText": "Serwisy dostępne w planie Pro",
+      "noAssets": "Brak maszyn. Dodaj maszynę aby śledzić jej serwisy.",
+      "lastService": "Ostatni serwis",
+      "nextService": "Następny serwis",
+      "notSet": "Nie ustawiono",
+      "legend": {
+        "overdue": "Przeterminowany",
+        "soon": "Za 14 dni lub mniej",
+        "ok": "Zaplanowany",
+        "none": "Brak daty"
+      },
+      "mock": [
+        {
+          "name": "Maszyna przykładowa",
+          "lastDate": "12 stycznia 2025",
+          "nextDate": "12 kwietnia 2025",
+          "status": "ok"
+        },
+        {
+          "name": "Urządzenie nr 2",
+          "lastDate": "5 lutego 2025",
+          "nextDate": "5 marca 2025",
+          "status": "soon"
+        },
+        {
+          "name": "Sprzęt w hali A",
+          "lastDate": null,
+          "nextDate": null,
+          "status": "none"
+        }
+      ]
+    },
+
+    "helpIssues": {
+      "title": "Pomoc — Awarie",
+      "subtitle": "Wszystko co musisz wiedzieć o zgłaszaniu i zarządzaniu awariami.",
+      "sections": [
+        {
+          "question": "Jak pracownik zgłasza awarię?",
+          "answer": "Każda maszyna ma naklejkę z kodem QR. Pracownik skanuje kod aparatem telefonu — bez instalowania aplikacji, bez logowania. Otwiera się formularz gdzie opisuje usterkę i klika \"Zgłoś\". Zgłoszenie pojawia się natychmiast w Twoim panelu.",
+          "statuses": null
+        },
+        {
+          "question": "Co oznaczają statusy awarii?",
+          "answer": null,
+          "statuses": [
+            {
+              "label": "Uszkodzona",
+              "color": "bg-red-100 text-red-700",
+              "desc": "Nowe zgłoszenie — maszyna wymaga naprawy."
+            },
+            {
+              "label": "W serwisie",
+              "color": "bg-yellow-100 text-yellow-700",
+              "desc": "Usterka jest w trakcie naprawy."
+            },
+            {
+              "label": "Zamknięta",
+              "color": "bg-gray-100 text-gray-600",
+              "desc": "Naprawa zakończona, maszyna sprawna."
+            }
+          ]
+        },
+        {
+          "question": "Jak zmienić status awarii?",
+          "answer": "Wejdź w szczegóły awarii — w prawym górnym rogu strony znajdziesz rozwijane menu ze statusami. Zmiana statusu awarii automatycznie aktualizuje też status maszyny. Gdy zamkniesz awarię, maszyna wróci do statusu \"Sprawna\".",
+          "statuses": null
+        },
+        {
+          "question": "Czy dostanę powiadomienie o nowej awarii?",
+          "answer": "Tak — po każdym nowym zgłoszeniu otrzymasz e-mail z opisem usterki, nazwą maszyny i linkiem do panelu. Upewnij się że masz poprawny adres e-mail w ustawieniach konta.",
+          "statuses": null
+        },
+        {
+          "question": "Jak poinformować serwisanta o awarii?",
+          "answer": "W widoku szczegółów awarii znajdziesz przycisk \"Poinformuj serwis\". Po kliknięciu pojawi się gotowa wiadomość e-mail z danymi maszyny i opisem usterki — możesz ją edytować przed wysłaniem. Funkcja dostępna w planie Pro.",
+          "statuses": null
+        },
+        {
+          "question": "Gdzie znajdę historię zamkniętych awarii?",
+          "answer": "W menu bocznym w sekcji \"Awarie\" masz zakładkę \"Zamknięte\" — tam znajdziesz wszystkie zakończone zgłoszenia. Możesz je przeglądać i sprawdzać kiedy zostały zamknięte.",
+          "statuses": null
+        }
+      ]
+    },
+
+    "helpAssets": {
+      "title": "Pomoc — Maszyny",
+      "subtitle": "Jak zarządzać maszynami, kodami QR i danymi technicznymi.",
+      "sections": [
+        {
+          "question": "Jak dodać nową maszynę?",
+          "answer": "W menu bocznym przejdź do \"Maszyny\" i kliknij przycisk \"Dodaj maszynę\". Wymagana jest tylko nazwa — numer seryjny jest opcjonalny. Po dodaniu zostaniesz przekierowany na stronę maszyny gdzie od razu możesz wygenerować kod QR."
+        },
+        {
+          "question": "Jak działa kod QR?",
+          "answer": "Każda maszyna ma unikalny kod QR który prowadzi do formularza zgłoszenia. Możesz wybrać rozmiar wydruku (S, M, L, XL), pobrać PDF i nakleić na maszynę. Kod można w każdej chwili wygenerować ponownie — stary przestaje działać."
+        },
+        {
+          "question": "Do czego służą własne pola?",
+          "answer": "Własne pola pozwalają dodać dowolne informacje do maszyny — np. \"Rok produkcji\", \"Model silnika\", \"Ostatni przegląd\". Każde pole ma nazwę i wartość. Możesz dodawać i usuwać je w dowolnym momencie."
+        },
+        {
+          "question": "Co to jest lokalizacja maszyny?",
+          "answer": "Lokalizacja to pole tekstowe opisujące gdzie fizycznie znajduje się maszyna — np. \"Hala A, stanowisko 3\" lub \"Piętro 2, pokój 201\". Pojawia się w szczegółach awarii, co ułatwia serwisantowi odnalezienie maszyny."
+        },
+        {
+          "question": "Jak ustawić dane serwisanta?",
+          "answer": "Możesz ustawić domyślny numer telefonu i e-mail serwisanta w Ustawieniach — zostanie automatycznie przypisany do każdej nowej maszyny. Możesz też nadpisać go per maszyna w zakładce \"Serwisant\" na stronie maszyny."
+        },
+        {
+          "question": "Jak dodać zdjęcie maszyny?",
+          "answer": "Na stronie maszyny w sekcji \"Zdjęcie\" kliknij \"Dodaj zdjęcie\". Obsługiwane formaty to JPG, PNG i WEBP. Zdjęcie pojawia się w szczegółach awarii co ułatwia identyfikację maszyny. Możesz je w każdej chwili zmienić lub usunąć."
+        },
+        {
+          "question": "Czy mogę usunąć maszynę?",
+          "answer": "Tak — na stronie maszyny w prawym górnym rogu znajdziesz przycisk usuwania (ikona kosza). Usunięcie maszyny jest nieodwracalne — razem z nią zostaną usunięte wszystkie powiązane awarie i dane. Upewnij się że na pewno chcesz to zrobić."
+        }
+      ]
+    },
+
+    "assetTabs": {
+      "info": "Informacje",
+      "service": "Serwis",
+      "issues": "Awarie",
+      "notes": "Notatki"
+    },
+
+    "assetInfo": {
+      "photo": "Zdjęcie",
+      "changePhoto": "Zmień zdjęcie",
+      "deletePhoto": "Usuń zdjęcie",
+      "addPhoto": "Dodaj zdjęcie",
+      "photoUpdated": "Zdjęcie zaktualizowane.",
+      "photoDeleted": "Zdjęcie usunięte.",
+      "info": "Informacje",
+      "name": "Nazwa maszyny",
+      "status": "Status",
+      "location": "Lokalizacja",
+      "locationPlaceholder": "np. Hala A, stanowisko 3",
+      "serialNumber": "Numer seryjny",
+      "referenceNumber": "Numer referencyjny",
+      "nextInspection": "Data następnego przeglądu",
+      "customFields": "Własne pola",
+      "fieldName": "Nazwa",
+      "fieldValue": "Wartość",
+      "addField": "Dodaj pole",
+      "fieldDeleted": "Pole usunięte.",
+      "qrCode": "Kod QR",
+      "save": "Zapisz zmiany",
+      "saving": "Zapisywanie...",
+      "saved": "Zapisano zmiany.",
+      "statuses": {
+        "working": "Sprawna",
+        "broken": "Uszkodzona",
+        "maintenance": "W serwisie",
+        "closed": "Zamknięta"
+      }
+    },
+
+    "assetService": {
+      "technicianData": "Dane serwisanta",
+      "phone": "Telefon",
+      "phonePlaceholder": "np. 739907919",
+      "email": "Email",
+      "emailPlaceholder": "serwis@firma.pl",
+      "save": "Zapisz",
+      "saving": "Zapisywanie...",
+      "saved": "Zapisano.",
+      "error": "Nie udało się zapisać.",
+      "addService": "Dodaj wpis serwisowy",
+      "serviceHistory": "Historia serwisów"
+    },
+
+    "serviceToken": {
+      "title": "Link dla serwisanta",
+      "copy": "Kopiuj link",
+      "reset": "Resetuj link",
+      "generating": "Generowanie...",
+      "generate": "Generuj link dla serwisanta",
+      "desc": "Serwisant może przeglądać awarie, dodawać notatki i wpisy serwisowe. Resetuj link aby unieważnić dostęp.",
+      "noTokenDesc": "Wygeneruj link który możesz udostępnić serwisantowi. Serwisant nie musi się rejestrować.",
+      "errorGenerate": "Nie udało się wygenerować linku.",
+      "successGenerate": "Link wygenerowany.",
+      "successCopy": "Link skopiowany."
+    },
+
+    "addServiceForm": {
+      "servicedAt": "Data serwisu *",
+      "nextServiceAt": "Następny serwis",
+      "type": "Typ serwisu",
+      "performedBy": "Wykonał",
+      "performedByPlaceholder": "Imię, firma serwisowa...",
+      "cost": "Koszt (zł)",
+      "costPlaceholder": "np. 350",
+      "notes": "Notatki",
+      "notesPlaceholder": "Co zostało zrobione, wymienione części, uwagi...",
+      "photo": "Zdjęcie",
+      "photoOptional": "(opcjonalnie)",
+      "addPhoto": "Dodaj zdjęcie z serwisu",
+      "preview": "Podgląd",
+      "submit": "Dodaj wpis serwisowy",
+      "saving": "Zapisywanie...",
+      "errorDate": "Data serwisu jest wymagana.",
+      "errorSave": "Nie udało się zapisać.",
+      "success": "Wpis serwisowy dodany.",
+      "types": {
+        "inspection": "Przegląd",
+        "repair": "Naprawa",
+        "replacement": "Wymiana części"
+      }
+    },
+
+    "serviceHistory": {
+      "empty": "Brak wpisów serwisowych.",
+      "notes": "Notatki",
+      "performedBy": "Wykonał",
+      "cost": "Koszt",
+      "nextService": "Następny serwis",
+      "photo": "Zdjęcie",
+      "photoAlt": "Zdjęcie serwisu",
+      "delete": "Usuń wpis",
+      "errorDelete": "Nie udało się usunąć.",
+      "successDelete": "Wpis usunięty.",
+      "types": {
+        "inspection": "Przegląd",
+        "repair": "Naprawa",
+        "replacement": "Wymiana części"
+      }
+    },
+
+    "assetIssuesTab": {
+      "empty": "Brak historii awarii.",
+      "priorities": {
+        "low": "Niski",
+        "normal": "Normalny",
+        "high": "Wysoki",
+        "critical": "Krytyczny"
+      }
+    },
+
+    "feedback": {
+      "title": "Feedback / Zgłoś błąd",
+      "description": "Opisz co nie działa lub co chciałbyś zmienić. Każdy feedback jest dla nas cenny.",
+      "placeholder": "Np. Przycisk X nie działa, albo brakuje mi funkcji Y...",
+      "send": "Wyślij",
+      "sending": "Wysyłanie...",
+      "cancel": "Anuluj",
+      "successTitle": "Dziękujemy za feedback!",
+      "successDesc": "Postaramy się jak najszybciej zareagować.",
+      "close": "Zamknij",
+      "errorEmpty": "Napisz wiadomość przed wysłaniem.",
+      "errorSend": "Nie udało się wysłać. Spróbuj ponownie."
+    }
+  },
+
+  "assets": {
+    "title": "Maszyny",
+    "addAsset": "Dodaj maszynę",
+    "assetName": "Nazwa maszyny",
+    "serialNumber": "Numer seryjny",
+    "referenceNumber": "Numer referencyjny",
+    "location": "Lokalizacja",
+    "status": "Status",
+    "nextInspection": "Następny przegląd",
+    "notes": "Notatki",
+    "qrCode": "Kod QR",
+    "customFields": "Własne pola",
+    "addField": "Dodaj pole",
+    "noAssets": "Brak maszyn. Dodaj pierwszą maszynę.",
+    "limitReached": "Osiągnąłeś limit {limit} maszyn. Przejdź na wyższy plan.",
+    "tabs": {
+      "info": "Informacje",
+      "service": "Serwis",
+      "issues": "Awarie",
+      "notes": "Notatki"
+    },
+    "status": {
+      "working": "Sprawna",
+      "broken": "Uszkodzona",
+      "maintenance": "W serwisie",
+      "closed": "Zamknięta"
+    }
+  },
+
+  "issues": {
+    "title": "Awarie",
+    "newIssue": "Nowa awaria",
+    "description": "Opis usterki",
+    "status": "Status",
+    "priority": "Priorytet",
+    "reportedAt": "Data zgłoszenia",
+    "closedAt": "Data zamknięcia",
+    "serviceNotes": "Notatki serwisanta",
+    "reporterPhone": "Telefon zgłaszającego",
+    "noIssues": "Brak awarii.",
+    "priorities": {
+      "low": "Niski",
+      "normal": "Normalny",
+      "high": "Wysoki",
+      "critical": "Krytyczny"
+    },
+    "statuses": {
+      "broken": "Uszkodzona",
+      "maintenance": "W serwisie",
+      "closed": "Zamknięta"
+    }
+  },
+
+  "services": {
+    "title": "Serwisy",
+    "addService": "Dodaj wpis serwisowy",
+    "servicedAt": "Data serwisu",
+    "nextServiceAt": "Następny serwis",
+    "type": "Typ serwisu",
+    "performedBy": "Wykonał",
+    "cost": "Koszt (zł)",
+    "notes": "Notatki",
+    "noServices": "Brak historii serwisów.",
+    "types": {
+      "inspection": "Przegląd",
+      "repair": "Naprawa",
+      "replacement": "Wymiana części"
+    },
+    "statuses": {
+      "overdue": "Przeterminowany",
+      "soon": "Za 14 dni lub mniej",
+      "ok": "Zaplanowany",
+      "none": "Brak daty"
+    }
+  },
+
+  "report": {
+    "title": "Zgłoszenie usterki",
+    "subtitle": "Zeskanuj i opisz problem",
+    "descriptionLabel": "Opis usterki",
+    "descriptionPlaceholder": "Opisz co się stało...",
+    "photoLabel": "Zdjęcie",
+    "photoOptional": "(opcjonalnie)",
+    "photoPlaceholder": "Kliknij aby dodać zdjęcie",
+    "phoneLabel": "Numer telefonu",
+    "phoneOptional": "(opcjonalnie)",
+    "phonePlaceholder": "np. 600 700 800",
+    "submitButton": "Zgłoś usterkę",
+    "successTitle": "Dziękujemy za zgłoszenie!",
+    "successMessage": "Twoje zgłoszenie zostało wysłane. Zajmiemy się nim jak najszybciej.",
+    "required": "Opis usterki jest wymagany."
+  },
+
+  "pricing": {
+    "title": "Cennik",
+    "subtitle": "Prosty, przejrzysty cennik",
+    "description": "Zacznij za darmo i przejdź na wyższy plan gdy Twój biznes rośnie.",
+    "free": "Darmowy",
+    "monthly": "miesięcznie",
+    "forever": "na zawsze",
+    "vatNote": "+ VAT",
+    "popular": "Popularny",
+    "startFree": "Zacznij za darmo",
+    "choosePlan": "Wybierz {plan}",
+    "allPaidPlansInclude": "Wszystkie plany płatne zawierają:",
+    "differenceNote": "Różnica między planami to tylko limit maszyn.",
+    "questions": "Masz pytania?",
+    "contactUs": "Napisz do nas",
+    "replyTime": "— odpowiemy w ciągu 24 godzin."
+  },
+
+  "subscription": {
+    "title": "Subskrypcja",
+    "active": "Aktywny",
+    "canceled": "Anulowany",
+    "free": "Darmowy",
+    "pastDueWarning": "Ostatnia płatność nie powiodła się. Zaktualizuj metodę płatności aby zachować dostęp.",
+    "machineCount": "Używasz {count}/{limit} maszyn w planie darmowym.",
+    "nearLimit": "Zbliżasz się do limitu.",
+    "choosePlan": "Wybierz plan",
+    "renewSubscription": "Odnów subskrypcję",
+    "manageSubscription": "Zarządzaj subskrypcją",
+    "changePlan": "Zmień plan",
+    "hidePlans": "Ukryj plany",
+    "changeNote": "Zmiana nastąpi od następnego okresu rozliczeniowego.",
+    "current": "Obecny",
+    "recommended": "Zalecany",
+    "redirecting": "Przekierowywanie...",
+    "upgradeTo": "Przejdź na {plan}",
+    "selectPlan": "Wybierz {plan}"
+  },
+
+  "settings": {
+    "title": "Ustawienia",
+    "qr": {
+      "title": "Ustawienia QR",
+      "labelTop": "Etykieta górna",
+      "labelBottom": "Etykieta dolna",
+      "printSize": "Rozmiar wydruku"
+    },
+    "service": {
+      "title": "Dane serwisanta",
+      "phone": "Telefon",
+      "email": "E-mail"
+    },
+    "reports": {
+      "title": "Raporty",
+      "issues": "Raporty awarii",
+      "services": "Raporty serwisów"
+    }
+  },
+
+  "landing": {
+    "hero": {
+      "badge": "System zarządzania usterkami",
+      "betaBadge": "Teraz dostępne w wersji beta",
+      "title": "Zarządzaj usterkami przez kod QR",
+      "titleHighlight": "kod QR",
+      "subtitle": "Pracownik skanuje kod, opisuje problem - Ty reagujesz.",
+      "subtitleSecond": "Żadnych telefonów, żadnych arkuszy.",
+      "cta": "Wypróbuj za darmo",
+      "ctaLogin": "Zaloguj się",
+      "demoText": "Chcesz zobaczyć jak działa Asseto?",
+      "demoLink": "Zaloguj się na konto demo",
+      "badge1": "Błyskawiczne zgłoszenia",
+      "badge2": "Bez instalacji",
+      "badge3": "Pełna historia",
+      "browserBar": "asseto.pro/panel",
+      "imageAlt": "Asseto — panel zarządzania awariami"
+    },
+    "howItWorks": {
+      "badge": "Jak to działa",
+      "title": "Zarządzanie awariami nigdy nie było prostsze",
+      "description": "Asseto łączy pracowników z obsługą techniczną w kilka sekund — bez aplikacji, bez rejestracji.",
+      "cards": [
+        {
+          "title": "Oznacz swój sprzęt",
+          "description": "Wygeneruj kod QR dla każdego urządzenia i wydrukuj go w dowolnym rozmiarze. Naklejka na maszynie to wszystko, czego potrzebuje Twój zespół."
+        },
+        {
+          "title": "Błyskawiczne zgłoszenia",
+          "description": "Pracownik skanuje kod QR, opisuje problem i wysyła zgłoszenie w kilkanaście sekund. Żadnych telefonów, żadnych arkuszy Excel."
+        },
+        {
+          "title": "Pełna kontrola w panelu",
+          "description": "Wszystkie zgłoszenia, historia awarii i status maszyn w jednym miejscu. Reaguj szybciej i planuj przeglądy z wyprzedzeniem."
+        }
+      ]
+    },
+    "scanningSteps": {
+      "badge": "Zgłaszanie usterek",
+      "title": "Zgłoszenie w 3 krokach",
+      "description": "Zgłaszanie usterek bez konta, bez instalowania czegokolwiek.",
+      "mockup": {
+        "time": "9:41",
+        "label": "Zgłoszenie usterki",
+        "device": "Tokarka CNC #3",
+        "descLabel": "Opis usterki",
+        "descText": "Maszyna wydaje głośny dźwięk przy uruchomieniu...",
+        "submit": "Zgłoś usterkę"
+      },
+      "steps": [
+        {
+          "number": "01",
+          "title": "Zeskanuj kod QR",
+          "description": "Każde urządzenie ma naklejkę z kodem QR. Wystarczy aparat w telefonie."
+        },
+        {
+          "number": "02",
+          "title": "Opisz problem",
+          "description": "Krótki opis wystarczy. Formularz jest prosty i działa na każdym telefonie."
+        },
+        {
+          "number": "03",
+          "title": "Gotowe",
+          "description": "Zgłoszenie trafia do panelu natychmiast. Obsługa techniczna widzi problem i może działać."
+        }
+      ]
+    },
+    "panelShowcase": {
+      "tabs": [
+        {
+          "label": "Przegląd",
+          "description": "Wszystkie awarie i statystyki w jednym miejscu"
+        },
+        {
+          "label": "Awarie",
+          "description": "Lista aktywnych awarii z priorytetami i statusami"
+        },
+        {
+          "label": "Szczegóły awarii",
+          "description": "Pełna historia zgłoszenia, zdjęcia i notatki serwisanta"
+        },
+        {
+          "label": "Maszyny",
+          "description": "Wszystkie urządzenia z kodami QR i historią awarii"
+        },
+        {
+          "label": "Widok maszyny",
+          "description": "Serwisy, awarie i notatki dla konkretnego urządzenia"
+        },
+        {
+          "label": "Serwisy",
+          "description": "Harmonogram przeglądów i historia serwisów"
+        },
+        {
+          "label": "Formularz QR",
+          "description": "Formularz zgłoszenia usterki — bez aplikacji, bez rejestracji"
+        }
+      ]
+    },
+    "cta": {
+      "title": "Zacznij zarządzać usterkami dziś",
+      "description": "Pierwsze 10 urządzeń za darmo. Bez karty kredytowej. Konfiguracja zajmuje 5 minut.",
+      "register": "Załóż darmowe konto",
+      "demo": "Wypróbuj demo"
+    }
+  },
+
+  "serwisant": {
+    "title": "Panel serwisanta",
+    "issueHistory": "Awarie",
+    "serviceHistory": "Historia serwisów",
+    "addServiceEntry": "Dodaj wpis serwisowy",
+    "noIssues": "Brak awarii.",
+    "noServices": "Brak wpisów serwisowych.",
+    "saveNote": "Zapisz notatkę",
+    "saving": "Zapisywanie...",
+    "saved": "Zapisano",
+    "issueDescription": "Opis usterki",
+    "serviceNote": "Notatka serwisanta",
+    "noteplaceholder": "Dodaj notatkę serwisową..."
+  },
+
+  "footer": {
+    "links": [
+      { "href": "/cennik", "label": "Cennik" },
+      { "href": "/pomoc", "label": "Pomoc" },
+      { "href": "/blog", "label": "Blog" },
+      { "href": "/kontakt", "label": "Kontakt" },
+      { "href": "/polityka-prywatnosci", "label": "Polityka prywatności" },
+      { "href": "/regulamin", "label": "Regulamin" }
+    ]
+  },
+
+  "blog": {
+    "backToBlog": "Wróć do bloga",
+    "ctaTitle": "Wypróbuj Asseto za darmo",
+    "ctaDesc": "Pierwsze 10 urządzeń bez opłat. Konfiguracja zajmuje 5 minut.",
+    "ctaButton": "Zacznij za darmo →",
+    "prev": "← Poprzedni",
+    "next": "Następny →"
+  },
+
+  "blogPage": {
+    "title": "Blog",
+    "description": "Artykuły o zarządzaniu usterkami, utrzymaniu sprzętu i systemach QR dla firm i obiektów.",
+    "heading": "Wiedza o zarządzaniu usterkami",
+    "subheading": "Praktyczne porady, case study i wskazówki dla zarządców obiektów i sprzętu.",
+    "all": "Wszystkie",
+    "empty": "Brak artykułów w tej kategorii.",
+    "read": "Czytaj",
+    "categoryParam": "kategoria"
+  }
+}

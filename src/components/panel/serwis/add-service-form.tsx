@@ -16,19 +16,14 @@ import {
 import { toast } from "sonner";
 import { Loader2, Upload, X } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
-
-const serviceTypes = [
-  { value: "inspection", label: "Przegląd" },
-  { value: "repair", label: "Naprawa" },
-  { value: "replacement", label: "Wymiana części" },
-];
+import { useTranslations } from "next-intl";
 
 export default function AddServiceForm({ assetId }: { assetId: string }) {
+  const t = useTranslations("panel.addServiceForm");
   const router = useRouter();
   const [saving, setSaving] = useState(false);
   const [image, setImage] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
-
   const [form, setForm] = useState({
     serviced_at: new Date().toISOString().split("T")[0],
     next_service_at: "",
@@ -37,6 +32,12 @@ export default function AddServiceForm({ assetId }: { assetId: string }) {
     cost: "",
     notes: "",
   });
+
+  const serviceTypes = [
+    { value: "inspection", label: t("types.inspection") },
+    { value: "repair", label: t("types.repair") },
+    { value: "replacement", label: t("types.replacement") },
+  ];
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -54,10 +55,9 @@ export default function AddServiceForm({ assetId }: { assetId: string }) {
 
   const handleSubmit = async () => {
     if (!form.serviced_at) {
-      toast.error("Data serwisu jest wymagana.");
+      toast.error(t("errorDate"));
       return;
     }
-
     setSaving(true);
     const supabase = createClient();
 
@@ -68,7 +68,6 @@ export default function AddServiceForm({ assetId }: { assetId: string }) {
       const { error: uploadError } = await supabase.storage
         .from("asset-images")
         .upload(path, image, { upsert: false });
-
       if (!uploadError) {
         const {
           data: { publicUrl },
@@ -89,12 +88,12 @@ export default function AddServiceForm({ assetId }: { assetId: string }) {
     });
 
     if (error) {
-      toast.error("Nie udało się zapisać.");
+      toast.error(t("errorSave"));
       setSaving(false);
       return;
     }
 
-    toast.success("Wpis serwisowy dodany.");
+    toast.success(t("success"));
     setForm({
       serviced_at: new Date().toISOString().split("T")[0],
       next_service_at: "",
@@ -113,7 +112,7 @@ export default function AddServiceForm({ assetId }: { assetId: string }) {
     <div className="space-y-4">
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div className="space-y-1.5">
-          <Label htmlFor="serviced_at">Data serwisu *</Label>
+          <Label htmlFor="serviced_at">{t("servicedAt")}</Label>
           <Input
             id="serviced_at"
             name="serviced_at"
@@ -123,7 +122,7 @@ export default function AddServiceForm({ assetId }: { assetId: string }) {
           />
         </div>
         <div className="space-y-1.5">
-          <Label htmlFor="next_service_at">Następny serwis</Label>
+          <Label htmlFor="next_service_at">{t("nextServiceAt")}</Label>
           <Input
             id="next_service_at"
             name="next_service_at"
@@ -136,7 +135,7 @@ export default function AddServiceForm({ assetId }: { assetId: string }) {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div className="space-y-1.5">
-          <Label>Typ serwisu</Label>
+          <Label>{t("type")}</Label>
           <Select
             value={form.type}
             onValueChange={(v) => setForm((prev) => ({ ...prev, type: v }))}
@@ -145,20 +144,20 @@ export default function AddServiceForm({ assetId }: { assetId: string }) {
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              {serviceTypes.map((t) => (
-                <SelectItem key={t.value} value={t.value}>
-                  {t.label}
+              {serviceTypes.map((s) => (
+                <SelectItem key={s.value} value={s.value}>
+                  {s.label}
                 </SelectItem>
               ))}
             </SelectContent>
           </Select>
         </div>
         <div className="space-y-1.5">
-          <Label htmlFor="performed_by">Wykonał</Label>
+          <Label htmlFor="performed_by">{t("performedBy")}</Label>
           <Input
             id="performed_by"
             name="performed_by"
-            placeholder="Imię, firma serwisowa..."
+            placeholder={t("performedByPlaceholder")}
             value={form.performed_by}
             onChange={handleChange}
           />
@@ -166,23 +165,23 @@ export default function AddServiceForm({ assetId }: { assetId: string }) {
       </div>
 
       <div className="space-y-1.5">
-        <Label htmlFor="cost">Koszt (zł)</Label>
+        <Label htmlFor="cost">{t("cost")}</Label>
         <Input
           id="cost"
           name="cost"
           type="number"
-          placeholder="np. 350"
+          placeholder={t("costPlaceholder")}
           value={form.cost}
           onChange={handleChange}
         />
       </div>
 
       <div className="space-y-1.5">
-        <Label htmlFor="notes">Notatki</Label>
+        <Label htmlFor="notes">{t("notes")}</Label>
         <Textarea
           id="notes"
           name="notes"
-          placeholder="Co zostało zrobione, wymienione części, uwagi..."
+          placeholder={t("notesPlaceholder")}
           value={form.notes}
           onChange={handleChange}
           rows={3}
@@ -190,17 +189,18 @@ export default function AddServiceForm({ assetId }: { assetId: string }) {
         />
       </div>
 
-      {/* Zdjęcie */}
       <div className="space-y-1.5">
         <Label>
-          Zdjęcie{" "}
-          <span className="text-gray-400 font-normal">(opcjonalnie)</span>
+          {t("photo")}{" "}
+          <span className="text-gray-400 font-normal">
+            {t("photoOptional")}
+          </span>
         </Label>
         {imagePreview ? (
           <div className="relative w-full">
             <img
               src={imagePreview}
-              alt="Podgląd"
+              alt={t("preview")}
               className="w-full max-h-40 object-cover rounded-lg border border-gray-200"
             />
             <button
@@ -220,9 +220,7 @@ export default function AddServiceForm({ assetId }: { assetId: string }) {
             className="flex items-center gap-2 border border-dashed border-gray-200 rounded-lg p-4 cursor-pointer hover:border-blue-300 hover:bg-blue-50/30 transition-colors"
           >
             <Upload size={16} className="text-gray-400" />
-            <span className="text-sm text-gray-500">
-              Dodaj zdjęcie z serwisu
-            </span>
+            <span className="text-sm text-gray-500">{t("addPhoto")}</span>
           </label>
         )}
         <input
@@ -242,10 +240,10 @@ export default function AddServiceForm({ assetId }: { assetId: string }) {
         {saving ? (
           <>
             <Loader2 size={14} className="animate-spin mr-1.5" />
-            Zapisywanie...
+            {t("saving")}
           </>
         ) : (
-          "Dodaj wpis serwisowy"
+          t("submit")
         )}
       </Button>
     </div>

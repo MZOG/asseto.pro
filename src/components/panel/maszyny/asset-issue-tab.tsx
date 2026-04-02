@@ -1,7 +1,11 @@
-// src/app/panel/maszyny/[id]/tabs/asset-issues-tab.tsx
-import Link from "next/link";
-import { formatDate, getStatus } from "@/lib/utils";
+"use client";
+
+import NextLink from "next/link";
+import { formatDate } from "@/lib/utils";
 import { getPriority } from "@/lib/utils/priority";
+import { useTranslations } from "next-intl";
+import { useLocale } from "next-intl";
+import StatusBadge from "../status-badge";
 
 interface Issue {
   id: string;
@@ -12,18 +16,19 @@ interface Issue {
 }
 
 export default function AssetIssuesTab({ issues }: { issues: Issue[] }) {
-  if (issues.length === 0) {
-    return <p className="text-sm text-gray-400">Brak historii awarii.</p>;
-  }
+  const t = useTranslations("panel.assetIssuesTab");
+  const locale = useLocale();
+
+  if (issues.length === 0)
+    return <p className="text-sm text-gray-400">{t("empty")}</p>;
 
   return (
     <div className="space-y-2">
       {issues.map((issue) => {
-        const { label, className } = getStatus(issue.status);
         const priority = getPriority(issue.priority);
 
         return (
-          <Link
+          <NextLink
             key={issue.id}
             href={`/panel/awarie/${issue.id}`}
             className="flex items-center justify-between bg-white border border-gray-200 rounded-lg px-4 py-3 hover:border-blue-200 hover:bg-blue-50/30 transition-colors"
@@ -36,7 +41,7 @@ export default function AssetIssuesTab({ issues }: { issues: Issue[] }) {
                       className={`w-1.5 h-1.5 rounded-full ${priority.dot}`}
                     />
                     <span className="text-xs text-gray-500">
-                      {priority.label}
+                      {t(`priorities.${issue.priority}`)}
                     </span>
                   </div>
                 )}
@@ -45,15 +50,13 @@ export default function AssetIssuesTab({ issues }: { issues: Issue[] }) {
                 {issue.description ?? "—"}
               </p>
               <p className="text-xs text-gray-400 mt-0.5">
-                {formatDate(issue.created_at)}
+                {formatDate(issue.created_at, locale)}
               </p>
             </div>
-            <span
-              className={`text-xs px-2 py-1 rounded-full font-medium ml-3 shrink-0 ${className}`}
-            >
-              {label}
-            </span>
-          </Link>
+            <div className="ml-3 shrink-0">
+              <StatusBadge status={issue.status} />
+            </div>
+          </NextLink>
         );
       })}
     </div>

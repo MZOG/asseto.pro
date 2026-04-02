@@ -25,19 +25,21 @@ import {
   CheckCheck,
   HelpCircle,
   UserCircle,
+  MessageSquarePlus,
 } from "lucide-react";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
 import { useRouter, usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { isPro } from "@/lib/utils/plan";
+import { useTranslations } from "next-intl";
 
 export function AppSidebar() {
+  const t = useTranslations("panel.sidebar");
   const router = useRouter();
   const pathname = usePathname();
   const { setOpenMobile } = useSidebar();
   const [plan, setPlan] = useState<string>("free");
-  const [companyName, setCompanyName] = useState<string>();
   const [counts, setCounts] = useState({
     broken: 0,
     critical: 0,
@@ -46,10 +48,17 @@ export function AppSidebar() {
     assets: 0,
   });
 
+  const [userId, setUserId] = useState<string | null>(null);
+
+  const ADMIN_ID = process.env.NEXT_PUBLIC_ADMIN_USER_ID;
+  const isAdmin = userId === ADMIN_ID;
+
   useEffect(() => {
     const supabase = createClient();
     supabase.auth.getUser().then(({ data: { user } }) => {
       if (!user) return;
+
+      setUserId(user?.id ?? null);
 
       Promise.all([
         supabase
@@ -83,7 +92,6 @@ export function AppSidebar() {
           .select("id", { count: "exact", head: true })
           .eq("owner_id", user.id),
       ]).then(([profile, broken, critical, maintenance, closed, assets]) => {
-        setCompanyName(profile.data?.company_name || "Asseto");
         setPlan(profile.data?.plan ?? "free");
         setCounts({
           broken: broken.count ?? 0,
@@ -104,9 +112,7 @@ export function AppSidebar() {
     critical?: boolean;
   }) => (
     <span
-      className={`ml-auto text-xs font-medium px-1.5 py-0.5 rounded-md min-w-5 text-center ${
-        critical ? "bg-red-100 text-red-600" : "bg-gray-100 text-gray-500"
-      }`}
+      className={`ml-auto text-xs font-medium px-1.5 py-0.5 rounded-md min-w-5 text-center ${critical ? "bg-red-100 text-red-600" : "bg-gray-100 text-gray-500"}`}
     >
       {count}
     </span>
@@ -148,17 +154,17 @@ export function AppSidebar() {
 
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Przegląd</SidebarGroupLabel>
+          <SidebarGroupLabel>{t("overview")}</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               <SidebarMenuItem>
                 <SidebarMenuButton
                   asChild
-                  isActive={pathname === "/panel"}
+                  isActive={pathname.endsWith("/panel")}
                   className="text-sm"
                 >
                   <Link href="/panel" onClick={handleNavClick}>
-                    <BookOpen size={16} /> Przegląd
+                    <BookOpen size={16} /> {t("overview")}
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
@@ -167,17 +173,20 @@ export function AppSidebar() {
         </SidebarGroup>
 
         <SidebarGroup>
-          <SidebarGroupLabel>Awarie</SidebarGroupLabel>
+          <SidebarGroupLabel>{t("issues")}</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               <SidebarMenuItem>
                 <SidebarMenuButton
                   asChild
-                  isActive={pathname === "/panel/awarie"}
+                  isActive={
+                    pathname.endsWith("/panel/awarie") ||
+                    pathname.endsWith("/dashboard/issues")
+                  }
                   className="text-sm"
                 >
                   <Link href="/panel/awarie" onClick={handleNavClick}>
-                    <TriangleAlert size={16} /> Aktywne
+                    <TriangleAlert size={16} /> {t("active")}
                     <Badge
                       count={counts.broken}
                       critical={counts.critical > 0}
@@ -188,11 +197,14 @@ export function AppSidebar() {
               <SidebarMenuItem>
                 <SidebarMenuButton
                   asChild
-                  isActive={pathname === "/panel/awarie/serwis"}
+                  isActive={
+                    pathname.includes("/awarie/serwis") ||
+                    pathname.includes("/issues/service")
+                  }
                   className="text-sm"
                 >
                   <Link href="/panel/awarie/serwis" onClick={handleNavClick}>
-                    <Wrench size={16} /> W serwisie
+                    <Wrench size={16} /> {t("inService")}
                     <Badge count={counts.maintenance} />
                   </Link>
                 </SidebarMenuButton>
@@ -200,11 +212,14 @@ export function AppSidebar() {
               <SidebarMenuItem>
                 <SidebarMenuButton
                   asChild
-                  isActive={pathname === "/panel/awarie/zamkniete"}
+                  isActive={
+                    pathname.includes("/awarie/zamkniete") ||
+                    pathname.includes("/issues/closed")
+                  }
                   className="text-sm"
                 >
                   <Link href="/panel/awarie/zamkniete" onClick={handleNavClick}>
-                    <CheckCheck size={16} /> Zamknięte
+                    <CheckCheck size={16} /> {t("closed")}
                     <Badge count={counts.closed} />
                   </Link>
                 </SidebarMenuButton>
@@ -214,17 +229,20 @@ export function AppSidebar() {
         </SidebarGroup>
 
         <SidebarGroup>
-          <SidebarGroupLabel>Sprzęt</SidebarGroupLabel>
+          <SidebarGroupLabel>{t("equipment")}</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               <SidebarMenuItem>
                 <SidebarMenuButton
                   asChild
-                  isActive={pathname.startsWith("/panel/maszyny")}
+                  isActive={
+                    pathname.includes("/panel/maszyny") ||
+                    pathname.includes("/dashboard/assets")
+                  }
                   className="text-sm"
                 >
                   <Link href="/panel/maszyny" onClick={handleNavClick}>
-                    <Factory size={16} /> Maszyny
+                    <Factory size={16} /> {t("assets")}
                     <Badge count={counts.assets} />
                   </Link>
                 </SidebarMenuButton>
@@ -234,17 +252,20 @@ export function AppSidebar() {
         </SidebarGroup>
 
         <SidebarGroup>
-          <SidebarGroupLabel>Serwis</SidebarGroupLabel>
+          <SidebarGroupLabel>{t("service")}</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               <SidebarMenuItem>
                 <SidebarMenuButton
                   asChild
-                  isActive={pathname.startsWith("/panel/serwisy")}
+                  isActive={
+                    pathname.includes("/panel/serwisy") ||
+                    pathname.includes("/dashboard/services")
+                  }
                   className="text-sm"
                 >
                   <Link href="/panel/serwisy" onClick={handleNavClick}>
-                    <Wrench size={16} /> Serwisy
+                    <Wrench size={16} /> {t("services")}
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
@@ -253,34 +274,61 @@ export function AppSidebar() {
         </SidebarGroup>
 
         <SidebarGroup>
-          <SidebarGroupLabel>Pomoc</SidebarGroupLabel>
+          <SidebarGroupLabel>{t("help")}</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               <SidebarMenuItem>
                 <SidebarMenuButton
                   asChild
-                  isActive={pathname === "/panel/pomoc/awarie"}
+                  isActive={
+                    pathname.includes("/pomoc/awarie") ||
+                    pathname.includes("/help/issues")
+                  }
                   className="text-sm"
                 >
                   <Link href="/panel/pomoc/awarie" onClick={handleNavClick}>
-                    <HelpCircle size={16} /> Awarie Q&A
+                    <HelpCircle size={16} /> {t("issuesQA")}
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
               <SidebarMenuItem>
                 <SidebarMenuButton
                   asChild
-                  isActive={pathname === "/panel/pomoc/maszyny"}
+                  isActive={
+                    pathname.includes("/pomoc/maszyny") ||
+                    pathname.includes("/help/assets")
+                  }
                   className="text-sm"
                 >
                   <Link href="/panel/pomoc/maszyny" onClick={handleNavClick}>
-                    <HelpCircle size={16} /> Maszyny Q&A
+                    <HelpCircle size={16} /> {t("assetsQA")}
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
+
+        {isAdmin && (
+          <SidebarGroup>
+            <SidebarGroupLabel>Admin</SidebarGroupLabel>
+            <SidebarGroupContent>
+              <SidebarMenu>
+                <SidebarMenuItem>
+                  <SidebarMenuButton
+                    asChild
+                    isActive={pathname.includes("/admin/feedback")}
+                    className="text-sm"
+                  >
+                    <Link href="/panel/admin/feedback" onClick={handleNavClick}>
+                      <MessageSquarePlus size={16} /> Feedback
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              </SidebarMenu>
+            </SidebarGroupContent>
+          </SidebarGroup>
+        )}
       </SidebarContent>
 
       <SidebarFooter>
@@ -288,28 +336,33 @@ export function AppSidebar() {
           <SidebarMenuItem>
             <SidebarMenuButton
               asChild
-              isActive={pathname === "/panel/profil"}
+              isActive={
+                pathname.includes("/profil") || pathname.includes("/profile")
+              }
               className="text-sm"
             >
               <Link href="/panel/profil" onClick={handleNavClick}>
-                <UserCircle size={16} /> Mój profil
+                <UserCircle size={16} /> {t("profile")}
               </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
           <SidebarMenuItem>
             <SidebarMenuButton
               asChild
-              isActive={pathname === "/panel/ustawienia"}
+              isActive={
+                pathname.includes("/ustawienia") ||
+                pathname.includes("/settings")
+              }
               className="text-sm"
             >
               <Link href="/panel/ustawienia" onClick={handleNavClick}>
-                <Cog size={16} /> Ustawienia
+                <Cog size={16} /> {t("settings")}
               </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
           <SidebarMenuItem>
             <SidebarMenuButton onClick={handleSignOut} className="text-sm">
-              <LogOut size={16} /> Wyloguj się
+              <LogOut size={16} /> {t("logout")}
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
