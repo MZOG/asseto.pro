@@ -166,6 +166,7 @@ export default async function IssuePage({
             {asset.image_url ? (
               <img
                 src={asset.image_url}
+                sizes="80px"
                 alt={asset.name}
                 className="w-20 h-20 object-cover rounded-lg border border-gray-200 shrink-0"
               />

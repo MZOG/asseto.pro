@@ -59,7 +59,6 @@ export default function ReportForm({ assetId }: { assetId: string }) {
       const { error: uploadError } = await supabase.storage
         .from("issue-images")
         .upload(path, image, { upsert: false });
-      console.log("storage error:", JSON.stringify(uploadError));
 
       if (!uploadError) {
         const {
@@ -80,8 +79,6 @@ export default function ReportForm({ assetId }: { assetId: string }) {
       })
       .select("id")
       .single();
-
-    console.log("insert error:", JSON.stringify(insertError));
 
     if (insertError || !newIssue) {
       setError("Coś poszło nie tak. Spróbuj ponownie.");

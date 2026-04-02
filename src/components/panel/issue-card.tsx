@@ -23,8 +23,6 @@ export default function IssueCard({ issue }: IssueProps) {
   const t = useTranslations("panel.issueCard");
   const locale = useLocale();
 
-  console.log(issue);
-
   return (
     <Link
       href={{ pathname: "/panel/awarie/[id]", params: { id: issue.id } }}

@@ -4,7 +4,6 @@ import StatusBadge from "./status-badge";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
 import Image from "next/image";
-import { Button } from "../ui/button";
 
 interface AssetsProps {
   asset: {
@@ -33,13 +32,14 @@ export default function AssetsCard({ asset }: AssetsProps) {
           <div className="relative w-full h-full min-h-25">
             <Image
               src={asset.image_url}
+              sizes="80px"
               alt={asset.name}
               fill
               className="object-cover"
             />
           </div>
         ) : (
-          <div className="w-full h-full min-h-[100px] bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
+          <div className="w-full h-full min-h-25 bg-linear-to-br from-gray-100 to-gray-200 flex items-center justify-center">
             <span className="text-2xl">⚙️</span>
           </div>
         )}
