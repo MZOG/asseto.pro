@@ -13,9 +13,9 @@ import { getTranslations } from "next-intl/server";
 export async function generateStaticParams({
   params,
 }: {
-  params: Promise<{ locale: string }>;
+  params: { locale: string };
 }) {
-  const { locale } = await params;
+  const { locale } = params;
   return getAllPosts(locale).map((p) => ({ slug: p.slug }));
 }
 

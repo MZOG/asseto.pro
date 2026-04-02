@@ -57,7 +57,7 @@ export default function PanelShowcase() {
             </div>
           </div>
 
-          <div className="relative w-full h-[500px]">
+          <div className="relative w-full h-125">
             {images.map((src, i) => (
               <Image
                 key={src}

@@ -102,7 +102,7 @@ export default async function BlogPage({ params, searchParams }: Props) {
                     />
                   </div>
                 ) : (
-                  <div className="w-full h-44 bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center">
+                  <div className="w-full h-44 bg-linear-to-br from-blue-50 to-blue-100 flex items-center justify-center">
                     <span className="text-4xl">📋</span>
                   </div>
                 )}

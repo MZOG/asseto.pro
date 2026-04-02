@@ -132,15 +132,13 @@ export default function AssetInfoTab({
       (f) => f.label.trim() && f.value.trim(),
     );
     if (validNewFields.length > 0) {
-      await supabase
-        .from("asset_fields")
-        .insert(
-          validNewFields.map((f) => ({
-            asset_id: asset.id,
-            label: f.label,
-            value: f.value,
-          })),
-        );
+      await supabase.from("asset_fields").insert(
+        validNewFields.map((f) => ({
+          asset_id: asset.id,
+          label: f.label,
+          value: f.value,
+        })),
+      );
       setNewFields([]);
     }
     await Promise.all(fieldUpdates);
@@ -300,7 +298,7 @@ export default function AssetInfoTab({
               onChange={(e) =>
                 updateExistingField(field.id, "label", e.target.value)
               }
-              className="max-w-[140px]"
+              className="max-w-35"
             />
             <Input
               value={field.value}
@@ -331,7 +329,7 @@ export default function AssetInfoTab({
                   ),
                 )
               }
-              className="max-w-[140px]"
+              className="max-w-35"
             />
             <Input
               placeholder={t("fieldValue")}
