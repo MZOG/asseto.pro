@@ -654,6 +654,20 @@
         "high": "Wysoki",
         "critical": "Krytyczny"
       }
+    },
+
+    "feedback": {
+      "title": "Feedback / Zgłoś błąd",
+      "description": "Opisz co nie działa lub co chciałbyś zmienić. Każdy feedback jest dla nas cenny.",
+      "placeholder": "Np. Przycisk X nie działa, albo brakuje mi funkcji Y...",
+      "send": "Wyślij",
+      "sending": "Wysyłanie...",
+      "cancel": "Anuluj",
+      "successTitle": "Dziękujemy za feedback!",
+      "successDesc": "Postaramy się jak najszybciej zareagować.",
+      "close": "Zamknij",
+      "errorEmpty": "Napisz wiadomość przed wysłaniem.",
+      "errorSend": "Nie udało się wysłać. Spróbuj ponownie."
     }
   },
 

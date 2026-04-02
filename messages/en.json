@@ -654,6 +654,19 @@
         "high": "High",
         "critical": "Critical"
       }
+    },
+    "feedback": {
+      "title": "Feedback / Report a bug",
+      "description": "Describe what's not working or what you'd like to change. Every piece of feedback is valuable to us.",
+      "placeholder": "E.g. Button X doesn't work, or I'm missing feature Y...",
+      "send": "Send",
+      "sending": "Sending...",
+      "cancel": "Cancel",
+      "successTitle": "Thank you for your feedback!",
+      "successDesc": "We'll respond as quickly as possible.",
+      "close": "Close",
+      "errorEmpty": "Please write a message before sending.",
+      "errorSend": "Failed to send. Please try again."
     }
   },
 

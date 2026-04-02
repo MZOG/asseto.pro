@@ -25,6 +25,7 @@ import {
   CheckCheck,
   HelpCircle,
   UserCircle,
+  MessageSquarePlus,
 } from "lucide-react";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
@@ -48,10 +49,18 @@ export function AppSidebar() {
     assets: 0,
   });
 
+  const [userId, setUserId] = useState<string | null>(null);
+
+  const ADMIN_ID = process.env.NEXT_PUBLIC_ADMIN_USER_ID;
+  const isAdmin = userId === ADMIN_ID;
+
   useEffect(() => {
     const supabase = createClient();
     supabase.auth.getUser().then(({ data: { user } }) => {
       if (!user) return;
+
+      setUserId(user?.id ?? null);
+
       Promise.all([
         supabase
           .from("profiles")
@@ -84,7 +93,6 @@ export function AppSidebar() {
           .select("id", { count: "exact", head: true })
           .eq("owner_id", user.id),
       ]).then(([profile, broken, critical, maintenance, closed, assets]) => {
-        setCompanyName(profile.data?.company_name || "Asseto");
         setPlan(profile.data?.plan ?? "free");
         setCounts({
           broken: broken.count ?? 0,
@@ -301,6 +309,27 @@ export function AppSidebar() {
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
+
+        {isAdmin && (
+          <SidebarGroup>
+            <SidebarGroupLabel>Admin</SidebarGroupLabel>
+            <SidebarGroupContent>
+              <SidebarMenu>
+                <SidebarMenuItem>
+                  <SidebarMenuButton
+                    asChild
+                    isActive={pathname.includes("/admin/feedback")}
+                    className="text-sm"
+                  >
+                    <Link href="/panel/admin/feedback" onClick={handleNavClick}>
+                      <MessageSquarePlus size={16} /> Feedback
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              </SidebarMenu>
+            </SidebarGroupContent>
+          </SidebarGroup>
+        )}
       </SidebarContent>
 
       <SidebarFooter>
