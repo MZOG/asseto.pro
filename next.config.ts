@@ -3,7 +3,6 @@ import createNextIntlPlugin from "next-intl/plugin";
 
 const withNextIntl = createNextIntlPlugin({
   requestConfig: "./src/i18n/request.ts",
-  middleware: "./src/proxy.ts", // ← wskaż plik ręcznie
 });
 
 const nextConfig: NextConfig = {
