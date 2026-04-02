@@ -1,5 +1,5 @@
-import fs from "fs";
 import path from "path";
+import fs from "fs";
 import matter from "gray-matter";
 import readingTime from "reading-time";
 
