@@ -40,7 +40,6 @@ export function AppSidebar() {
   const pathname = usePathname();
   const { setOpenMobile } = useSidebar();
   const [plan, setPlan] = useState<string>("free");
-  const [companyName, setCompanyName] = useState<string>();
   const [counts, setCounts] = useState({
     broken: 0,
     critical: 0,

@@ -2,12 +2,24 @@
   "seo": {
     "index": {
       "title": "Zarządzaj usterkami przez kod QR",
-      "description": "Pracownik skanuje kod, opisuje problem — Ty reagujesz.",
+      "description": "Pracownik skanuje kod, opisuje problem - Ty reagujesz.",
       "path": "/"
     },
     "pricing": {
       "title": "Cennik",
       "description": "Zacznij za darmo i przejdź na wyższy plan gdy Twój biznes rośnie."
+    },
+    "login": {
+      "title": "Logowanie",
+      "description": "Zaloguj się do panelu Asseto i zarządzaj usterkami swojego sprzętu przez kody QR."
+    },
+    "register": {
+      "title": "Rejestracja",
+      "description": "Załóż darmowe konto i zacznij zarządzać usterkami sprzętu przez kody QR. Pierwsze 10 urządzeń za darmo."
+    },
+    "resetPassword": {
+      "title": "Reset hasła",
+      "description": "Zresetuj hasło do swojego konta Asseto."
     }
   },
 
@@ -829,7 +841,7 @@
       "betaBadge": "Teraz dostępne w wersji beta",
       "title": "Zarządzaj usterkami przez kod QR",
       "titleHighlight": "kod QR",
-      "subtitle": "Pracownik skanuje kod, opisuje problem — Ty reagujesz.",
+      "subtitle": "Pracownik skanuje kod, opisuje problem - Ty reagujesz.",
       "subtitleSecond": "Żadnych telefonów, żadnych arkuszy.",
       "cta": "Wypróbuj za darmo",
       "ctaLogin": "Zaloguj się",

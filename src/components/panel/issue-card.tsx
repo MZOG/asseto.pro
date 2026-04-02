@@ -37,6 +37,8 @@ export default function IssueCard({ issue }: IssueProps) {
               alt={issue.assets.name}
               fill
               className="object-cover"
+              loading="eager"
+              sizes="size-20"
             />
           </div>
         ) : (

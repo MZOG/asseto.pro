@@ -36,6 +36,7 @@ export default function AssetsCard({ asset }: AssetsProps) {
               alt={asset.name}
               fill
               className="object-cover"
+              loading="eager"
             />
           </div>
         ) : (

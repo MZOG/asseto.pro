@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { Button } from "../ui/button";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 const images = [
   "/screenshots/panel-dashboard.png",
@@ -19,6 +19,9 @@ export default function PanelShowcase() {
   const t = useTranslations("landing.panelShowcase");
   const tabs = t.raw("tabs") as { label: string; description: string }[];
   const [active, setActive] = useState(0);
+  const locale = useLocale();
+
+  console.log(locale);
 
   return (
     <section className="pb-10 px-4">
@@ -49,18 +52,19 @@ export default function PanelShowcase() {
             </div>
             <div className="flex-1 mx-4">
               <div className="bg-white border border-gray-200 rounded-md px-3 py-1 text-xs text-gray-400 max-w-xs mx-auto text-center">
-                asseto.pro/panel
+                asseto.pro/{locale === "pl" ? "panel" : "dashboard"}
               </div>
             </div>
           </div>
 
-          <div className="relative w-full aspect-video">
+          <div className="relative w-full h-[500px]">
             {images.map((src, i) => (
               <Image
                 key={src}
                 src={src}
                 alt={tabs[i]?.label ?? ""}
                 fill
+                sizes="(max-width: 768px) 100vw, 1100px"
                 className={`object-cover object-top transition-opacity duration-300 ${
                   active === i ? "opacity-100" : "opacity-0"
                 }`}
