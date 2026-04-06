@@ -11,7 +11,7 @@ export default function PriorityBadge({
   const { label, dot } = getPriority(priority);
 
   // Nie pokazuj badge dla normalnego priorytetu — nie zaśmiecaj UI
-  if (!priority || priority === "normal") return null;
+  // if (!priority || priority === "normal") return null;
 
   return (
     <div className={cn("inline-flex items-center gap-1.5", className)}>
