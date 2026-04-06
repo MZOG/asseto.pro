@@ -55,7 +55,7 @@ export default async function Hero() {
           </Button>
         </div>
 
-        <div className="md:text-xs flex flex-col md:flex-row items-center justify-center gap-2 mt-8 bg-white border border-gray-200 rounded-xl sm:px-4 py-4 max-w-lg mx-auto">
+        <div className="md:text-sm flex flex-col md:flex-row items-center justify-center gap-2 mt-8 bg-white border border-gray-200 rounded-full sm:px-4 py-4 max-w-lg mx-auto">
           <span className="text-gray-500">{t("demoText")}</span>
           <Link
             data-umami-event="Demo login"
@@ -63,7 +63,7 @@ export default async function Hero() {
               pathname: "/logowanie",
               query: { demo: true },
             }}
-            className="md:text-xs font-medium text-blue-600 hover:text-blue-700 transition-colors"
+            className="md:text-sm font-medium text-blue-600 hover:text-blue-700 bg-blue-50/50 transition-colors"
           >
             {t("demoLink")}
           </Link>

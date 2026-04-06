@@ -16,7 +16,13 @@ import {
 } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 
-export default function ReportForm({ assetId }: { assetId: string }) {
+export default function ReportForm({
+  assetId,
+  disabled,
+}: {
+  assetId: string;
+  disabled?: boolean;
+}) {
   const [description, setDescription] = useState("");
   const [phone, setPhone] = useState("");
   const [image, setImage] = useState<File | null>(null);
@@ -217,7 +223,7 @@ export default function ReportForm({ assetId }: { assetId: string }) {
 
       <Button
         type="submit"
-        disabled={loading}
+        disabled={loading || disabled}
         className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium h-10"
       >
         {loading ? (

@@ -1,4 +1,6 @@
 import { getTranslations } from "next-intl/server";
+import { ScanQrCode } from "lucide-react";
+import ReportForm from "@/components/public/report-form";
 
 export default async function ScanningSteps() {
   const t = await getTranslations("landing.scanningSteps");
@@ -49,46 +51,36 @@ export default async function ScanningSteps() {
 
           <div className="flex justify-center">
             <div className="relative">
-              <div className="w-64 border rounded-xl">
-                <div className="bg-white rounded-xl overflow-hidden">
-                  <div className="bg-gray-50 px-5 pt-3 pb-2 flex justify-between items-center">
-                    <span className="text-[10px] font-semibold text-gray-400">
-                      {t("mockup.time")}
-                    </span>
-                    <div className="w-16 h-4 bg-gray-900 rounded-full" />
-                    <span className="text-[10px] text-gray-400">●●●</span>
+              <div className="flex items-center justify-center">
+                <div className="relative w-72 h-150 rounded-[45px] shadow-[0_0_2px_2px_rgba(255,255,255,0.1)] border-8 border-zinc-900">
+                  <div className="absolute top-2 left-1/2 transform -translate-x-1/2 w-22.5 h-5.5 bg-zinc-900 rounded-full z-20"></div>
+
+                  <div className="absolute -inset-px border-[3px] border-zinc-700 border-opacity-40 rounded-[37px] pointer-events-none"></div>
+
+                  <div className="relative w-full h-full rounded-[37px] overflow-hidden flex items-center justify-center">
+                    <section id="asseto-screen">
+                      <header className="flex items-center gap-2 justify-center mb-5">
+                        <div className="bg-blue-600 text-white p-1 rounded-sm">
+                          <ScanQrCode />
+                        </div>
+                        <p className="font-medium">Asseto</p>
+                      </header>
+
+                      <div className="px-5">
+                        <ReportForm assetId="83jfu7" disabled />
+                      </div>
+                    </section>
                   </div>
-                  <div className="px-5 py-4 rounded-bl-xl rounded-br-xl">
-                    <div className="flex items-center gap-1.5 mb-4">
-                      <div className="w-5 h-5 bg-blue-600 rounded-sm" />
-                      <span className="text-gray-900 font-semibold text-xs">
-                        asseto
-                      </span>
-                    </div>
-                    <p className="text-[9px] text-gray-400 uppercase tracking-wider font-medium mb-0.5">
-                      {t("mockup.label")}
-                    </p>
-                    <p className="text-gray-900 font-semibold text-sm mb-4">
-                      {t("mockup.device")}
-                    </p>
-                    <div className="bg-gray-50 border border-gray-200 rounded-lg p-2.5 mb-4">
-                      <p className="text-[10px] text-gray-400 mb-1">
-                        {t("mockup.descLabel")}
-                      </p>
-                      <p className="text-[11px] text-gray-700 leading-relaxed">
-                        {t("mockup.descText")}
-                      </p>
-                    </div>
-                    <div className="bg-blue-600 rounded-lg py-2 text-center">
-                      <span className="text-white text-[12px] font-medium">
-                        {t("mockup.submit")}
-                      </span>
-                    </div>
-                  </div>
+
+                  <div className="absolute -left-3 top-20 w-1.5 h-8 bg-zinc-900 rounded-l-md shadow-md"></div>
+
+                  <div className="absolute -left-3 top-36 w-1.5 h-12 bg-zinc-900 rounded-l-md shadow-md"></div>
+
+                  <div className="absolute -left-3 top-52 w-1.5 h-12 bg-zinc-900 rounded-l-md shadow-md"></div>
+
+                  <div className="absolute -right-3 top-36 w-1.5 h-16 bg-zinc-900 rounded-r-md shadow-md"></div>
                 </div>
               </div>
-              <div className="absolute -top-4 -right-4 w-24 h-24 bg-blue-50 rounded-full -z-10" />
-              <div className="absolute -bottom-6 -left-6 w-16 h-16 bg-gray-100 rounded-full -z-10" />
             </div>
           </div>
         </div>
