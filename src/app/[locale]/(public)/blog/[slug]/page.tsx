@@ -117,6 +117,20 @@ const components = {
       {...props}
     />
   ),
+  ImageCopyright: (props: { by: string; url: string }) => {
+    return (
+      <div>
+        <a
+          className="text-sm text-gray-400 hover:text-primary hover:underline pt-3"
+          href={props.url}
+          title={props.by}
+          target="_blank"
+        >
+          {props.by}
+        </a>
+      </div>
+    );
+  },
   // CallToAction: () => (
   //   <div className="bg-blue-50 border border-blue-200 rounded-xl p-6 my-6 text-center">
   //     <p className="text-gray-700 font-medium mb-3">Wypróbuj Asseto za darmo</p>
