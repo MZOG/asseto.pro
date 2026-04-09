@@ -30,11 +30,16 @@ interface Props {
 
 export default async function BlogPage({ params, searchParams }: Props) {
   const { locale } = await params;
+  console.log("BlogPage locale:", locale); // dodaj tymczasowo
   const t = await getTranslations({ locale, namespace: "blogPage" });
 
   const categoryParam = t("categoryParam");
   const kategoria = (await searchParams)[categoryParam];
   const allPosts = getAllPosts(locale);
+  console.log(
+    "posts:",
+    allPosts.map((p) => p.slug),
+  ); // dodaj tymczasowo
   const categories = getAllCategories(locale);
   const posts = kategoria
     ? allPosts.filter((p) => p.category === kategoria)

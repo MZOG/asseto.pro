@@ -939,6 +939,11 @@
       "description": "Pierwsze 10 urządzeń za darmo. Bez karty kredytowej. Konfiguracja zajmuje 5 minut.",
       "register": "Załóż darmowe konto",
       "demo": "Wypróbuj demo"
+    },
+    "blog": {
+      "title": "Wiedza o zarządzaniu usterkami",
+      "allArticles": "Wszystkie artykuły",
+      "read": "Czytaj"
     }
   },
 

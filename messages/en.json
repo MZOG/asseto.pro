@@ -938,6 +938,11 @@
       "description": "First 10 devices for free. No credit card. Setup takes 5 minutes.",
       "register": "Create free account",
       "demo": "Try demo"
+    },
+    "blog": {
+      "title": "Knowledge on fault management",
+      "allArticles": "All articles",
+      "read": "Read"
     }
   },
 
