@@ -1,283 +1,997 @@
 {
+  "seo": {
+    "index": {
+      "title": "Störungen per QR-Code verwalten",
+      "description": "Mitarbeiter scannt den Code, beschreibt das Problem — Sie reagieren.",
+      "path": "/"
+    },
+    "pricing": {
+      "title": "Preise",
+      "description": "Starten Sie kostenlos und wechseln Sie zu einem höheren Plan, wenn Ihr Unternehmen wächst."
+    },
+    "login": {
+      "title": "Anmelden",
+      "description": "Melden Sie sich im Asseto-Panel an und verwalten Sie Gerätestörungen per QR-Code."
+    },
+    "register": {
+      "title": "Registrieren",
+      "description": "Erstellen Sie ein kostenloses Konto und verwalten Sie Gerätestörungen per QR-Code. Die ersten 10 Geräte sind kostenlos."
+    },
+    "resetPassword": {
+      "title": "Passwort zurücksetzen",
+      "description": "Setzen Sie das Passwort Ihres Asseto-Kontos zurück."
+    }
+  },
+
+  "pricingPage": {
+    "badge": "Preise",
+    "title": "Einfache, transparente Preise",
+    "description": "Starten Sie kostenlos und wechseln Sie zu einem höheren Plan, wenn Ihr Unternehmen wächst. Keine versteckten Kosten.",
+    "popular": "Beliebt",
+    "allPlansInclude": "Alle kostenpflichtigen Pläne beinhalten:",
+    "differenceNote": "Der einzige Unterschied zwischen den Plänen ist das Gerätelimit.",
+    "freeNote": "Der kostenlose Plan enthält die ersten 5 Funktionen der Liste: QR-Meldungen, Verwaltungspanel, E-Mail-Benachrichtigungen bei Störungen, Fotos in Meldungen und Störungsverlauf.",
+    "questions": "Haben Sie Fragen?",
+    "contact": "Schreiben Sie uns",
+    "replyTime": "— wir antworten innerhalb von 24 Stunden.",
+    "plans": {
+      "free": {
+        "name": "Kostenlos",
+        "price": "0 €",
+        "period": "für immer",
+        "limit": "bis zu 10 Geräte",
+        "description": "Ideal zum Testen.",
+        "cta": "Kostenlos starten"
+      },
+      "starter": {
+        "name": "Starter",
+        "price": "25 €",
+        "period": "monatlich + MwSt.",
+        "limit": "bis zu 50 Geräte",
+        "description": "Für kleine Objekte und Unternehmen.",
+        "cta": "Starter wählen"
+      },
+      "growth": {
+        "name": "Growth",
+        "price": "49 €",
+        "period": "monatlich + MwSt.",
+        "limit": "bis zu 100 Geräte",
+        "description": "Für wachsende Unternehmen.",
+        "cta": "Growth wählen"
+      },
+      "business": {
+        "name": "Business",
+        "price": "79 €",
+        "period": "monatlich + MwSt.",
+        "limit": "bis zu 150 Geräte",
+        "description": "Für größere Objekte.",
+        "cta": "Business wählen"
+      },
+      "enterprise": {
+        "name": "Enterprise",
+        "price": "99 €",
+        "period": "monatlich + MwSt.",
+        "limit": "bis zu 200 Geräte",
+        "description": "Für große Organisationen.",
+        "cta": "Enterprise wählen"
+      }
+    },
+    "features": {
+      "qr": "QR-Meldungen",
+      "panel": "Verwaltungspanel",
+      "emailIssues": "E-Mail-Benachrichtigungen bei Störungen",
+      "photos": "Fotos in Meldungen",
+      "history": "Störungsverlauf",
+      "emailService": "E-Mail-Benachrichtigungen an den Techniker",
+      "servicePortal": "Technikerzugang über Link",
+      "serviceManagement": "Wartungs- und Inspektionsverwaltung",
+      "reminders": "Wartungserinnerungen",
+      "priorities": "Meldungsprioritäten",
+      "reports": "Wöchentliche Berichte",
+      "export": "Datenexport (CSV, PDF)",
+      "support": "Prioritärer Support"
+    }
+  },
+
+  "helpPage": {
+    "badge": "Hilfe",
+    "title": "Häufig gestellte Fragen",
+    "notFound": "Keine Antwort gefunden?",
+    "contact": "Schreiben Sie uns",
+    "faqs": [
+      {
+        "q": "Was ist Asseto?",
+        "a": "Asseto ist ein QR-Code-basiertes Störungsverwaltungssystem. Jedes Gerät erhält einen QR-Code-Aufkleber — einfach mit dem Handy scannen, um ein Problem zu melden. Keine App-Installation, keine Registrierung erforderlich."
+      },
+      {
+        "q": "Wer kann eine Störung melden?",
+        "a": "Jede Person mit Zugang zum QR-Code — unabhängig ob es sich um ein öffentliches Objekt, ein Fitnessstudio, ein Hotel, eine Produktionsstätte oder etwas anderes handelt. Das Meldeformular ist ohne Anmeldung zugänglich und funktioniert auf jedem Smartphone."
+      },
+      {
+        "q": "Wie erstelle ich einen QR-Code für ein Gerät?",
+        "a": "Nach dem Hinzufügen eines Geräts im Panel wird der QR-Code automatisch generiert. Sie können die Druckgröße (S, M, L, XL) wählen, ein druckfertiges PDF herunterladen und auf das Gerät kleben. Jedes Gerät hat einen eindeutigen Code."
+      },
+      {
+        "q": "Benötige ich spezielle Hardware oder eine App?",
+        "a": "Nein. Zur Verwaltung benötigen Sie nur einen Webbrowser. Zum Scannen von QR-Codes reicht die Standard-Kamera des Smartphones — iOS und Android unterstützen QR-Scanning nativ ohne zusätzliche Apps."
+      },
+      {
+        "q": "Wie viele Geräte kann ich hinzufügen?",
+        "a": "Im kostenlosen Plan können Sie bis zu 10 Geräte hinzufügen. Kostenpflichtige Pläne unterstützen je nach gewähltem Plan zwischen 50 und 200 Geräte."
+      },
+      {
+        "q": "Erhalte ich eine Benachrichtigung über neue Meldungen?",
+        "a": "Ja — nach jeder neuen Meldung wird eine E-Mail-Benachrichtigung mit der Störungsbeschreibung, dem Gerätenamen und einem Link zum Panel an die mit dem Konto verknüpfte E-Mail-Adresse gesendet."
+      },
+      {
+        "q": "Wie funktionieren die Störungsstatus?",
+        "a": "Jede Störung hat einen von drei Status: Defekt (neue Meldung, die Aktion erfordert), In Wartung (Problem wird behoben) und Geschlossen (Reparatur abgeschlossen). Eine Statusänderung aktualisiert auch den Gerätestatus automatisch."
+      },
+      {
+        "q": "Kann ich einem Gerät einen Servicetechniker zuweisen?",
+        "a": "Ja — jedem Gerät kann eine Telefonnummer und E-Mail-Adresse eines Servicetechnikers zugewiesen werden. Aus einer Störung heraus können Sie mit einem Klick eine fertige E-Mail mit Gerätedaten und Störungsbeschreibung senden. Verfügbar in kostenpflichtigen Plänen."
+      },
+      {
+        "q": "Was ist der Unterschied zwischen dem kostenlosen und den kostenpflichtigen Plänen?",
+        "a": "Der kostenlose Plan erlaubt die Verwaltung von bis zu 10 Geräten und die Bearbeitung von QR-Meldungen. Kostenpflichtige Pläne bieten mehr Geräte, E-Mail-Benachrichtigungen an Techniker, Technikerzugang, QR-Label-Bearbeitung, Datenexport und Prioritätssupport."
+      },
+      {
+        "q": "Wie kündige ich das Abonnement?",
+        "a": "Das Abonnement kann jederzeit über das Panel unter Einstellungen → Abonnement gekündigt werden. Der Zugang zum Plan bleibt bis zum Ende des bezahlten Abrechnungszeitraums aktiv."
+      },
+      {
+        "q": "Sind meine Daten sicher?",
+        "a": "Ja. Die Daten werden auf Supabase-Servern mit Verschlüsselung gespeichert. Zahlungen werden über Stripe abgewickelt — wir speichern keine Kartendaten. Jeder Benutzer hat nur Zugang zu seinen eigenen Geräten und Meldungen."
+      },
+      {
+        "q": "Ich habe eine Frage, die hier nicht aufgeführt ist — was soll ich tun?",
+        "a": "Kontaktieren Sie uns über die Kontaktseite oder direkt unter marcin@asseto.pro. Wir antworten innerhalb von 24 Stunden."
+      }
+    ]
+  },
+
+  "contactPage": {
+    "badge": "Kontakt",
+    "title": "Kontaktieren Sie uns",
+    "description": "Haben Sie Fragen? Wir helfen gerne. Wir antworten innerhalb von 24 Stunden.",
+    "contactInfo": "Kontaktdaten",
+    "emailLabel": "E-Mail",
+    "phoneLabel": "Telefon",
+    "responseTimeLabel": "Antwortzeit",
+    "responseTime": "Innerhalb von 24 Stunden",
+    "sendMessage": "Nachricht senden",
+    "successTitle": "Nachricht gesendet!",
+    "successDesc": "Wir melden uns innerhalb von 24 Stunden bei Ihnen.",
+    "name": "Vollständiger Name",
+    "namePlaceholder": "Max Mustermann",
+    "company": "Firmenname",
+    "companyPlaceholder": "Muster GmbH",
+    "email": "E-Mail-Adresse",
+    "emailPlaceholder": "max@firma.de",
+    "phone": "Telefonnummer",
+    "phonePlaceholder": "+49 000 000 000",
+    "message": "Nachricht",
+    "messagePlaceholder": "Wie können wir helfen?",
+    "send": "Nachricht senden",
+    "sending": "Wird gesendet...",
+    "errorDefault": "Nachricht konnte nicht gesendet werden.",
+    "errors": {
+      "nameRequired": "Vollständiger Name ist erforderlich.",
+      "emailRequired": "E-Mail-Adresse ist erforderlich.",
+      "emailInvalid": "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
+      "messageRequired": "Nachricht ist erforderlich.",
+      "messageTooShort": "Die Nachricht muss mindestens 10 Zeichen lang sein."
+    }
+  },
+
   "common": {
     "appName": "Asseto",
-    "loading": "Ładowanie...",
-    "save": "Zapisz",
-    "cancel": "Anuluj",
-    "delete": "Usuń",
-    "edit": "Edytuj",
-    "add": "Dodaj",
-    "back": "Wróć",
-    "close": "Zamknij",
-    "confirm": "Potwierdź",
-    "search": "Szukaj",
-    "noData": "Brak danych",
-    "error": "Wystąpił błąd",
-    "success": "Zapisano",
-    "required": "Pole wymagane"
+    "loading": "Wird geladen...",
+    "save": "Speichern",
+    "cancel": "Abbrechen",
+    "delete": "Löschen",
+    "edit": "Bearbeiten",
+    "add": "Hinzufügen",
+    "back": "Zurück",
+    "close": "Schließen",
+    "confirm": "Bestätigen",
+    "search": "Suchen",
+    "noData": "Keine Daten",
+    "error": "Ein Fehler ist aufgetreten",
+    "success": "Gespeichert",
+    "required": "Pflichtfeld",
+    "status": {
+      "broken": "Defekt",
+      "maintenance": "In Wartung",
+      "working": "Funktionsfähig",
+      "closed": "Geschlossen",
+      "unknown": "Unbekannt"
+    }
   },
 
   "nav": {
-    "pricing": "Cennik",
+    "pricing": "Preise",
     "blog": "Blog",
-    "help": "Pomoc",
+    "help": "Hilfe",
     "contact": "Kontakt",
-    "forBusiness": "Dla firm",
-    "login": "Zaloguj się",
-    "register": "Zacznij za darmo",
-    "dashboard": "Panel"
+    "forBusiness": "Für Unternehmen",
+    "login": "Anmelden",
+    "register": "Kostenlos starten",
+    "dashboard": "Dashboard"
   },
 
   "auth": {
-    "login": "Logowanie",
-    "loginDescription": "Zarządzaj maszynami i awariami",
-    "emailPlaceholder": "jan@firma.pl",
-    "register": "Rejestracja",
-    "email": "Adres e-mail",
-    "password": "Hasło",
-    "forgotPassword": "Zapomniałem hasła",
-    "loginButton": "Zaloguj się",
-    "registerButton": "Zarejestruj się",
-    "noAccount": "Nie masz konta?",
-    "hasAccount": "Masz już konto?",
-    "resetPassword": "Resetuj hasło",
-    "checkEmail": "Sprawdź swój e-mail",
-    "loginError": "Nieprawidłowy email lub hasło.",
-    "backToHome": "Wróć do strony głównej",
-    "copy": "Asseto. Wszelkie prawa zastrzeżone.",
-    "sending": "Wysyłanie...",
-
-    "registerPasswordError": "Hasło musi mieć co najmniej 8 znaków.",
-    "registerSamePasswrods": "Hasła nie są identyczne.",
-    "createAccount": "Załóż konto",
-    "startManagingAccount": "Zacznij zarządzać swoimi maszynami",
-    "repeatPassword": "Powtórz hasło",
-    "backToLogin": "Wróć do logowania →",
-    "passwordLength": "min. 8 znaków",
-
-    "rememberPassword": "Pamiętasz hasło?",
-    "resetDescription": "Wyślemy Ci link do ustawienia nowego hasła",
-
-    "checkMail": "Sprawdź skrzynkę",
-    "checkMailDescription": "Wysłaliśmy link do resetu hasła na adres",
-    "checkEmailSpam": "Nie widzisz emaila? Sprawdź folder <strong>spam</strong>.",
-    "checkMailExpiry": "Link jest ważny przez <strong>60 minut</strong>.",
-    "checkMailBack": "Wróć do logowania",
-
-    "resetPasswordError": "Coś poszło nie tak. Spróbuj ponownie.",
-    "setPasswordError": "Nie udało się zmienić hasła. Spróbuj ponownie.",
-    "setPasswordSuccess": "Hasło zostało zmienione.",
-    "newPassword": "Nowe hasło",
-    "setNewPassword": "Ustaw nowe hasło do swojego konta",
-    "confirmPassword": "Potwierdź hasło",
-    "newPasswordSaving": "Zapisywanie...",
-    "setNewPasswordButton": "Ustaw nowe hasło"
+    "login": "Anmelden",
+    "loginDescription": "Geräte und Störungen verwalten",
+    "emailPlaceholder": "max@firma.de",
+    "register": "Registrieren",
+    "email": "E-Mail-Adresse",
+    "password": "Passwort",
+    "forgotPassword": "Passwort vergessen",
+    "loginButton": "Anmelden",
+    "registerButton": "Konto erstellen",
+    "noAccount": "Noch kein Konto?",
+    "hasAccount": "Bereits ein Konto?",
+    "resetPassword": "Passwort zurücksetzen",
+    "checkEmail": "E-Mail überprüfen",
+    "loginError": "Ungültige E-Mail oder Passwort.",
+    "backToHome": "Zurück zur Startseite",
+    "copy": "Asseto. Alle Rechte vorbehalten.",
+    "sending": "Wird gesendet...",
+    "registerPasswordError": "Das Passwort muss mindestens 8 Zeichen lang sein.",
+    "registerSamePasswrods": "Die Passwörter stimmen nicht überein.",
+    "createAccount": "Konto erstellen",
+    "startManagingAccount": "Beginnen Sie, Ihre Geräte zu verwalten",
+    "repeatPassword": "Passwort wiederholen",
+    "backToLogin": "Zurück zur Anmeldung →",
+    "passwordLength": "mind. 8 Zeichen",
+    "rememberPassword": "Passwort erinnert?",
+    "resetDescription": "Wir senden Ihnen einen Link zum Festlegen eines neuen Passworts",
+    "checkMail": "Posteingang prüfen",
+    "checkMailDescription": "Wir haben einen Link zum Zurücksetzen des Passworts gesendet an",
+    "checkEmailSpam": "E-Mail nicht gefunden? Prüfen Sie den <strong>Spam</strong>-Ordner.",
+    "checkMailExpiry": "Der Link ist <strong>60 Minuten</strong> gültig.",
+    "checkMailBack": "Zurück zur Anmeldung",
+    "resetPasswordError": "Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut.",
+    "setPasswordError": "Passwort konnte nicht geändert werden. Bitte versuchen Sie es erneut.",
+    "setPasswordSuccess": "Passwort wurde geändert.",
+    "newPassword": "Neues Passwort",
+    "setNewPassword": "Neues Passwort für Ihr Konto festlegen",
+    "confirmPassword": "Passwort bestätigen",
+    "newPasswordSaving": "Wird gespeichert...",
+    "setNewPasswordButton": "Neues Passwort festlegen"
   },
 
   "panel": {
-    "overview": "Przegląd",
-    "assets": "Maszyny",
-    "issues": "Awarie",
-    "services": "Serwisy",
-    "settings": "Ustawienia",
-    "profile": "Mój profil",
-    "logout": "Wyloguj się",
-    "help": "Pomoc",
-    "active": "Aktywne",
-    "inService": "W serwisie",
-    "closed": "Zamknięte"
+    "overview": "Übersicht",
+    "assets": "Geräte",
+    "issues": "Störungen",
+    "services": "Wartungen",
+    "settings": "Einstellungen",
+    "logout": "Abmelden",
+    "help": "Hilfe",
+    "active": "Aktiv",
+    "inService": "In Wartung",
+    "closed": "Geschlossen",
+
+    "proModal": {
+      "title": "Was ist im Pro-Plan enthalten?",
+      "defaultText": "Im Pro-Plan freischalten",
+      "price": "ab 25 €",
+      "period": "/ Monat",
+      "upgradeButton": "Auf Pro upgraden",
+      "redirecting": "Weiterleitung...",
+      "features": [
+        "Unbegrenzte Geräte",
+        "E-Mail-Benachrichtigungen bei neuen Störungen",
+        "Telegram-Benachrichtigungen",
+        "QR-Label-Bearbeitung",
+        "E-Mail-Benachrichtigungen an den Servicetechniker",
+        "Technikerzugang über Link",
+        "Wartungs- und Inspektionsverwaltung",
+        "E-Mail-Erinnerungen für bevorstehende Wartungen",
+        "Berichte und Datenexport",
+        "Prioritätssupport"
+      ]
+    },
+
+    "profile": {
+      "title": "Mein Profil",
+      "account": "Konto",
+      "emailLabel": "E-Mail-Adresse",
+      "data": "Daten",
+      "password": "Passwort",
+      "passwordDesc": "Wir senden einen Link zum Ändern des Passworts an {email}",
+      "form": {
+        "name": "Vollständiger Name",
+        "namePlaceholder": "Max Mustermann",
+        "company": "Firmenname",
+        "companyPlaceholder": "Muster GmbH",
+        "phone": "Telefonnummer",
+        "phonePlaceholder": "z.B. 739907919",
+        "save": "Änderungen speichern",
+        "saving": "Wird gespeichert...",
+        "errorSave": "Speichern fehlgeschlagen.",
+        "successSave": "Profil aktualisiert."
+      },
+      "resetPassword": {
+        "send": "Link zum Ändern des Passworts senden",
+        "sending": "Wird gesendet...",
+        "sent": "Link gesendet",
+        "error": "E-Mail konnte nicht gesendet werden.",
+        "success": "Link zum Ändern des Passworts wurde gesendet."
+      }
+    },
+
+    "sidebar": {
+      "overview": "Übersicht",
+      "issues": "Störungen",
+      "active": "Aktiv",
+      "inService": "In Wartung",
+      "closed": "Geschlossen",
+      "equipment": "Geräte",
+      "assets": "Geräte",
+      "service": "Wartung",
+      "services": "Wartungen",
+      "help": "Hilfe",
+      "issuesQA": "Störungen Q&A",
+      "assetsQA": "Geräte Q&A",
+      "profile": "Mein Profil",
+      "settings": "Einstellungen",
+      "logout": "Abmelden"
+    },
+
+    "dashboard": {
+      "title": "Übersicht",
+      "issues": "Störungen",
+      "machines": "Geräte",
+      "upcomingServices": "Bevorstehende Wartungen",
+      "noServices": "Keine geplanten Wartungen.",
+      "allServices": "Alle Wartungen anzeigen",
+      "topAssets": "Am häufigsten gemeldete Geräte",
+      "analytics": "Analytik",
+      "analyticsProText": "Analytik im Pro-Plan verfügbar",
+      "issue": "Störung",
+      "issues2": "Störungen",
+      "issues5": "Störungen",
+      "stats": {
+        "broken": "Defekt",
+        "issuesThisMonth": "Störungen diesen Monat",
+        "brokenAssets": "Defekte Geräte",
+        "inService": "In Wartung",
+        "working": "Funktionsfähig",
+        "assets": "Geräte"
+      },
+      "mockServices": [
+        { "name": "Beispielgerät", "date": "15. Januar 2025" },
+        { "name": "Gerät Nr. 2", "date": "22. Januar 2025" },
+        { "name": "Gerät in Halle A", "date": "1. Februar 2025" }
+      ]
+    },
+
+    "issuesList": {
+      "ranges": {
+        "all": "Alle",
+        "7d": "Letzte 7 Tage",
+        "14d": "Letzte 14 Tage",
+        "month": "Dieser Monat",
+        "prev_month": "Vorheriger Monat"
+      },
+      "exportPro": "Export im Pro-Plan verfügbar",
+      "loading": "Wird geladen...",
+      "empty": "Keine Störungen im ausgewählten Zeitraum.",
+      "csv": {
+        "id": "ID",
+        "asset": "Gerätename",
+        "status": "Status",
+        "description": "Störungsbeschreibung",
+        "createdAt": "Gemeldet am",
+        "closedAt": "Geschlossen am"
+      },
+      "pdf": {
+        "title": "Störungen",
+        "generated": "Erstellt",
+        "asset": "Gerät",
+        "status": "Status",
+        "description": "Beschreibung",
+        "createdAt": "Gemeldet am",
+        "closedAt": "Geschlossen am"
+      }
+    },
+
+    "issueCard": {
+      "added": "Gemeldet:",
+      "details": "Details"
+    },
+
+    "assetsPage": {
+      "title": "Geräte",
+      "addMore": "Weitere Geräte hinzufügen",
+      "add": "Gerät hinzufügen",
+      "search": "Nach Name oder Seriennummer suchen...",
+      "noResults": "Keine Geräte gefunden."
+    },
+
+    "assetsCard": {
+      "serialNumber": "Seriennummer:",
+      "issuesCount": "Störungen:",
+      "quickReport": "Schnellmeldung",
+      "details": "Details"
+    },
+
+    "servicesPage": {
+      "title": "Wartungen",
+      "proText": "Wartungen im Pro-Plan verfügbar",
+      "noAssets": "Keine Geräte. Fügen Sie ein Gerät hinzu, um Wartungen zu verfolgen.",
+      "lastService": "Letzte Wartung",
+      "nextService": "Nächste Wartung",
+      "notSet": "Nicht festgelegt",
+      "legend": {
+        "overdue": "Überfällig",
+        "soon": "In 14 Tagen oder weniger",
+        "ok": "Geplant",
+        "none": "Kein Datum"
+      },
+      "mock": [
+        {
+          "name": "Beispielgerät",
+          "lastDate": "12. Januar 2025",
+          "nextDate": "12. April 2025",
+          "status": "ok"
+        },
+        {
+          "name": "Gerät Nr. 2",
+          "lastDate": "5. Februar 2025",
+          "nextDate": "5. März 2025",
+          "status": "soon"
+        },
+        {
+          "name": "Gerät in Halle A",
+          "lastDate": null,
+          "nextDate": null,
+          "status": "none"
+        }
+      ]
+    },
+
+    "helpIssues": {
+      "title": "Hilfe — Störungen",
+      "subtitle": "Alles, was Sie über das Melden und Verwalten von Störungen wissen müssen.",
+      "sections": [
+        {
+          "question": "Wie meldet ein Mitarbeiter eine Störung?",
+          "answer": "Jedes Gerät hat einen QR-Code-Aufkleber. Der Mitarbeiter scannt ihn mit der Handykamera — keine App-Installation, keine Anmeldung erforderlich. Ein Formular öffnet sich, in dem das Problem beschrieben und auf \"Melden\" geklickt wird. Die Meldung erscheint sofort in Ihrem Panel.",
+          "statuses": null
+        },
+        {
+          "question": "Was bedeuten die Störungsstatus?",
+          "answer": null,
+          "statuses": [
+            {
+              "label": "Defekt",
+              "color": "bg-red-100 text-red-700",
+              "desc": "Neue Meldung — das Gerät muss repariert werden."
+            },
+            {
+              "label": "In Wartung",
+              "color": "bg-yellow-100 text-yellow-700",
+              "desc": "Das Problem wird gerade behoben."
+            },
+            {
+              "label": "Geschlossen",
+              "color": "bg-gray-100 text-gray-600",
+              "desc": "Reparatur abgeschlossen, Gerät funktionsfähig."
+            }
+          ]
+        },
+        {
+          "question": "Wie ändere ich den Störungsstatus?",
+          "answer": "Öffnen Sie die Störungsdetails — in der oberen rechten Ecke finden Sie ein Dropdown-Menü mit Status. Eine Statusänderung aktualisiert auch den Gerätestatus automatisch. Wenn Sie eine Störung schließen, kehrt das Gerät zum Status \"Funktionsfähig\" zurück.",
+          "statuses": null
+        },
+        {
+          "question": "Erhalte ich eine Benachrichtigung über neue Störungen?",
+          "answer": "Ja — nach jeder neuen Meldung erhalten Sie eine E-Mail mit der Störungsbeschreibung, dem Gerätenamen und einem Link zum Panel. Stellen Sie sicher, dass Sie die richtige E-Mail-Adresse in Ihren Kontoeinstellungen haben.",
+          "statuses": null
+        },
+        {
+          "question": "Wie informiere ich den Servicetechniker über eine Störung?",
+          "answer": "In der Störungsdetailansicht finden Sie die Schaltfläche \"Service benachrichtigen\". Nach dem Klicken erscheint eine fertige E-Mail mit Gerätedaten und Störungsbeschreibung — Sie können sie vor dem Senden bearbeiten. Im Pro-Plan verfügbar.",
+          "statuses": null
+        },
+        {
+          "question": "Wo finde ich den Verlauf geschlossener Störungen?",
+          "answer": "In der Seitenleiste unter \"Störungen\" gibt es die Registerkarte \"Geschlossen\" — dort finden Sie alle abgeschlossenen Meldungen. Sie können sie durchsuchen und prüfen, wann sie geschlossen wurden.",
+          "statuses": null
+        }
+      ]
+    },
+
+    "helpAssets": {
+      "title": "Hilfe — Geräte",
+      "subtitle": "Wie Sie Geräte, QR-Codes und technische Daten verwalten.",
+      "sections": [
+        {
+          "question": "Wie füge ich ein neues Gerät hinzu?",
+          "answer": "Gehen Sie in der Seitenleiste zu \"Geräte\" und klicken Sie auf \"Gerät hinzufügen\". Nur der Name ist erforderlich — die Seriennummer ist optional. Nach dem Hinzufügen werden Sie zur Geräteseite weitergeleitet, wo Sie sofort einen QR-Code generieren können."
+        },
+        {
+          "question": "Wie funktioniert der QR-Code?",
+          "answer": "Jedes Gerät hat einen eindeutigen QR-Code, der zum Meldeformular führt. Sie können die Druckgröße (S, M, L, XL) wählen, ein PDF herunterladen und auf das Gerät kleben. Der Code kann jederzeit neu generiert werden — der alte wird ungültig."
+        },
+        {
+          "question": "Wofür sind benutzerdefinierte Felder?",
+          "answer": "Benutzerdefinierte Felder ermöglichen das Hinzufügen beliebiger Informationen zu einem Gerät — z.B. \"Baujahr\", \"Motormodell\", \"Letzte Inspektion\". Jedes Feld hat einen Namen und einen Wert. Sie können sie jederzeit hinzufügen und entfernen."
+        },
+        {
+          "question": "Was ist der Gerätestandort?",
+          "answer": "Der Standort ist ein Textfeld, das beschreibt, wo sich das Gerät physisch befindet — z.B. \"Halle A, Station 3\" oder \"Etage 2, Raum 201\". Er erscheint in den Störungsdetails und erleichtert dem Techniker das Auffinden des Geräts."
+        },
+        {
+          "question": "Wie richte ich Servicetechnikerdaten ein?",
+          "answer": "Sie können eine Standard-Telefonnummer und E-Mail für den Servicetechniker in den Einstellungen festlegen — sie wird automatisch jedem neuen Gerät zugewiesen. Sie können sie auch pro Gerät auf der Registerkarte \"Techniker\" der Geräteseite überschreiben."
+        },
+        {
+          "question": "Wie füge ich ein Gerätefoto hinzu?",
+          "answer": "Klicken Sie auf der Geräteseite im Bereich \"Foto\" auf \"Foto hinzufügen\". Unterstützte Formate sind JPG, PNG und WEBP. Das Foto erscheint in den Störungsdetails und erleichtert die Geräteidentifikation. Sie können es jederzeit ändern oder entfernen."
+        },
+        {
+          "question": "Kann ich ein Gerät löschen?",
+          "answer": "Ja — auf der Geräteseite in der oberen rechten Ecke finden Sie die Löschschaltfläche (Papierkorb-Symbol). Das Löschen eines Geräts ist unwiderruflich — alle zugehörigen Störungen und Daten werden ebenfalls gelöscht. Stellen Sie sicher, dass Sie das wirklich möchten."
+        }
+      ]
+    },
+
+    "assetTabs": {
+      "info": "Informationen",
+      "service": "Wartung",
+      "issues": "Störungen",
+      "notes": "Notizen"
+    },
+
+    "assetInfo": {
+      "photo": "Foto",
+      "changePhoto": "Foto ändern",
+      "deletePhoto": "Foto löschen",
+      "addPhoto": "Foto hinzufügen",
+      "photoUpdated": "Foto aktualisiert.",
+      "photoDeleted": "Foto gelöscht.",
+      "info": "Informationen",
+      "name": "Gerätename",
+      "status": "Status",
+      "location": "Standort",
+      "locationPlaceholder": "z.B. Halle A, Station 3",
+      "serialNumber": "Seriennummer",
+      "referenceNumber": "Referenznummer",
+      "nextInspection": "Nächstes Inspektionsdatum",
+      "customFields": "Benutzerdefinierte Felder",
+      "fieldName": "Name",
+      "fieldValue": "Wert",
+      "addField": "Feld hinzufügen",
+      "fieldDeleted": "Feld gelöscht.",
+      "qrCode": "QR-Code",
+      "save": "Änderungen speichern",
+      "saving": "Wird gespeichert...",
+      "saved": "Änderungen gespeichert.",
+      "statuses": {
+        "working": "Funktionsfähig",
+        "broken": "Defekt",
+        "maintenance": "In Wartung",
+        "closed": "Geschlossen"
+      }
+    },
+
+    "assetService": {
+      "technicianData": "Servicetechniker",
+      "phone": "Telefon",
+      "phonePlaceholder": "z.B. 739907919",
+      "email": "E-Mail",
+      "emailPlaceholder": "service@firma.de",
+      "save": "Speichern",
+      "saving": "Wird gespeichert...",
+      "saved": "Gespeichert.",
+      "error": "Speichern fehlgeschlagen.",
+      "addService": "Wartungseintrag hinzufügen",
+      "serviceHistory": "Wartungsverlauf"
+    },
+
+    "serviceToken": {
+      "title": "Technikerzugangslink",
+      "copy": "Link kopieren",
+      "reset": "Link zurücksetzen",
+      "generating": "Wird generiert...",
+      "generate": "Technikerzugangslink generieren",
+      "desc": "Der Techniker kann Störungen einsehen, Notizen und Wartungseinträge hinzufügen. Setzen Sie den Link zurück, um den Zugang zu widerrufen.",
+      "noTokenDesc": "Generieren Sie einen Link, den Sie mit Ihrem Servicetechniker teilen können. Keine Registrierung erforderlich.",
+      "errorGenerate": "Link konnte nicht generiert werden.",
+      "successGenerate": "Link generiert.",
+      "successCopy": "Link kopiert."
+    },
+
+    "addServiceForm": {
+      "servicedAt": "Wartungsdatum *",
+      "nextServiceAt": "Nächste Wartung",
+      "type": "Wartungstyp",
+      "performedBy": "Durchgeführt von",
+      "performedByPlaceholder": "Name, Servicefirma...",
+      "cost": "Kosten (€)",
+      "costPlaceholder": "z.B. 350",
+      "notes": "Notizen",
+      "notesPlaceholder": "Was wurde getan, ersetzte Teile, Anmerkungen...",
+      "photo": "Foto",
+      "photoOptional": "(optional)",
+      "addPhoto": "Wartungsfoto hinzufügen",
+      "preview": "Vorschau",
+      "submit": "Wartungseintrag hinzufügen",
+      "saving": "Wird gespeichert...",
+      "errorDate": "Wartungsdatum ist erforderlich.",
+      "errorSave": "Speichern fehlgeschlagen.",
+      "success": "Wartungseintrag hinzugefügt.",
+      "types": {
+        "inspection": "Inspektion",
+        "repair": "Reparatur",
+        "replacement": "Teileaustausch"
+      }
+    },
+
+    "serviceHistory": {
+      "empty": "Keine Wartungseinträge.",
+      "notes": "Notizen",
+      "performedBy": "Durchgeführt von",
+      "cost": "Kosten",
+      "nextService": "Nächste Wartung",
+      "photo": "Foto",
+      "photoAlt": "Wartungsfoto",
+      "delete": "Eintrag löschen",
+      "errorDelete": "Löschen fehlgeschlagen.",
+      "successDelete": "Eintrag gelöscht.",
+      "types": {
+        "inspection": "Inspektion",
+        "repair": "Reparatur",
+        "replacement": "Teileaustausch"
+      }
+    },
+
+    "assetIssuesTab": {
+      "empty": "Kein Störungsverlauf.",
+      "priorities": {
+        "low": "Niedrig",
+        "normal": "Normal",
+        "high": "Hoch",
+        "critical": "Kritisch"
+      }
+    },
+
+    "assetNotes": {
+      "title": "Notizen",
+      "saving": "Wird gespeichert...",
+      "saved": "Gespeichert",
+      "placeholder": "Zusätzliche Informationen über das Gerät, Bemerkungen, Verlauf...",
+      "autoSave": "Notizen werden automatisch gespeichert."
+    },
+
+    "feedback": {
+      "title": "Feedback / Fehler melden",
+      "description": "Beschreiben Sie, was nicht funktioniert oder was Sie ändern möchten. Jedes Feedback ist für uns wertvoll.",
+      "placeholder": "Z.B. Schaltfläche X funktioniert nicht, oder Funktion Y fehlt mir...",
+      "send": "Senden",
+      "sending": "Wird gesendet...",
+      "cancel": "Abbrechen",
+      "successTitle": "Vielen Dank für Ihr Feedback!",
+      "successDesc": "Wir werden so schnell wie möglich reagieren.",
+      "close": "Schließen",
+      "errorEmpty": "Bitte schreiben Sie eine Nachricht vor dem Senden.",
+      "errorSend": "Senden fehlgeschlagen. Bitte versuchen Sie es erneut."
+    }
   },
 
   "assets": {
-    "title": "Maszyny",
-    "addAsset": "Dodaj maszynę",
-    "assetName": "Nazwa maszyny",
-    "serialNumber": "Numer seryjny",
-    "referenceNumber": "Numer referencyjny",
-    "location": "Lokalizacja",
+    "title": "Geräte",
+    "addAsset": "Gerät hinzufügen",
+    "assetName": "Gerätename",
+    "serialNumber": "Seriennummer",
+    "referenceNumber": "Referenznummer",
+    "location": "Standort",
     "status": "Status",
-    "nextInspection": "Następny przegląd",
-    "notes": "Notatki",
-    "qrCode": "Kod QR",
-    "customFields": "Własne pola",
-    "addField": "Dodaj pole",
-    "noAssets": "Brak maszyn. Dodaj pierwszą maszynę.",
-    "limitReached": "Osiągnąłeś limit {limit} maszyn. Przejdź na wyższy plan.",
+    "nextInspection": "Nächste Inspektion",
+    "notes": "Notizen",
+    "qrCode": "QR-Code",
+    "customFields": "Benutzerdefinierte Felder",
+    "addField": "Feld hinzufügen",
+    "noAssets": "Keine Geräte. Fügen Sie das erste Gerät hinzu.",
+    "limitReached": "Sie haben das Limit von {limit} Geräten erreicht. Upgraden Sie Ihren Plan.",
     "tabs": {
-      "info": "Informacje",
-      "service": "Serwis",
-      "issues": "Awarie",
-      "notes": "Notatki"
+      "info": "Informationen",
+      "service": "Wartung",
+      "issues": "Störungen",
+      "notes": "Notizen"
     },
     "status": {
-      "working": "Sprawna",
-      "broken": "Uszkodzona",
-      "maintenance": "W serwisie",
-      "closed": "Zamknięta"
+      "working": "Funktionsfähig",
+      "broken": "Defekt",
+      "maintenance": "In Wartung",
+      "closed": "Geschlossen"
     }
   },
 
   "issues": {
-    "title": "Awarie",
-    "newIssue": "Nowa awaria",
-    "description": "Opis usterki",
+    "title": "Störungen",
+    "newIssue": "Neue Störung",
+    "description": "Störungsbeschreibung",
     "status": "Status",
-    "priority": "Priorytet",
-    "reportedAt": "Data zgłoszenia",
-    "closedAt": "Data zamknięcia",
-    "serviceNotes": "Notatki serwisanta",
-    "reporterPhone": "Telefon zgłaszającego",
-    "noIssues": "Brak awarii.",
+    "priority": "Priorität",
+    "reportedAt": "Gemeldet am",
+    "closedAt": "Geschlossen am",
+    "serviceNotes": "Techniknotizen",
+    "reporterPhone": "Telefon des Melders",
+    "noIssues": "Keine Störungen.",
     "priorities": {
-      "low": "Niski",
-      "normal": "Normalny",
-      "high": "Wysoki",
-      "critical": "Krytyczny"
+      "low": "Niedrig",
+      "normal": "Normal",
+      "high": "Hoch",
+      "critical": "Kritisch"
     },
     "statuses": {
-      "broken": "Uszkodzona",
-      "maintenance": "W serwisie",
-      "closed": "Zamknięta"
+      "broken": "Defekt",
+      "maintenance": "In Wartung",
+      "closed": "Geschlossen"
     }
   },
 
   "services": {
-    "title": "Serwisy",
-    "addService": "Dodaj wpis serwisowy",
-    "servicedAt": "Data serwisu",
-    "nextServiceAt": "Następny serwis",
-    "type": "Typ serwisu",
-    "performedBy": "Wykonał",
-    "cost": "Koszt (zł)",
-    "notes": "Notatki",
-    "noServices": "Brak historii serwisów.",
+    "title": "Wartungen",
+    "addService": "Wartungseintrag hinzufügen",
+    "servicedAt": "Wartungsdatum",
+    "nextServiceAt": "Nächste Wartung",
+    "type": "Wartungstyp",
+    "performedBy": "Durchgeführt von",
+    "cost": "Kosten (€)",
+    "notes": "Notizen",
+    "noServices": "Kein Wartungsverlauf.",
     "types": {
-      "inspection": "Przegląd",
-      "repair": "Naprawa",
-      "replacement": "Wymiana części"
+      "inspection": "Inspektion",
+      "repair": "Reparatur",
+      "replacement": "Teileaustausch"
     },
     "statuses": {
-      "overdue": "Przeterminowany",
-      "soon": "Za 14 dni lub mniej",
-      "ok": "Zaplanowany",
-      "none": "Brak daty"
+      "overdue": "Überfällig",
+      "soon": "In 14 Tagen oder weniger",
+      "ok": "Geplant",
+      "none": "Kein Datum"
     }
   },
 
   "report": {
-    "title": "Zgłoszenie usterki",
-    "subtitle": "Zeskanuj i opisz problem",
-    "descriptionLabel": "Opis usterki",
-    "descriptionPlaceholder": "Opisz co się stało...",
-    "photoLabel": "Zdjęcie",
-    "photoOptional": "(opcjonalnie)",
-    "photoPlaceholder": "Kliknij aby dodać zdjęcie",
-    "phoneLabel": "Numer telefonu",
-    "phoneOptional": "(opcjonalnie)",
-    "phonePlaceholder": "np. 600 700 800",
-    "submitButton": "Zgłoś usterkę",
-    "successTitle": "Dziękujemy za zgłoszenie!",
-    "successMessage": "Twoje zgłoszenie zostało wysłane. Zajmiemy się nim jak najszybciej.",
-    "required": "Opis usterki jest wymagany."
+    "title": "Störung melden",
+    "subtitle": "Scannen und Problem beschreiben",
+    "descriptionLabel": "Störungsbeschreibung",
+    "descriptionPlaceholder": "Beschreiben Sie, was passiert ist...",
+    "photoLabel": "Foto",
+    "photoOptional": "(optional)",
+    "photoPlaceholder": "Klicken Sie, um ein Foto hinzuzufügen",
+    "phoneLabel": "Telefonnummer",
+    "phoneOptional": "(optional)",
+    "phonePlaceholder": "z.B. 600 700 800",
+    "submitButton": "Störung melden",
+    "successTitle": "Vielen Dank für Ihre Meldung!",
+    "successMessage": "Ihre Meldung wurde übermittelt. Wir werden uns so schnell wie möglich darum kümmern.",
+    "required": "Störungsbeschreibung ist erforderlich."
   },
 
   "pricing": {
-    "title": "Cennik",
-    "subtitle": "Prosty, przejrzysty cennik",
-    "description": "Zacznij za darmo i przejdź na wyższy plan gdy Twój biznes rośnie.",
-    "free": "Darmowy",
-    "monthly": "miesięcznie",
-    "forever": "na zawsze",
-    "vatNote": "+ VAT",
-    "popular": "Popularny",
-    "startFree": "Zacznij za darmo",
-    "choosePlan": "Wybierz {plan}",
-    "allPaidPlansInclude": "Wszystkie plany płatne zawierają:",
-    "differenceNote": "Różnica między planami to tylko limit maszyn.",
-    "questions": "Masz pytania?",
-    "contactUs": "Napisz do nas",
-    "replyTime": "— odpowiemy w ciągu 24 godzin."
+    "title": "Preise",
+    "subtitle": "Einfache, transparente Preise",
+    "description": "Starten Sie kostenlos und upgraden Sie, wenn Ihr Unternehmen wächst.",
+    "free": "Kostenlos",
+    "monthly": "monatlich",
+    "forever": "für immer",
+    "vatNote": "+ MwSt.",
+    "popular": "Beliebt",
+    "startFree": "Kostenlos starten",
+    "choosePlan": "{plan} wählen",
+    "allPaidPlansInclude": "Alle kostenpflichtigen Pläne beinhalten:",
+    "differenceNote": "Der einzige Unterschied zwischen den Plänen ist das Gerätelimit.",
+    "questions": "Haben Sie Fragen?",
+    "contactUs": "Schreiben Sie uns",
+    "replyTime": "— wir antworten innerhalb von 24 Stunden."
   },
 
   "subscription": {
-    "title": "Subskrypcja",
-    "active": "Aktywny",
-    "canceled": "Anulowany",
-    "free": "Darmowy",
-    "pastDueWarning": "Ostatnia płatność nie powiodła się. Zaktualizuj metodę płatności aby zachować dostęp.",
-    "machineCount": "Używasz {count}/{limit} maszyn w planie darmowym.",
-    "nearLimit": "Zbliżasz się do limitu.",
-    "choosePlan": "Wybierz plan",
-    "renewSubscription": "Odnów subskrypcję",
-    "manageSubscription": "Zarządzaj subskrypcją",
-    "changePlan": "Zmień plan",
-    "hidePlans": "Ukryj plany",
-    "changeNote": "Zmiana nastąpi od następnego okresu rozliczeniowego.",
-    "current": "Obecny",
-    "recommended": "Zalecany",
-    "redirecting": "Przekierowywanie...",
-    "upgradeTo": "Przejdź na {plan}",
-    "selectPlan": "Wybierz {plan}"
+    "title": "Abonnement",
+    "active": "Aktiv",
+    "canceled": "Gekündigt",
+    "free": "Kostenlos",
+    "pastDueWarning": "Ihre letzte Zahlung ist fehlgeschlagen. Aktualisieren Sie Ihre Zahlungsmethode, um den Zugang zu behalten.",
+    "machineCount": "Sie nutzen {count}/{limit} Geräte im kostenlosen Plan.",
+    "nearLimit": "Sie nähern sich Ihrem Limit.",
+    "choosePlan": "Plan wählen",
+    "renewSubscription": "Abonnement erneuern",
+    "manageSubscription": "Abonnement verwalten",
+    "changePlan": "Plan wechseln",
+    "hidePlans": "Pläne ausblenden",
+    "changeNote": "Änderungen werden ab dem nächsten Abrechnungszeitraum wirksam.",
+    "current": "Aktuell",
+    "recommended": "Empfohlen",
+    "redirecting": "Weiterleitung...",
+    "upgradeTo": "Zu {plan} wechseln",
+    "selectPlan": "{plan} wählen"
   },
 
   "settings": {
-    "title": "Ustawienia",
+    "title": "Einstellungen",
     "qr": {
-      "title": "Ustawienia QR",
-      "labelTop": "Etykieta górna",
-      "labelBottom": "Etykieta dolna",
-      "printSize": "Rozmiar wydruku"
+      "title": "QR-Einstellungen",
+      "labelTop": "Oberes Label",
+      "labelBottom": "Unteres Label",
+      "printSize": "Druckgröße"
     },
     "service": {
-      "title": "Dane serwisanta",
+      "title": "Servicetechnikerdaten",
       "phone": "Telefon",
-      "email": "E-mail"
+      "email": "E-Mail"
     },
     "reports": {
-      "title": "Raporty",
-      "issues": "Raporty awarii",
-      "services": "Raporty serwisów"
+      "title": "Berichte",
+      "issues": "Störungsberichte",
+      "services": "Wartungsberichte"
     }
   },
 
   "landing": {
     "hero": {
-      "badge": "System zarządzania usterkami",
-      "betaBadge": "Teraz dostępne w wersji beta",
-      "title": "Zarządzaj usterkami przez kod QR",
-      "titleHighlight": "kod QR",
-      "subtitle": "Pracownik skanuje kod, opisuje problem - Ty reagujesz.",
-      "subtitleSecond": "Żadnych telefonów, żadnych arkuszy.",
-      "cta": "Wypróbuj za darmo",
-      "ctaLogin": "Zaloguj się",
-      "demoText": "Chcesz zobaczyć jak działa Asseto?",
-      "demoLink": "Zaloguj się na konto demo",
-      "badge1": "Błyskawiczne zgłoszenia",
-      "badge2": "Bez instalacji",
-      "badge3": "Pełna historia",
-      "browserBar": "asseto.pro/panel",
-      "imageAlt": "Asseto — panel zarządzania awariami"
+      "badge": "Störungsverwaltungssystem",
+      "betaBadge": "Jetzt in der Beta-Version verfügbar",
+      "title": "Störungen per QR-Code verwalten",
+      "titleHighlight": "QR-Code",
+      "subtitle": "Mitarbeiter scannt den Code, beschreibt das Problem — Sie reagieren.",
+      "subtitleSecond": "Keine Telefonanrufe, keine Tabellenkalkulationen.",
+      "cta": "Kostenlos starten",
+      "ctaLogin": "Anmelden",
+      "demoText": "Möchten Sie sehen, wie Asseto funktioniert?",
+      "demoLink": "Im Demo-Konto anmelden",
+      "badge1": "Sofortige Meldungen",
+      "badge2": "Keine Installation",
+      "badge3": "Vollständiger Verlauf",
+      "browserBar": "asseto.pro/dashboard",
+      "imageAlt": "Asseto — Störungsverwaltungs-Dashboard"
     },
     "howItWorks": {
-      "title": "Jak to działa?",
-      "step1": "Naklejasz kod QR na urządzeniu",
-      "step2": "Użytkownik skanuje i zgłasza",
-      "step3": "Ty dostajesz powiadomienie"
+      "badge": "So funktioniert es",
+      "title": "Störungsverwaltung war noch nie so einfach",
+      "description": "Asseto verbindet Mitarbeiter in Sekunden mit dem technischen Support — ohne App, ohne Registrierung.",
+      "cards": [
+        {
+          "title": "Geräte kennzeichnen",
+          "description": "Generieren Sie einen QR-Code für jedes Gerät und drucken Sie ihn in beliebiger Größe. Ein Aufkleber auf dem Gerät ist alles, was Ihr Team braucht."
+        },
+        {
+          "title": "Sofortige Meldungen",
+          "description": "Der Mitarbeiter scannt den QR-Code, beschreibt das Problem und sendet die Meldung in Sekunden. Keine Telefonanrufe, keine Excel-Tabellen."
+        },
+        {
+          "title": "Volle Kontrolle im Panel",
+          "description": "Alle Meldungen, Störungsverlauf und Gerätestatus an einem Ort. Reagieren Sie schneller und planen Sie Inspektionen im Voraus."
+        }
+      ]
+    },
+    "scanningSteps": {
+      "badge": "Störungen melden",
+      "title": "Meldung in 3 Schritten",
+      "description": "Störungen melden ohne Konto, ohne Installation.",
+      "mockup": {
+        "time": "9:41",
+        "label": "Störung melden",
+        "device": "CNC-Drehmaschine #3",
+        "descLabel": "Störungsbeschreibung",
+        "descText": "Die Maschine macht beim Starten ein lautes Geräusch...",
+        "submit": "Störung melden"
+      },
+      "steps": [
+        {
+          "number": "01",
+          "title": "QR-Code scannen",
+          "description": "Jedes Gerät hat einen QR-Code-Aufkleber. Einfach mit der Handykamera scannen."
+        },
+        {
+          "number": "02",
+          "title": "Problem beschreiben",
+          "description": "Eine kurze Beschreibung reicht. Das Formular ist einfach und funktioniert auf jedem Handy."
+        },
+        {
+          "number": "03",
+          "title": "Fertig",
+          "description": "Die Meldung erscheint sofort im Panel. Der technische Support sieht das Problem und kann handeln."
+        }
+      ]
+    },
+    "panelShowcase": {
+      "tabs": [
+        {
+          "label": "Übersicht",
+          "description": "Alle Störungen und Statistiken an einem Ort"
+        },
+        {
+          "label": "Störungen",
+          "description": "Liste aktiver Störungen mit Prioritäten und Status"
+        },
+        {
+          "label": "Störungsdetails",
+          "description": "Vollständiger Meldungsverlauf, Fotos und Techniknotizen"
+        },
+        {
+          "label": "Geräte",
+          "description": "Alle Geräte mit QR-Codes und Störungsverlauf"
+        },
+        {
+          "label": "Geräteansicht",
+          "description": "Wartungen, Störungen und Notizen für ein bestimmtes Gerät"
+        },
+        {
+          "label": "Wartungen",
+          "description": "Inspektionsplan und Wartungsverlauf"
+        },
+        {
+          "label": "QR-Formular",
+          "description": "Störungsmeldeformular — keine App, keine Registrierung"
+        }
+      ]
+    },
+    "cta": {
+      "title": "Beginnen Sie noch heute mit der Störungsverwaltung",
+      "description": "Die ersten 10 Geräte kostenlos. Keine Kreditkarte. Einrichtung dauert 5 Minuten.",
+      "register": "Kostenloses Konto erstellen",
+      "demo": "Demo ausprobieren"
+    },
+    "blog": {
+      "title": "Wissen über Störungsverwaltung",
+      "allArticles": "Alle Artikel",
+      "read": "Lesen"
     }
   },
 
   "serwisant": {
-    "title": "Panel serwisanta",
-    "issueHistory": "Awarie",
-    "serviceHistory": "Historia serwisów",
-    "addServiceEntry": "Dodaj wpis serwisowy",
-    "noIssues": "Brak awarii.",
-    "noServices": "Brak wpisów serwisowych.",
-    "saveNote": "Zapisz notatkę",
-    "saving": "Zapisywanie...",
-    "saved": "Zapisano",
-    "issueDescription": "Opis usterki",
-    "serviceNote": "Notatka serwisanta",
-    "noteplaceholder": "Dodaj notatkę serwisową..."
+    "title": "Technikerportal",
+    "issueHistory": "Störungen",
+    "serviceHistory": "Wartungsverlauf",
+    "addServiceEntry": "Wartungseintrag hinzufügen",
+    "noIssues": "Keine Störungen.",
+    "noServices": "Keine Wartungseinträge.",
+    "saveNote": "Notiz speichern",
+    "saving": "Wird gespeichert...",
+    "saved": "Gespeichert",
+    "issueDescription": "Störungsbeschreibung",
+    "serviceNote": "Technikernotiz",
+    "noteplaceholder": "Techniknotiz hinzufügen..."
+  },
+
+  "footer": {
+    "links": [
+      { "href": "/preise", "label": "Preise" },
+      { "href": "/hilfe", "label": "Hilfe" },
+      { "href": "/blog", "label": "Blog" },
+      { "href": "/kontakt", "label": "Kontakt" },
+      { "href": "/datenschutz", "label": "Datenschutz" },
+      { "href": "/agb", "label": "AGB" }
+    ]
+  },
+
+  "blog": {
+    "backToBlog": "Zurück zum Blog",
+    "ctaTitle": "Asseto kostenlos ausprobieren",
+    "ctaDesc": "Die ersten 10 Geräte kostenlos. Einrichtung dauert 5 Minuten.",
+    "ctaButton": "Kostenlos starten →",
+    "prev": "← Vorheriger",
+    "next": "Nächster →"
+  },
+
+  "blogPage": {
+    "title": "Blog",
+    "description": "Artikel über Störungsverwaltung, Gerätewartung und QR-Systeme für Unternehmen und Einrichtungen.",
+    "heading": "Wissen über Störungsverwaltung",
+    "subheading": "Praktische Tipps, Fallstudien und Ratschläge für Einrichtungs- und Geräteverantwortliche.",
+    "all": "Alle",
+    "empty": "Keine Artikel in dieser Kategorie.",
+    "read": "Lesen",
+    "categoryParam": "kategorie"
   }
 }

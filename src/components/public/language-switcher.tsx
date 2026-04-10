@@ -12,7 +12,7 @@ import { useParams } from "next/navigation";
 const languages = [
   { code: "pl", label: "PL", Flag: PL },
   { code: "en", label: "EN", Flag: GB },
-  // { code: "de", label: "DE", Flag: DE },
+  { code: "de", label: "DE", Flag: DE },
 ];
 
 export default function LanguageSwitcher() {

@@ -21,8 +21,6 @@ export default function PanelShowcase() {
   const [active, setActive] = useState(0);
   const locale = useLocale();
 
-  console.log(locale);
-
   return (
     <section className="pb-10 px-4">
       <div className="max-w-5xl mx-auto">
