@@ -15,6 +15,7 @@ import {
   Phone,
 } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
+import { useTranslations } from "next-intl";
 
 export default function ReportForm({
   assetId,
@@ -23,6 +24,7 @@ export default function ReportForm({
   assetId: string;
   disabled?: boolean;
 }) {
+  const t = useTranslations("reportForm");
   const [description, setDescription] = useState("");
   const [phone, setPhone] = useState("");
   const [image, setImage] = useState<File | null>(null);
@@ -48,16 +50,13 @@ export default function ReportForm({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!description.trim()) {
-      setError("Opisz usterkę przed wysłaniem.");
+      setError(t("errorRequired"));
       return;
     }
-
     setLoading(true);
     setError(null);
-
     const supabase = createClient();
 
-    // Wgraj zdjęcie jeśli jest
     let imageUrl: string | null = null;
     if (image) {
       const ext = image.name.split(".").pop();
@@ -65,7 +64,6 @@ export default function ReportForm({
       const { error: uploadError } = await supabase.storage
         .from("issue-images")
         .upload(path, image, { upsert: false });
-
       if (!uploadError) {
         const {
           data: { publicUrl },
@@ -87,7 +85,7 @@ export default function ReportForm({
       .single();
 
     if (insertError || !newIssue) {
-      setError("Coś poszło nie tak. Spróbuj ponownie.");
+      setError(t("errorGeneral"));
       setLoading(false);
       return;
     }
@@ -110,14 +108,9 @@ export default function ReportForm({
         </div>
         <div>
           <p className="text-gray-900 font-medium text-sm">
-            Zgłoszenie wysłane
+            {t("successTitle")}
           </p>
-          <p className="text-gray-500 text-xs mt-1">
-            Dziękujemy.{" "}
-            <span className="block">
-              Obsługa techniczna zostanie powiadomiona.
-            </span>
-          </p>
+          <p className="text-gray-500 text-xs mt-1">{t("successDesc")}</p>
         </div>
       </div>
     );
@@ -134,17 +127,16 @@ export default function ReportForm({
         </Alert>
       )}
 
-      {/* Opis */}
       <div className="space-y-1.5">
         <Label
           htmlFor="description"
           className="text-gray-700 text-sm font-medium"
         >
-          Opis usterki <span className="text-red-500">*</span>
+          {t("descriptionLabel")} <span className="text-red-500">*</span>
         </Label>
         <Textarea
           id="description"
-          placeholder="Opisz co się dzieje..."
+          placeholder={t("descriptionPlaceholder")}
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           rows={4}
@@ -152,18 +144,18 @@ export default function ReportForm({
         />
       </div>
 
-      {/* Zdjęcie */}
       <div className="space-y-1.5">
         <Label className="text-gray-700 text-sm font-medium">
-          Zdjęcie{" "}
-          <span className="text-gray-400 font-normal">(opcjonalnie)</span>
+          {t("photoLabel")}{" "}
+          <span className="text-gray-400 font-normal">
+            {t("photoOptional")}
+          </span>
         </Label>
-
         {imagePreview ? (
           <div className="relative w-full">
             <img
               src={imagePreview}
-              alt="Podgląd"
+              alt={t("photoPreviewAlt")}
               className="w-full max-h-48 object-cover rounded-lg border border-gray-200"
             />
             <button
@@ -180,10 +172,8 @@ export default function ReportForm({
             className="flex flex-col items-center gap-2 border-2 border-dashed border-gray-200 rounded-lg p-6 cursor-pointer hover:border-blue-300 hover:bg-blue-50/30 transition-colors"
           >
             <Upload size={20} className="text-gray-400" />
-            <span className="text-sm text-gray-500">
-              Kliknij aby dodać zdjęcie
-            </span>
-            <span className="text-xs text-gray-400">JPG, PNG, WEBP</span>
+            <span className="text-sm text-gray-500">{t("photoClick")}</span>
+            <span className="text-xs text-gray-400">{t("photoFormats")}</span>
           </label>
         )}
         <input
@@ -196,11 +186,12 @@ export default function ReportForm({
         />
       </div>
 
-      {/* Telefon */}
       <div className="space-y-1.5">
         <Label htmlFor="phone" className="text-gray-700 text-sm font-medium">
-          Numer telefonu{" "}
-          <span className="text-gray-400 font-normal">(opcjonalnie)</span>
+          {t("phoneLabel")}{" "}
+          <span className="text-gray-400 font-normal">
+            {t("phoneOptional")}
+          </span>
         </Label>
         <div className="relative">
           <Phone
@@ -210,15 +201,13 @@ export default function ReportForm({
           <Input
             id="phone"
             type="tel"
-            placeholder="np. 600 000 000"
+            placeholder={t("phonePlaceholder")}
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
             className="pl-9 bg-white border-gray-300"
           />
         </div>
-        <p className="text-xs text-gray-400">
-          Podaj numer jeśli chcesz żebyśmy mogli się z Tobą skontaktować.
-        </p>
+        <p className="text-xs text-gray-400">{t("phoneHint")}</p>
       </div>
 
       <Button
@@ -229,10 +218,10 @@ export default function ReportForm({
         {loading ? (
           <>
             <Loader2 size={15} className="animate-spin mr-2" />
-            Wysyłanie...
+            {t("submitting")}
           </>
         ) : (
-          "Zgłoś usterkę"
+          t("submit")
         )}
       </Button>
     </form>

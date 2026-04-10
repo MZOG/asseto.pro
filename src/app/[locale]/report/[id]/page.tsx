@@ -1,8 +1,9 @@
 import { createClient } from "@/lib/supabase/server";
 import { notFound } from "next/navigation";
 import ReportForm from "@/components/public/report-form";
-import StatusBadge from "@/components/panel/status-badge";
 import { ScanQrCode } from "lucide-react";
+import { getTranslations, getLocale } from "next-intl/server";
+import ActiveIssueInfo from "@/components/public/active-issue-info";
 
 export default async function ReportPage({
   params,
@@ -10,11 +11,12 @@ export default async function ReportPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
+  const t = await getTranslations("reportPage");
+  const locale = await getLocale();
   const supabase = await createClient();
 
   const [{ data: asset }, { data: activeIssue }] = await Promise.all([
     supabase.from("assets").select("id, name").eq("id", id).single(),
-
     supabase
       .from("issues")
       .select("description, status, created_at")
@@ -42,7 +44,7 @@ export default async function ReportPage({
         <div className="bg-white border border-gray-200 rounded-xl shadow-sm p-6">
           <div className="mb-5">
             <p className="text-xs text-gray-400 uppercase tracking-wider font-medium mb-1">
-              Zgłoszenie usterki
+              {t("badge")}
             </p>
             <h1 className="text-gray-900 font-semibold text-lg">
               {asset.name}
@@ -50,65 +52,15 @@ export default async function ReportPage({
           </div>
 
           {activeIssue ? (
-            <ActiveIssueInfo issue={activeIssue} />
+            <ActiveIssueInfo issue={activeIssue} locale={locale} />
           ) : (
             <ReportForm assetId={asset.id} />
           )}
         </div>
 
         <p className="text-center text-gray-400 text-xs mt-6">
-          © {new Date().getFullYear()} Asseto
+          {t("copyright", { year: new Date().getFullYear() })}
         </p>
-      </div>
-    </div>
-  );
-}
-
-function ActiveIssueInfo({
-  issue,
-}: {
-  issue: {
-    description: string | null;
-    status: string | null;
-    created_at: string;
-  };
-}) {
-  const date = new Date(issue.created_at).toLocaleString("pl-PL", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-    hour: "2-digit",
-    minute: "2-digit",
-  });
-
-  return (
-    <div className="flex flex-col gap-4">
-      <div className="flex items-center gap-2.5 p-3 bg-red-50 border border-red-200 rounded-lg">
-        <div className="w-2 h-2 rounded-full bg-red-500 shrink-0" />
-        <p className="text-red-700 text-sm font-medium">
-          Maszyna jest już zgłoszona
-        </p>
-      </div>
-
-      <div className="space-y-3 text-sm">
-        <div>
-          <p className="text-xs text-gray-400 uppercase tracking-wider font-medium mb-1">
-            Opis usterki
-          </p>
-          <p className="text-gray-700">{issue.description ?? "—"}</p>
-        </div>
-        <div>
-          <p className="text-xs text-gray-400 uppercase tracking-wider font-medium mb-1">
-            Data zgłoszenia
-          </p>
-          <p className="text-gray-700">{date}</p>
-        </div>
-        <div>
-          <p className="text-xs text-gray-400 uppercase tracking-wider font-medium mb-2">
-            Status
-          </p>
-          <StatusBadge status={issue.status} />
-        </div>
       </div>
     </div>
   );

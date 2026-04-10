@@ -23,6 +23,35 @@
     }
   },
 
+  "reportPage": {
+    "badge": "Störung melden",
+    "alreadyReported": "Dieses Gerät wurde bereits gemeldet",
+    "issueDescription": "Störungsbeschreibung",
+    "reportedAt": "Gemeldet am",
+    "status": "Status",
+    "copyright": "© {year} Asseto"
+  },
+
+  "reportForm": {
+    "descriptionLabel": "Störungsbeschreibung",
+    "descriptionPlaceholder": "Beschreiben Sie, was passiert...",
+    "photoLabel": "Foto",
+    "photoOptional": "(optional)",
+    "photoPreviewAlt": "Vorschau",
+    "photoClick": "Klicken Sie, um ein Foto hinzuzufügen",
+    "photoFormats": "JPG, PNG, WEBP",
+    "phoneLabel": "Telefonnummer",
+    "phoneOptional": "(optional)",
+    "phonePlaceholder": "z.B. 600 000 000",
+    "phoneHint": "Geben Sie Ihre Nummer an, wenn wir Sie kontaktieren sollen.",
+    "submit": "Störung melden",
+    "submitting": "Wird gesendet...",
+    "successTitle": "Meldung gesendet",
+    "successDesc": "Vielen Dank. Der technische Support wird benachrichtigt.",
+    "errorRequired": "Bitte beschreiben Sie die Störung vor dem Absenden.",
+    "errorGeneral": "Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut."
+  },
+
   "pricingPage": {
     "badge": "Preise",
     "title": "Einfache, transparente Preise",

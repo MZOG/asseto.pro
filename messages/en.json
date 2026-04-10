@@ -23,6 +23,35 @@
     }
   },
 
+  "reportPage": {
+    "badge": "Report an issue",
+    "alreadyReported": "This asset has already been reported",
+    "issueDescription": "Issue description",
+    "reportedAt": "Reported at",
+    "status": "Status",
+    "copyright": "© {year} Asseto"
+  },
+
+  "reportForm": {
+    "descriptionLabel": "Issue description",
+    "descriptionPlaceholder": "Describe what's happening...",
+    "photoLabel": "Photo",
+    "photoOptional": "(optional)",
+    "photoPreviewAlt": "Preview",
+    "photoClick": "Click to add a photo",
+    "photoFormats": "JPG, PNG, WEBP",
+    "phoneLabel": "Phone number",
+    "phoneOptional": "(optional)",
+    "phonePlaceholder": "e.g. 600 000 000",
+    "phoneHint": "Provide your number if you'd like us to contact you.",
+    "submit": "Submit report",
+    "submitting": "Sending...",
+    "successTitle": "Report submitted",
+    "successDesc": "Thank you. The technical team will be notified.",
+    "errorRequired": "Please describe the issue before submitting.",
+    "errorGeneral": "Something went wrong. Please try again."
+  },
+
   "pricingPage": {
     "badge": "Pricing",
     "title": "Simple, transparent pricing",

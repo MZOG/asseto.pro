@@ -23,6 +23,35 @@
     }
   },
 
+  "reportPage": {
+    "badge": "Zgłoszenie usterki",
+    "alreadyReported": "Maszyna jest już zgłoszona",
+    "issueDescription": "Opis usterki",
+    "reportedAt": "Data zgłoszenia",
+    "status": "Status",
+    "copyright": "© {year} Asseto"
+  },
+
+  "reportForm": {
+    "descriptionLabel": "Opis usterki",
+    "descriptionPlaceholder": "Opisz co się dzieje...",
+    "photoLabel": "Zdjęcie",
+    "photoOptional": "(opcjonalnie)",
+    "photoPreviewAlt": "Podgląd",
+    "photoClick": "Kliknij aby dodać zdjęcie",
+    "photoFormats": "JPG, PNG, WEBP",
+    "phoneLabel": "Numer telefonu",
+    "phoneOptional": "(opcjonalnie)",
+    "phonePlaceholder": "np. 600 000 000",
+    "phoneHint": "Podaj numer jeśli chcesz żebyśmy mogli się z Tobą skontaktować.",
+    "submit": "Zgłoś usterkę",
+    "submitting": "Wysyłanie...",
+    "successTitle": "Zgłoszenie wysłane",
+    "successDesc": "Dziękujemy. Obsługa techniczna zostanie powiadomiona.",
+    "errorRequired": "Opisz usterkę przed wysłaniem.",
+    "errorGeneral": "Coś poszło nie tak. Spróbuj ponownie."
+  },
+
   "pricingPage": {
     "badge": "Cennik",
     "title": "Prosty, przejrzysty cennik",
