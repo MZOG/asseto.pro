@@ -278,6 +278,53 @@
     "inService": "W serwisie",
     "closed": "Zamknięte",
 
+    "issuePage": {
+      "title": "Awaria",
+      "priority": "Priorytet",
+      "status": "Status",
+      "description": "Opis usterki",
+      "noDescription": "Brak opisu",
+      "photoAlt": "Zdjęcie usterki",
+      "details": "Szczegóły",
+      "reported": "Zgłoszono:",
+      "updated": "Zaktualizowano:",
+      "closed": "Zamknięto:",
+      "reporterPhone": "Telefon zgłaszającego:",
+      "asset": "Maszyna",
+      "viewAsset": "Zobacz maszynę →",
+      "technician": "Serwisant",
+      "noEmail": "Brak adresu e-mail serwisanta. Dodaj go w ustawieniach maszyny.",
+      "notifyPro": "Powiadomienia e-mail do serwisanta dostępne w planie Pro.",
+      "notifyButton": "Poinformuj serwis",
+      "to": "Do:",
+      "send": "Wyślij e-mail",
+      "sending": "Wysyłanie...",
+      "cancel": "Anuluj",
+      "errorStatus": "Nie udało się zmienić statusu.",
+      "successStatus": "Status zaktualizowany.",
+      "errorPriority": "Nie udało się zmienić priorytetu.",
+      "successPriority": "Priorytet zaktualizowany.",
+      "errorNotify": "Nie udało się wysłać wiadomości.",
+      "successNotify": "E-mail wysłany do {email}",
+      "emailSubject": "Zgłoszenie usterki — {asset}",
+      "emailCompany": "Firma: {company}",
+      "emailDate": "Data zgłoszenia: {date}",
+      "emailAsset": "Maszyna: {asset}",
+      "emailDescription": "Opis usterki:",
+      "emailPortal": "Panel serwisanta: {url}",
+      "statuses": {
+        "broken": "Uszkodzona",
+        "maintenance": "W serwisie",
+        "closed": "Zamknięta"
+      },
+      "priorities": {
+        "low": "Niski",
+        "normal": "Normalny",
+        "high": "Wysoki",
+        "critical": "Krytyczny"
+      }
+    },
+
     "proModal": {
       "title": "Co zawiera plan Pro?",
       "defaultText": "Odblokuj w planie Pro",

@@ -1,4 +1,3 @@
-// src/components/panel/priority-select.tsx
 "use client";
 
 import { useState } from "react";
@@ -14,6 +13,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { priorityConfig, type Priority } from "@/lib/utils/priority";
+import { useTranslations } from "next-intl";
 
 export default function PrioritySelect({
   issueId,
@@ -22,25 +22,23 @@ export default function PrioritySelect({
   issueId: string;
   currentPriority: string | null;
 }) {
+  const t = useTranslations("panel.issuePage");
   const router = useRouter();
   const [loading, setLoading] = useState(false);
 
   const handleChange = async (value: Priority) => {
     setLoading(true);
     const supabase = createClient();
-
     const { error } = await supabase
       .from("issues")
       .update({ priority: value })
       .eq("id", issueId);
-
     if (error) {
-      toast.error("Nie udało się zmienić priorytetu.");
+      toast.error(t("errorPriority"));
       setLoading(false);
       return;
     }
-
-    toast.success("Priorytet zaktualizowany.");
+    toast.success(t("successPriority"));
     router.refresh();
     setLoading(false);
   };
@@ -63,7 +61,7 @@ export default function PrioritySelect({
                 <div
                   className={`w-2 h-2 rounded-full shrink-0 ${config.dot}`}
                 />
-                <span>{config.label}</span>
+                <span>{t(`priorities.${value as Priority}`)}</span>
               </div>
             </SelectItem>
           ))}

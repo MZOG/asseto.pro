@@ -274,6 +274,53 @@
     "inService": "In Wartung",
     "closed": "Geschlossen",
 
+    "issuePage": {
+      "title": "Störung",
+      "priority": "Priorität",
+      "status": "Status",
+      "description": "Störungsbeschreibung",
+      "noDescription": "Keine Beschreibung",
+      "photoAlt": "Störungsfoto",
+      "details": "Details",
+      "reported": "Gemeldet:",
+      "updated": "Aktualisiert:",
+      "closed": "Geschlossen:",
+      "reporterPhone": "Telefon des Melders:",
+      "asset": "Gerät",
+      "viewAsset": "Gerät anzeigen →",
+      "technician": "Techniker",
+      "noEmail": "Keine Techniker-E-Mail. Fügen Sie sie in den Geräteeinstellungen hinzu.",
+      "notifyPro": "E-Mail-Benachrichtigungen an Techniker im Pro-Plan verfügbar.",
+      "notifyButton": "Service benachrichtigen",
+      "to": "An:",
+      "send": "E-Mail senden",
+      "sending": "Wird gesendet...",
+      "cancel": "Abbrechen",
+      "errorStatus": "Status konnte nicht aktualisiert werden.",
+      "successStatus": "Status aktualisiert.",
+      "errorPriority": "Priorität konnte nicht aktualisiert werden.",
+      "successPriority": "Priorität aktualisiert.",
+      "errorNotify": "Nachricht konnte nicht gesendet werden.",
+      "successNotify": "E-Mail gesendet an {email}",
+      "emailSubject": "Störungsmeldung — {asset}",
+      "emailCompany": "Firma: {company}",
+      "emailDate": "Gemeldet am: {date}",
+      "emailAsset": "Gerät: {asset}",
+      "emailDescription": "Störungsbeschreibung:",
+      "emailPortal": "Technikerportal: {url}",
+      "statuses": {
+        "broken": "Defekt",
+        "maintenance": "In Wartung",
+        "closed": "Geschlossen"
+      },
+      "priorities": {
+        "low": "Niedrig",
+        "normal": "Normal",
+        "high": "Hoch",
+        "critical": "Kritisch"
+      }
+    },
+
     "proModal": {
       "title": "Was ist im Pro-Plan enthalten?",
       "defaultText": "Im Pro-Plan freischalten",

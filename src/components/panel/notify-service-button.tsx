@@ -6,6 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 import { Mail, Loader2, ChevronDown, ChevronUp } from "lucide-react";
 import { ProFeaturesModal } from "./pro-features-modal";
+import { useTranslations, useLocale } from "next-intl";
 
 interface Props {
   assetName: string;
@@ -26,6 +27,8 @@ export default function NotifyServiceButton({
   isPro,
   serviceToken,
 }: Props) {
+  const t = useTranslations("panel.issuePage");
+  const locale = useLocale();
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -34,56 +37,52 @@ export default function NotifyServiceButton({
       ? `${typeof window !== "undefined" ? window.location.origin : "https://asseto.pro"}/serwis/${serviceToken}`
       : null;
 
-    const reportedAt = new Date(createdAt).toLocaleString("pl-PL", {
-      day: "numeric",
-      month: "long",
-      year: "numeric",
-      hour: "2-digit",
-      minute: "2-digit",
-    });
+    const reportedAt = new Date(createdAt).toLocaleString(
+      locale === "en" ? "en-US" : locale === "de" ? "de-DE" : "pl-PL",
+      {
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+      },
+    );
 
     return [
-      `Firma: ${companyName ?? "—"}`,
-      `Data zgłoszenia: ${reportedAt}`,
-      `Maszyna: ${assetName}`,
-      ``,
-      `Opis usterki:`,
-      description ?? "Brak opisu",
-      ``,
-      serviceUrl ? `Panel serwisanta: ${serviceUrl}` : "",
+      t("emailCompany", { company: companyName ?? "—" }),
+      t("emailDate", { date: reportedAt }),
+      t("emailAsset", { asset: assetName }),
+      "",
+      t("emailDescription"),
+      description ?? t("noDescription"),
+      "",
+      serviceUrl ? t("emailPortal", { url: serviceUrl }) : "",
     ]
       .filter(Boolean)
       .join("\n");
   });
 
   if (!serviceEmail) {
-    return (
-      <p className="text-xs text-gray-400 mt-5">
-        Brak adresu e-mail serwisanta. Dodaj go w ustawieniach maszyny.
-      </p>
-    );
+    return <p className="text-xs text-gray-400 mt-5">{t("noEmail")}</p>;
   }
 
   const handleSend = async () => {
     setLoading(true);
-
     const res = await fetch("/api/issues/notify-service", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         to: serviceEmail,
-        subject: `Zgłoszenie usterki — ${assetName}`,
+        subject: t("emailSubject", { asset: assetName }),
         message,
       }),
     });
-
     if (!res.ok) {
-      toast.error("Nie udało się wysłać wiadomości.");
+      toast.error(t("errorNotify"));
       setLoading(false);
       return;
     }
-
-    toast.success(`E-mail wysłany do ${serviceEmail}`);
+    toast.success(t("successNotify", { email: serviceEmail }));
     setOpen(false);
     setLoading(false);
   };
@@ -92,7 +91,7 @@ export default function NotifyServiceButton({
     return (
       <div className="flex flex-col md:flex-row items-center justify-between gap-2 bg-gray-50 border border-gray-200 rounded-lg px-3 py-2.5 mt-3">
         <p className="text-xs text-gray-500 flex-1 text-center md:text-left">
-          Powiadomienia e-mail do serwisanta dostępne w planie Pro.
+          {t("notifyPro")}
         </p>
         <ProFeaturesModal />
       </div>
@@ -103,18 +102,17 @@ export default function NotifyServiceButton({
     <div className="space-y-3 mt-3">
       <Button variant="outline" onClick={() => setOpen((prev) => !prev)}>
         <Mail size={14} className="mr-1.5" />
-        Poinformuj serwis
+        {t("notifyButton")}
         {open ? (
           <ChevronUp size={13} className="ml-1.5" />
         ) : (
           <ChevronDown size={13} className="ml-1.5" />
         )}
       </Button>
-
       {open && (
         <div className="space-y-3">
           <p className="text-xs text-gray-400">
-            Do:{" "}
+            {t("to")}{" "}
             <span className="text-gray-600 font-medium">{serviceEmail}</span>
           </p>
           <Textarea
@@ -132,12 +130,12 @@ export default function NotifyServiceButton({
               {loading ? (
                 <>
                   <Loader2 size={13} className="animate-spin mr-1.5" />
-                  Wysyłanie...
+                  {t("sending")}
                 </>
               ) : (
                 <>
                   <Mail size={13} className="mr-1.5" />
-                  Wyślij e-mail
+                  {t("send")}
                 </>
               )}
             </Button>
@@ -146,7 +144,7 @@ export default function NotifyServiceButton({
               onClick={() => setOpen(false)}
               disabled={loading}
             >
-              Anuluj
+              {t("cancel")}
             </Button>
           </div>
         </div>

@@ -279,6 +279,53 @@
     "inService": "In service",
     "closed": "Closed",
 
+    "issuePage": {
+      "title": "Issue",
+      "priority": "Priority",
+      "status": "Status",
+      "description": "Issue description",
+      "noDescription": "No description",
+      "photoAlt": "Issue photo",
+      "details": "Details",
+      "reported": "Reported:",
+      "updated": "Updated:",
+      "closed": "Closed:",
+      "reporterPhone": "Reporter's phone:",
+      "asset": "Asset",
+      "viewAsset": "View asset →",
+      "technician": "Technician",
+      "noEmail": "No technician email. Add it in the asset settings.",
+      "notifyPro": "Email notifications to technician available in Pro plan.",
+      "notifyButton": "Notify service",
+      "to": "To:",
+      "send": "Send email",
+      "sending": "Sending...",
+      "cancel": "Cancel",
+      "errorStatus": "Failed to update status.",
+      "successStatus": "Status updated.",
+      "errorPriority": "Failed to update priority.",
+      "successPriority": "Priority updated.",
+      "errorNotify": "Failed to send message.",
+      "successNotify": "Email sent to {email}",
+      "emailSubject": "Issue report — {asset}",
+      "emailCompany": "Company: {company}",
+      "emailDate": "Reported at: {date}",
+      "emailAsset": "Asset: {asset}",
+      "emailDescription": "Issue description:",
+      "emailPortal": "Technician portal: {url}",
+      "statuses": {
+        "broken": "Broken",
+        "maintenance": "In service",
+        "closed": "Closed"
+      },
+      "priorities": {
+        "low": "Low",
+        "normal": "Normal",
+        "high": "High",
+        "critical": "Critical"
+      }
+    },
+
     "proModal": {
       "title": "What's included in Pro?",
       "defaultText": "Unlock in Pro plan",

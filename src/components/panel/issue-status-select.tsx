@@ -12,12 +12,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-
-const statuses = [
-  { value: "broken", label: "Uszkodzona", className: "text-red-600" },
-  { value: "maintenance", label: "W serwisie", className: "text-yellow-600" },
-  { value: "closed", label: "Zamknięta", className: "text-gray-500" },
-];
+import { useTranslations } from "next-intl";
 
 export default function IssueStatusSelect({
   issueId,
@@ -26,34 +21,42 @@ export default function IssueStatusSelect({
   issueId: string;
   currentStatus: string | null;
 }) {
+  const t = useTranslations("panel.issuePage");
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+
+  const statuses = [
+    { value: "broken", label: t("statuses.broken"), className: "text-red-600" },
+    {
+      value: "maintenance",
+      label: t("statuses.maintenance"),
+      className: "text-yellow-600",
+    },
+    {
+      value: "closed",
+      label: t("statuses.closed"),
+      className: "text-gray-500",
+    },
+  ];
 
   const handleChange = async (value: string) => {
     setLoading(true);
     const supabase = createClient();
-
     const updates: Record<string, unknown> = {
       status: value,
       updated_at: new Date().toISOString(),
     };
-
-    if (value === "closed") {
-      updates.closed_at = new Date().toISOString();
-    }
-
-    const { error, data } = await supabase
+    if (value === "closed") updates.closed_at = new Date().toISOString();
+    const { error } = await supabase
       .from("issues")
       .update(updates)
       .eq("id", issueId);
-
     if (error) {
-      toast.error("Nie udało się zmienić statusu.");
+      toast.error(t("errorStatus"));
       setLoading(false);
       return;
     }
-
-    toast.success("Status zaktualizowany.");
+    toast.success(t("successStatus"));
     router.refresh();
     setLoading(false);
   };
