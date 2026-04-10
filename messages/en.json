@@ -279,6 +279,21 @@
     "inService": "In service",
     "closed": "Closed",
 
+    "addAssetModal": {
+      "trigger": "Add asset",
+      "title": "Add new asset",
+      "description": "Enter the basic information. You can add more details on the asset page.",
+      "name": "Asset name",
+      "namePlaceholder": "e.g. Forklift #3",
+      "serialNumber": "Serial number",
+      "serialNumberPlaceholder": "optional",
+      "add": "Add asset",
+      "adding": "Adding...",
+      "success": "Asset added.",
+      "error": "Failed to add asset.",
+      "nameRequired": "Asset name is required."
+    },
+
     "issuePage": {
       "title": "Issue",
       "priority": "Priority",

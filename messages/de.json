@@ -274,6 +274,21 @@
     "inService": "In Wartung",
     "closed": "Geschlossen",
 
+    "addAssetModal": {
+      "trigger": "Gerät hinzufügen",
+      "title": "Neues Gerät hinzufügen",
+      "description": "Geben Sie die grundlegenden Informationen ein. Weitere Details können Sie auf der Geräteseite ergänzen.",
+      "name": "Gerätename",
+      "namePlaceholder": "z.B. Gabelstapler #3",
+      "serialNumber": "Seriennummer",
+      "serialNumberPlaceholder": "optional",
+      "add": "Gerät hinzufügen",
+      "adding": "Wird hinzugefügt...",
+      "success": "Gerät hinzugefügt.",
+      "error": "Gerät konnte nicht hinzugefügt werden.",
+      "nameRequired": "Gerätename ist erforderlich."
+    },
+
     "issuePage": {
       "title": "Störung",
       "priority": "Priorität",

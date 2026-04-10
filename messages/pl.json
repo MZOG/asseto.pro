@@ -278,6 +278,21 @@
     "inService": "W serwisie",
     "closed": "Zamknięte",
 
+    "addAssetModal": {
+      "trigger": "Dodaj maszynę",
+      "title": "Dodaj nową maszynę",
+      "description": "Podaj podstawowe informacje. Więcej szczegółów możesz uzupełnić na stronie maszyny.",
+      "name": "Nazwa maszyny",
+      "namePlaceholder": "np. Wózek widłowy #3",
+      "serialNumber": "Numer seryjny",
+      "serialNumberPlaceholder": "opcjonalnie",
+      "add": "Dodaj maszynę",
+      "adding": "Dodawanie...",
+      "success": "Maszyna dodana.",
+      "error": "Nie udało się dodać maszyny.",
+      "nameRequired": "Nazwa maszyny jest wymagana."
+    },
+
     "issuePage": {
       "title": "Awaria",
       "priority": "Priorytet",

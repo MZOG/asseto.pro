@@ -8,6 +8,7 @@ import { Plus } from "lucide-react";
 import { ProFeaturesModal } from "@/components/panel/pro-features-modal";
 import { getPlanLimit } from "@/lib/utils/plan";
 import { getTranslations } from "next-intl/server";
+import AddAssetModal from "@/components/panel/add-asset-modal";
 
 export default async function EquipmentPage() {
   const t = await getTranslations("panel.assetsPage");
@@ -34,12 +35,7 @@ export default async function EquipmentPage() {
         {atLimit ? (
           <ProFeaturesModal text={t("addMore")} />
         ) : (
-          <Button asChild className="bg-blue-600 hover:bg-blue-700 text-white">
-            <Link href="/panel/maszyny/dodaj">
-              <Plus size={14} />
-              {t("add")}
-            </Link>
-          </Button>
+          <AddAssetModal userId={userId!} />
         )}
       </div>
 
