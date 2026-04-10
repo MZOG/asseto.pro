@@ -4,6 +4,25 @@ import { getAllPosts } from "@/lib/blog";
 
 const BASE_URL = "https://asseto.pro";
 
+const pathnames: Record<string, Partial<Record<string, string>>> = {
+  "/": {},
+  "/cennik": { pl: "/cennik", en: "/pricing", de: "/preise" },
+  "/blog": {},
+  "/pomoc": { pl: "/pomoc", en: "/help", de: "/hilfe" },
+  "/kontakt": { pl: "/kontakt", en: "/contact", de: "/kontakt" },
+  "/dla-firm": {
+    pl: "/dla-firm",
+    en: "/for-business",
+    de: "/fuer-unternehmen",
+  },
+};
+
+function getLocalizedPath(key: string, locale: string): string {
+  const map = pathnames[key];
+  if (!map || Object.keys(map).length === 0) return key;
+  return map[locale] ?? key;
+}
+
 function getUrl(locale: string, path: string): string {
   return locale === routing.defaultLocale
     ? `${BASE_URL}${path}`
@@ -24,8 +43,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   for (const page of staticPages) {
     for (const locale of routing.locales) {
+      const localizedPath = getLocalizedPath(page.key, locale);
       entries.push({
-        url: getUrl(locale, page.key),
+        url: getUrl(locale, localizedPath),
         priority: page.priority,
         changeFrequency: page.changeFrequency,
       });

@@ -8,9 +8,6 @@ const localeMap: Record<string, string> = {
   pl: "pl_PL",
   en: "en_US",
   de: "de_DE",
-  fr: "fr_FR",
-  cs: "cs_CZ",
-  sk: "sk_SK",
 };
 
 // Klucz = neutralna ścieżka, wartość = tłumaczenia per locale
@@ -23,44 +20,37 @@ const pathnames: Record<string, Partial<Record<string, string>>> = {
     pl: "/kontakt",
     en: "/contact",
     de: "/kontakt",
-    fr: "/contact",
   },
   "/pomoc": { pl: "/pomoc", en: "/help", de: "/hilfe", fr: "/aide" },
   "/dla-firm": {
     pl: "/dla-firm",
     en: "/for-business",
     de: "/fuer-unternehmen",
-    fr: "/pour-entreprises",
   },
   "/polityka-prywatnosci": {
     pl: "/polityka-prywatnosci",
     en: "/privacy-policy",
     de: "/datenschutz",
-    fr: "/confidentialite",
   },
   "/regulamin": {
     pl: "/regulamin",
     en: "/terms",
     de: "/agb",
-    fr: "/conditions",
   },
   "/logowanie": {
     pl: "/logowanie",
     en: "/login",
     de: "/anmelden",
-    fr: "/connexion",
   },
   "/rejestracja": {
     pl: "/rejestracja",
     en: "/register",
     de: "/registrieren",
-    fr: "/inscription",
   },
   "/panel": {
     pl: "/panel",
     en: "/dashboard",
     de: "/dashboard",
-    fr: "/tableau-de-bord",
   },
 };
 
